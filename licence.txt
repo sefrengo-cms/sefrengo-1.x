@@ -1,0 +1,7 @@
+--------------------------------------------------------------------------------
+
+Die Sefrengoè Lizenzbestimmungen finden Sie unter backend/licence.html
+
+The Sefrengoè licence agreement is located at backend/licence.html
+
+--------------------------------------------------------------------------------

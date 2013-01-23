@@ -1,0 +1,136 @@
+/*
+File: ie.css
++----------------------------------------------------------------------+
+| Version: Sefrengo 1.0.3 Beta2
++----------------------------------------------------------------------+
+| Copyright (c) 2005 the sefrengo-group <sefrengo-group@sefrengo.de>   |
++----------------------------------------------------------------------+
+| This program is free software; you can redistribute it and/or modify |
+| it under the terms of the GNU General Public License V2              |
+|                                                                      |
+| This program is subject to the GPL license, that is bundled with     |
+| this package in the file LICENSE.TXT.                                |
+| If you did not receive a copy of the GNU General Public License      |
+| along with this program write to the Free Software Foundation, Inc., |
+| 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA                |
+|                                                                      |
+| This program is distributed in the hope that it will be useful,      |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the         |
+| GNU General Public License for more details.                         |
+|                                                                      |
++----------------------------------------------------------------------+
++ Autor: Olaf Bosch                       http:olaf-bosch.de/
++----------------------------------------------------------------------+
++ Revision: 1.0.0
++----------------------------------------------------------------------+
++ Description: Backend IE6
++----------------------------------------------------------------------+
++ Changes:
++----------------------------------------------------------------------+
++ ToDo:
++----------------------------------------------------------------------+
+ */
+ 
+#header .logout{
+	height:24px;
+}
+
+#header .lizenz{
+	height:24px;
+}
+
+#header #version{
+	margin-right:4px;
+}
+
+#header .menu-akt a.active{
+	border-bottom:1px solid #EFEFEF;
+}
+
+table.config td #rightsmenucoat table td{
+	padding:0 4px;
+	background: transparent none;
+}
+
+table.config td #rightsmenucoat table tr{
+	background:transparent none;
+}
+
+#rightsmenucoat div.submit{
+	width:400px;
+}
+
+#rightsmenucoat td.first{
+	padding:0 0 0 6px;
+}
+
+#header .forms{
+	padding:2px 9px 2px 29px;
+}
+
+#main .forms{
+	padding-left:6px;
+}
+
+#main .forms #usersearch input{
+	height:20px;
+	margin-bottom:0;
+}
+
+td.entryuser p.midd{
+	margin:8px 0 0 20%;
+}
+
+td.entryuser p.seite{
+	display:inline;
+	float:left;
+	margin:2px 0 0 0;
+}
+
+td.entryuser p.zahl a{
+	display:inline-block;
+}
+
+td.entryuser p input{
+	margin-top:0;
+	vertical-align:middle;
+}
+
+table.uber .tdspace{
+	height:4px;
+}
+
+.tab-page {
+	height: 200px;
+}
+
+table.config td{
+	padding:2px 5px;
+}
+
+table.uber th.content6 input{
+	margin:-4px auto -3px auto;
+}
+
+#formpadd form{
+	margin-left :-5px;
+}
+
+/* tabbing module */
+.dynamic-tab-pane-control .tab-page{
+	height:200px;
+}
+
+.fileblock{
+	height:220px;
+}
+
+.filedisplay{
+	display:inline;
+}
+
+.filedetails{
+	display:inline;
+	width:205px;
+}

@@ -1,0 +1,1309 @@
+/*
+File: styles.css
++----------------------------------------------------------------------+
+| Version: Sefrengo 1.0.3 Beta2
++----------------------------------------------------------------------+
+| Copyright (c) 2005 the sefrengo-group <sefrengo-group@sefrengo.de>   |
++----------------------------------------------------------------------+
+| This program is free software; you can redistribute it and/or modify |
+| it under the terms of the GNU General Public License V2              |
+|                                                                      |
+| This program is subject to the GPL license, that is bundled with     |
+| this package in the file LICENSE.TXT.                                |
+| If you did not receive a copy of the GNU General Public License      |
+| along with this program write to the Free Software Foundation, Inc., |
+| 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA                |
+|                                                                      |
+| This program is distributed in the hope that it will be useful,      |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the         |
+| GNU General Public License for more details.                         |
+|                                                                      |
++----------------------------------------------------------------------+
++ Autor: Olaf Bosch (http:olaf-bosch.de/)
++----------------------------------------------------------------------+
++ Revision: 1.0.0
++----------------------------------------------------------------------+
++ Description: Backend
++----------------------------------------------------------------------+
++ Changes:
++----------------------------------------------------------------------+
++ ToDo:
++----------------------------------------------------------------------+
+
+ein paar grundsaetzliche Werte */
+*{
+	margin:0;
+	padding:0;
+}
+
+a img{
+	border:0px solid #FFFFFF;
+}
+
+body{
+	background:url(../img/bg_body.gif) #EFEFEF repeat-x top;
+	color:#000000;
+	font:100.01% verdana,helvetica,arial,geneva,sans-serif;
+	text-align:center;
+}
+
+body#con-edit,body#con-edit2{
+	background:none;
+}
+
+label{
+	cursor:pointer;
+	font-size:12px;
+}
+
+.clearfix:after{
+	clear:both;
+	content:".";
+	display:block;
+	height:0;
+	visibility:hidden;
+}
+
+.clearfix{
+	display:inline-block;
+}
+
+/* Holly Hack Targets IE Win only \*/
+* html .clearfix{
+	height:1px;
+}
+
+.clearfix{
+	display:block;
+}
+
+.icon {
+	vertical-align:middle;
+}
+
+/* End Holly Hack */
+
+/* HEADER */
+#header{
+	height:50px;
+	margin-bottom:34px;
+	text-align:left;
+}
+#header .forms{
+	background:url(../img/bg_header_forms.gif) #EFEFEF no-repeat 3px 4px;
+	clear:right;
+	color:#000000;
+	float:right;
+	margin-top:1px;
+	padding:2px 9px 2px 23px;
+}
+
+#header .forms form{
+	display:inline;
+}
+
+#header .logout{
+	background:#144282;
+	color:#B7D9FF;
+	font:.6em Verdana,Arial,sans-serif;
+	height:20px;
+	padding:4px 0 0 10px;
+}
+
+#header .lizenz{
+	background:#144282;
+	color:#B7D9FF;
+	font:.6em Verdana,Arial,sans-serif;
+	height:20px;
+	padding:4px 0 0 0;
+	width:17em;
+}
+
+#header .logout a,#header .lizenz a{
+	background:#144282;
+	color:#B7D9FF;
+}
+
+#header .logout a:hover,#header .lizenz a:hover{
+	background:#144282;
+	color:#DFEEFF;
+}
+
+#header #menu-layer0{
+	margin:0 0 0 10px;
+}
+
+#header #menu-layer0 a{
+	background:#4974B3;
+	border-bottom:1px solid #144282;
+	color:#B7D9FF;
+	display:block;
+	float:left;
+	font-size:.8em;
+	margin-right:4px;
+	padding:4px .6em 5px .6em;
+	text-decoration:none;
+}
+
+#header #menu-layer0 a:hover{
+	background:#6F91C1;
+	color:#DFEEFF;
+}
+
+#header #menu-layer0 a.active{
+	background:url(../img/bg_header_active.gif) top;
+	border-bottom:1px solid #FBCA03;
+	border-left:1px solid #FFFFFF;
+	border-right:1px solid #FFFFFF;
+	border-top:1px solid #FFFFFF;
+	color:#144282;
+	font-weight:bold;
+}
+
+#header #menu-layer0 a.active:hover{
+	background:url(../img/bg_header_active.gif) top;
+	color:#144282;
+}
+
+#menu_layer1,#menu_layer2,#menu_layer3,#menu_layer4,
+#menu_layer5,#menu_layer6,#menu_layer7,#menu_layer8,#menu_layer9{
+	position:absolute;
+	top:48px;
+	visibility:hidden;
+}
+
+#header .menu-akt{
+	width:100%;
+}
+
+#header .menu-akt a{
+	background:#FFDA46;
+	border-left:1px solid #FFEA95;
+	border-right:1px solid #FFEA95;
+	border-top:1px solid #FFEA95;
+	color:#144282;
+	display:block;
+	float:left;
+	font-size:.7em;
+	margin:0 4px 1px 0;
+	padding:2px .6em 2px .6em;
+	text-decoration:none;
+}
+
+#header .menu-akt a:hover{
+	background:#FFE373;
+	color:#144282;
+}
+
+#header .menu-akt a.active{
+	background:url(../img/bg_header_active_sub.gif) top;
+	border-left:1px solid #FFFFFF;
+	border-right:1px solid #FFFFFF;
+	border-top:1px solid #FFFFFF;
+	color:#144282;
+	font-weight:bold;
+	margin:0 4px 0 0;
+	padding:2px .6em 3px .6em;
+}
+
+#header .menu-akt a.active:hover{
+	background:url(../img/bg_header_active_sub.gif) top;
+	color:#144282;
+}
+
+#header .menu-akt p{
+	margin:8px 0 0 10px;
+}
+
+#header #version{
+	float:right;
+}
+
+#header select{
+	font-size:.7em;
+}
+
+/* Tabellen allgemein */
+.buttons{
+	text-align:right;
+	white-space:nowrap;
+}
+
+td.entry{
+	font:12px verdana,helvetica,arial,geneva,sans-serif;
+	vertical-align:top;
+}
+
+td.group{
+	padding:4px 5px 5px 5px;
+}
+
+table.uber td.content7{
+	background:#F0F8FF;
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	vertical-align:middle;
+}
+
+table.config td.content7{
+	background:#F0F8FF;
+}
+
+.nowrap{
+	white-space:nowrap;
+}
+
+table.config td a:link,table.config td a:visited,table.config td a:hover{
+	color:#1B1BB0;
+}
+
+.footer{
+	text-align:left;
+	color:#bcbcbc;
+	font-size:10px;
+	margin: 0px;
+	padding: 0 0 15px 1%;
+}
+
+.footer a{
+	background:#EFEFEF;
+	color:#bcbcbc;
+	text-decoration:underline;
+}
+
+.footer a:hover{
+	text-decoration:underline;
+}
+
+/* Übersichtstabellen */
+table.uber{
+	border:2px solid #D6D6D6;
+	border-collapse:collapse;
+	margin:12px 0;
+	width:100%;
+}
+
+table.uber th{
+	background:url(../img/bg_table_th.gif);
+	border:1px solid #D6D6D6;
+	font-size:10px;
+	padding:2px 5px;
+	text-align:left;
+	white-space:nowrap;
+}
+
+table.uber th a{
+	background:transparent;
+	color:#000000;
+}
+
+table.uber td{
+	border:1px solid #D6D6D6;
+	padding:2px 5px;
+	vertical-align:top;
+}
+
+table.uber .tdspace{
+	background:#D6D6D6;
+}
+
+table.uber .center{
+	text-align:center;
+}
+
+/* Konfugurationstabellen */
+table.config{
+	background:#D6D6D6;
+	border:1px solid #D6D6D6;
+	border-spacing:1px;
+	margin-top:12px;
+	margin-bottom:12px;
+	width:980px;
+}
+
+table.config td{
+	background:#F8F8F8;
+	border:1px solid #FFFFFF;
+	font:12px verdana,helvetica,arial,geneva,sans-serif;
+	padding:4px 5px;
+}
+
+table.config td.head{
+	background:#B7D9FF;
+	border:1px solid #F8F8F8;
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px 0 2px 5px;
+	vertical-align:top;
+	width:160px;
+}
+
+table.config td.head p{
+	width:160px;
+}
+
+table.config td.headre{
+	background:#DFEEFF;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px 0 2px 5px;
+}
+
+table.config table td{
+	border:0px solid #D6D6D6;
+	padding:0;
+	vertical-align:top;
+}
+
+table.config table#config table td{
+	border:0px solid #000000;
+	margin:0;
+}
+
+table.config td.headerror{
+	background:#EBD5C7;
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	vertical-align:top;
+}
+
+/* Seitenconfig HACK */
+table#siteconfhack1,table#siteconfhack2{
+	margin-top:-2px;
+}
+
+table.config td.nopadd{
+	border:0px solid #000000;
+	padding:0;
+}
+
+table.config td.nopadd table{
+	width:100%;
+}
+
+table.config td.nopadd td{
+	padding:2px 5px;
+}
+
+table.config table.sitehack td{
+	border:1px solid #ffffff;
+}
+
+table.config table.sitehack{
+	background-color:#d6d6d6; 
+	margin-top:-1px;
+}
+
+table.config table.sitehack table td{
+	border:0px solid #000000;
+	padding:0;
+}
+
+table.config table.sitehack table td.headre{
+	background:#DFEEFF;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	padding:0;
+}
+
+div.siteconf table.config{
+	border-bottom:0px solid #D6D6D6;
+	margin:-1px 0 0 0;
+	width:984px;
+}
+
+div.siteconf{
+	padding-bottom:1.5em;
+}
+
+div.siteconf h5{
+	margin-bottom:10px;
+}
+
+/* Ende */
+
+/* Formulare allgemein */
+option{
+	padding-left:10px;
+}
+
+label.groupconf{
+	font-size:12px;
+	margin:12px 0;
+}
+
+input{
+	color:#000000;
+	font:normal 11px helvetica,arial,geneva,sans-serif;
+}
+
+/* Hack wegen TD 12px */
+select{
+	font-size:11px;
+}
+
+/* fuer Textarea und Input verwenden */
+.w800{
+	width:790px;
+}
+
+.w600{
+	width:555px;
+}
+
+.w200{
+	width:350px;
+}
+
+/* con_main.php */
+#main{
+	margin:0 auto;
+	text-align:left;
+	width:98%;
+}
+
+#main .forms{
+	clear:right;
+	float:right;
+}
+
+#main .forms form{
+	display:inline;
+}
+
+#main .forms a{
+	font-size:12px;
+}
+
+#main .forms  input#usub{
+	background:url(../img/bg_lupe.gif) no-repeat left;
+	border:0px solid #FFFFFF;
+	height:19px;
+	width:19px;
+}
+
+#main .forms #usersearch input{
+	height:15px;
+	margin-bottom:1px;
+}
+
+#main h5{
+	padding-top:3px;
+}
+
+/* sonstiges von Olaf bearbeitet */
+/* aus der side_config.tpl ist hier besser aufgehoben
+trifft auch Menue Detailans. Dateimanager */
+table.templatebox{
+	border:1px solid #5A7BAD;
+}
+
+.menuentry{
+	padding:1px 0 1px 10px;
+}
+
+.menutitle{
+	color:#FFFFFF;
+	font:11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:1px 0 1px 2px;
+	background:#5A7BAD;
+}
+
+.menuentry a{
+	color:#777777;
+	font:11px verdana,helvetica,arial,geneva,sans-serif;
+	text-decoration:none;
+}
+
+.menuentry a:visited{
+	color:#777777;
+	text-decoration:none;
+}
+
+#menuentry_over{
+	background:#DBE3EF;
+}
+
+#menuentry_over a{
+	background:#DBE3EF;
+	color:#000000;
+	text-decoration:none;
+}
+
+.menurow{
+	color:#777777;
+	font:11px verdana,helvetica,arial,geneva,sans-serif;
+	padding-left:10px;
+	text-align:left;
+}
+
+.menurow a{
+	color:#777777;
+	text-decoration:none;
+}
+
+#menurow_over{
+	background:#DFEEFF;
+	color:#000000;
+	cursor:pointer;
+}
+
+/* END aus der side_config.tpl
+aus der colorpicker.php ist hier besser aufgehoben */
+table.colorpick{
+	visibility:hidden;
+	width:252px;
+}
+
+table.colorpick td{
+	cursor:pointer;
+	height:10px;
+	padding:0;
+	width:10px;
+}
+
+table.colorpick td a{
+	display:block;
+	width:10px;
+	height:10px;
+}
+
+/* END aus der colorpicker.php
+PopUP Seiten/Ordnerinfos */
+#overlib{
+	border:2px solid #D6D6D6;
+	text-align:left;
+	width:300px;
+}
+
+#overlib .nummer{
+	float:right;
+	margin-right:3px;
+}
+
+#overlib .sideinfo{
+	background:#4974B3;
+	color:#FFFFFF;
+	font:bold 11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px;
+}
+
+#overlib .folderinfo{
+	background:#FBC900;
+	color:#000000;
+	font:bold 11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px;
+}
+
+#overlib .sideinfo2{
+	background:#FFFFFF;
+	font:11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px;
+}
+
+/* END aus der colorpicker.php
+PopUP Seiten/Ordnerinfos */
+#overDiv{
+	border:2px solid #D6D6D6;
+	text-align:left;
+}
+
+#overDiv .captionclass{
+	background:#4974B3;
+	color:#FFFFFF;
+	font:bold 11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px;
+	text-decoration:none;
+}
+
+#overDiv .closeclass{
+background:#4974B3;
+	color:#FFFFFF;
+	font:bold 11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px;
+	text-align:right;
+}
+
+#overDiv .helpinfo{
+	background:#FFFFFF;
+	color:#777777;
+	font:11px verdana,helvetica,arial,geneva,sans-serif;
+	padding:2px;
+}
+
+#overDiv a{
+	color:#FFFFFF;
+	text-decoration:none;
+}
+
+/* die Buttons unten */
+input.sf_buttonAction,
+.fileblockactive #rightsmenucoat input.sf_buttonAction{
+	background:url(../img/bg_button.gif) #F4F7FB repeat-x bottom;
+	border:1px solid #8E8E8E;
+	color:#000000;
+	cursor:pointer;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	margin:5px 0;
+	padding:3px 0;
+	width:90px;
+}
+
+input.sf_buttonActionOver,
+.fileblockactive #rightsmenucoat input.sf_buttonActionOver{
+	background:url(../img/bg_button.gif) #F4F7FB repeat-x top;
+	border:1px solid #99CC01;
+	color:#000000;
+	cursor:pointer;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	margin:5px 0;
+	padding:3px 0;
+	width:90px;
+}
+
+input.sf_buttonActionCancelOver,
+.fileblockactive #rightsmenucoat input.sf_buttonActionCancelOver{
+	background:url(../img/bg_button_cancel.gif) #F4F7FB repeat-x top;
+	border:1px solid #B00101;
+	color:#000000;
+	cursor:pointer;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	margin:5px 0;
+	padding:3px 0;
+	width:90px;
+}
+
+/* OLD STYLES STARTS HERE   */
+h1{
+	color:#FFFFFF;
+	font:bold large helvetica,arial,geneva,sans-serif;
+}
+
+a.action:link{
+	color:#1B1BB0;
+	font-family:verdana,helvetica,arial,geneva,sans-serif;
+	text-decoration:none;
+}
+
+a.action:visited{
+	color:#1B1BB0;
+	font-family:verdana,helvetica,arial,geneva,sans-serif;
+	text-decoration:none;
+}
+
+a.action:hover{
+	color:#1B1BB0;
+	font-family:verdana,helvetica,arial,geneva,sans-serif;
+	text-decoration:underline;
+}
+
+.up:hover{
+	cursor:n-resize;
+}
+
+.down:hover{
+	cursor:s-resize;
+}
+
+/* Styles for css-editor */
+#cssedit textarea{
+	height:152px;
+	width:317px;
+}
+
+#cssedit select{
+	margin-bottom:10px;
+	width:180px;
+}
+
+#previewarea{
+background:#FFFFFF;
+	height:150px;
+	width:502px;
+}
+
+/* Styles of filemanager */
+td.contenta{
+	background:#DBE3EF;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+td.content3a{
+	background:#EFE3DB;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+th.headline{
+	background:#F7F7F7;
+	padding-left:5px;
+	padding-right:5px;
+}
+
+/* Dateimanager Detailansicht */
+.fileblock{
+	background:#FFFFFF;
+	border:1px solid #B7D9FF;
+	color:#000000;
+	float:left;
+	height:210px;
+	margin:3px;
+	padding:4px;
+	width:322px;
+}
+
+.fileblockactive{
+	background:#F8F8F8;
+	border:1px solid #144282;
+	float:left;
+	height:210px;
+	margin:3px;
+	padding:4px;
+	width:322px;
+}
+
+.filedisplay{
+	float:left;
+	height:140px;
+	margin-right:5px;
+	width:105px;
+}
+
+.filedisplay img{
+	border:1px solid #B7D9FF;
+	max-height:100%;
+	max-width:100%;
+}
+
+.fileedit{
+	clear:both;
+	font-size:10px;
+	text-align:right;
+}
+
+.filedetails{
+	float:right;
+	width:210px;
+}
+
+.fileblockactive .fileedit{
+	visibility:hidden;
+}
+
+form.filemanageredit{
+	display:inline;
+}
+
+.fileblockactive textarea{
+	font-size:11px;
+	height:85px;
+	width:185px;
+}
+
+.fileblockactive select{
+	font-size:11px;
+	width:185px;
+}
+
+.fileblockactive input{
+	font-size:11px;
+	width:185px;
+}
+
+.fileblockactive input.w16{
+	height:16px;
+	width:16px;
+}
+
+/* ENDE Dateimanager Detailansicht */
+img.action,a.action img{
+	vertical-align:bottom;
+}
+
+input.action{
+	margin-left:3px;
+	margin-right:3px;
+	vertical-align:bottom;
+}
+
+/* styles for rights panel */
+.fileblockactive #rightsmenucoat input{
+	width:auto;
+}
+
+#rightsmenucoat{
+	background:#F0F8FF;
+	border:2px solid #B7D9FF;
+	width:400px;
+}
+
+#rightsmenucoat h2{
+	background:url(../img/but_permission.gif) no-repeat left;
+	font-size:12px;
+	margin:4px 6px;
+	padding-left:20px;
+}
+
+#rightsmenucoat select.groupselect{
+	border:1px solid #B7D9FF;
+	font:11px Verdana,Arial,sans-serif;
+	width:383px;
+}
+
+#rightsmenucoat p{
+	margin:3px 6px 10px 6px;
+}
+
+#rightsmenucoat table{
+	background:#FFFFFF;
+	border-collapse:collapse;
+	margin:0;
+	padding:0;
+	width:100%;
+}
+
+#rightsmenucoat table th{
+	background:#F0F8FF;
+	border:0 none;
+	font-size:10px;
+	padding:0 2px;
+}
+
+#rightsmenucoat th.first{
+	padding-left:6px;
+	text-align:left;
+}
+
+#rightsmenucoat table td{
+	background:none;
+	border:0 none;
+	font-size:10px;
+	padding:3px 0;
+	vertical-align:middle;
+}
+
+#rightsmenucoat td.first{
+	padding:3px 0 3px 6px;
+}
+
+#rightsmenucoat div.submit{
+	border-top:1px solid #B7D9FF;
+	padding:8px 10px 8px 0;
+	text-align:right;
+}
+
+div.rightsscrolldiv{
+	background:#FFFFFF;
+	border-top:1px solid #B7D9FF;
+	height:200px;
+	overflow:auto;
+	width:400px;
+}
+
+.rightsmenu{
+	height:0;
+	left:-2000px;
+	position:absolute;
+	top:0px;
+	visibility:hidden;
+	width:0;
+	z-index:1000;
+}
+
+/* die mip_forms */
+.mipformtable{
+	width:100%;
+}
+
+.mipformtable td{
+	padding:6px 0;
+	vertical-align:top;
+}
+
+.mipformtable td.firsttab{
+	padding:1px 6px 1px 0;
+	text-align:left;
+	vertical-align:top;
+}
+
+.mipformtable td.secondtab{
+	padding:1px 6px 1px 0;
+	text-align:left;
+	vertical-align:top;
+}
+
+.mipformtable textarea.template{
+	margin-top:3px;
+	width:100%;
+}
+
+.mipformtable input.default{
+	width:100%;
+}
+
+.mipformtable input.radio{
+	width:auto;
+}
+
+/* fuer Formulare in der Mittelspalte
+z.B. Projekte-Sprache-Config */
+.label label{
+	clear:left;
+	float:left;
+	font-weight:bold;
+	padding:4px 6px 0 0;
+	text-align:right;
+	width:360px;
+}
+
+.label select{
+	margin-top:4px;
+}
+
+.label input{
+	margin-top:4px;
+	width:200px;
+}
+
+.label input.withdir{
+	width:auto;
+}
+
+/* Fehlermeldung Warnings OK */
+p.errormsg{
+	background:url(../img/info_error.gif) #F7E5E5 no-repeat 8px 50%;
+	border:1px solid #B00000;
+	color:#B00000;
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	margin-top:15px;
+	padding:7px 0 7px 30px;
+}
+
+p.warning{
+	background:url(../img/info_warning.gif) #FFE8D9 no-repeat 8px 50%;
+	border:1px solid #FF6600;
+	color:#FF6600;
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	margin-top:15px;
+	padding:7px 0 7px 30px;
+}
+
+p.ok{
+background:url(../img/info_ok.gif) #E6F3E6 no-repeat 8px 50%;
+	border:1px solid #339933;
+	color:#339933;
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	margin-top:15px;
+	padding:7px 0 7px 30px;
+}
+
+/* ModulUpDate PopUp-Fenster */
+	#con-edit{
+	text-align:left;
+}
+
+#con-edit p#submit{
+	background:#F0F8FF;
+	padding:5px 15px 5px 0;
+	text-align:right;
+}
+
+#con-edit #mod-up{
+	background:url(../img/module_update.gif) #DFEEFF no-repeat 10px center;
+	color:#000000;
+	padding:5px 0 5px 53px;
+}
+
+#con-edit #mod-up p{
+	font:12px verdana,helvetica,arial,geneva,sans-serif;
+	margin:4px 0;
+}
+
+div.modscrolldiv{
+	height:309px;
+	overflow:auto;
+}
+
+#con-edit table{
+background:#FFFFFF;
+	border-collapse:collapse;
+	margin-left:1px;
+	width:99%;
+}
+
+#con-edit table td{
+	border:1px solid #D6D6D6;
+	font:12px verdana,helvetica,arial,geneva,sans-serif;
+	padding:3px 8px;
+}
+
+#con-edit table th{
+	background:#F8F8F8;
+	font-size:10px;
+	padding:2px 5px;
+	white-space:nowrap;
+}
+
+#con-edit table td.nopadd{
+	padding:0px 0px;
+}
+
+#con-edit table td.head{
+	font:bold 12px verdana,helvetica,arial,geneva,sans-serif;
+	vertical-align:top;
+}
+
+#con-edit table table{
+	margin-left:0;
+	width:100%;
+}
+
+#con-edit table td table td{
+	border:0px solid #FF0000;
+	padding:3px 8px;
+}
+
+/* Dateiscan */
+div#scan{
+	background:url(../img/but_folder_scan.gif) #DFEEFF no-repeat 10px center;
+	border-bottom:1px solid #B7D9FF;
+	color:#000000;
+	padding:7px 0 7px 33px;
+}
+
+p.check{
+	font-size:12px;
+	margin:8px 4px 10px 16px;
+}
+
+p#submitscan{
+	background:#F0F8FF;
+	border-top:1px solid #B7D9FF;
+	bottom:0;
+	left:0;
+	padding:5px 0 5px 0;
+	position:absolute;
+	text-align:right;
+	width:100%;
+}
+
+p#submitscan input#sf_cancel{
+	margin-right:15px;
+}
+
+p#submitscan span{
+	float:left;
+	font-size:10px;
+	margin:5px 0 0 15px;
+}
+#con-edit p.scanimg{
+	margin:10px 0 5px 5px;
+}
+
+p.gang{
+	background:#F0F8FF;
+	border-bottom:1px solid #B7D9FF;
+	color:#000000;
+	font-size:10px;
+	font-weight:bold;
+	height:30px;
+	padding:7px;
+}
+
+p.percent{
+	font-size:10px;
+	font-weight:bold;
+	margin:5px;
+	text-align:center;
+}
+
+p.msg{
+	font-size:10px;
+	margin:15px 0 20px 15px;
+}
+
+table#scantab{
+	border-collapse:collapse;
+	margin:5px 0;
+	width:400px;
+}
+
+table#scantab th{
+	background:#FFFFFF;
+	font-size:12px;
+}
+
+table#scantab td{
+	border:none;
+	text-align:center;
+}
+
+/* user.tpl */
+td.entryuser{
+	background:#F8F8F8;
+	font:10px verdana,helvetica,arial,geneva,sans-serif;
+	padding:4px 5px;
+}
+
+td.entryuser p.seite{
+	display:inline;
+	float:left;
+	margin:4px 0 0 0;
+}
+
+td.entryuser p.midd{
+	display:inline;
+	float:left;
+	margin:5px 0 0 0;
+	margin-left:40%;
+}
+
+td.entryuser p input{
+	font-weight:bold;
+	margin-top:-3px;
+	text-align:center;
+	width:3em;
+}
+
+td.entryuser p.zahl{
+	display:inline;
+	float:right;
+	margin:4px 0;
+}
+
+td.entryuser p.zahl a{
+	background:#E9E9E9;
+	border:1px solid #D6D6D6;
+	color:#000000;
+	font-weight:bold;
+	padding:2px 4px;
+	text-decoration:none;
+}
+
+td.entryuser p.zahl a:hover,td.entryuser p.zahl span.akt a{
+	background:#FFEA95;
+	border:1px solid #FBC901;
+}
+
+img.calgif{
+	vertical-align:middle;
+}
+
+#popmenu{
+	background:menu;
+	font:normal 11px Verdana,Helvetica,Arial,Geneva,sans-serif;
+	position:absolute;
+	visibility:hidden;
+	width:140px;
+	z-index:100;
+}
+
+
+/* tabbing module */
+.dynamic-tab-pane-control{
+	margin:0 4px;
+	position:relative;
+	width:794px;
+}
+
+table.config td .dynamic-tab-pane-control td{
+	background:#FFFFFF;
+}
+
+.dynamic-tab-pane-control .dynamic-tab-pane-control{
+	width:764px;
+}
+
+.dynamic-tab-pane-control .dynamic-tab-pane-control .dynamic-tab-pane-control{
+	width:734px;
+}
+
+.dynamic-tab-pane-control .tab-row .tab{
+	background:#EFEFEF;
+	border-left:1px solid #d6d6d6;
+	border-right:1px solid #d6d6d6;
+	border-top:1px solid #d6d6d6;
+	color:#000000;
+	cursor:pointer;
+	float:left;
+	margin:1px 2px 1px 2px;
+	padding:2px 6px 3px 6px;
+	position:relative;
+	top:0px;
+	z-index:1;
+}
+
+.dynamic-tab-pane-control .tab-row .tab:hover,
+.dynamic-tab-pane-control .tab-row .tab:hover a{
+	background:#FFF5CE;
+	color:#000000;
+}
+
+.dynamic-tab-pane-control .tab-row .selected,
+.dynamic-tab-pane-control .tab-row .selected:hover{
+	background:#FFFFFF;
+	color:#000000;
+	margin:1px 2px 1px 2px;
+	padding:2px 6px 4px 6px;
+	top:0px;
+	z-index:3;
+}
+
+.dynamic-tab-pane-control .tab-row .selected:hover a{
+	background:#FFFFFF;
+	color:#000000;
+}
+
+.dynamic-tab-pane-control .dynamic-tab-pane-control .tab-row .tab{
+	top:5px;
+}
+
+.dynamic-tab-pane-control .tab-row .tab a{
+	background:#EFEFEF;
+	color:#000000;
+	cursor:pointer;
+	font:normal 11px Verdana,Geneva,Arial,Helvetica,sans-serif;
+	text-decoration:none;
+}
+
+.dynamic-tab-pane-control .tab-row .selected a,
+.dynamic-tab-pane-control .tab-row .selected a:hover{
+	background:transparent;
+	color:#000000;
+	font-weight:bold;
+}
+
+.dynamic-tab-pane-control .tab-page{
+	background:#FFFFFF;
+	border:1px solid #d6d6d6;
+	clear:both;
+	color:#000000;
+	font:13px Verdana,Geneva,Arial,Helvetica,sans-serif;
+	min-height:200px;
+	padding:10px;
+	position:relative;
+	top:-2px;
+	z-index:2;
+}
+
+.dynamic-tab-pane-control .tab-page .tab-page{
+	top:1px;
+}
+
+.dynamic-tab-pane-control .tab-row{
+	height:1.85em;
+	margin-left:4px;
+	white-space:nowrap;
+	z-index:1;
+}
+
+.dynamic-tab-pane-control .scrollpage{
+	height:200px !important;
+	overflow:auto;
+}
+
+.fomrstitle {
+    height:40px ; 
+    vertical-align:bottom;
+}
+
+tr.fomrstitle td {
+    font-weight:bold;
+}

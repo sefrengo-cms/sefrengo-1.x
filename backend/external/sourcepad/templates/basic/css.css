@@ -1,0 +1,27 @@
+.dialogstyle {
+	background:	buttonface;
+	border:		0px;
+	padding:	10px;
+	margin:		0px;
+}
+
+.xpbtn
+	{
+	BORDER-LEFT: threedface 1px solid;
+	BORDER-RIGHT: threedface 1px solid;
+	BORDER-TOP: threedface 1px solid;
+	BORDER-BOTTOM: threedface 1px solid;
+	}
+
+.xpbtn_mini
+	{
+	BORDER-LEFT: threedface 1px solid;
+	BORDER-RIGHT: threedface 1px solid;
+	BORDER-TOP: threedface 1px solid;
+	BORDER-BOTTOM: threedface 1px solid;
+	}
+.btn_large
+	{
+	width: 100%;
+	}
+

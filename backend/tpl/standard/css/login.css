@@ -1,0 +1,173 @@
+/*
+File: login.css
++----------------------------------------------------------------------+
+| Version: Sefrengo 1.0.3 Beta2
++----------------------------------------------------------------------+
+| Copyright (c) 2005 the sefrengo-group <sefrengo-group@sefrengo.de>   |
++----------------------------------------------------------------------+
+| This program is free software; you can redistribute it and/or modify |
+| it under the terms of the GNU General Public License V2              |
+|                                                                      |
+| This program is subject to the GPL license, that is bundled with     |
+| this package in the file LICENSE.TXT.                                |
+| If you did not receive a copy of the GNU General Public License      |
+| along with this program write to the Free Software Foundation, Inc., |
+| 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA                |
+|                                                                      |
+| This program is distributed in the hope that it will be useful,      |
+| but WITHOUT ANY WARRANTY; without even the implied warranty of       |
+| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the         |
+| GNU General Public License for more details.                         |
+|                                                                      |
++----------------------------------------------------------------------+
++ Autor: Olaf Bosch                       http:olaf-bosch.de/
++----------------------------------------------------------------------+
++ Revision: 1.0.0
++----------------------------------------------------------------------+
++ Description: Backend Login/Logout
++----------------------------------------------------------------------+
++ Changes:
++----------------------------------------------------------------------+
++ ToDo:
++----------------------------------------------------------------------+
+ */
+
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	background:#EFEFEF;
+	color:#000000;
+	font:.8em Verdana,Arial,Helvetica,sans-serif;
+	text-align:center;
+}
+
+input.sf_buttonAction{
+	background:url(../img/bg_button.gif) #F4F7FB repeat-x bottom;
+	border:1px solid #8E8E8E;
+	color:#000000;
+	cursor:pointer;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	padding:3px 0;
+	width:70px;
+}
+
+input.sf_buttonActionOver{
+	background:url(../img/bg_button.gif) #F4F7FB repeat-x top;
+	border:1px solid #99CC01;
+	color:#000000;
+	cursor:pointer;
+	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
+	padding:3px 0;
+	width:70px;
+}
+
+.breit{
+	border:1px solid #144282;
+	font-size:14px;
+	padding:5px 4px 5px 28px;
+	width:266px;
+}
+
+.floatl{
+	float:left;
+	font-size:10px;
+	width:230px;
+}
+
+.floatr{
+	float:right;
+	text-align:right;
+	width:70px;
+}
+
+.footer{
+	background:#EFEFEF;
+	color:#979797;
+	font-size:10px;
+	margin:15px auto 0 auto;
+	width:361px;
+}
+
+.footer a{
+	background:#EFEFEF;
+	color:#979797;
+}
+
+.hide{
+	display:none;
+}
+
+.nojs{
+	background:#FFF5CE;
+	border-bottom:1px solid #FBC900;
+	color:#B00000;
+	font-size:.8em;
+	font-weight:bold;
+	padding:5px;
+	text-align:center;
+}
+
+.info{
+	margin:8px 0;
+	text-align:center;
+}
+
+#content .info a{
+	color:#5A7BAD;
+	display:block;
+	margin:25px 0 15px 0;
+}
+
+.warning{
+	background:#FFF5CE;
+	border-bottom:1px solid #FBC900;
+	color:#B00000;
+	font-size:10px;
+	font-weight:bold;
+	padding:6px;
+	text-align:center;
+}
+
+#content{
+	padding:26px 30px 15px 30px;
+}
+
+#header{
+	background:url(../img/login/header.png) #144282 no-repeat top left;
+	border-bottom:3px solid #FBC900;
+	height:48px;
+}
+
+#header h2{
+	background:#144282;
+	color:#FBC900;
+	font-size:.8em;
+	font-weight:bold;
+	padding:10px 6px 4px 10px;
+}
+
+#navi{
+	height:40px;
+	margin-top:10px;
+}
+
+#password{
+	background:url(../img/login/pass.gif) no-repeat 2px center;
+	margin-top:8px;
+}
+
+#username{
+	background:url(../img/login/user.gif) no-repeat 2px center;
+}
+
+#wrapper{
+	background:#FFFFFF;
+	border:2px solid #144282;
+	color:#000000;
+	margin:60px auto 0 auto;
+	text-align:left;
+	width:361px;
+}

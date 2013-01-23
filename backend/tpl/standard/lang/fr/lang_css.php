@@ -1,0 +1,120 @@
+<?php
+if(! defined('CMS_CONFIGFILE_INCLUDED')){
+	die('NO CONFIGFILE FOUND');
+}
+
+
+$cms_lang['css_action']				= 'Actions';
+$cms_lang['css_description']			= 'Description';
+$cms_lang['css_file_new']				= 'Nouveau fichier CSS';
+$cms_lang['css_file_edit']				= 'Editer le fichier CSS';
+$cms_lang['css_file_delete']			= 'Supprimer le fichier CSS';
+$cms_lang['css_file_duplicate']		= 'Copier le fichier CSS';
+$cms_lang['css_file_download']         = 'T&eacute;l&eacute;charger le fichier CSS';
+$cms_lang['css_file_delete_confirm']	= 'Confirmez l\'effacement du fichier CSS';
+$cms_lang['css_file_delete_cancel']	= 'Annuler l\'effacement du fichier CSS';
+$cms_lang['css_showrules']				= 'Afficher les r&egrave;gles CSS';
+$cms_lang['css_hiderules']				= 'Cacher les r&egrave;gles CSS';
+$cms_lang['css_filename']				= 'Nom de fichier';
+$cms_lang['css_nofile']				= 'Il n\'y a pas de fichier CSS.';
+$cms_lang['css_norules']				= 'Il n\'y a pas de r&egrave;gles CSS dans ce fichier.';
+$cms_lang['css_norulesforimport']		= 'Pas trouv&eacute; de r&egrave;gles CSS &agrave; importer.';
+$cms_lang['css_edit']					= '&Eacute;diter la r&egrave;gle CSS';
+$cms_lang['css_delete']				= 'Supprimer la r&egrave;gle CSS';
+$cms_lang['css_export']				= 'Exporter la r&egrave;gle CSS';
+$cms_lang['css_import']				= 'Importer la r&egrave;gle CSS';
+$cms_lang['css_delete_confirm']		= 'Confirmez l\'effacement de la r&egrave;gle CSS';
+$cms_lang['css_delete_cancel']			= 'Annuler l\'effacement de la r&egrave;gle CSS';
+$cms_lang['css_reset_form']			= 'Rejeter les saisies, remettre les valeurs d\'origine';
+$cms_lang['css_cancel_form']			= 'Interrompre la saisie, retour &agrave; la derni&egrave;re version';
+$cms_lang['css_submit_form']			= 'Accepter les saisies, accepter les donn&eacute;es';
+$cms_lang['css_rule_addhint']			= 'Accepter les &eacute;l&eacute;ments CSS des donn&eacute;es';
+$cms_lang['css_rule_removehint']		= 'Enlever les &eacute;l&eacute;ments CSS des donn&eacute;es';
+$cms_lang['css_rule_helphint']			= 'Afficher l\'aide CSS';
+$cms_lang['css_rulename']				= 'S&eacute;lecteur';
+$cms_lang['css_rule_file']				= 'Fichier CSS';
+$cms_lang['css_rule_file01']			= 'Attribuer la r&egrave;gle CSS &agrave; aucun fichier';
+$cms_lang['css_rule_list']				= 'Liste des r&egrave;gles CSS';
+$cms_lang['css_rule_list_importable']	= 'R&egrave;gles CSS<br>&nbsp;importables';
+$cms_lang['css_rule_list_used']		= 'R&egrave;gles CSS<br>&nbsp;utiliser';
+$cms_lang['css_rule_listhint']			= 'Les r&egrave;gles CSS attribu&eacute;es sont singularis&eacute;es. Marquez plusieures r&egrave;gles avec la touche CTRL.';
+$cms_lang['css_rule_listempty']		= 'Il n\'y a pas de r&egrave;gles CSS.';
+$cms_lang['css_rule_type']				= 'Type CSS';
+$cms_lang['css_rule_type01']			= 'TAG';
+$cms_lang['css_rule_type02']			= 'Classe';
+$cms_lang['css_rule_type03']			= 'ID';
+$cms_lang['css_rule_type04']			= 'Import';
+$cms_lang['css_rule_content']			= 'Elements CSS';
+$cms_lang['css_rule_previewhint']		= 'Affiche les r&egrave;gles CSS en pr&eacute;visualisation';
+$cms_lang['css_rule_previewtype']		= 'Pr&eacute;visualisation CSS';
+$cms_lang['css_rule_previewtype1']		= 'Choisir la forme de pr&eacute;visualisation ...';
+$cms_lang['css_rule_previewtype2']		= 'P + Style';
+$cms_lang['css_rule_previewtype3']		= 'SPAN + Style';
+$cms_lang['css_rule_previewtype4']		= 'CELLULE DE TABLEAU + Style';
+$cms_lang['css_rule_previewtype5']		= 'LISTE + Style';
+$cms_lang['css_rule_previewtype6']		= 'ENUMERATION + Style';
+$cms_lang['css_rule_previewtype7']		= 'LIEN - Style';
+$cms_lang['css_rule_previewtype8']		= 'IMAGE + Style';
+$cms_lang['css_rule_previewtype9']		= 'IMAGE AVEC LIEN + Style';
+$cms_lang['css_rule_previewtype10']	= 'IMAGE AVEC LIEN SANS BORDURE + Style';
+$cms_lang['css_importable']			= '--- r&egrave;gles CSS importables ---';
+$cms_lang['css_used']					= '--- r&egrave;gles CSS utilisables ---';
+$cms_lang['css_fileimport']			= 'T&eacute;l&eacute;chargement vers le serveur de fichier CSS';
+$cms_lang['css_new']					= 'Nouvelle r&egrave;gle CSS';
+$cms_lang['css_created']				= 'Cr&eacute;&eacute;e le';
+$cms_lang['css_lastmodified']			= 'Chang&eacute;e le';
+$cms_lang['css_editor']				= 'Redacteur';
+$cms_lang['css_rule_checking']			= 'V&eacute;rifier la validit&eacute; des &eacute;l&eacute;ments CSS';
+$cms_lang['css_rule_warning']			= 'Erreur dans la r&egrave;gle CSS:';
+$cms_lang['css_rule_clearhint']		= 'Supprimer les donn&eacute;es dans le champs de saisie';
+$cms_lang['css_duplicate']				= 'Dupliquer les r&egrave;gles CSS';
+$cms_lang['css_rule_clearhint']		= 'Supprimer les donn&eacute;es dans le champs de saisie';
+$cms_lang['css_duplicate']				= 'Dupliquer les r&egrave;gles CSS';
+$cms_lang['css_rule_warning']			= 'Erreur dans la r&egrave;gle CSS:';
+$cms_lang['css_validator_001']			= 'Des &eacute;l&eacute;ments CSS doubles ont &eacute;t&eacute; trouv&eacute;s!,,';
+$cms_lang['css_validator_002']			= 'Une valeur erron&eacute;e a &eacute;t&eacute; trouv&eacute;e,';
+$cms_lang['css_validator_003']			= 'Des valeurs dupliqu&eacute;es ont &eacute;t&eacute; trouv&eacute;es,';
+$cms_lang['css_validator_004']			= 'Nombre maximal de valeur d&eacute;pass&eacute;,';
+$cms_lang['css_validator_005']			= 'Contient des valeurs inconnues ou erron&eacute;es,';
+$cms_lang["css_edit_rights"]			= '&Eacute;diter les droits';
+$cms_lang["css_posible_units"]			= 'Unit&eacute;s possibles ...';
+$cms_lang["css_posible_elements"]		= '&Eacute;l&eacute;ment ...';
+
+// translate
+$cms_lang['css_js_previewname']         = 'previewarea';
+$cms_lang['css_js_picker']              = 'colorpicker';
+$cms_lang['css_js_visible']             = 'visible';
+$cms_lang['css_js_hidden']              = 'hidden';
+$cms_lang['css_js_nopreview']           = 'Sorry, die Vorschau funktioniert nicht mit Ihrem Browser';
+$cms_lang['css_js_choosepreview']       = 'W\u00E4hlen Sie zuerst die Vorschauart aus!';
+$cms_lang['css_js_chosseelement']       = 'Bitte w\u00E4hlen Sie ein Element aus!';
+$cms_lang['css_js_entervalue0']         = 'Bitte geben Sie den Wert f\u00FCr das Element  \'';
+$cms_lang['css_js_entervalue1']         = '\'  an!';
+$cms_lang['css_js_confirmvalue']        = 'Fehlerhafte Angaben f\u00FCr das Stilelement! Trotzdem als CSS-Element \u00FCbernehmen?';
+
+// 11xx = CSS
+$cms_lang['err_1101']					= 'R&egrave;gle CSS utilis&eacute;e. Suppression impossible.';
+$cms_lang['err_1102']					= 'S&eacute;lecteur &eacute;rron&eacute; ou pas sp&eacute;cifi&eacute;.';
+$cms_lang['err_1103']					= '&Eacute;l&eacute;ment CSS &eacute;rron&eacute; ou pas sp&eacute;cifi&eacute;.';
+$cms_lang['err_1104']					= 'Pas de classement de la r&egrave;gle CSS trouv&eacute;.';
+$cms_lang['err_1105']					= 'Fichier CSS inexistant.';
+$cms_lang['err_1106']					= 'Nom du fichier CSS &eacute;rron&eacute; ou pas sp&eacute;cifi&eacute;.';
+$cms_lang['err_1107']					= 'Il y a d&eacute;j&agrave; un fichier CSS avec ce nom. Veuillez choisir un autre nom.';
+$cms_lang['err_1108']					= 'La r&egrave;gle CSS n\'a pas pu &ecirc;tre export&eacute;e.';
+$cms_lang['err_1109']					= 'La r&egrave;gle CSS n\'a pas pu &ecirc;tre import&eacute;e.';
+$cms_lang['err_1110']					= 'La r&egrave;gle CSS n\'a pas pu &ecirc;tre cr&eacute;&eacute;e.';
+$cms_lang['err_1111']					= 'La r&egrave;gle CSS n\'a pas pu &ecirc;tre attribu&eacute;e au fichier CSS.';
+$cms_lang['err_1112']					= 'La r&egrave;gle CSS a &eacute;t&eacute; export&eacute;e avec succ&egrave;s.';
+$cms_lang['err_1113']					= 'La r&egrave;gle CSS a &eacute;t&eacute; import&eacute;e avec succ&egrave;s.';
+$cms_lang['err_1114']					= 'La r&egrave;gle CSS ne peut pas &ecirc;tre import&eacute;e car il existe d&eacute;j&agrave; une r&egrave;gle CSS de m&ecirc;me nom et type.';
+$cms_lang['err_1115']					= 'T&eacute;l&eacute;chargement vers le serveur et import du fichier CSS &eacute;chou&eacute;s.';
+$cms_lang['err_1116']					= 'T&eacute;l&eacute;chargement vers le serveur et import du fichier CSS avec succ&egrave;s.';
+$cms_lang['err_1117']					= 'T&eacute;l&eacute;chargement vers le serveur et import du fichier CSS &eacute;chou&eacute;s, mais quelques r&egrave;gles CSS semblent &ecirc;tre fautives.<br>&nbsp;Veuillez v&eacute;rifier les r&egrave;gles CSS import&eacute;es, surtout les r&egrave;gles singularis&eacute;es.';
+$cms_lang['err_1118']					= 'Des r&egrave;gles CSS &eacute;rron&eacute;es ont &eacute;t&eacute; trouv&eacute; dans le fichier! Veuillez v&eacute;rifier les r&egrave;gles singularis&eacute;es, car elle n\'existe pas dans le fichier de style!';
+$cms_lang['err_1119']					= 'La r&egrave;gle CSS n\'a pas pu &ecirc;tre cr&eacute;&eacute;e.';
+$cms_lang['err_1120']			   		= 'Le fichier CSS est utilis&eacute;. Suppression impossible.';
+$cms_lang['err_1121']					= 'Il existe d&eacute;j&agrave; une r&egrave;gle CSS avec ce nom. Veuillez choisir un autre nom.';
+$cms_lang['err_1122']					= 'Le fichier CSS n\'a pas pu &ecirc;tre actualis&eacute;! Veuillez v&eacute;rifier les droits.';
+$cms_lang['err_1123']	 			   	= 'Le fichier CSS n\'a pas pu &ecirc;tre supprim&eacute;! Veuillez v&eacute;rifier les droits.';
+
+?>
