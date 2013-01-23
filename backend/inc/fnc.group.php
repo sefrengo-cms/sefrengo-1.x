@@ -173,7 +173,7 @@ function group_save_perms() {
 		// dies ist bei der ermittlung des neuen perm-wertes zu berücksichtigen ... die eintragung selbst erfolgt mit dem Punkt
 		// und wird bei der Abfrage von Rechte auch mit der Punktnotation durchgeführt
 		$perm_area = str_replace('.', '_', $key);
-		$perm_val = &$GLOBALS['cms_access_'.$perm_area];
+		$perm_val = $GLOBALS['cms_access_'.$perm_area];
 		$sql = "SELECT idperm FROM ". $cms_db['perms'] ." WHERE idgroup = $idgroup AND idlang = $idlang AND type = 'cms_access' AND id = '$key'";
 		$db->query($sql);
 		$idperm = ($db->next_record()) ? $db->f("idperm"): '';

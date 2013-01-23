@@ -500,7 +500,7 @@ class SF_PAGE_Cat extends SF_API_Object {
 	 */
 	function _copyTemplateConfig($idcat_from, $idcat_to) {
 		global $cms_db, $db;
-		$db2 = &new DB_cms;
+		$db2 = new DB_cms;
 		$ret_tpl_conf = 0;
 		
 		$arr_langs = $this->_getLangInfoArray();

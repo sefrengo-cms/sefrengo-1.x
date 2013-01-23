@@ -625,7 +625,7 @@
 	*/
 	function &Query($sql, $inputarr=false)
 	{
-		$rs = &$this->Execute($sql, $inputarr);
+		$rs = $this->Execute($sql, $inputarr);
 		if (!$rs && defined('ADODB_PEAR')) return ADODB_PEAR_Error();
 		return $rs;
 	}
@@ -636,7 +636,7 @@
 	*/
 	function &LimitQuery($sql, $offset, $count, $params=false)
 	{
-		$rs = &$this->SelectLimit($sql, $count, $offset, $params); 
+		$rs = $this->SelectLimit($sql, $count, $offset, $params); 
 		if (!$rs && defined('ADODB_PEAR')) return ADODB_PEAR_Error();
 		return $rs;
 	}
@@ -891,7 +891,7 @@
 		// return real recordset from select statement
 		$rsclass = $this->rsPrefix.$this->databaseType;
 		$rs =& new $rsclass($this->_queryID,$this->fetchMode);
-		$rs->connection = &$this; // Pablo suggestion
+		$rs->connection = $this; // Pablo suggestion
 		$rs->Init();
 		if (is_array($sql)) $rs->sql = $sql[0];
 		else $rs->sql = $sql;
@@ -899,7 +899,7 @@
 		global $ADODB_COUNTRECS;
 			if ($ADODB_COUNTRECS) {
 				if (!$rs->EOF) { 
-					$rs = &$this->_rs2rs($rs,-1,-1,!is_array($sql));
+					$rs = $this->_rs2rs($rs,-1,-1,!is_array($sql));
 					$rs->_queryID = $this->_queryID;
 				} else
 					$rs->_numOfRows = 0;
@@ -1142,11 +1142,11 @@
 		$ADODB_COUNTRECS = false;
 			
 		if ($offset>0){
-			if ($secs2cache>0) $rs = &$this->CacheExecute($secs2cache,$sql,$inputarr);
-			else $rs = &$this->Execute($sql,$inputarr);
+			if ($secs2cache>0) $rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
+			else $rs = $this->Execute($sql,$inputarr);
 		} else {
-			if ($secs2cache>0) $rs = &$this->CacheExecute($secs2cache,$sql,$inputarr);
-			else $rs = &$this->Execute($sql,$inputarr);
+			if ($secs2cache>0) $rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
+			else $rs = $this->Execute($sql,$inputarr);
 		}
 		$ADODB_COUNTRECS = $savec;
 		if ($rs && !$rs->EOF) {
@@ -1188,12 +1188,12 @@
 		}
 		$dbtype = $rs->databaseType;
 		if (!$dbtype) {
-			$rs = &$rs;  // required to prevent crashing in 4.2.1, but does not happen in 4.3.1 -- why ?
+			$rs = $rs;  // required to prevent crashing in 4.2.1, but does not happen in 4.3.1 -- why ?
 			return $rs;
 		}
 		if (($dbtype == 'array' || $dbtype == 'csv') && $nrows == -1 && $offset == -1) {
 			$rs->MoveFirst();
-			$rs = &$rs; // required to prevent crashing in 4.2.1, but does not happen in 4.3.1-- why ?
+			$rs = $rs; // required to prevent crashing in 4.2.1, but does not happen in 4.3.1-- why ?
 			return $rs;
 		}
 		$flds = array();
@@ -1208,7 +1208,7 @@
 		$arrayClass = $this->arrayClass;
 		
 		$rs2 =& new $arrayClass();
-		$rs2->connection = &$this;
+		$rs2->connection = $this;
 		$rs2->sql = $rs->sql;
 		$rs2->dataProvider = $this->dataProvider;
 		$rs2->InitArrayFields($arr,$flds);
@@ -1265,7 +1265,7 @@
 		$ADODB_COUNTRECS = false;
 		
 		$ret = false;
-		$rs = &$this->Execute($sql,$inputarr);
+		$rs = $this->Execute($sql,$inputarr);
 		if ($rs) {	
 			if (!$rs->EOF) $ret = reset($rs->fields);
 			$rs->Close();
@@ -1277,7 +1277,7 @@
 	function CacheGetOne($secs2cache,$sql=false,$inputarr=false)
 	{
 		$ret = false;
-		$rs = &$this->CacheExecute($secs2cache,$sql,$inputarr);
+		$rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
 		if ($rs) {		
 			if (!$rs->EOF) $ret = reset($rs->fields);
 			$rs->Close();
@@ -1289,7 +1289,7 @@
 	function GetCol($sql, $inputarr = false, $trim = false)
 	{
 	  	$rv = false;
-	  	$rs = &$this->Execute($sql, $inputarr);
+	  	$rs = $this->Execute($sql, $inputarr);
 	  	if ($rs) {
 			$rv = array();
 	   		if ($trim) {
@@ -1311,7 +1311,7 @@
 	function CacheGetCol($secs, $sql = false, $inputarr = false,$trim=false)
 	{
 	  	$rv = false;
-	  	$rs = &$this->CacheExecute($secs, $sql, $inputarr);
+	  	$rs = $this->CacheExecute($secs, $sql, $inputarr);
 	  	if ($rs) {
 			if ($trim) {
 				while (!$rs->EOF) {
@@ -1600,7 +1600,7 @@
 		$err = '';
 		
 		if ($secs2cache > 0){
-			$rs = &csv2rs($md5file,$err,$secs2cache,$this->arrayClass);
+			$rs = csv2rs($md5file,$err,$secs2cache,$this->arrayClass);
 			$this->numCacheHits += 1;
 		} else {
 			$err='Timeout 1';
@@ -1616,11 +1616,11 @@
 				if ($this->debug !== -1) ADOConnection::outp( " $md5file cache failure: $err (see sql below)");
 			}
 			
-			$rs = &$this->Execute($sqlparam,$inputarr);
+			$rs = $this->Execute($sqlparam,$inputarr);
 
 			if ($rs) {
 				$eof = $rs->EOF;
-				$rs = &$this->_rs2rs($rs); // read entire recordset into memory immediately
+				$rs = $this->_rs2rs($rs); // read entire recordset into memory immediately
 				$txt = _rs2serialize($rs,false,$sql); // serialize
 		
 				if (!adodb_write_file($md5file,$txt,$this->debug)) {
@@ -1631,8 +1631,8 @@
 				}
 				if ($rs->EOF && !$eof) {
 					$rs->MoveFirst();
-					//$rs = &csv2rs($md5file,$err);		
-					$rs->connection = &$this; // Pablo suggestion
+					//$rs = csv2rs($md5file,$err);		
+					$rs->connection = $this; // Pablo suggestion
 				}  
 				
 			} else
@@ -1646,7 +1646,7 @@
 				$fn($this, $secs2cache, $sql, $inputarr);
 			}
 		// ok, set cached object found
-			$rs->connection = &$this; // Pablo suggestion
+			$rs->connection = $this; // Pablo suggestion
 			if ($this->debug){ 
 					
 				$inBrowser = isset($_SERVER['HTTP_USER_AGENT']);
@@ -3063,7 +3063,7 @@
 		if ($lnumrows == -1 && $this->connection) {
 			IF ($table) {
 				if ($condition) $condition = " WHERE " . $condition; 
-				$resultrows = &$this->connection->Execute("SELECT COUNT(*) FROM $table $condition");
+				$resultrows = $this->connection->Execute("SELECT COUNT(*) FROM $table $condition");
 				if ($resultrows) $lnumrows = reset($resultrows->fields);
 			}
 		}
@@ -3815,7 +3815,7 @@
 		$class = "ADODB2_$drivername";
 		$dict =& new $class();
 		$dict->dataProvider = $conn->dataProvider;
-		$dict->connection = &$conn;
+		$dict->connection = $conn;
 		$dict->upperName = strtoupper($drivername);
 		$dict->quote = $conn->nameQuote;
 		if (!empty($conn->_connectionID))

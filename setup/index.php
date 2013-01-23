@@ -1449,7 +1449,7 @@ else
 	error_reporting (E_ALL & ~E_NOTICE);
 }
 
-$con_setup = &new setup();
+$con_setup = new setup();
 $data = $con_setup -> make_setup();
 echo $data;
 

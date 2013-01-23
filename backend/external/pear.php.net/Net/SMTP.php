@@ -124,7 +124,7 @@ class Net_SMTP
         if (isset($port)) $this->port = $port;
         if (isset($localhost)) $this->localhost = $localhost;
 
-        $this->_socket = &new Net_Socket();
+        $this->_socket = new Net_Socket();
 
         /*
          * Include the Auth_SASL package.  If the package is not available,
@@ -494,7 +494,7 @@ class Net_SMTP
         }
 
         $challenge = base64_decode($this->_arguments[0]);
-        $digest = &Auth_SASL::factory('digestmd5');
+        $digest = Auth_SASL::factory('digestmd5');
         $auth_str = base64_encode($digest->getResponse($uid, $pwd, $challenge,
                                                        $this->host, "smtp"));
 
@@ -544,7 +544,7 @@ class Net_SMTP
         }
 
         $challenge = base64_decode($this->_arguments[0]);
-        $cram = &Auth_SASL::factory('crammd5');
+        $cram = Auth_SASL::factory('crammd5');
         $auth_str = base64_encode($cram->getResponse($uid, $pwd, $challenge));
 
         if (PEAR::isError($error = $this->_put($auth_str))) {

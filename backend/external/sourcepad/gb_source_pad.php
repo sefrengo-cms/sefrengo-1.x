@@ -208,8 +208,8 @@ class gb_source_pad
 	{
 		global $gb_conf, $gb_lang;
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_init($tpl, $this -> conf, $gb_lang);
 
@@ -223,8 +223,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_js_pad($tpl, $tpl_set, $unique_nr, $gb_lang);
 
@@ -238,8 +238,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_make_js_functions($tpl, $gb_lang);
 
@@ -253,8 +253,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_color($tpl, $color_opener, $unique_nr, $gb_lang);
 
@@ -268,8 +268,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_search($tpl, $unique_nr, $gb_lang);
 
@@ -283,8 +283,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_search_replace($tpl, $unique_nr, $gb_lang);
 
@@ -298,8 +298,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_link($tpl, $unique_nr, $gb_lang);
 
@@ -313,8 +313,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_image($tpl, $unique_nr, $gb_lang);
 
@@ -328,8 +328,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_list($tpl, $unique_nr, $gb_lang);
 
@@ -343,8 +343,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_table($tpl, $unique_nr, $gb_lang);
 
@@ -358,8 +358,8 @@ class gb_source_pad
 
 		$this -> include_lang($lang);
 
-		$tpl = &new totemplate;
-		$tpl_maker = &new template_maker;
+		$tpl = new totemplate;
+		$tpl_maker = new template_maker;
 
 		$tpl = $tpl_maker -> tpl_popup_special_chars($tpl, $unique_nr, $gb_lang);
 

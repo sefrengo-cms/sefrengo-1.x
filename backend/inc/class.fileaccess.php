@@ -110,11 +110,11 @@ class fileaccess {
 	// constructor
 	//
 	function fileaccess() {
-		$this->db            = &$GLOBALS['db_query'];
-		$this->cfg_client    = &$GLOBALS['cfg_client'];
-		$this->cfg_cms      = &$GLOBALS['cfg_cms'];
-		$this->perm          = &$GLOBALS['perm'];
-		$this->lang          = &$GLOBALS['lang'];
+		$this->db            = $GLOBALS['db_query'];
+		$this->cfg_client    = $GLOBALS['cfg_client'];
+		$this->cfg_cms      = $GLOBALS['cfg_cms'];
+		$this->perm          = $GLOBALS['perm'];
+		$this->lang          = $GLOBALS['lang'];
 		$this->fileicon_path = $this->cfg_cms['cms_html_path'].'tpl/' . $this->cfg_cms['skin'] . '/img/file_icons/';
 		$this->aspect_ratio  = $this->cfg_client['thumb_aspectratio'];
 	}

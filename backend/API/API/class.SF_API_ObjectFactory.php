@@ -69,7 +69,7 @@ class SF_API_ObjectFactory {
     */
     function SF_API_ObjectFactory($api_path, &$object_store) {
         $this->api_path = $api_path;
-        $this->object_store = &$object_store;
+        $this->object_store = $object_store;
     } 
     
     
@@ -173,11 +173,11 @@ class SF_API_ObjectFactory {
              . '_' . $cla; 
         // handle singleton
         if ($this->object_store->isStored($cla, 'default')) {
-            $obj = &$this->object_store->get($cla, 'default');
+            $obj = $this->object_store->get($cla, 'default');
             if ($obj->_API_objectIsSingleton()) {
                 if ($obj->_API_isObjectBridge()) {
                     // handle bridge object
-                    $bridge = &$obj->_API_getBridgeObject();
+                    $bridge = $obj->_API_getBridgeObject();
                     return $bridge;
                 } else {
                     // singleton object
@@ -187,11 +187,11 @@ class SF_API_ObjectFactory {
             unset($obj); 
         } 
         if ($this->requireClass($package, $classname)) {
-            if (false === ($obj = &$this->_getNewObject($cla, $parms))) return false; 
+            if (false === ($obj = $this->_getNewObject($cla, $parms))) return false; 
             
             if ($obj->_API_isObjectBridge()) {
                 // handle bridge object
-                $bridge = &$obj->_API_getBridgeObject();
+                $bridge = $obj->_API_getBridgeObject();
                 return $bridge;
             } else {
                 // standard object
@@ -224,14 +224,14 @@ class SF_API_ObjectFactory {
              . '_' . $cla;
 
         if ($this->object_store->isStored($cla, $cache_alias)) {
-            $obj = &$this->object_store->get($cla, $cache_alias);
+            $obj = $this->object_store->get($cla, $cache_alias);
         } else {
             if ($this->requireClass($package, $classname)) {
-                if (false === ($obj = &$this->_getNewObject($cla, $parms))) return false; 
+                if (false === ($obj = $this->_getNewObject($cla, $parms))) return false; 
                 // force singleton
                 if ($obj->_API_objectIsSingleton()) {
                     if ($this->object_store->isStored($cla, 'default')) {
-                        $obj = &$this->object_store->get($cla, 'default');
+                        $obj = $this->object_store->get($cla, 'default');
                     } else {
                         $this->object_store->add($cla, 'default', $obj);
                     } 
@@ -247,7 +247,7 @@ class SF_API_ObjectFactory {
 
         if ($obj->_API_isObjectBridge()) {
             // handle bridge object
-            $bridge = &$obj->_API_getBridgeObject();
+            $bridge = $obj->_API_getBridgeObject();
             return $bridge;
         } else {
             // standard object

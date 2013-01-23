@@ -247,12 +247,12 @@ class ADODB_Pager {
 		$savec = $ADODB_COUNTRECS;
 		if ($this->db->pageExecuteCountRows) $ADODB_COUNTRECS = true;
 		if ($this->cache)
-			$rs = &$this->db->CachePageExecute($this->cache,$this->sql,$rows,$this->curr_page);
+			$rs = $this->db->CachePageExecute($this->cache,$this->sql,$rows,$this->curr_page);
 		else
-			$rs = &$this->db->PageExecute($this->sql,$rows,$this->curr_page);
+			$rs = $this->db->PageExecute($this->sql,$rows,$this->curr_page);
 		$ADODB_COUNTRECS = $savec;
 		
-		$this->rs = &$rs;
+		$this->rs = $rs;
 		if (!$rs) {
 			print "<h3>Query failed: $this->sql</h3>";
 			return;

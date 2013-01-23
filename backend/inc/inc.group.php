@@ -125,9 +125,9 @@ if (!$db->affected_rows()) {
 
 // Sprachen zuordnen
 if ($idgroup) {
-	$sim_perm = &new cms_perms($client_id, $idlang, true, $idgroup);
+	$sim_perm = new cms_perms($client_id, $idlang, true, $idgroup);
 	$tpl->setCurrentBlock('CONFIG');
-	$db2 = &new DB_cms;
+	$db2 = new DB_cms;
 	$sql = "SELECT A.idclient, A.name, B.idlang, B.name AS lang FROM ". $cms_db['clients'] ." A, ". $cms_db['lang'] ." B LEFT JOIN ". $cms_db['clients_lang'] ." C USING(idlang) WHERE A.idclient = C.idclient ORDER BY A.idclient, lang";
 	$db2->query($sql);
 	while ($db2->next_record()) {

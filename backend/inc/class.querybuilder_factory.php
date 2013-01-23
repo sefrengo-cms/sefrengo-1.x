@@ -55,9 +55,9 @@ class querybuilder_factory
 				die('Querybuilder für Datenbank <b>'.$db_interface->Database.'</b> vom Typ <b>'. $dbtype .'</b> nicht gefunden.');
 			} else {
 				include_once($inc_path.'class.querybuilder_'.$dbtype.'.php');
-				eval('$this->_db["'.$dbtype.'"] = &new querybuilder_'.$dbtype.'();');
-				$this->_db[$dbtype]->db = &$db_interface;
-				$this->_db[$dbtype]->cms_db = &$GLOBALS[$db_tables];
+				eval('$this->_db["'.$dbtype.'"] = new querybuilder_'.$dbtype.'();');
+				$this->_db[$dbtype]->db = $db_interface;
+				$this->_db[$dbtype]->cms_db = $GLOBALS[$db_tables];
 			}
 		}
 		// return querybuilder

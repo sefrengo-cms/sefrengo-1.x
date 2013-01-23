@@ -41,7 +41,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 
 include('inc/fnc.css.php');
 include('inc/class.fileaccess.php');
-$fm = &new fileaccess();
+$fm = new fileaccess();
 
 /******************************************************************************
  2. Eventuelle Actions/ Funktionen abarbeiten

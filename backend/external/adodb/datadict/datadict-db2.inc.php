@@ -83,7 +83,7 @@ class ADODB2_db2 extends ADODB_DataDict {
 		$validTypes = array("CHAR","VARC");
 		$invalidTypes = array("BIGI","BLOB","CLOB","DATE", "DECI","DOUB", "INTE", "REAL","SMAL", "TIME");
 		// check table exists
-		$cols = &$this->MetaColumns($tablename);
+		$cols = $this->MetaColumns($tablename);
 		if ( empty($cols)) { 
 			return $this->CreateTableSQL($tablename, $flds, $tableoptions);
 		}

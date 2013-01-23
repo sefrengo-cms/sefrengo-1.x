@@ -215,8 +215,11 @@ function type_output_textarea($type_container, $type_number, $type_typenumber, $
     
 	// Style
 	$css = _type_get_style($type_config['styleclass'], $type_config['styleid'], $type_config['styledb']);
-	$css['type'] = trim($css['type']);
-	if (!empty($css['type'])) $mod = '<span '.$css['fullstyle'].'>'.$mod.'</span>';
+	if(is_array($css) == TRUE)
+	{
+		$css['type'] = trim($css['type']);
+		if (!empty($css['type'])) $mod = '<span '.$css['fullstyle'].'>'.$mod.'</span>';
+	}
 	return $mod;
 }
 
@@ -1169,7 +1172,7 @@ function type_output_edit_container($type_container, $type_number, $type_typenum
 							idsidelang='".$con_side[$idcatside]['idsidelang']."'
 							AND container='$type_container'
 							AND number='$type_number'";
-				$db = &new DB_cms;
+				$db = new DB_cms;
 				$db->query($sql);
 
 				// neu anlegen & loeschen

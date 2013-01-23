@@ -40,14 +40,16 @@ if (function_exists('set_magic_quotes_runtime')) {
 }
 
 // zeige alle Fehlermeldungen, aber keine Warnhinweise und Deprecated-Meldungen
+$error_reporting = E_ALL & ~E_NOTICE;
 if (defined('E_DEPRECATED'))
 {
-	error_reporting (E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+	$error_reporting &= ~E_DEPRECATED;
 }
-else
+if (defined('E_STRICT'))
 {
-	error_reporting (E_ALL & ~E_NOTICE);
+	$error_reporting &= ~E_STRICT;
 }
+error_reporting ($error_reporting);
 
 // alle GET, POST und COOKIE wegen Globals_off parsen
 $types_to_register = array('GET','POST','SERVER');
@@ -85,9 +87,9 @@ require_once ($cms_path.'inc/fnc.general.php');
 include($cms_path.'inc/class.user_perms.php');
 
 // Klassen initialisieren
-$deb = &new cms_debug;
-$db = &new DB_cms;
-$val_ct = &new values_ct();
+$deb = new cms_debug;
+$db = new DB_cms;
+$val_ct = new values_ct();
 
 // Konfigurationsparameter einlesen
 $cfg_cms_temp = $val_ct -> get_cfg();

@@ -217,9 +217,9 @@ class cms_perms {
 		global $changeclient, $lang_charset, $val_ct, $auth;
 
 		$this->_is_admin = false;
-		$this->cms_db   = &$GLOBALS['cms_db'];
-		$this->deb       = &$GLOBALS['deb'];
-		$this->db        = &new DB_cms;
+		$this->cms_db   = $GLOBALS['cms_db'];
+		$this->deb       = $GLOBALS['deb'];
+		$this->db        = new DB_cms;
 
 		//Userid aus phplib beziehen
 		$this->user_id   = $auth->auth['uid'];

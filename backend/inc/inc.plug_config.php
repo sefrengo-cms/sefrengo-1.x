@@ -118,7 +118,7 @@ if (!empty($idplug) && $perm->have_perm(6, 'area_plug', 0)){
 
 // Konfiguration Data
 if ($perm->have_perm($perm_edit_settings_view) || $perm->have_perm($perm_edit_settings)) {
-    $output = &new values_ct_edit(array('sqlgroup' => $plugroot,
+    $output = new values_ct_edit(array('sqlgroup' => $plugroot,
             'client' => $idclient,
             'lang' => '0',
             'perm_edit' => $perm_edit_settings,

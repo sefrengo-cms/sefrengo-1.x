@@ -39,14 +39,16 @@ if (function_exists('set_magic_quotes_runtime')) {
 }
 
 // zeige alle Fehlermeldungen, aber keine Warnhinweise und Deprecated-Meldungen
+$error_reporting = E_ALL & ~E_NOTICE;
 if (defined('E_DEPRECATED'))
 {
-	error_reporting (E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+	$error_reporting &= ~E_DEPRECATED;
 }
-else
+if (defined('E_STRICT'))
 {
-	error_reporting (E_ALL & ~E_NOTICE);
+	$error_reporting &= ~E_STRICT;
 }
+error_reporting ($error_reporting);
 // error_reporting (E_ALL);
 // Flag für Windows-Systeme, um auf Windows nicht existierende Befehle zu blocken
 $is_win =  strtoupper(substr(PHP_OS, 0, 3) == 'WIN');
@@ -89,11 +91,11 @@ include_once ($this_dir.'inc/class.repository.php');
 
 
 // Klassen initialisieren
-$deb = &new cms_debug;
-$db = &new DB_cms;
-$db_query = &new querybuilder_factory();
+$deb = new cms_debug;
+$db = new DB_cms;
+$db_query = new querybuilder_factory();
 $db_query = $db_query -> get_db($db, 'cms_db', $this_dir.'inc/');
-$val_ct = &new values_ct();
+$val_ct = new values_ct();
 // Konfigurationsparameter einlesen
 $cfg_cms_temp = $val_ct -> get_cfg();
 $cfg_cms = array_merge($cfg_cms, $cfg_cms_temp);
@@ -109,7 +111,7 @@ if ( $cfg_cms['db_optimice_tables']['enable'] && (time() > ($cfg_cms['db_optimic
 }
 
 // Template initialisieren
-$tpl = &new HTML_Template_IT($this_dir.'tpl/'.$cfg_cms['skin'].'/');
+$tpl = new HTML_Template_IT($this_dir.'tpl/'.$cfg_cms['skin'].'/');
 
 // Session starten
 page_open(array('sess' => 'cms_Backend_Session',
@@ -125,7 +127,7 @@ $client       = (empty($client))       ? $sid_client       : $client;
 $lang         = (empty($lang))         ? $sid_lang         : $lang;
 $lang_charset = (empty($lang_charset)) ? $sid_lang_charset : $lang_charset;
 
-$perm         = &new cms_perms($client, $lang);
+$perm         = new cms_perms($client, $lang);
 $client       = $perm -> get_client();
 $lang         = $perm -> get_lang();
 $lang_charset = $perm -> get_lang_charset();
@@ -181,7 +183,7 @@ $deb -> collect('Group Id: '   . $perm -> idgroup);
 $deb -> collect('File:' .__FILE__.' Line:' .__LINE__, 'mem');
 
 // Repository laden
-$rep        = &new repository;
+$rep        = new repository;
 // Run init Plugins
 if ( $cfg_rep['repository_init_plugins'] ) $rep->init_plugins();
 

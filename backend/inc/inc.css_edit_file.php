@@ -41,7 +41,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 
 include('inc/fnc.css.php');
 include('inc/class.filemanager.php');
-$fm = &new filemanager();
+$fm = new filemanager();
 
 /******************************************************************************
  2. Eventuelle Actions/ Funktionen abarbeiten

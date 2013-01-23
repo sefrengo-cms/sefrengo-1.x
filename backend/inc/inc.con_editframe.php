@@ -73,8 +73,8 @@ if(is_numeric($idplugin)){
 				return false;
 			}
 			
-			$db2 = &new DB_cms;
-			$db3 = &new DB_cms;
+			$db2 = new DB_cms;
+			$db3 = new DB_cms;
 			
 			//echo "$from_lang, $to_lang, $idcatside";
 			//find idside

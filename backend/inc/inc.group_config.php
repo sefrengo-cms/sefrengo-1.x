@@ -128,7 +128,7 @@ $tpl->setVariable($tmp);
 unset($tmp);
 
 // Lade eingetragene Rechte der Gruppe
-$sim_perm = &new cms_perms($idclient, $idlang, true, $idgroup);
+$sim_perm = new cms_perms($idclient, $idlang, true, $idgroup);
 
 // Lade die algemeinen Rechtegruppen und zeige für jede die eingetragenen Rechte an
 $sql  = 'SELECT DISTINCT key2, conf_desc_langstring, conf_sortindex ';
@@ -152,7 +152,7 @@ _show_rightgroup( $sql, true );
 function _show_rightgroup( $sql, $plugins ) {
 	global $db, $cms_lang, $tmp;
 
-	$db2 = &new DB_cms;
+	$db2 = new DB_cms;
 	$db2->query($sql);
 	while ($db2->next_record()) {
 		$area_name = $db2->f('key2');

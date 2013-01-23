@@ -85,7 +85,7 @@ class SF_API_ObjectStore {
     * @return (boolean) 
     */
     function add($identifier, $alias, &$object) {
-        $this->_store[$identifier][strtolower($alias)] = &$object;
+        $this->_store[$identifier][strtolower($alias)] = $object;
         return $this->isStored($identifier, $alias);
     } 
 

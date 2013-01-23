@@ -62,7 +62,7 @@ echo "<div id=\"main\">\n";
 echo "    <h5>".$cms_lang["area_$area"]."</h5>\n";
 if ($errno) echo "<p class=\"errormsg\">".$cms_lang["err_$errno"]."</p>\n";
 
-$output = &new values_ct_edit(
+$output = new values_ct_edit(
 				array(
 	               'sqlgroup'  		=> 'cfg',
 				   'client'		=> '0',

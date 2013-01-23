@@ -36,14 +36,16 @@ if (function_exists('set_magic_quotes_runtime')) {
 }
 
 // zeige alle Fehlermeldungen, aber keine Warnhinweise und Deprecated-Meldungen
+$error_reporting = E_ALL & ~E_NOTICE;
 if (defined('E_DEPRECATED'))
 {
-	error_reporting (E_ALL & ~E_NOTICE & ~E_DEPRECATED);
+	$error_reporting &= ~E_DEPRECATED;
 }
-else
+if (defined('E_STRICT'))
 {
-	error_reporting (E_ALL & ~E_NOTICE);
+	$error_reporting &= ~E_STRICT;
 }
+error_reporting ($error_reporting);
 
 
 //send header
@@ -93,9 +95,9 @@ if(! defined('SKIP_COMMON_SETTINGS') ){
 	include_once ($this_dir.'inc/class.querybuilder_factory.php');
 	
 	// Klassen initialisieren
-	$deb    = &new cms_debug;
-	$db     = &new DB_cms;
-	$val_ct = &new values_ct();
+	$deb    = new cms_debug;
+	$db     = new DB_cms;
+	$val_ct = new values_ct();
 	
 	// Konfigurationsparameter einlesen
 	$cfg_cms_temp = $val_ct -> get_cfg();
@@ -125,7 +127,7 @@ $lang         = (empty($lang))         ? $sid_lang         : $lang;
 $lang_charset = (empty($lang_charset)) ? 'iso-8859-1' : $lang_charset;
 
 
-$perm         = &new cms_perms($client, $lang);
+$perm         = new cms_perms($client, $lang);
 $client       = $perm -> get_client();
 $lang         = $perm -> get_lang();
 $lang_charset = $perm -> get_lang_charset();

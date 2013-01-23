@@ -36,7 +36,7 @@ function fire_event($event, $args) {
 
 	if (!is_object($cms_event)) {
 		include_once $cfg_cms['cms_path']. 'inc/class.cms_event.php';
-		$cms_events = &new cms_event($val_ct);
+		$cms_events = new cms_event($val_ct);
 	}
 	$cms_events -> fire($event, $args);
 	
@@ -506,7 +506,7 @@ function get_validator($name) {
 	// include validator class and create object
 	if (!$cfg_cms[$name]) $cfg_cms[$name] = 'class.validator.php';
 	include_once($cfg_cms['cms_path'].'inc/'.$cfg_cms[$name]);
-	$validator = &new validator();
+	$validator = new validator();
 	return $validator;
 }
 

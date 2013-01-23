@@ -69,7 +69,7 @@ class validator {
 	// constructor
 	//
 	function validator () {
-		$this->cfg_cms = &$GLOBALS['cfg_cms'];
+		$this->cfg_cms = $GLOBALS['cfg_cms'];
 		$this->preg_limiter = utf8_encode('ö');
 	}
 

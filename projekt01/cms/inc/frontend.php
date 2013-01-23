@@ -65,7 +65,7 @@ $sid_idcatside = $idcatside;
 $code='';
 
 // Rechte initialisieren
-$perm = &new cms_perms($client, $lang);
+$perm = new cms_perms($client, $lang);
 
 //Generate cat and page informations
 $sf_use_idlang_in_link = ($lang == $startlang && $cfg_client['url_langid_in_defaultlang'] == '0') ? false : true;

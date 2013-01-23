@@ -308,7 +308,7 @@ class Mail_mimeDecode extends PEAR
                     break;
 
                 case 'message/rfc822':
-                    $obj = &new Mail_mimeDecode($body);
+                    $obj = new Mail_mimeDecode($body);
                     $return->parts[] = $obj->decode(array('include_bodies' => $this->_include_bodies,
 					                                      'decode_bodies'  => $this->_decode_bodies,
 														  'decode_headers' => $this->_decode_headers));
@@ -346,7 +346,7 @@ class Mail_mimeDecode extends PEAR
         if (!empty($structure->parts)) {
             if ($mime_number != '') {
                 $structure->mime_id = $prepend . $mime_number;
-                $return[$prepend . $mime_number] = &$structure;
+                $return[$prepend . $mime_number] = $structure;
             }
             for ($i = 0; $i < count($structure->parts); $i++) {
 
@@ -358,9 +358,9 @@ class Mail_mimeDecode extends PEAR
                     $_mime_number = ($mime_number == '' ? $i + 1 : sprintf('%s.%s', $mime_number, $i + 1));
                 }
 
-                $arr = &Mail_mimeDecode::getMimeNumbers($structure->parts[$i], $no_refs, $_mime_number, $prepend);
+                $arr = Mail_mimeDecode::getMimeNumbers($structure->parts[$i], $no_refs, $_mime_number, $prepend);
                 foreach ($arr as $key => $val) {
-                    $no_refs ? $return[$key] = '' : $return[$key] = &$arr[$key];
+                    $no_refs ? $return[$key] = '' : $return[$key] = $arr[$key];
                 }
             }
         } else {
@@ -368,7 +368,7 @@ class Mail_mimeDecode extends PEAR
                 $mime_number = '1';
             }
             $structure->mime_id = $prepend . $mime_number;
-            $no_refs ? $return[$prepend . $mime_number] = '' : $return[$prepend . $mime_number] = &$structure;
+            $no_refs ? $return[$prepend . $mime_number] = '' : $return[$prepend . $mime_number] = $structure;
         }
         
         return $return;

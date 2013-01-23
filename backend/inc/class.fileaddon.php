@@ -189,7 +189,7 @@ class fileaddon_bilder extends fileaddon {
 
 		require_once 'Image/Transform.php';
 
-		$this->fm = &$fm;
+		$this->fm = $fm;
 		
 		$this->thumbext      = $cfg_client['thumbext'];
 		$this->size          = $cfg_client['thumb_size'];

@@ -49,7 +49,7 @@ function generate_configlayer() {
 			// Seite publizieren
 			if ($cfg_client['publish'] == '1' && $perm->have_perm(23, 'side', $idcatside, $idcat)) {
 				$sql = "SELECT changed FROM ".$cms_db['code']." WHERE idcatside='".$idcatside."' AND idlang='$lang'";
-				$db = &new DB_cms;
+				$db = new DB_cms;
 				$db->query($sql);
 				$db->next_record();
 				if ($db->f('changed') == '2') $out .= "<td class=\"menutitle\" align=\"right\"><b><font size=\"1\">&nbsp;<a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=side_publish&idcatside='.$idcatside)."\" onmouseover=\"on(\'".$mod_lang['side_publish']."\');return true;\" onmouseout=\"off();return true;\"><img src=\"".$cfg_cms['cms_html_path']."tpl/".$cfg_cms['skin']."/img/but_onpublish.gif\" border=\"0\" width=\"10\" height=\"10\"></a>&nbsp;</font></b></td>";

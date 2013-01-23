@@ -118,7 +118,7 @@ function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $w
 	$project_name = empty($project_name) ? 'Neues Projekt': $project_name;
 
 	include_once 'Archive/Tar.php';
-	$tar = &new Archive_Tar($cfg_cms['cms_path'].'tpl/projektvorlage.tar');
+	$tar = new Archive_Tar($cfg_cms['cms_path'].'tpl/projektvorlage.tar');
 
 	
 	if($with_dir == 1){

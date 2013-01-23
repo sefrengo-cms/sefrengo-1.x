@@ -62,7 +62,7 @@ echo "    <h5>Projekte - Projekt konfigurieren</h5>\n";
 if ($errno) echo "<p class=\"errormsg\">".$cms_lang["err_$errno"]."</p>\n";
 
 
-$output = &new values_ct_edit(array(
+$output = new values_ct_edit(array(
 	'sqlgroup'  		=> 'cfg_client',
 				   'client'  		=> $cid,
 				   'extra_url_args' => '&cid='.$cid .'&collapse='.$cid,

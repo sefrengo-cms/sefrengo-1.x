@@ -709,7 +709,7 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 	set_magic_quotes_gpc($name);
 	
 	//init
-	$db2 = &new DB_cms;
+	$db2 = new DB_cms;
 	
 	//get necessary values from source idcatside
 	$sql = "SELECT * FROM ".$cms_db['cat_side']." WHERE idcatside='$idcatside_from'";
@@ -772,7 +772,7 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 	$arr_langs = clients_get_langs($idclient, true);
 	
 	//insert metadata foreach lang
-	$db3 = &new DB_cms;
+	$db3 = new DB_cms;
 	$sql = "SELECT * FROM ".$cms_db['side_lang']." WHERE idside='$idside_from'";
 	$db3->query($sql);
 	while ( $db3->next_record() ) {
@@ -857,7 +857,7 @@ function con_copy_perms_from_idcatside($idclient, $idcatside_from, $idcatside_to
 function con_copy_tpl_from_idcatside($idclient, $idcatside_from, $idcatside_to) {
 	//init
 	global $db, $cms_db, $cfg_cms;
-	$db2 = &new DB_cms;
+	$db2 = new DB_cms;
 	
 	//get necessary values from source idcatside
 	$sql = "SELECT * FROM ".$cms_db['cat_side']." WHERE idcatside='$idcatside_from'";
@@ -941,8 +941,8 @@ function con_copy_tpl_from_idcatside($idclient, $idcatside_from, $idcatside_to) 
 function con_copy_content_from_idcatside($idclient, $idcatside_from, $idcatside_to) {
 	//init
 	global $db, $cms_db, $cfg_cms;
-	$db2 = &new DB_cms;
-	$db3 = &new DB_cms;
+	$db2 = new DB_cms;
+	$db3 = new DB_cms;
 	
 	//get necessary values from source idcatside
 	$sql = "SELECT * FROM ".$cms_db['cat_side']." WHERE idcatside='$idcatside_from'";

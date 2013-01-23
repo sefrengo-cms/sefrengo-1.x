@@ -260,7 +260,7 @@ class ADODB_DataDict {
 	function ExecuteSQLArray($sql, $continueOnError = true)
 	{
 		$rez = 2;
-		$conn = &$this->connection;
+		$conn = $this->connection;
 		$saved = $conn->debug;
 		foreach($sql as $line) {
 			
@@ -719,7 +719,7 @@ class ADODB_DataDict {
 		// check table exists
 		$save_handler = $this->connection->raiseErrorFn;
 		$this->connection->raiseErrorFn = '';
-		$cols = &$this->MetaColumns($tablename);
+		$cols = $this->MetaColumns($tablename);
 		$this->connection->raiseErrorFn = $save_handler;
 		
 		if (isset($savem)) $this->connection->SetFetchMode($savem);
@@ -739,7 +739,7 @@ class ADODB_DataDict {
 				if ( isset($cols[$k]) && is_object($cols[$k]) ) {
 					$c = $cols[$k];
 					$ml = $c->max_length;
-					$mt = &$this->MetaType($c->type,$ml);
+					$mt = $this->MetaType($c->type,$ml);
 					if ($ml == -1) $ml = '';
 					if ($mt == 'X') $ml = $v['SIZE'];
 					if (($mt != $v['TYPE']) ||  $ml != $v['SIZE']) {

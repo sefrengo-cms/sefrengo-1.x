@@ -17,7 +17,7 @@ echo "    <h5>Projekte - Sprache konfigurieren</h5>\n";
 if ($errno) echo "<p class=\"errormsg\">".$cms_lang["err_$errno"]."</p>";
 
 
-$output = &new values_ct_edit(array(
+$output = new values_ct_edit(array(
 				   'sqlgroup'  		=> 'cfg_lang',
 				   'client'  		=> $cid,
 				   'extra_url_args' => '&cid='.$cid .'&lid='.$lid .'&collapse='.$cid,

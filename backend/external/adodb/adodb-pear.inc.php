@@ -112,7 +112,7 @@ class DB
 	function &factory($type)
 	{
 		include_once(ADODB_DIR."/drivers/adodb-$type.inc.php");
-		$obj = &NewADOConnection($type);
+		$obj = NewADOConnection($type);
 		if (!is_object($obj)) $obj =& new PEAR_Error('Unknown Database Driver: '.$dsninfo['phptype'],-1);
 		return $obj;
 	}

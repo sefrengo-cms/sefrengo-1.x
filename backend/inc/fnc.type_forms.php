@@ -265,9 +265,9 @@ function type_form_img($formname, $content, $type_config, $cms_side)
         } 
     } 
 
-    $rb = &$GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
+    $rb = $GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
 
-    $res_file = &$GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'FileManager');
+    $res_file = $GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'FileManager');
     $res_file->setFiletypes(type_config_string_to_array($filetypes));
     $res_file->setFolderIds(type_config_string_to_array($type_config['folders']));
     $res_file->setWithSubfoders(($type_config['subfolders'] != 'false'));
@@ -399,8 +399,8 @@ function type_form_link($formname, $content, $type_config, $cms_side)
         $sf_link_extern = $content;
     } 
 
-    $rb = &$GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
-    $res_links = &$GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'InternalLink');
+    $rb = $GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
+    $res_links = $GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'InternalLink');
     $rb->addRessource($res_links);
     $rb->setJSCallbackFunction('sf_getLink' . $formname, array('picked_name', 'picked_value'));
     $rb_url = $rb->exportConfigURL();
@@ -503,7 +503,7 @@ function type_form_sourcecode($formname, $content, $type_config, $cms_side)
     $content = type_form_cmslinks_to_templinks($content);
 
     include_once ($cfg_cms['cms_path'] . 'external/sourcepad/gb_source_pad.php');
-    $js_pad = &new gb_source_pad('editcontent', $formname);
+    $js_pad = new gb_source_pad('editcontent', $formname);
 
     $out = "    <td>\n";
     $js_pad->set('handle_http_path', $cfg_cms['cms_html_path'] . 'external/sourcepad/');
@@ -568,9 +568,9 @@ function type_form_file($formname, $content, $type_config, $cms_side)
         } 
     } 
 
-    $rb = &$GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
+    $rb = $GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
 
-    $res_file = &$GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'FileManager');
+    $res_file = $GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'FileManager');
     $res_file->setFiletypes(type_config_string_to_array($type_config['filetypes']));
     $res_file->setFolderIds(type_config_string_to_array($type_config['folders']));
     $res_file->setWithSubfoders(($type_config['subfolders'] != 'false'));

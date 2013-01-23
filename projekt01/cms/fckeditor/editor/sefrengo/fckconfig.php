@@ -40,7 +40,7 @@ $rb->setJSCallbackFunction('SetUrl', array('picked_value') );
 //imagebrowser
 $rb_image =& $sf_factory->getObjectForced('GUI', 'RessourceBrowser');
 $rb_image->setExtraUrlParmString($fck_session_string);
-$res_file_im = & $sf_factory->getObjectForced('GUI/RESSOURCES', 'FileManager');
+$res_file_im =  $sf_factory->getObjectForced('GUI/RESSOURCES', 'FileManager');
 $res_file_im->setFiletypes( fckConfigStringToArray(
 								$fck_conf['imagefiletypes'] == 'true' || empty($fck_conf['imagefiletypes'])
 									? 'jpg,jpeg,gif,png' : $fck_conf['imagefiletypes']) );

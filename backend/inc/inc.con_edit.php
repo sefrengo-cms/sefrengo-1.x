@@ -821,9 +821,9 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 											include_once ($cms_path.'inc/class.filemanager.php');
 											include_once ($cms_path.'inc/class.fileaccess.php');
 											include_once ($cms_path.'inc/class.fileaddon.php');
-											$db_query = &new querybuilder_factory();
+											$db_query = new querybuilder_factory();
 											$db_query = $db_query -> get_db($db, 'cms_db', $this_dir.'inc/');
-											$fm = &new filemanager();
+											$fm = new filemanager();
 										}
 										if (!$value4['id']) $value4['id'] = '0';
 										if (!is_integer($value4['id'])) {

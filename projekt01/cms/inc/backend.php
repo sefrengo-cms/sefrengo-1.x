@@ -43,7 +43,7 @@ $code="";
 // Sprache wechseln
 $sess->register('sid_idcatside');
 $sid_idcatside = $idcatside;
-$perm = &new cms_perms($client, $lang);
+$perm = new cms_perms($client, $lang);
 
 //idcat is needed for have_perm()- call
 //wenn vom frontend aus eine Kategorie angelegt wird, ist noch keine $idcatside vorhanden

@@ -341,7 +341,7 @@ function _adodb_getcount(&$zthis, $sql,$inputarr=false,$secs2cache=0)
 	if (preg_match('/\s*UNION\s*/is', $sql)) $rewritesql = $sql;
 	else $rewritesql = preg_replace('/(\sORDER\s+BY\s.*)/is','',$sql); 
 	
-	$rstest = &$zthis->Execute($rewritesql,$inputarr);
+	$rstest = $zthis->Execute($rewritesql,$inputarr);
 	if (!$rstest) $rstest = $zthis->Execute($sql,$inputarr);
 	
 	if ($rstest) {
@@ -412,9 +412,9 @@ function &_adodb_pageexecute_all_rows(&$zthis, $sql, $nrows, $page,
 	// We get the data we want
 	$offset = $nrows * ($page-1);
 	if ($secs2cache > 0) 
-		$rsreturn = &$zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $offset, $inputarr);
+		$rsreturn = $zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $offset, $inputarr);
 	else 
-		$rsreturn = &$zthis->SelectLimit($sql, $nrows, $offset, $inputarr, $secs2cache);
+		$rsreturn = $zthis->SelectLimit($sql, $nrows, $offset, $inputarr, $secs2cache);
 
 	
 	// Before returning the RecordSet, we set the pagination properties we need
@@ -446,16 +446,16 @@ function &_adodb_pageexecute_no_last_page(&$zthis, $sql, $nrows, $page, $inputar
 	// the last page number.
 	$pagecounter = $page + 1;
 	$pagecounteroffset = ($pagecounter * $nrows) - $nrows;
-	if ($secs2cache>0) $rstest = &$zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $pagecounteroffset, $inputarr);
-	else $rstest = &$zthis->SelectLimit($sql, $nrows, $pagecounteroffset, $inputarr, $secs2cache);
+	if ($secs2cache>0) $rstest = $zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $pagecounteroffset, $inputarr);
+	else $rstest = $zthis->SelectLimit($sql, $nrows, $pagecounteroffset, $inputarr, $secs2cache);
 	if ($rstest) {
 		while ($rstest && $rstest->EOF && $pagecounter>0) {
 			$atlastpage = true;
 			$pagecounter--;
 			$pagecounteroffset = $nrows * ($pagecounter - 1);
 			$rstest->Close();
-			if ($secs2cache>0) $rstest = &$zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $pagecounteroffset, $inputarr);
-			else $rstest = &$zthis->SelectLimit($sql, $nrows, $pagecounteroffset, $inputarr, $secs2cache);
+			if ($secs2cache>0) $rstest = $zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $pagecounteroffset, $inputarr);
+			else $rstest = $zthis->SelectLimit($sql, $nrows, $pagecounteroffset, $inputarr, $secs2cache);
 		}
 		if ($rstest) $rstest->Close();
 	}
@@ -467,8 +467,8 @@ function &_adodb_pageexecute_no_last_page(&$zthis, $sql, $nrows, $page, $inputar
 	
 	// We get the data we want
 	$offset = $nrows * ($page-1);
-	if ($secs2cache > 0) $rsreturn = &$zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $offset, $inputarr);
-	else $rsreturn = &$zthis->SelectLimit($sql, $nrows, $offset, $inputarr, $secs2cache);
+	if ($secs2cache > 0) $rsreturn = $zthis->CacheSelectLimit($secs2cache, $sql, $nrows, $offset, $inputarr);
+	else $rsreturn = $zthis->SelectLimit($sql, $nrows, $offset, $inputarr, $secs2cache);
 	
 	// Before returning the RecordSet, we set the pagination properties we need
 	if ($rsreturn) {
@@ -656,7 +656,7 @@ static $cacheCols;
 		//php can't do a $rsclass::MetaType()
 		$rsclass = $zthis->rsPrefix.$zthis->databaseType;
 		$recordSet =& new $rsclass(-1,$zthis->fetchMode);
-		$recordSet->connection = &$zthis;
+		$recordSet->connection = $zthis;
 		
 		if (is_string($cacheRS) && $cacheRS == $rs) {
 			$columns =& $cacheCols;

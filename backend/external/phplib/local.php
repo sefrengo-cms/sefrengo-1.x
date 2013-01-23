@@ -104,12 +104,14 @@ class DB_cms extends DB_Sql {
     } 
     function init_cache() {
         global $cfg_cms, $cfg_client;
+		
+		if(is_array($cfg_client) == FALSE)
+			return;
 
-        $this->use_cache = ( $cfg_client['db_cache_enabled'] != '0' && $cfg_cms['db_cache_enabled'] == '1' ) ? true : false;
-        $this->cache_name = ( $cfg_client['db_cache_name'] != '' ) ? $cfg_client['db_cache_name'] :
-        ( ( $cfg_cms['db_cache_name'] != '' ) ? $cfg_cms['db_cache_name'] : $this->cache_name );
-        $this->cache_groups = ( is_array( $cfg_client['db_cache_groups'] ) ) ? array_merge( $cfg_cms['db_cache_groups'], $cfg_client['db_cache_groups'] ) : $cfg_cms['db_cache_groups'];
-        $this->cache_items = ( is_array( $cfg_client['db_cache_items'] ) ) ? array_merge( $cfg_cms['db_cache_items'], $cfg_client['db_cache_items'] ) : $cfg_cms['db_cache_items'];
+		$this->use_cache = ( $cfg_client['db_cache_enabled'] != '0' && $cfg_cms['db_cache_enabled'] == '1' ) ? true : false;
+		$this->cache_name = ( $cfg_client['db_cache_name'] != '' ) ? $cfg_client['db_cache_name'] : ( ( $cfg_cms['db_cache_name'] != '' ) ? $cfg_cms['db_cache_name'] : $this->cache_name );
+		$this->cache_groups = ( is_array( $cfg_client['db_cache_groups'] ) ) ? array_merge( $cfg_cms['db_cache_groups'], $cfg_client['db_cache_groups'] ) : $cfg_cms['db_cache_groups'];
+		$this->cache_items = ( is_array( $cfg_client['db_cache_items'] ) ) ? array_merge( $cfg_cms['db_cache_items'], $cfg_client['db_cache_items'] ) : $cfg_cms['db_cache_items'];
     } 
     // store a cache result
     function store_cache() {
@@ -133,7 +135,7 @@ class DB_cms extends DB_Sql {
             } else $this->cache_id = 0;
         } 
         if ( $this->cache_id && $this->use_cache ) {
-            if ( !$this->cache_db ) $this->cache_db = &new DB_cms;
+            if ( !$this->cache_db ) $this->cache_db = new DB_cms;
             if ( $this->cache_db->read_cache( $this->cache_id, true ) ) $action = $force_overide_cache == true ? 'update': 'ignore';
             $this->cache_mode = 'DB_WRITE_CACHE';
             $now = date( "YmdHis", time() ); 
@@ -222,7 +224,7 @@ class DB_cms extends DB_Sql {
 
         $this->init_cache();
         if ( $this->use_cache ) {
-            if ( !$this->cache_db ) $this->cache_db = &new DB_cms;
+            if ( !$this->cache_db ) $this->cache_db = new DB_cms;
             $return = array();
             $now = date( "YmdHis", time() );
             list( $Cache_group, $Cache_item ) = explode( '_', $Cache_var );
@@ -253,7 +255,7 @@ class DB_cms extends DB_Sql {
         global $cms_db;
 
         if ( $cache_id && $this->use_cache ) {
-            if ( !$this->cache_db ) $this->cache_db = &new DB_cms;
+            if ( !$this->cache_db ) $this->cache_db = new DB_cms;
             $return = false;
             $sql = "SELECT val FROM
 								 " . $cms_db['db_cache'] . " WHERE
@@ -386,7 +388,7 @@ class DB_cms extends DB_Sql {
     function _figure_out_cachetime_for_frontend() {
         global $cms_db, $cfg_cms;
 
-        if ( !$this->figure_db ) $this->figure_db = &new DB_cms;
+        if ( !$this->figure_db ) $this->figure_db = new DB_cms;
         $sql = "SELECT SL.start, SL.end
     			FROM
     				" . $cms_db['cat_side'] . " CS,

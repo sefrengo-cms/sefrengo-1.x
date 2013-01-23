@@ -253,7 +253,7 @@ class values_ct_edit extends values_ct
 	{
 		global $DB_cms, $cms_db;
 
-		$dbvals = &new DB_cms;
+		$dbvals = new DB_cms;
 		$val_array = split(',', $val);
 		$sql = "SELECT idgroup, name FROM ". $cms_db['groups'] ." WHERE idgroup NOT IN(1)";
 		$dbvals -> query($sql);
@@ -338,7 +338,7 @@ class values_ct_edit extends values_ct
 			return '-';
 		}
 
-		$dbvals = &new DB_cms;
+		$dbvals = new DB_cms;
 		$sql = "SELECT name FROM ". $cms_db['groups'] ." WHERE idgroup IN($val)";
 
 		$dbvals -> query($sql);

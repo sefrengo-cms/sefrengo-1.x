@@ -56,8 +56,8 @@ if (!function_exists('array_walk_recursive')) {
                 array_walk_recursive($item, $funcname, $args);
                 $input[$key] = $item;
             } else {
-                $args[0] = &$item;
-                $args[1] = &$key;
+                $args[0] = $item;
+                $args[1] = $key;
                 call_user_func_array($funcname, $args);
                 $input[$key] = $item;
             }

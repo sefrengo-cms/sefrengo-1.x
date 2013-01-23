@@ -41,7 +41,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 
 include('inc/fnc.scan.php');
 include('inc/class.filemanager.php');
-$fm = &new filemanager();
+$fm = new filemanager();
 $scanned_dirs_complete   = false;
 $scanned_files_complete  = false;
 $scanned_thumbs_complete = false;

@@ -307,5 +307,5 @@ $tpl->show();
 unset($sub_tmp, $tpl_in);
 unset($unsort_array, $tree, $count, $maxlevel);
 unset($tpl);
-$tpl = &new HTML_Template_IT($this_dir.'tpl/'.$cfg_cms['skin'].'/');
+$tpl = new HTML_Template_IT($this_dir.'tpl/'.$cfg_cms['skin'].'/');
 ?>
