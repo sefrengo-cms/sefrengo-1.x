@@ -112,7 +112,7 @@ function _type_get_style($class = '', $id='', $dbstyle='') {
 		$out['fullstyle'] = $out['type'] .'="'. $out['style'] . '"';
 		return $out;
 	}
-	return '';
+	return array();
 }
 
 function _type_get_stylelist($parameters) {
