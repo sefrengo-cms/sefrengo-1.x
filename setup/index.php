@@ -48,7 +48,7 @@ class gb_template {
 	{
 		global $TemplateArray, $TemplateLoopArray;
 
-		$Matrix = implode('', (file($File)));
+		$Matrix = implode('', (file(dirname(__FILE__) . DIRECTORY_SEPARATOR . $File)));
 		if (is_array($TemplateLoopArray)) {
 			$KeysLoopname = array_keys($TemplateLoopArray);
 			for ($f = 0; $f < count($KeysLoopname); $f++)
@@ -1193,7 +1193,7 @@ class setup {
 		$this->_mysql_connect();
 
 		//Load mysql_dump - file, replace prefix, format it and make it handy
-		$sql_data = implode('',(file('sql/' . $this -> globals['sql_target'])));
+		$sql_data = implode('',(file(dirname(__FILE__) . DIRECTORY_SEPARATOR . 'sql' . DIRECTORY_SEPARATOR . $this -> globals['sql_target'])));
 		//utf8 encode
 		$sql_data = utf8_encode ($sql_data);		
 		

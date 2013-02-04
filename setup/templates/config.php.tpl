@@ -85,8 +85,8 @@ $cms_db['news_rcp']		= $cfg_cms['db_table_prefix'].'news_rcp';
 $cms_db['stat']			= $cfg_cms['db_table_prefix'].'stat';
 
 //todo: TO REMOVE - DEDI ACKWARD COMPATIBILITY
-$dedi_db =& $cms_db;
-$cfg_dedi =& $cfg_cms;
+$dedi_db = $cms_db;
+$cfg_dedi = $cfg_cms;
 
 
 //debug options
