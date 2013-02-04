@@ -12,7 +12,7 @@ http://adodb-xmlschema.sourceforge.net
 </xsl:comment>
 		
 		<xsl:element name="schema">
-			<xsl:attribute name="version">0.1</xsl:attribute>
+			<xsl:attribute name="version">0.3</xsl:attribute>
 			
 			<xsl:apply-templates select="schema/table|schema/sql"/>
 		</xsl:element>
@@ -20,10 +20,8 @@ http://adodb-xmlschema.sourceforge.net
 	
 	<!-- Table -->
 	<xsl:template match="table">
-		<xsl:variable name="table_name" select="@name"/>
-		
 		<xsl:element name="table">
-			<xsl:attribute name="name"><xsl:value-of select="$table_name"/></xsl:attribute>
+			<xsl:attribute name="name"><xsl:value-of select="@name"/></xsl:attribute>
 			
 			<xsl:if test="string-length(@platform) > 0">
 				<xsl:attribute name="platform"><xsl:value-of select="@platform"/></xsl:attribute>
@@ -46,9 +44,12 @@ http://adodb-xmlschema.sourceforge.net
 			
 			<xsl:apply-templates select="constraint"/>
 			
+			<xsl:apply-templates select="opt"/>
+			
+			<xsl:apply-templates select="index"/>
+			
+			<xsl:apply-templates select="data"/>
 		</xsl:element>
-		
-		<xsl:apply-templates select="index"/>
 	</xsl:template>
 	
 	<!-- Field -->
@@ -60,6 +61,31 @@ http://adodb-xmlschema.sourceforge.net
 			<xsl:if test="string-length(@size) > 0">
 				<xsl:attribute name="size"><xsl:value-of select="@size"/></xsl:attribute>
 			</xsl:if>
+			
+			<xsl:choose>
+				<xsl:when test="string-length(@opts) = 0">
+					<xsl:if test="count(UNSIGNED) > 0">
+						<xsl:element name="UNSIGNED"/>
+					</xsl:if>
+				</xsl:when>
+				<xsl:when test="@opts = 'UNSIGNED'">
+					<xsl:element name="UNSIGNED"/>
+				</xsl:when>
+				<xsl:when test="contains(@opts,'UNSIGNED')">
+					<xsl:attribute name="opts">
+						<xsl:value-of select="concat(substring-before(@opts,'UNSIGNED'),substring-after(@opts,'UNSIGNED'))"/>
+					</xsl:attribute>
+					<xsl:element name="UNSIGNED"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:attribute name="opts"><xsl:value-of select="@opts"/></xsl:attribute>
+					<xsl:if test="count(UNSIGNED) > 0">
+						<xsl:element name="UNSIGNED"/>
+					</xsl:if>
+				</xsl:otherwise>
+			</xsl:choose>
+			
+			<xsl:apply-templates select="descr[1]"/>
 			
 			<xsl:choose>
 				<xsl:when test="count(PRIMARY) > 0">
@@ -98,7 +124,7 @@ http://adodb-xmlschema.sourceforge.net
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="count(DEFTIMESTAMP) > 0">
-					<xsl:element name="DEFDTIMESTAMP">
+					<xsl:element name="DEFTIMESTAMP">
 						<xsl:attribute name="value">
 							<xsl:value-of select="DEFTIMESTAMP[1]/@value"/>
 						</xsl:attribute>
@@ -111,12 +137,29 @@ http://adodb-xmlschema.sourceforge.net
 			</xsl:if>
 			
 			<xsl:apply-templates select="constraint"/>
+			
+			<xsl:apply-templates select="opt"/>
 		</xsl:element>
 	</xsl:template>
 	
 	<!-- Constraint -->
 	<xsl:template match="constraint">
 		<xsl:element name="constraint">
+			<xsl:if test="string-length(@platform) > 0">
+				<xsl:attribute name="platform"><xsl:value-of select="@platform"/></xsl:attribute>
+			</xsl:if>
+			
+			<xsl:value-of select="normalize-space(text())"/>
+		</xsl:element>
+	</xsl:template>
+	
+	<!-- Opt -->
+	<xsl:template match="opt">
+		<xsl:element name="opt">
+			<xsl:if test="string-length(@platform) > 0">
+				<xsl:attribute name="platform"><xsl:value-of select="@platform"/></xsl:attribute>
+			</xsl:if>
+			
 			<xsl:value-of select="normalize-space(text())"/>
 		</xsl:element>
 	</xsl:template>
@@ -125,7 +168,6 @@ http://adodb-xmlschema.sourceforge.net
 	<xsl:template match="index">
 		<xsl:element name="index">
 			<xsl:attribute name="name"><xsl:value-of select="@name"/></xsl:attribute>
-			<xsl:attribute name="table"><xsl:value-of select="../@name"/></xsl:attribute>
 			
 			<xsl:apply-templates select="descr[1]"/>
 			
@@ -183,6 +225,7 @@ http://adodb-xmlschema.sourceforge.net
 			</xsl:if>
 			
 			<xsl:apply-templates select="descr[1]"/>
+			
 			<xsl:apply-templates select="query"/>
 		</xsl:element>
 	</xsl:template>
@@ -201,6 +244,37 @@ http://adodb-xmlschema.sourceforge.net
 	<!-- Description -->
 	<xsl:template match="descr">
 		<xsl:element name="descr">
+			<xsl:value-of select="normalize-space(text())"/>
+		</xsl:element>
+	</xsl:template>
+	
+	<!-- Data -->
+	<xsl:template match="data">
+		<xsl:element name="data">
+			<xsl:if test="string-length(@platform) > 0">
+				<xsl:attribute name="platform"><xsl:value-of select="@platform"/></xsl:attribute>
+			</xsl:if>
+			
+			<xsl:apply-templates select="descr[1]"/>
+			
+			<xsl:apply-templates select="row"/>
+		</xsl:element>
+	</xsl:template>
+	
+	<!-- Data Row -->
+	<xsl:template match="row">
+		<xsl:element name="row">
+			<xsl:apply-templates select="f"/>
+		</xsl:element>
+	</xsl:template>
+	
+	<!-- Data Field -->
+	<xsl:template match="f">
+		<xsl:element name="f">
+			<xsl:if test="string-length(@name) > 0">
+				<xsl:attribute name="name"><xsl:value-of select="@name"/></xsl:attribute>
+			</xsl:if>
+			
 			<xsl:value-of select="normalize-space(text())"/>
 		</xsl:element>
 	</xsl:template>

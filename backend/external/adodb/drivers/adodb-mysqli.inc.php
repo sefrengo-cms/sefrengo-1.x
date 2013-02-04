@@ -1,6 +1,6 @@
 <?php
 /*
-V4.64 20 June 2005  (c) 2000-2005 John Lim (jlim@natsoft.com.my). All rights reserved.
+v4.992 10 Nov 2009  (c) 2000-2009 John Lim (jlim#natsoft.com). All rights reserved.
   Released under both BSD license and Lesser GPL library license. 
   Whenever there is any discrepancy between the two licenses, 
   the BSD license will take precedence.
@@ -14,11 +14,13 @@ Based on adodb 3.40
 */ 
 
 // security - hide paths
-//if (!defined('ADODB_DIR')) die();
+if (!defined('ADODB_DIR')) die();
 
 if (! defined("_ADODB_MYSQLI_LAYER")) {
  define("_ADODB_MYSQLI_LAYER", 1 );
  
+ // PHP5 compat...
+ if (! defined("MYSQLI_BINARY_FLAG"))  define("MYSQLI_BINARY_FLAG", 128); 
  if (!defined('MYSQLI_READ_DEFAULT_GROUP')) define('MYSQLI_READ_DEFAULT_GROUP',1);
 
  // disable adodb extension - currently incompatible.
@@ -30,7 +32,7 @@ class ADODB_mysqli extends ADOConnection {
 	var $hasInsertID = true;
 	var $hasAffectedRows = true;	
 	var $metaTablesSQL = "SHOW TABLES";	
-	var $metaColumnsSQL = "SHOW COLUMNS FROM %s";
+	var $metaColumnsSQL = "SHOW COLUMNS FROM `%s`";
 	var $fmtTimeStamp = "'Y-m-d H:i:s'";
 	var $hasLimit = true;
 	var $hasMoveFirst = true;
@@ -48,6 +50,7 @@ class ADODB_mysqli extends ADOConnection {
 	var $_bindInputArray = false;
 	var $nameQuote = '`';		/// string to use to quote identifiers and names
 	var $optionFlags = array(array(MYSQLI_READ_DEFAULT_GROUP,0));
+  var $arrayClass = 'ADORecordSet_array_mysqli';
 	
 	function ADODB_mysqli() 
 	{			
@@ -56,6 +59,16 @@ class ADODB_mysqli extends ADOConnection {
 	    
 	}
 	
+	function SetTransactionMode( $transaction_mode ) 
+	{
+		$this->_transmode  = $transaction_mode;
+		if (empty($transaction_mode)) {
+			$this->Execute('SET SESSION TRANSACTION ISOLATION LEVEL REPEATABLE READ');
+			return;
+		}
+		if (!stristr($transaction_mode,'isolation')) $transaction_mode = 'ISOLATION LEVEL '.$transaction_mode;
+		$this->Execute("SET SESSION TRANSACTION ".$transaction_mode);
+	}
 
 	// returns true or false
 	// To add: parameter int $port,
@@ -85,6 +98,7 @@ class ADODB_mysqli extends ADOConnection {
 			mysqli_options($this->_connectionID,$arr[0],$arr[1]);
 		}
 
+		#if (!empty($this->port)) $argHostname .= ":".$this->port;
 		$ok = mysqli_real_connect($this->_connectionID,
  				    $argHostname,
  				    $argUsername,
@@ -100,6 +114,7 @@ class ADODB_mysqli extends ADOConnection {
  	   } else {
 			if ($this->debug) 
 		  		ADOConnection::outp("Could't connect : "  . $this->ErrorMsg());
+			$this->_connectionID = null;
 			return false;
 	   }
 	}
@@ -125,6 +140,18 @@ class ADODB_mysqli extends ADOConnection {
 		return " IFNULL($field, $ifNull) "; // if MySQL
 	}
 	
+	// do not use $ADODB_COUNTRECS
+	function GetOne($sql,$inputarr=false)
+	{
+		$ret = false;
+		$rs = &$this->Execute($sql,$inputarr);
+		if ($rs) {	
+			if (!$rs->EOF) $ret = reset($rs->fields);
+			$rs->Close();
+		}
+		return $ret;
+	}
+	
 	function ServerInfo()
 	{
 		$arr['description'] = $this->GetOne("select version()");
@@ -137,7 +164,9 @@ class ADODB_mysqli extends ADOConnection {
 	{	  
 		if ($this->transOff) return true;
 		$this->transCnt += 1;
-		$this->Execute('SET AUTOCOMMIT=0');
+		
+		//$this->Execute('SET AUTOCOMMIT=0');
+		mysqli_autocommit($this->_connectionID, false);
 		$this->Execute('BEGIN');
 		return true;
 	}
@@ -149,7 +178,9 @@ class ADODB_mysqli extends ADOConnection {
 		
 		if ($this->transCnt) $this->transCnt -= 1;
 		$this->Execute('COMMIT');
-		$this->Execute('SET AUTOCOMMIT=1');
+		
+		//$this->Execute('SET AUTOCOMMIT=1');
+		mysqli_autocommit($this->_connectionID, true);
 		return true;
 	}
 	
@@ -158,8 +189,17 @@ class ADODB_mysqli extends ADOConnection {
 		if ($this->transOff) return true;
 		if ($this->transCnt) $this->transCnt -= 1;
 		$this->Execute('ROLLBACK');
-		$this->Execute('SET AUTOCOMMIT=1');
+		//$this->Execute('SET AUTOCOMMIT=1');
+		mysqli_autocommit($this->_connectionID, true);
 		return true;
+	}
+	
+	function RowLock($tables,$where='',$flds='1 as adodb_ignore') 
+	{
+		if ($this->transCnt==0) $this->BeginTrans();
+		if ($where) $where = ' where '.$where;
+		$rs =& $this->Execute("select $flds from $tables $where for update");
+		return !empty($rs); 
 	}
 	
 	// if magic quotes disabled, use mysql_real_escape_string()
@@ -174,6 +214,7 @@ class ADODB_mysqli extends ADOConnection {
 	//Eg. $s = $db->qstr(_GET['name'],get_magic_quotes_gpc());
 	function qstr($s, $magic_quotes = false)
 	{
+		if (is_null($s)) return 'NULL';
 		if (!$magic_quotes) {
 	    	if (PHP_VERSION >= 5)
 	      		return "'" . mysqli_real_escape_string($this->_connectionID, $s) . "'";   
@@ -235,13 +276,17 @@ class ADODB_mysqli extends ADOConnection {
 			if ($holdtransOK) $this->_transOK = true; //if the status was ok before reset
 			$u = strtoupper($seqname);
 			$this->Execute(sprintf($this->_genSeqSQL,$seqname));
-			$this->Execute(sprintf($this->_genSeq2SQL,$seqname,$startID-1));
+			$cnt = $this->GetOne(sprintf($this->_genSeqCountSQL,$seqname));
+			if (!$cnt) $this->Execute(sprintf($this->_genSeq2SQL,$seqname,$startID-1));
 			$rs = $this->Execute($getnext);
 		}
-		$this->genID = mysqli_insert_id($this->_connectionID);
 		
-		if ($rs) $rs->Close();
-		
+		if ($rs) {
+			$this->genID = mysqli_insert_id($this->_connectionID);
+			$rs->Close();
+		} else
+			$this->genID = 0;
+			
 		return $this->genID;
 	}
 	
@@ -249,7 +294,16 @@ class ADODB_mysqli extends ADOConnection {
 	{
 		$query = "SHOW DATABASES";
 		$ret =& $this->Execute($query);
-		return $ret;
+		if ($ret && is_object($ret)){
+		   $arr = array();
+			while (!$ret->EOF){
+				$db = $ret->Fields('Database');
+				if ($db != 'mysql') $arr[] = $db;
+				$ret->MoveNext();
+			}
+   		   return $arr;
+		}
+        return $ret;
 	}
 
 	  
@@ -400,9 +454,12 @@ class ADODB_mysqli extends ADOConnection {
 	// dayFraction is a day in floating point
 	function OffsetDate($dayFraction,$date=false)
 	{		
-		if (!$date) 
-		  $date = $this->sysDate;
-		return "from_unixtime(unix_timestamp($date)+($dayFraction)*24*3600)";
+		if (!$date) $date = $this->sysDate;
+		
+		$fraction = $dayFraction * 24 * 3600;
+		return $date . ' + INTERVAL ' .	 $fraction.' SECOND';
+		
+//		return "from_unixtime(unix_timestamp($date)+$fraction)";
 	}
 	
 	function &MetaTables($ttype=false,$showSchema=false,$mask=false) 
@@ -420,6 +477,48 @@ class ADODB_mysqli extends ADOConnection {
 		
 		$this->metaTablesSQL = $save;
 		return $ret;
+	}
+	
+	// "Innox - Juan Carlos Gonzalez" <jgonzalez#innox.com.mx>
+	function MetaForeignKeys( $table, $owner = FALSE, $upper = FALSE, $associative = FALSE )
+	{
+	 global $ADODB_FETCH_MODE;
+		
+		if ($ADODB_FETCH_MODE == ADODB_FETCH_ASSOC || $this->fetchMode == ADODB_FETCH_ASSOC) $associative = true;
+		
+	    if ( !empty($owner) ) {
+	       $table = "$owner.$table";
+	    }
+	    $a_create_table = $this->getRow(sprintf('SHOW CREATE TABLE %s', $table));
+		if ($associative) $create_sql = $a_create_table["Create Table"];
+	    else $create_sql  = $a_create_table[1];
+	
+	    $matches = array();
+	
+	    if (!preg_match_all("/FOREIGN KEY \(`(.*?)`\) REFERENCES `(.*?)` \(`(.*?)`\)/", $create_sql, $matches)) return false;
+	 	$foreign_keys = array();	 	 
+	    $num_keys = count($matches[0]);
+	    for ( $i = 0;  $i < $num_keys;  $i ++ ) {
+	        $my_field  = explode('`, `', $matches[1][$i]);
+	        $ref_table = $matches[2][$i];
+	        $ref_field = explode('`, `', $matches[3][$i]);
+	
+	        if ( $upper ) {
+	            $ref_table = strtoupper($ref_table);
+	        }
+	
+	        $foreign_keys[$ref_table] = array();
+	        $num_fields               = count($my_field);
+	        for ( $j = 0;  $j < $num_fields;  $j ++ ) {
+	            if ( $associative ) {
+	                $foreign_keys[$ref_table][$ref_field[$j]] = $my_field[$j];
+	            } else {
+	                $foreign_keys[$ref_table][] = "{$my_field[$j]}={$ref_field[$j]}";
+	            }
+	        }
+	    }
+	    
+	    return  $foreign_keys;
 	}
 	
  	function &MetaColumns($table) 
@@ -467,6 +566,7 @@ class ADODB_mysqli extends ADOConnection {
 			$fld->auto_increment = (strpos($rs->fields[5], 'auto_increment') !== false);
 			$fld->binary = (strpos($type,'blob') !== false);
 			$fld->unsigned = (strpos($type,'unsigned') !== false);
+			$fld->zerofill = (strpos($type,'zerofill') !== false);
 
 			if (!$fld->binary) {
 				$d = $rs->fields[4];
@@ -494,7 +594,9 @@ class ADODB_mysqli extends ADOConnection {
 	function SelectDB($dbName) 
 	{
 //	    $this->_connectionID = $this->mysqli_resolve_link($this->_connectionID);
-	    $this->databaseName = $dbName;
+	    $this->database = $dbName;
+		$this->databaseName = $dbName; # obsolete, retained for compat with older adodb versions
+		
 	    if ($this->_connectionID) {
         	$result = @mysqli_select_db($this->_connectionID, $dbName);
 			if (!$result) {
@@ -510,16 +612,15 @@ class ADODB_mysqli extends ADOConnection {
 			      $nrows = -1,
 			      $offset = -1,
 			      $inputarr = false, 
-			      $arg3 = false,
 			      $secs = 0)
 	{
 		$offsetStr = ($offset >= 0) ? "$offset," : '';
 		if ($nrows < 0) $nrows = '18446744073709551615';
 		
 		if ($secs)
-			$rs =& $this->CacheExecute($secs, $sql . " LIMIT $offsetStr$nrows" , $inputarr , $arg3);
+			$rs =& $this->CacheExecute($secs, $sql . " LIMIT $offsetStr$nrows" , $inputarr);
 		else
-			$rs =& $this->Execute($sql . " LIMIT $offsetStr$nrows" , $inputarr , $arg3);
+			$rs =& $this->Execute($sql . " LIMIT $offsetStr$nrows" , $inputarr);
 			
 		return $rs;
 	}
@@ -542,6 +643,12 @@ class ADODB_mysqli extends ADOConnection {
 	function _query($sql, $inputarr)
 	{
 	global $ADODB_COUNTRECS;
+		// Move to the next recordset, or return false if there is none. In a stored proc
+		// call, mysqli_next_result returns true for the last "recordset", but mysqli_store_result
+		// returns false. I think this is because the last "recordset" is actually just the
+		// return value of the stored proc (ie the number of rows affected).
+		// Commented out for reasons of performance. You should retrieve every recordset yourself.
+		//	if (!mysqli_next_result($this->connection->_connectionID))	return false;
 		
 		if (is_array($sql)) {
 			$stmt = $sql[1];
@@ -552,18 +659,31 @@ class ADODB_mysqli extends ADOConnection {
 				else $a .= 'd';
 			}
 			
-			$fnarr =& array_merge( array($stmt,$a) , $inputarr);
+			$fnarr = array_merge( array($stmt,$a) , $inputarr);
 			$ret = call_user_func_array('mysqli_stmt_bind_param',$fnarr);
 
 			$ret = mysqli_stmt_execute($stmt);
 			return $ret;
 		}
+		
+		/*
 		if (!$mysql_res =  mysqli_query($this->_connectionID, $sql, ($ADODB_COUNTRECS) ? MYSQLI_STORE_RESULT : MYSQLI_USE_RESULT)) {
 		    if ($this->debug) ADOConnection::outp("Query: " . $sql . " failed. " . $this->ErrorMsg());
 		    return false;
 		}
 		
 		return $mysql_res;
+		*/
+		
+		if( $rs = mysqli_multi_query($this->_connectionID, $sql.';') )//Contributed by "Geisel Sierote" <geisel#4up.com.br>
+		{
+			$rs = ($ADODB_COUNTRECS) ? @mysqli_store_result( $this->_connectionID ) : @mysqli_use_result( $this->_connectionID );
+			return $rs ? $rs : true; // mysqli_more_results( $this->_connectionID )
+		} else {
+			if($this->debug)
+			ADOConnection::outp("Query: " . $sql . " failed. " . $this->ErrorMsg());
+			return false;
+		}
 	}
 
 	/*	Returns: the last error message from previous database operation	*/	
@@ -607,6 +727,45 @@ class ADODB_mysqli extends ADOConnection {
 	{
 	  return 4294967295; 
 	}
+
+
+
+	// this is a set of functions for managing client encoding - very important if the encodings
+	// of your database and your output target (i.e. HTML) don't match
+	// for instance, you may have UTF8 database and server it on-site as latin1 etc.
+	// GetCharSet - get the name of the character set the client is using now
+	// Under Windows, the functions should work with MySQL 4.1.11 and above, the set of charsets supported
+	// depends on compile flags of mysql distribution 
+
+  function GetCharSet()
+  {
+    //we will use ADO's builtin property charSet
+    if (!method_exists($this->_connectionID,'character_set_name'))
+    	return false;
+    	
+    $this->charSet = @$this->_connectionID->character_set_name();
+    if (!$this->charSet) {
+      return false;
+    } else {
+      return $this->charSet;
+    }
+  }
+
+  // SetCharSet - switch the client encoding
+  function SetCharSet($charset_name)
+  {
+    if (!method_exists($this->_connectionID,'set_charset'))
+    	return false;
+
+    if ($this->charSet !== $charset_name) {
+      $if = @$this->_connectionID->set_charset($charset_name);
+      if ($if == "0" & $this->GetCharSet() == $charset_name) {
+        return true;
+      } else return false;
+    } else return true;
+  }
+
+
 
 
 }
@@ -654,22 +813,51 @@ class ADORecordSet_mysqli extends ADORecordSet{
 		$this->_numOfFields = @mysqli_num_fields($this->_queryID);
 	}
 	
+/*
+1      = MYSQLI_NOT_NULL_FLAG
+2      = MYSQLI_PRI_KEY_FLAG
+4      = MYSQLI_UNIQUE_KEY_FLAG
+8      = MYSQLI_MULTIPLE_KEY_FLAG
+16     = MYSQLI_BLOB_FLAG
+32     = MYSQLI_UNSIGNED_FLAG
+64     = MYSQLI_ZEROFILL_FLAG
+128    = MYSQLI_BINARY_FLAG
+256    = MYSQLI_ENUM_FLAG
+512    = MYSQLI_AUTO_INCREMENT_FLAG
+1024   = MYSQLI_TIMESTAMP_FLAG
+2048   = MYSQLI_SET_FLAG
+32768  = MYSQLI_NUM_FLAG
+16384  = MYSQLI_PART_KEY_FLAG
+32768  = MYSQLI_GROUP_FLAG
+65536  = MYSQLI_UNIQUE_FLAG
+131072 = MYSQLI_BINCMP_FLAG
+*/
+
 	function &FetchField($fieldOffset = -1) 
 	{	
-	  $fieldnr = $fieldOffset;
-	  if ($fieldOffset != -1) {
-	    $fieldOffset = mysqli_field_seek($this->_queryID, $fieldnr);
-	  }
-	  $o = mysqli_fetch_field($this->_queryID);
-	  return $o;
+		$fieldnr = $fieldOffset;
+		if ($fieldOffset != -1) {
+		  $fieldOffset = @mysqli_field_seek($this->_queryID, $fieldnr);
+		}
+		$o = @mysqli_fetch_field($this->_queryID);
+		if (!$o) {$false = false; return $false;}
+		/* Properties of an ADOFieldObject as set by MetaColumns */
+		$o->primary_key = $o->flags & MYSQLI_PRI_KEY_FLAG;
+		$o->not_null = $o->flags & MYSQLI_NOT_NULL_FLAG;
+		$o->auto_increment = $o->flags & MYSQLI_AUTO_INCREMENT_FLAG;
+		$o->binary = $o->flags & MYSQLI_BINARY_FLAG;
+		// $o->blob = $o->flags & MYSQLI_BLOB_FLAG; /* not returned by MetaColumns */
+		$o->unsigned = $o->flags & MYSQLI_UNSIGNED_FLAG;
+
+		return $o;
 	}
 
 	function &GetRowAssoc($upper = true)
 	{
-	  if ($this->fetchMode == MYSQLI_ASSOC && !$upper) 
-	    return $this->fields;
-	  $row =& ADORecordSet::GetRowAssoc($upper);
-	  return $row;
+		if ($this->fetchMode == MYSQLI_ASSOC && !$upper) 
+		  return $this->fields;
+		$row =& ADORecordSet::GetRowAssoc($upper);
+		return $row;
 	}
 	
 	/* Use associative array to get fields array */
@@ -701,6 +889,33 @@ class ADORecordSet_mysqli extends ADORecordSet{
 	  return true;
 	}
 		
+		
+	function NextRecordSet()
+	{
+	global $ADODB_COUNTRECS;
+	
+		mysqli_free_result($this->_queryID);
+		$this->_queryID = -1;
+		// Move to the next recordset, or return false if there is none. In a stored proc
+		// call, mysqli_next_result returns true for the last "recordset", but mysqli_store_result
+		// returns false. I think this is because the last "recordset" is actually just the
+		// return value of the stored proc (ie the number of rows affected).
+		if(!mysqli_next_result($this->connection->_connectionID)) {
+		return false;
+		}
+		// CD: There is no $this->_connectionID variable, at least in the ADO version I'm using
+		$this->_queryID = ($ADODB_COUNTRECS) ? @mysqli_store_result( $this->connection->_connectionID )
+						: @mysqli_use_result( $this->connection->_connectionID );
+		if(!$this->_queryID) {
+			return false;
+		}
+		$this->_inited = false;
+		$this->bind = false;
+		$this->_currentRow = -1;
+		$this->Init();
+		return true;
+	}
+
 	// 10% speedup to move MoveNext to child class
 	// This is the only implementation that works now (23-10-2003).
 	// Other functions return no or the wrong results.
@@ -776,7 +991,7 @@ class ADORecordSet_mysqli extends ADORecordSet{
 		 case 'SET': 
 		
 		case MYSQLI_TYPE_TINY_BLOB :
-		case MYSQLI_TYPE_CHAR :
+		#case MYSQLI_TYPE_CHAR :
 		case MYSQLI_TYPE_STRING :
 		case MYSQLI_TYPE_ENUM :
 		case MYSQLI_TYPE_SET :
@@ -854,6 +1069,110 @@ class ADORecordSet_mysqli extends ADORecordSet{
 
 } // rs class
  
+}
+
+class ADORecordSet_array_mysqli extends ADORecordSet_array {
+  function ADORecordSet_array_mysqli($id=-1,$mode=false) 
+  {
+    $this->ADORecordSet_array($id,$mode);
+  }
+  
+
+	function MetaType($t, $len = -1, $fieldobj = false)
+	{
+		if (is_object($t)) {
+		    $fieldobj = $t;
+		    $t = $fieldobj->type;
+		    $len = $fieldobj->max_length;
+		}
+		
+		
+		 $len = -1; // mysql max_length is not accurate
+		 switch (strtoupper($t)) {
+		 case 'STRING': 
+		 case 'CHAR':
+		 case 'VARCHAR': 
+		 case 'TINYBLOB': 
+		 case 'TINYTEXT': 
+		 case 'ENUM': 
+		 case 'SET': 
+		
+		case MYSQLI_TYPE_TINY_BLOB :
+		#case MYSQLI_TYPE_CHAR :
+		case MYSQLI_TYPE_STRING :
+		case MYSQLI_TYPE_ENUM :
+		case MYSQLI_TYPE_SET :
+		case 253 :
+		   if ($len <= $this->blobSize) return 'C';
+		   
+		case 'TEXT':
+		case 'LONGTEXT': 
+		case 'MEDIUMTEXT':
+		   return 'X';
+		
+		
+		   // php_mysql extension always returns 'blob' even if 'text'
+		   // so we have to check whether binary...
+		case 'IMAGE':
+		case 'LONGBLOB': 
+		case 'BLOB':
+		case 'MEDIUMBLOB':
+		
+		case MYSQLI_TYPE_BLOB :
+		case MYSQLI_TYPE_LONG_BLOB :
+		case MYSQLI_TYPE_MEDIUM_BLOB :
+		
+		   return !empty($fieldobj->binary) ? 'B' : 'X';
+		case 'YEAR':
+		case 'DATE': 
+		case MYSQLI_TYPE_DATE :
+		case MYSQLI_TYPE_YEAR :
+		
+		   return 'D';
+		
+		case 'TIME':
+		case 'DATETIME':
+		case 'TIMESTAMP':
+		
+		case MYSQLI_TYPE_DATETIME :
+		case MYSQLI_TYPE_NEWDATE :
+		case MYSQLI_TYPE_TIME :
+		case MYSQLI_TYPE_TIMESTAMP :
+		
+			return 'T';
+		
+		case 'INT': 
+		case 'INTEGER':
+		case 'BIGINT':
+		case 'TINYINT':
+		case 'MEDIUMINT':
+		case 'SMALLINT': 
+		
+		case MYSQLI_TYPE_INT24 :
+		case MYSQLI_TYPE_LONG :
+		case MYSQLI_TYPE_LONGLONG :
+		case MYSQLI_TYPE_SHORT :
+		case MYSQLI_TYPE_TINY :
+		
+		   if (!empty($fieldobj->primary_key)) return 'R';
+		   
+		   return 'I';
+		
+		
+		   // Added floating-point types
+		   // Maybe not necessery.
+		 case 'FLOAT':
+		 case 'DOUBLE':
+		   //		case 'DOUBLE PRECISION':
+		 case 'DECIMAL':
+		 case 'DEC':
+		 case 'FIXED':
+		 default:
+		 	//if (!is_numeric($t)) echo "<p>--- Error in type matching $t -----</p>"; 
+		 	return 'N';
+		}
+	} // function
+  
 }
 
 ?>

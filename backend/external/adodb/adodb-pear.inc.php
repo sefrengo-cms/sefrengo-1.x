@@ -1,6 +1,6 @@
 <?php
 /** 
- * @version V4.64 20 June 2005 (c) 2000-2005 John Lim (jlim@natsoft.com.my). All rights reserved.
+ * @version v4.992 10 Nov 2009 (c) 2000-2009 John Lim (jlim#natsoft.com). All rights reserved.
  * Released under both BSD license and Lesser GPL library license. 
  * Whenever there is any discrepancy between the two licenses, 
  * the BSD license will take precedence. 
@@ -112,7 +112,7 @@ class DB
 	function &factory($type)
 	{
 		include_once(ADODB_DIR."/drivers/adodb-$type.inc.php");
-		$obj = NewADOConnection($type);
+		$obj = &NewADOConnection($type);
 		if (!is_object($obj)) $obj =& new PEAR_Error('Unknown Database Driver: '.$dsninfo['phptype'],-1);
 		return $obj;
 	}
@@ -211,7 +211,7 @@ class DB
 	function isError($value)
 	{
 		if (!is_object($value)) return false;
-		$class = get_class($value);
+		$class = strtolower(get_class($value));
 		return $class == 'pear_error' || is_subclass_of($value, 'pear_error') || 
 				$class == 'db_error' || is_subclass_of($value, 'db_error');
 	}

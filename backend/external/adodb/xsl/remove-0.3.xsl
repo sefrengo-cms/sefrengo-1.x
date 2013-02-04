@@ -16,7 +16,7 @@ Uninstallation Schema
 </xsl:comment>
 		
 		<xsl:element name="schema">
-			<xsl:attribute name="version">0.2</xsl:attribute>
+			<xsl:attribute name="version">0.3</xsl:attribute>
 			
 			<xsl:apply-templates select="schema/table">
 				<xsl:sort select="position()" data-type="number" order="descending"/>

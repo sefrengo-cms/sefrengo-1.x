@@ -1,6 +1,6 @@
 <?php
 /* 
-V4.64 20 June 2005  (c) 2000-2005 John Lim (jlim@natsoft.com.my). All rights reserved.
+v4.992 10 Nov 2009  (c) 2000-2009 John Lim (jlim#natsoft.com). All rights reserved.
   Released under both BSD license and Lesser GPL library license. 
   Whenever there is any discrepancy between the two licenses, 
   the BSD license will take precedence. See License.txt. 
@@ -132,7 +132,11 @@ class perf_mysql extends adodb_perf{
 	global $ADODB_FETCH_MODE;
 		$save = $ADODB_FETCH_MODE;
 		$ADODB_FETCH_MODE = ADODB_FETCH_NUM;
+		if ($this->conn->fetchMode !== false) $savem = $this->conn->SetFetchMode(false);
+		
 		$rs = $this->conn->Execute('show status');
+		
+		if (isset($savem)) $this->conn->SetFetchMode($savem);
 		$ADODB_FETCH_MODE = $save;
 		
 		if (!$rs) return 0;
@@ -157,7 +161,11 @@ class perf_mysql extends adodb_perf{
 	global $ADODB_FETCH_MODE;
 		$save = $ADODB_FETCH_MODE;
 		$ADODB_FETCH_MODE = ADODB_FETCH_NUM;
+		if ($this->conn->fetchMode !== false) $savem = $this->conn->SetFetchMode(false);
+		
 		$rs = $this->conn->Execute('show status');
+		
+		if (isset($savem)) $this->conn->SetFetchMode($savem);
 		$ADODB_FETCH_MODE = $save;
 		
 		if (!$rs) return 0;
@@ -185,7 +193,17 @@ class perf_mysql extends adodb_perf{
 	{
 		// first find out type of table
 		//$this->conn->debug=1;
+		
+		global $ADODB_FETCH_MODE;
+		$save = $ADODB_FETCH_MODE;
+		$ADODB_FETCH_MODE = ADODB_FETCH_NUM;
+		if ($this->conn->fetchMode !== false) $savem = $this->conn->SetFetchMode(false);
+		
 		$rs = $this->conn->Execute('show table status');
+		
+		if (isset($savem)) $this->conn->SetFetchMode($savem);
+		$ADODB_FETCH_MODE = $save;
+		
 		if (!$rs) return '';
 		$type = strtoupper($rs->fields[1]);
 		$rs->Close();
@@ -227,8 +245,17 @@ class perf_mysql extends adodb_perf{
 	*/
 	function GetInnoDBHitRatio()
 	{
+	global $ADODB_FETCH_MODE;
 	
+		$save = $ADODB_FETCH_MODE;
+		$ADODB_FETCH_MODE = ADODB_FETCH_NUM;
+		if ($this->conn->fetchMode !== false) $savem = $this->conn->SetFetchMode(false);
+		
 		$rs = $this->conn->Execute('show innodb status');
+		
+		if (isset($savem)) $this->conn->SetFetchMode($savem);
+		$ADODB_FETCH_MODE = $save;
+		
 		if (!$rs || $rs->EOF) return 0;
 		$stat = $rs->fields[0];
 		$rs->Close();
