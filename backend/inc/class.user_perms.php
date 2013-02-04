@@ -271,7 +271,7 @@ class cms_perms {
 		foreach($cms_perm_parents['cms_access'] AS $key => $value) {
 			if (!empty($value)) {
 				$parent = $key;
-				$subs = split(',', $value);
+				$subs = explode(',', $value);
 				foreach($subs as $sub => $val) {
 					$this->parent_rights[$val] = $parent;
 					$parent = $val;
@@ -474,10 +474,10 @@ class cms_perms {
 		$language = empty($idlang) ? $lang: $idlang;
 
 		// Hole die Gruppen und Gruppenrechte in Arrays um diese dann in einer Schleife zu bearbeiten
-		$arrGroups = split(",", $gruppenids);
-		$arrRights = split(",", $gruppenrights);
-		$arrGeerbt = split(",", $gruppengeerbt);
-		$arrUeberschreiben = split(",", $gruppenueberschreiben);
+		$arrGroups = explode(",", $gruppenids);
+		$arrRights = explode(",", $gruppenrights);
+		$arrGeerbt = explode(",", $gruppengeerbt);
+		$arrUeberschreiben = explode(",", $gruppenueberschreiben);
 
 		// Hole jede Gruppe und jedes dazugehörende Recht und prüfe ob es gegenüber dem übergeordneten Element eine Differenz
 		// gibt und trage das Recht in diesem Falle ein

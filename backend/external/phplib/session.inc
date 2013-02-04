@@ -234,7 +234,7 @@ class Session {
         switch ( $this->mode ) {
             case 'get': 
                 // Anchor-Fragment extrahieren
-                $dummy = split( '#', $url );
+                $dummy = explode( '#', $url );
                 $url = $dummy[0];
                 $url .= ( strpos( $url, '?' ) != false ? '&amp;' : '?' ) . urlencode( $this->name ) . '=' . $id;
                 if( $challenge ) $url .= '&amp;challenge=' . $this->get_challenge();

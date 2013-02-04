@@ -254,7 +254,7 @@ class values_ct_edit extends values_ct
 		global $DB_cms, $cms_db;
 
 		$dbvals = new DB_cms;
-		$val_array = split(',', $val);
+		$val_array = explode(',', $val);
 		$sql = "SELECT idgroup, name FROM ". $cms_db['groups'] ." WHERE idgroup NOT IN(1)";
 		$dbvals -> query($sql);
 		$options ='';

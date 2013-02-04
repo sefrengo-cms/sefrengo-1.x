@@ -429,7 +429,7 @@ function con_move_side($dir,$idcat,$idside,$sortindex) {
 function con_quick_sort($quicksort,$idcat) {
 	global $db, $lang, $cms_db;
 
-	list($sort,$dir) = split(':',$quicksort);
+	list($sort,$dir) = explode(':',$quicksort);
 	$sql  = "SELECT A.idcatside, A.sortindex, B.title, B.created, B.lastmodified, B.author FROM $cms_db[cat_side] A LEFT JOIN $cms_db[side_lang] B USING(idside) WHERE A.idcat = '$idcat' AND B.idlang = '$lang'";
 	$db->query($sql);
 	while($db->next_record()){

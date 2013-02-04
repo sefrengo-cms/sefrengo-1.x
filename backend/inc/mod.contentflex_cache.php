@@ -576,8 +576,8 @@ if(! function_exists(txt2htmltable)){
 	$chreplfrom=Array();
 	$chreplto=Array();	
 	
-	$chreplfrom=split(",",$options['charreplacementFROM']);
-	$chreplto=split(",",$options['charreplacementTO']);
+	$chreplfrom=explode(",",$options['charreplacementFROM']);
+	$chreplto=explode(",",$options['charreplacementTO']);
 
 	// get some mod-vars	
 	if (!empty($options['separator']))
@@ -743,8 +743,8 @@ if(! function_exists(txt2htmllist)){
 		$options['charreplacementFROM']=$modv['MOD_VALUE_10070'];
 		$options['charreplacementTO']=$modv['MOD_VALUE_10071'];
 
-		$chreplfrom=split(",",$options['charreplacementFROM']);
-		$chreplto=split(",",$options['charreplacementTO']);
+		$chreplfrom=explode(",",$options['charreplacementFROM']);
+		$chreplto=explode(",",$options['charreplacementTO']);
 	
 		// split list data text
 		$listentries=@preg_split("/[\r\n]+/", $data);
@@ -1506,7 +1506,7 @@ if ($cms_side['edit'] || $cms_side['edit_all']) {
     $modtemp['tags'][1]=array_unique($modtemp['tags'][1]); 
 
     foreach($modtemp['tags'][1] AS $v){
-        $k = split(":",$v);
+        $k = explode(":",$v);
         $modtemp['editbutton_menu'] .= flex2_get_edit_string($k[0],$k[1]);
         $typegroup_conf .= flex2_get_typegroup($k[0],$k[1]);
     }

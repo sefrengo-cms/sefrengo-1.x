@@ -42,7 +42,7 @@ class cms_debug
 	var $m_enabled = false;
 	
 	function cms_debug() {
-		list($low, $high) = split(" ", microtime());
+		list($low, $high) = explode(" ", microtime());
     	$this->t = (float)$high + (float)$low;
 	}
 
@@ -138,7 +138,7 @@ class cms_debug
 		}
 
 		if ($this->t_enabled) {
-			list($low, $high) = split(" ", microtime());
+			list($low, $high) = explode(" ", microtime());
 		    $t    = (float)$high + (float)$low;
 		    $used = $t - $this->t;
 		    $to_return .= sprintf("<br>executiontime: (%8.4f)\n",  $used);
