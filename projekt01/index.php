@@ -1,4 +1,3 @@
-<?PHP
 // File: $Id: index.php 308 2010-08-12 15:44:41Z andre $
 // +----------------------------------------------------------------------+
 // | Version: Sefrengo $Name:  $                                          
@@ -289,7 +288,7 @@ if ($_REQUEST['sf_rewrite'] && $cfg_client['url_rewrite'] == '2' && ! isset($vie
 			}
 		} else {
 			//cat
-			$v = preg_replace('#/$#', '', mysql_escape_string($v));
+			//$v = preg_replace('#/$#', '', mysql_escape_string($v));
 			
 			$sql = "SELECT DISTINCT
 						C.idcat, C.parent 
