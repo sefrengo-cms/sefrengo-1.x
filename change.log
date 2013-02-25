@@ -5,6 +5,18 @@ Legend:
 # -> Bug Fix
 ! -> Note
 
+
+Current version number is 01.04.06 (Sefrengo 1.4.6) - released 25.02.2013
+------------------------------------------------------------------------------------------------
+! Changes to run Sefrengo on PHP 5.4
+! See full changelog at https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.4.6
+
++ Updated ADOdb to v4.992
++ Update mod: ContentFlex 1.8.8 (thx to amk)
+^ Replaced deprecated split() function
+
+
+
 Current version number is 01.04.05 (Sefrengo 1.4.5) - testrelease
 ------------------------------------------------------------------------------------------------
 + Update mod: ContentFlex 1.8.6 (Jörn)
