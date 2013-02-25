@@ -321,7 +321,7 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_units', 'auto', 'v', '', '', 'auto
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_units', 'attachment', 'v', '', '', 'fixed|scroll', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 
 # cms config
-INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'version', '', '', '', '01.04.05', '0', NULL, NULL, '', NULL, NULL, '0');
+INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'version', '', '', '', '01.04.06', '0', NULL, NULL, '', NULL, NULL, '0');
 
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'cms_path', NULL, NULL, NULL, '<!--{cms_path}-->backend/', 100, 'set_cms_path', NULL, 'txt', NULL, NULL, '1');
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'cms_html_path', NULL, NULL, NULL, '<!--{cms_full_http_path}-->backend/', 101, 'set_html_path', NULL, 'txt', NULL, NULL, '1');
