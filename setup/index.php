@@ -117,14 +117,15 @@ class setup {
 							'updates_from.01.01.92.sql',
 							'updates_from.01.02.00.sql',
 							'updates_from.01.02.01.sql',
-              				'updates_from.01.02.02.sql',
-              				'updates_from.01.03.00.sql',
-              				'updates_from.01.03.01.sql',
-                            'updates_from.01.04.00.sql',
-                            'updates_from.01.04.01.sql',
-                            'updates_from.01.04.02.sql',
+              'updates_from.01.02.02.sql',
+              'updates_from.01.03.00.sql',
+              'updates_from.01.03.01.sql',
+              'updates_from.01.04.00.sql',
+              'updates_from.01.04.01.sql',
+              'updates_from.01.04.02.sql',
 							'updates_from.01.04.03.sql',
-							'updates_from.01.04.04.sql');
+							'updates_from.01.04.04.sql',
+							'updates_from.01.04.05.sql');
 
 	/**
 	* Konstruktor. Catch all globals
