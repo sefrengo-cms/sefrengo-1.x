@@ -1045,7 +1045,7 @@ function is_duplicate_filename( $idclient, $filename, $filedir, $filetype, $idcs
 	$idfiledir  = $fm->get_directory_id($filedir, (int)$idclient, false);
 	if ($idfiledir) {
 		$tmp = $fm->get_file( $filename, (int)$idclient, (int) $idfiledir );
-		if (isset($tmp)) {
+		if (is_array($tmp) && array_key_exists('idupl', $tmp)) {
 			if ($idcssfile) {
 				return (($tmp['idupl'] == $idcssfile) ?0 : $tmp['idupl']);
 			} else {
