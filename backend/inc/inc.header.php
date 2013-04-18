@@ -300,7 +300,15 @@ $tpl_in['LANG_TOOLTIP'] = addslashes($cms_lang['gen_logout']);
 $tpl_in['DELETE_MSG'] = $cms_lang['gen_deletealert'];
 $tpl_in['HELP_TOOLTIP'] = addslashes($cms_lang['cms_help']);
 $tpl_in['LOGOUT_WIDTH'] = $cms_lang['gen_logout_wide'];
-$tpl_in['LOGGED_USER'] = $cms_lang['gen_welcome'] . ', ' . $auth->auth['uname'];
+if(!empty($auth->auth['name']) && !empty($auth->auth['surname'])) {
+    $tpl_in['LOGGED_USER'] = $cms_lang['gen_welcome'] . ', ' . $auth->auth['name'] . ' ' .$auth->auth['surname'];
+} else if(!empty($auth->auth['name'])) {
+    $tpl_in['LOGGED_USER'] = $cms_lang['gen_welcome'] . ', ' .$auth->auth['name'];
+} else if(!empty($auth->auth['surname'])) {
+    $tpl_in['LOGGED_USER'] = $cms_lang['gen_welcome'] . ', '.$auth->auth['surname'];
+} else {
+    $tpl_in['LOGGED_USER'] = $cms_lang['gen_welcome'] . ', ' . $auth->auth['uname'];
+}
 
 $tpl->setVariable($tpl_in);
 $tpl->show();
