@@ -44,24 +44,36 @@ body{
 	text-align:center;
 }
 
-input.sf_buttonAction{
-	background:url(../img/bg_button.gif) #F4F7FB repeat-x bottom;
-	border:1px solid #8E8E8E;
-	color:#000000;
-	cursor:pointer;
-	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
-	padding:3px 0;
-	width:70px;
+input.sf_buttonAction {
+	border: 1px solid #8E8E8E;
+	color: #000000;
+	cursor: pointer;
+	font: bold 10px verdana, helvetica, arial, geneva, sans-serif;
+	margin: 5px 0;
+	padding: 5px 0;
+	width: 70px;
+	background: #fbfbfb; /* Old browsers */
+	background: -moz-linear-gradient(top, #fbfbfb 44%, #e2e2e2 56%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(44%,#fbfbfb), color-stop(56%,#e2e2e2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* IE10+ */
+	background: linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
 }
 
-input.sf_buttonActionOver{
-	background:url(../img/bg_button.gif) #F4F7FB repeat-x top;
-	border:1px solid #99CC01;
-	color:#000000;
-	cursor:pointer;
-	font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
-	padding:3px 0;
-	width:70px;
+input.sf_buttonAction:active,
+input.sf_buttonAction:focus,
+input.sf_buttonAction:hover {
+	border: 1px solid #99CC01;
+	background: #f8fbec; /* Old browsers */
+	background: -moz-linear-gradient(top, #f8fbec 44%, #e1efb4 56%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(44%,#f8fbec), color-stop(56%,#e1efb4)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* IE10+ */
+	background: linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8fbec', endColorstr='#e1efb4',GradientType=0 ); /* IE6-9 */
 }
 
 .breit{
@@ -157,10 +169,12 @@ input.sf_buttonActionOver{
 #password{
 	background:url(../img/login/pass.gif) no-repeat 2px center;
 	margin-top:8px;
+	outline: 0;
 }
 
 #username{
 	background:url(../img/login/user.gif) no-repeat 2px center;
+	outline: 0;
 }
 
 #wrapper{

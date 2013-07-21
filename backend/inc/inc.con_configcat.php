@@ -297,9 +297,9 @@ echo "    <input type=hidden name=\"configtpl\" VALUE=\"$configtpl\" />";
 //buttons    
 echo "      <tr>\n";
 echo "        <td class='content7' colspan='3' style='text-align:right'>\n";
-echo "        <input type='submit' name='sf_save' title='".$cms_lang['gen_save_titletext']."' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-echo "        <input type='submit' name='sf_apply' title='".$cms_lang['gen_apply_titletext']."' value='".$cms_lang['gen_apply']."' class=\"sf_buttonAction\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-echo "        <input type='button' name='sf_cancel' title='".$cms_lang['gen_cancel_titletext']."' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonAction\" onclick=\"window.location='".$sf_cancel_url."'\" onmouseover=\"this.className='sf_buttonActionCancelOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
+echo "        <input type='submit' name='sf_save' title='".$cms_lang['gen_save_titletext']."' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\"/>\n";
+echo "        <input type='submit' name='sf_apply' title='".$cms_lang['gen_apply_titletext']."' value='".$cms_lang['gen_apply']."' class=\"sf_buttonAction\"/>\n";
+echo "        <input type='button' name='sf_cancel' title='".$cms_lang['gen_cancel_titletext']."' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonActionCancel\" onclick=\"window.location='".$sf_cancel_url."'\"/>\n";
 echo "        </td>\n";
 echo "      </tr>\n";
 
@@ -403,9 +403,9 @@ if ($have_config_tpl_perm && $idtpl) {
 	//buttons    
 	echo "      <tr>\n";
 	echo "        <td class='content7' colspan='3' style='text-align:right'>\n";
-	echo "        <input type='submit' name='sf_save' title='".$cms_lang['gen_save_titletext']."' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-	echo "        <input type='submit' name='sf_apply' title='".$cms_lang['gen_apply_titletext']."' value='".$cms_lang['gen_apply']."' class=\"sf_buttonAction\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-	echo "        <input type='button' name='sf_cancel' title='".$cms_lang['gen_cancel_titletext']."' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonAction\" onclick=\"window.location='".$sf_cancel_url."'\" onmouseover=\"this.className='sf_buttonActionCancelOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
+	echo "        <input type='submit' name='sf_save' title='".$cms_lang['gen_save_titletext']."' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\"/>\n";
+	echo "        <input type='submit' name='sf_apply' title='".$cms_lang['gen_apply_titletext']."' value='".$cms_lang['gen_apply']."' class=\"sf_buttonAction\" />\n";
+	echo "        <input type='button' name='sf_cancel' title='".$cms_lang['gen_cancel_titletext']."' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonActionCancel\" onclick=\"window.location='".$sf_cancel_url."'\"/>\n";
 	echo "        </td>\n";
 	echo "      </tr>\n";
 		

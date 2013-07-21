@@ -133,8 +133,8 @@ if ($action == "10") {
      <label for="nosubdirscan"><?PHP echo $cms_lang['scan_nosubdir_checkbox']; ?></label>
      </p> 
       <p id='submitscan'>
-      <input type='submit' name='sf_save' value='<?PHP echo $cms_lang['scan_start_dirscan']; ?>' class="sf_buttonAction" onmouseover="this.className='sf_buttonActionOver'" onmouseout="this.className='sf_buttonAction'" />
-      <input type='button' name='sf_cancel' id='sf_cancel' value='<?PHP echo $cms_lang['upl_cancel']; ?>' class="sf_buttonAction space" onclick="top.close()" onmouseover="this.className='sf_buttonActionCancelOver'" onmouseout="this.className='sf_buttonAction'" />
+      <input type='submit' name='sf_save' value='<?PHP echo $cms_lang['scan_start_dirscan']; ?>' class="sf_buttonAction"/>
+      <input type='button' name='sf_cancel' id='sf_cancel' value='<?PHP echo $cms_lang['upl_cancel']; ?>' class="sf_buttonActionCancel space" onclick="top.close()"/>
      </p>
    </form>
 <?PHP

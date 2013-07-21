@@ -122,7 +122,7 @@ $progressbar = 'tpl/' . $cfg_cms['skin'] . '/img/blue.gif';
 			strText += (arrErrorFiles.length > 0) ? arrErrorFiles.join("<br \/>"): "<?PHP echo $cms_lang['scan_errors_none']; ?>";
 			strText += "<\/p>"
 			if (intActive == 3) {
-				strText += "<p id=\"submitscan\"><span><?PHP echo $cms_lang['scan_closing_time']; ?><\/span><input type=\"button\" name=\"sf_cancel\" id=\"sf_cancel\" value=\"<?PHP echo $cms_lang['scan_close_now']; ?>\" class=\"sf_buttonAction space\" onclick=\"top.close()\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" \/><\/p>"
+				strText += "<p id=\"submitscan\"><span><?PHP echo $cms_lang['scan_closing_time']; ?><\/span><input type=\"button\" name=\"sf_cancel\" id=\"sf_cancel\" value=\"<?PHP echo $cms_lang['scan_close_now']; ?>\" class=\"sf_buttonAction space\" onclick=\"top.close()\"\/><\/p>"
 				if (window.opener) window.opener.location.href = "<?PHP echo $sess->urlRaw($url2); ?>";
 			}
 			strText += "<\/body><\/html>"

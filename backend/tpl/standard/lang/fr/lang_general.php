@@ -176,6 +176,7 @@ $cms_lang['gen_select_change_to']	  	= 'Changer...';
 $cms_lang['gen_help']                  = 'Aide';			// to translate
 $cms_lang['gen_logout_wide']           = 'D&eacute;connexion';
 $cms_lang['gen_user']			        = 'Utilisateur: ';			// to translate
+$cms_lang['gen_licence']			     = 'Licence';			// to translate
 
 $cms_lang['gen_save']			        = 'Sauvegarder';// to translate
 $cms_lang['gen_apply']			        = 'Reprendre';// to translate

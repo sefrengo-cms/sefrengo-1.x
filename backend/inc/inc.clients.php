@@ -105,7 +105,7 @@ $c_conf['style_project'] = '#f7fbff';
 $c_conf['style_project_over'] = '#fff7ce';
 $c_conf['style_lang'] = '#ffffff';
 $c_conf['style_lang_over'] = '#fff7ce';
-$c_conf['html_image'] = '<img src="'. $c_conf['image_path'] .'%s" alt="%s" title="%s" width="%s" height="%s" %s />';
+$c_conf['html_image'] = '<img src="'. $c_conf['image_path'] .'%s" alt="%s" width="%s" height="%s" %s />';
 $c_conf['html_link'] = '<a href="'. $c_conf['url'] .'&collapse='. $collapse .'%s" title="%s">%s</a>';
 $c_conf['html_link_extern'] = '<a href="'. $c_conf['url_extern'] .'%s" title="%s">%s</a>';
 $c_conf['html_link_new_project'] = '<a href="'. $c_conf['url'] .'&action=new_project" class="action" title="'.$cms_lang['clients_new_client'].'">'.$cms_lang['clients_new_client'].'</a>';
@@ -117,7 +117,7 @@ $c_conf['html_form'] = '<form action="main.php" name ="'. $c_conf['html_formname
 <input type="hidden" name="'. $sess-> name. '" value="'.$sess -> id.'" />'."\n";
 $c_conf['html_field_hidden'] = '<input type="hidden" name="%s" value="%s" />'."\n";
 $c_conf['html_field_text'] = '<input type="text" name="%s" value="%s" style="width:%spx" maxlength="%s" />'."\n";
-$c_conf['html_field_submit'] = '<input type="image" src="'.$c_conf['image_path'].'but_confirm.gif" title="'.$cms_lang['clients_submit'].'" />';
+$c_conf['html_field_submit'] = '<input type="image" class="toolinfo" src="'.$c_conf['image_path'].'but_confirm.gif" title="'.$cms_lang['clients_submit'].'" />';
 $c_conf['iso_3166_codes'] = array(
 								'af-ZA' => 'Afrikaans - South Africa',
 								'sq-AL' => 'Albanian - Albania',

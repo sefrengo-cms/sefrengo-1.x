@@ -374,11 +374,11 @@ function show_files($idopen) {
 			$tmp['DETAIL_STYLE']       = ' style="padding-left: '.$indent.'px;"';
 			$tmp['DETAIL_DESCRIPTION'] = ($str_titel ? '<strong>' . $str_titel . '</strong><br />': '') . $str_description;
 			// buttons and actions
-			$tmp['DETAIL_DOWNLOAD']    = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-			$tmp['DETAIL_EDIT']        = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-			$tmp['DETAIL_DELBUT']      = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-			$tmp['DETAIL_DUPLICATE']   = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-			$tmp['DETAIL_MOVE']        = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
+			$tmp['DETAIL_DOWNLOAD']    = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+			$tmp['DETAIL_EDIT']        = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+			$tmp['DETAIL_DELBUT']      = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+			$tmp['DETAIL_DUPLICATE']   = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+			$tmp['DETAIL_MOVE']        = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
 		}
 		// buttons and actions
 		// check permission for file download
@@ -550,10 +550,10 @@ function showDirectory( $level, $line_array, $prefixexpand, $status, $monocolor 
 	$tmp['ENTRY_STYLE']			= ' style="padding-left: ' . $indent . 'px;" ';
 	$tmp['ENTRY_DESCRIPTION']	= $line_array['description'];
 	// buttons and actions
-	$tmp['ENTRY_SCAN']			= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-	$tmp['ENTRY_NEW']			= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-	$tmp['ENTRY_EDIT']			= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
-	$tmp['ENTRY_DELBUT']		= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
+	$tmp['ENTRY_SCAN']			= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+	$tmp['ENTRY_NEW']			= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+	$tmp['ENTRY_EDIT']			= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
+	$tmp['ENTRY_DELBUT']		= make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action toolinfo', '', '', '', 'action' );
 
 	// check if root directory
 	if ($level < 0) {

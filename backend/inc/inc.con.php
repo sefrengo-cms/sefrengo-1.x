@@ -520,28 +520,60 @@ if (is_array($catlist)) {
 		// Ordner konfigurieren Infotextpopup/ Link
 		// konfiguriert
 		if ($con_tree[$a]['tplname']) {
-			$con_catinfo = '<b>'.$cms_lang['con_template'].":</b> ".$con_tree[$a]['tplname'];
-			$folder_popup = "'$con_catinfo','".$cms_lang['con_category_information']."', 'Id: $a', 'folderinfo'";
+			//$con_catinfo = '<b>'.$cms_lang['con_template'].":</b> ".$con_tree[$a]['tplname'];
+			//$folder_popup = "'$con_catinfo','".$cms_lang['con_category_information']."', 'Id: $a', 'folderinfo'";
+			$folder_popup = '<span class="toolinfo"><!-- Ordner konfigurieren<br/> -->
+				<table class="toolinfotablefolder" cellspacing="0" cellpadding="0" border="0">
+					<tr class="headline">
+						<th>'.$cms_lang['con_category_information'].'</th>
+						<th align="right"><small>idcat</small> '.$a.'</th>
+					</tr>
+					<tr>
+						<td class="first"><strong>'.$cms_lang['con_template'].'</strong></td>
+						<td class="first" align="right">'.$con_tree[$a]['tplname'].'</td>
+					</tr>
+					<!-- <tr>
+						<td><strong>Redakteur</strong></td>
+						<td align="right">1</td>
+					</tr> -->
+				</table>
+			</span>';
 
 			// Konfigurationslink
 			if($perm->have_perm(3, 'cat', $con_tree[$a]['idcat'])){
-				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('main.php?area=con_configcat&idcat='.$con_tree[$a]['idcat'].'&idtplconf='.$con_tree[$a]['idtplconf'], 'but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup);
+				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('main.php?area=con_configcat&idcat='.$con_tree[$a]['idcat'].'&idtplconf='.$con_tree[$a]['idtplconf'], 'but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup, '', 'toolinfo');
 			}
 			else{
-				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image('but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16',$folder_popup);
+				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image('but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16',$folder_popup, '', 'toolinfo');
 			}
 
 		// unkonfiguriert
 		} else {
-			$con_catinfo = "<b>".$cms_lang['con_template'].":</b><font color=#AF0F0F> ".$cms_lang['con_unconfigured']."</font>";
-			$folder_popup = "'$con_catinfo','".$cms_lang['con_category_information']."', 'Id: $a', 'folderinfo'";
+			//$con_catinfo = "<b>".$cms_lang['con_template'].":</b><font color=#AF0F0F> ".$cms_lang['con_unconfigured']."</font>";
+			//$folder_popup = "'$con_catinfo','".$cms_lang['con_category_information']."', 'Id: $a', 'folderinfo'";
+			$folder_popup = '<span class="toolinfo"><!-- Ordner konfigurieren<br/> -->
+				<table class="toolinfotablefolder" cellspacing="0" cellpadding="0" border="0">
+					<tr class="headline">
+						<th>'.$cms_lang['con_category_information'].'</th>
+						<th align="right"><small>idcat</small> '.$a.'</th>
+					</tr>
+					<tr>
+						<td class="first"><strong>'.$cms_lang['con_template'].'</strong></td>
+						<td class="first" align="right"><font color=#AF0F0F>'.$cms_lang['con_unconfigured'].'</font></td>
+					</tr>
+					<!-- <tr>
+						<td><strong>Redakteur</strong></td>
+						<td align="right">1</td>
+					</tr> -->
+				</table>
+			</span>';
 
 			// Konfigurationslink
 			if($perm->have_perm(3, 'cat', $con_tree[$a]['idcat'])){
-				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('main.php?area=con_configcat&idcat='.$con_tree[$a]['idcat'].'&idtplconf='.$con_tree[$a]['idtplconf'], 'but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup);
+				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('main.php?area=con_configcat&idcat='.$con_tree[$a]['idcat'].'&idtplconf='.$con_tree[$a]['idtplconf'], 'but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup, '', 'toolinfo');
 			}
 			else{
-				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image('but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16',$folder_popup);
+				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image('but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16',$folder_popup, '', 'toolinfo');
 			}
 		}
 
@@ -735,7 +767,7 @@ if (is_array($catlist)) {
 						$tpl_side_values['SPACES_BEFORE_SIDENAME'] = $spaces;
 
 						// Popupinformationen Seite
-						$con_sideinfo = '<b>'.$cms_lang['con_created'].":</b> ".$tmp_side['created']."<br><b>".$cms_lang['con_lastmodified'].":</b> ".$tmp_side['lastmodified']."<br>";
+						/*$con_sideinfo = '<b>'.$cms_lang['con_created'].":</b> ".$tmp_side['created']."<br><b>".$cms_lang['con_lastmodified'].":</b> ".$tmp_side['lastmodified']."<br>";
 
 						if ($tmp_side['tplname'])
 							$con_sideinfo .= "<b>".$cms_lang['con_template'].":</b> ".$tmp_side['tplname']."<br>";
@@ -748,20 +780,58 @@ if (is_array($catlist)) {
 						$con_summary = str_replace("'", "\'", $con_summary);//'
 						if ($tmp_side['summary'] != '') $con_sideinfo = $con_sideinfo."<br><b>".$cms_lang['con_summary'].":</b><br>".$con_summary;
 						if ($tmp_side['meta_redirect'] == '1') $con_sideinfo = $con_sideinfo."<br><b>".$cms_lang['con_metaredirect_url'].":</b><br>".$tmp_side['meta_redirect_url'];
-						$side_popup = "'$con_sideinfo','".$cms_lang['con_side_information']."', 'Id: ".$tmp_side['idcatside']."', 'sideinfo'";
+						$side_popup = "'$con_sideinfo','".$cms_lang['con_side_information']."', 'Id: ".$tmp_side['idcatside']."', 'sideinfo'";*/
+						$con_sideinfo = array();
+						$con_sideinfo[0]['key'] = $cms_lang['con_created'];
+						$con_sideinfo[0]['value'] = $tmp_side['created'];
+						$con_sideinfo[1]['key'] = $cms_lang['con_lastmodified'];
+						$con_sideinfo[1]['value'] = $tmp_side['lastmodified'];
+						$con_sideinfo[2]['key'] = $cms_lang['con_template'];
+						$con_sideinfo[2]['value'] = ($tmp_side['tplname']) ? $tmp_side['tplname'] : "<font color=#A8A8A8> ".$con_tree[$a]['tplname']."</font>";
+						if ($tmp_side['summary'] != '')
+						{
+							$con_summary = str_replace("\n", "<br>", $tmp_side['summary']);
+							$con_summary = str_replace("\r", '', $con_summary);
+							$con_summary = str_replace("'", "\'", $con_summary);//'
+							$con_sideinfo[3]['key'] = $cms_lang['con_summary'];
+							$con_sideinfo[3]['value'] = $con_summary;
+						}
+						if ($tmp_side['meta_redirect'] == '1')
+						{
+							$con_sideinfo[4]['key'] = $cms_lang['con_metaredirect_url'];
+							$con_sideinfo[4]['value'] = $tmp_side['meta_redirect_url'];
+						}
+						
+						$side_popup = '<span class="toolinfo"><!-- Seite konfigurieren<br/> -->
+							<table class="toolinfotableside" cellspacing="0" cellpadding="0" border="0">
+								<tr class="headline">
+									<th>'.$cms_lang['con_side_information'].'</th>
+									<th align="right"><small>idcatside</small> '.$tmp_side['idcatside'].'</th>
+								</tr>';
+						foreach($con_sideinfo as $i => $tmp_sideinfo)
+						{
+							$class = ($i == 0) ? ' class="first"' : '';
+							$side_popup .= '<tr>
+									<td'.$class.'><strong>'.$tmp_sideinfo['key'].'</strong></td>
+									<td'.$class.' align="right">'.$tmp_sideinfo['value'].'</td>
+								</tr>';
+						
+						}
+						$side_popup .= '</table>
+						</span>';
 
 						// Seite: konfigurieren
 						if($perm->have_perm(20, 'side', $tmp_side['idcatside'], $tmp_side['idcat'])) {
 							$tmp_side_idtplconf = ($tmp_side['tplname']) ? $tmp_side['idtplconf']: '0';
 							if($sefrengoPDA->pageDoubletExists( (int) $tmp_side['idside']))
-								$tpl_side_values['SIDECONFIG'] =  make_image_link('main.php?area=con_configside&idside='.$tmp_side['idside'].'&idcat='.$con_tree[$a]['idcat'].'&idcatside='.$tmp_side['idcatside'].'&idtplconf='.$tmp_side_idtplconf, 'but_sideinfo_doublet.gif', $cms_lang['con_actions']['30'],  '16', '16', '', $side_popup).' ';
+								$tpl_side_values['SIDECONFIG'] =  make_image_link('main.php?area=con_configside&idside='.$tmp_side['idside'].'&idcat='.$con_tree[$a]['idcat'].'&idcatside='.$tmp_side['idcatside'].'&idtplconf='.$tmp_side_idtplconf, 'but_sideinfo_doublet.gif', $cms_lang['con_actions']['30'],  '16', '16', '', $side_popup, '', 'toolinfo').' ';
 							else
-								$tpl_side_values['SIDECONFIG'] =  make_image_link('main.php?area=con_configside&idside='.$tmp_side['idside'].'&idcat='.$con_tree[$a]['idcat'].'&idcatside='.$tmp_side['idcatside'].'&idtplconf='.$tmp_side_idtplconf, 'but_sideinfo.gif', $cms_lang['con_actions']['30'],  '16', '16', '', $side_popup).' ';
+								$tpl_side_values['SIDECONFIG'] =  make_image_link('main.php?area=con_configside&idside='.$tmp_side['idside'].'&idcat='.$con_tree[$a]['idcat'].'&idcatside='.$tmp_side['idcatside'].'&idtplconf='.$tmp_side_idtplconf, 'but_sideinfo.gif', $cms_lang['con_actions']['30'],  '16', '16', '', $side_popup, '', 'toolinfo').' ';
 						} else {
 							if($sefrengoPDA->pageDoubletExists( (int) $tmp_side['idside']))
-								$tpl_side_values['SIDECONFIG'] =  make_image('but_sideinfo_doublet.gif', $cms_lang['con_actions']['30'],  '16', '16', $side_popup).' ';
+								$tpl_side_values['SIDECONFIG'] =  make_image('but_sideinfo_doublet.gif', $cms_lang['con_actions']['30'],  '16', '16', $side_popup, '', 'toolinfo').' ';
 							else
-								$tpl_side_values['SIDECONFIG'] =  make_image('but_sideinfo.gif', $cms_lang['con_actions']['30'],  '16', '16', $side_popup).'&nbsp;';
+								$tpl_side_values['SIDECONFIG'] =  make_image('but_sideinfo.gif', $cms_lang['con_actions']['30'],  '16', '16', $side_popup, '', 'toolinfo').'&nbsp;';
 						}
 
 						// Seite: bearbeiten

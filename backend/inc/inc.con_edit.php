@@ -517,9 +517,9 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 	}
 	$code .= "      <tr>\n";
 	$code .= "        <td class='content7' colspan='2' style='text-align:right'>\n";
-	$code .= "        <input type='submit' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-	$code .= "        <input type='submit' value='".$cms_lang['gen_apply']."' class=\"sf_buttonAction\" onclick=\"document.editcontent.action.value='saveedit'\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-	$code .= "        <input type='button' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonAction\" onclick=\"window.location='".$sess->url("".$cfg_client['contentfile']."?lang=$lang&action=abort&view=edit&idcatside=$idcatside")."'\" onmouseover=\"this.className='sf_buttonActionCancelOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
+	$code .= "        <input type='submit' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\"/>\n";
+	$code .= "        <input type='submit' value='".$cms_lang['gen_apply']."' class=\"sf_buttonAction\" onclick=\"document.editcontent.action.value='saveedit'\"/>\n";
+	$code .= "        <input type='button' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonActionCancel\" onclick=\"window.location='".$sess->url("".$cfg_client['contentfile']."?lang=$lang&action=abort&view=edit&idcatside=$idcatside")."'\"/>\n";
 		
 	$code .= "      </tr>\n";
 	$code .= "    </table>\n";

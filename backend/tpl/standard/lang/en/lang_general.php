@@ -180,6 +180,7 @@ $cms_lang['gen_select_change_to']	  	= 'Change to...';
 $cms_lang['gen_help']                  = 'Help';
 $cms_lang['gen_logout_wide']           = 'Logout';
 $cms_lang['gen_user']			        = 'User: ';
+$cms_lang['gen_licence']			     = 'Licence';
 
 $cms_lang['gen_save']			        = 'Save';
 $cms_lang['gen_apply']			        = 'Apply';

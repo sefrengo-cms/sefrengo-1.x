@@ -179,6 +179,7 @@ $cms_lang['gen_select_change_to']	  	= 'Wechseln zu...';
 $cms_lang['gen_help']                  = 'Hilfe';
 $cms_lang['gen_logout_wide']           = 'Logout';
 $cms_lang['gen_user']			        = 'User: ';
+$cms_lang['gen_licence']			     = 'Lizenz';
 
 $cms_lang['gen_save']			        = 'Speichern';
 $cms_lang['gen_apply']			        = '&Uuml;bernehmen';

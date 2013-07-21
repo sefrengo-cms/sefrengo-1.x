@@ -1900,11 +1900,11 @@ class cms_perms {
 		$panel .= '    <!-- input type="button" onclick="'.$prefix.'cms_rm.addUser()" name="NewUser"';
 		$panel .= ' value="' . $cms_lang['panel_addbutton'] . '" --> ';
 		$panel .= '<input class="sf_buttonAction" type="button" onclick="'.$prefix.'cms_rm.saveRights(true, ' . $countRights . ')" name="Okay"';
-		$panel .= ' value="' . $cms_lang['panel_closebutton2'] . '" onmouseover="this.className=\'sf_buttonActionOver\'" onmouseout="this.className=\'sf_buttonAction\'" /> '."\n";
+		$panel .= ' value="' . $cms_lang['panel_closebutton2'] . '" /> '."\n";
 		$panel .= '<input class="sf_buttonAction" type="button" onclick="'.$prefix.'cms_rm.saveRights(false,' . $countRights . ' )" name="Apply"';
-		$panel .= ' value="' . $cms_lang['panel_savebutton'] . '" onmouseover="this.className=\'sf_buttonActionOver\'" onmouseout="this.className=\'sf_buttonAction\'" /> '."\n";
-		$panel .= '<input class="sf_buttonAction" type="button" onclick="'.$prefix.'cms_rm.cancelRights(true)" name="Cancel"';
-		$panel .= ' value="' . $cms_lang['panel_closebutton'] . '" onmouseover="this.className=\'sf_buttonActionCancelOver\'" onmouseout="this.className=\'sf_buttonAction\'" /> '."\n";
+		$panel .= ' value="' . $cms_lang['panel_savebutton'] . '" /> '."\n";
+		$panel .= '<input class="sf_buttonActionCancel" type="button" onclick="'.$prefix.'cms_rm.cancelRights(true)" name="Cancel"';
+		$panel .= ' value="' . $cms_lang['panel_closebutton'] . '" /> '."\n";
 		$panel .= '</div>'."\n".'</div>'."\n";
 		return $panel;
 	}

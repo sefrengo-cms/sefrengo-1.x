@@ -48,7 +48,7 @@ include('tpl/standard/lang/'.$cfg_cms['backend_lang'].'/lang_general.php');
   <div id="navi">
   <p class="floatl"><?PHP echo $cms_lang['login_pleaselogin'] ?></p>
     <p class="floatr">
-      <input type="submit" name="Submit" value="Login &raquo;" tabindex="3" class="sf_buttonAction" onmouseover="this.className='sf_buttonActionOver'" onmouseout="this.className='sf_buttonAction'" />
+      <input type="submit" name="Submit" value="Login &raquo;" tabindex="3" class="sf_buttonAction"/>
     </p>
       <script language="javascript" src="tpl/standard/js/sniffer.js" type="text/javascript"></script>
       <input type="hidden" name="response"  value="" />

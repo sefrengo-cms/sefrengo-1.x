@@ -420,16 +420,17 @@ function make_image ($image = 'space.gif', $description = '', $width = '', $heig
 	return $image_final;
 }
 
-function make_image_link ($url = '#', $image = 'space.gif', $description = '', $width = '', $height = '', $target = '', $popup = '', $anchor ='') {
+function make_image_link ($url = '#', $image = 'space.gif', $description = '', $width = '', $height = '', $target = '', $popup = '', $anchor ='', $class='') {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<a style=\"text-decoration:none;\" href=\"".$sess->url($url). $anchor ."\" %s %s %s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s />\n</a>", 
-				($popup != '') ? 'onmouseover="sf_overlib('.$popup.');return true;"' : '', 
-				($popup != '') ? 'onmouseout="sf_nd();return true;"' : '', 
-				($target != '') ? " target=\"$target\"" : '', 
+	return sprintf("\n<a style=\"text-decoration:none;\" href=\"".$sess->url($url). $anchor ."\" %s %s %s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s />\n</a>\n%s",
+				($target != '') ? "target=\"$target\"" : '', 
+				($class != '') ? "class=\"$class\"" : '', 
+				($description != '') ? "title=\"$description\"" : '', 
 				($width != '') ? " width=\"$width\"" : '', 
 				($height != '') ? " height=\"$height\"" : '', 
-				($popup == '') ? " alt=\"$description\" title=\"$description\"" : 'alt=""');
+				($popup == '') ? " alt=\"$description\"" : 'alt=""',
+				($popup != '') ? $popup : '');
 }
 
 function make_image_link2 ($url = '#', $image = 'space.gif', $description = '', $width = '', $height = '', $target = '', $popup = '', $popupheader = '', $class = '', $hash = '', $name = '', $linktext = '', $imgclass = '' ) {
@@ -447,7 +448,8 @@ function make_image_link2 ($url = '#', $image = 'space.gif', $description = '', 
 						($width != '') ? " width=\"$width\"" : '', 
 						($height != '') ? " height=\"$height\"" : '', 
 						($popup == '') ? " alt=\"$description\"" : '', 
-						($popup == '') ? " title=\"$description\"" : '', ($imgclass != '') ? ' class="'.$imgclass.'" ' : '');
+						($popup == '') ? " title=\"$description\"" : '',
+						($imgclass != '') ? ' class="'.$imgclass.'" ' : '');
 	
 	$out = ' '. str_replace('{content}', $image, $link);
 	if ($linktext != '') {
@@ -472,25 +474,36 @@ function make_image_link2 ($url = '#', $image = 'space.gif', $description = '', 
 function make_image_link3 ($url = '#', $image = 'space.gif', $image1 = 'space.gif', $description = '', $description1 = '', $class = '', $hash = '', $name = '' ) {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" title=\"$description\" %s />\n</a>\n<a style=\"text-decoration:none;\" href=\"javascript:history.back()\" onmouseover=\"on('$description1');return true;\" onmouseout=\"off();return true;\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" title=\"$description1\" %s />\n</a>\n", ($name != '') ? 'name="'.$name.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '', ($hash != '') ? '#'.$hash: '', ($class != '') ? 'class="'.$class.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '');
+	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" %s />\n</a>\n<a style=\"text-decoration:none;\" href=\"javascript:history.back()\" onmouseover=\"on('$description1');return true;\" onmouseout=\"off();return true;\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" %s />\n</a>\n", ($name != '') ? 'name="'.$name.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '', ($hash != '') ? '#'.$hash: '', ($class != '') ? 'class="'.$class.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '');
 }
 
 function make_image_link4 ($image = 'space.gif', $image1 = 'space.gif', $description = '', $description1 = '', $class = '', $class1 = '', $backurl = '#', $width = '16', $height = '16' ) {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<input type=\"image\" %s  class=\"w16\" src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" title=\"$description\" width=\"$width\" height=\"$height\" />\n<a style=\"text-decoration:none;\" href=\"".$sess->url($backurl)."\">\n<img %s src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" title=\"$description1\" width=\"$width\" height=\"$height\" />\n</a>\n", ($class != '') ? 'class="'.$class.'"' : '', ($class1 != '') ? 'class="'.$class1.'"' : '');
+	return sprintf("\n<input type=\"image\" %s  class=\"w16\" src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" width=\"$width\" height=\"$height\" />\n<a style=\"text-decoration:none;\" href=\"".$sess->url($backurl)."\">\n<img %s src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" width=\"$width\" height=\"$height\" />\n</a>\n", ($class != '') ? 'class="'.$class.'"' : '', ($class1 != '') ? 'class="'.$class1.'"' : '');
 }
 
 function make_image_link5 ($url = '#', $image = 'space.gif', $description = '', $width = '', $height = '', $target = '', $targetpara = '', $popup = '', $popupheader = '', $class = '', $hash = '', $name = '', $linktext = '', $imgclass = '' ) {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\" onClick=\"window.open('about:blank','".$target."','".$targetpara."')\"  onmouseover=\"%sreturn true;\" onmouseout=\"%sreturn true;\"%s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s%s%s />$linktext</a>\n", ($name != '')     ? 'name="'.$name.'" ' : '', ($class != '')    ? 'class="'.$class.'" ' : '', ($hash != '')     ? '#'.$hash: '', ($popup != '')    ? 'sf_overlib('.$popup.');' : '', ($popup != '')    ? 'sf_nd();' : '', ($target != '')   ? " target=\"$target\"" : '', ($width != '')    ? " width=\"$width\""       : '', ($height != '')   ? " height=\"$height\""     : '', ($popup == '')    ? " alt=\"$description\""   : '', ($popup == '')    ? " title=\"$description\"" : '', ($imgclass != '') ? ' class="'.$imgclass.'" ' : '');
+	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\" onClick=\"window.open('about:blank','".$target."','".$targetpara."')\"  onmouseover=\"%sreturn true;\" onmouseout=\"%sreturn true;\"%s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s%s%s />$linktext</a>\n",
+	($name != '')     ? 'name="'.$name.'" ' : '',
+	($class != '')    ? 'class="'.$class.'" ' : '', 
+	($hash != '')     ? '#'.$hash: '',
+	($popup != '')    ? 'sf_overlib('.$popup.');' : '',
+	($popup != '')    ? 'sf_nd();' : '',
+	($target != '')   ? " target=\"$target\"" : '',
+	($width != '')    ? " width=\"$width\""       : '',
+	($height != '')   ? " height=\"$height\""     : '',
+	($popup == '')    ? " alt=\"$description\""   : '',
+	($popup == '')    ? " title=\"$description\"" : '',
+	($imgclass != '') ? ' class="'.$imgclass.'" ' : '');
 }
 
 function make_image_link6 ($image = 'space.gif', $image1 = 'space.gif', $description = '', $description1 = '', $class = '', $class1 = '', $backurl = '#', $width = '16', $height = '16' ) {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<input type=\"image\" %s  class=\"w16\" src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" title=\"$description\" />\n<a style=\"text-decoration:none;\" href=\"".$sess->url($backurl)."\">\n<img %s src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" title=\"$description1\" width=\"$width\" height=\"$height\" />\n</a>\n", ($class != '') ? 'class="'.$class.'"' : '', ($class1 != '') ? 'class="'.$class1.'"' : '');
+	return sprintf("\n<input type=\"image\" %s  class=\"w16\" src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" />\n<a style=\"text-decoration:none;\" href=\"".$sess->url($backurl)."\">\n<img %s src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" width=\"$width\" height=\"$height\" />\n</a>\n", ($class != '') ? 'class="'.$class.'"' : '', ($class1 != '') ? 'class="'.$class1.'"' : '');
 }
 
 function make_nav_link($class='', $url='#', $mousetext='', $linktext='', $end='&nbsp;' ) {

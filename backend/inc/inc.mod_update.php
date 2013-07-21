@@ -224,8 +224,8 @@ echo "</table>\n";
 echo "</div>\n";
 //echo "        <p><a href=\"javascript:window.opener.location.href='" . $sess->urlRaw("main.php?area=mod&action=upload&idclient=$idclient&override=false") . "';self.close();\">\n<img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_cancel.gif\" /></a>\n<input type=\"image\" src=\"tpl/" . $cfg_cms['skin'] . "/img/but_ok.gif\" />\n</td>\n";
 echo "    <p id=\"submitscan\">\n";
-echo "        <input type='submit' name='sf_save' title='".$cms_lang['gen_save_titletext']."' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\" onmouseover=\"this.className='sf_buttonActionOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
-echo "        <input type='button' name='sf_cancel' title='".$cms_lang['gen_cancel_titletext']."' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonAction\" onclick=\"window.opener.location.href='" . $sess->urlRaw("main.php?area=mod&action=upload&idclient=$idclient&override=false") . "';self.close();\" onmouseover=\"this.className='sf_buttonActionCancelOver'\" onmouseout=\"this.className='sf_buttonAction'\" />\n";
+echo "        <input type='submit' name='sf_save' title='".$cms_lang['gen_save_titletext']."' value='".$cms_lang['gen_save']."' class=\"sf_buttonAction\"/>\n";
+echo "        <input type='button' name='sf_cancel' title='".$cms_lang['gen_cancel_titletext']."' value='".$cms_lang['gen_cancel']."' class=\"sf_buttonActionCancel\" onclick=\"window.opener.location.href='" . $sess->urlRaw("main.php?area=mod&action=upload&idclient=$idclient&override=false") . "';self.close();\"/>\n";
 echo "    </p>\n";
 
 
