@@ -53,6 +53,13 @@ $cms_lang['upl_confirm_delete']	  = 'Datei wirklich l&ouml;schen?';
 $cms_lang['upl_newplace']			  = 'nach';
 $cms_lang['upl_root_dir']			  = 'Basisverzeichnis';
 
+$cms_lang['upl_file_information'] = 'Datei-Information';
+$cms_lang['upl_file_created']				= 'Erstellt am';
+$cms_lang['upl_file_lastmodified']				= 'Ge&auml;ndert am';
+$cms_lang['upl_file_size']				= 'Dateigr&ouml;&szlig;e';
+$cms_lang['upl_file_imagesize']				= 'Bildma&szlig;e';
+$cms_lang['upl_file_preview']				= 'Bildvorschau';
+
 $cms_lang['scan_title']			  = 'Verzeichnisabgleich';
 $cms_lang['scan_error']			  = 'Fehler:';
 $cms_lang['scan_done_start']         = 'Gesamtverlauf in Prozent: ';

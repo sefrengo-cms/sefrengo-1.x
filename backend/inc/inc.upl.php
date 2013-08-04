@@ -338,14 +338,14 @@ function show_files($idopen) {
 		$file_info = get_dateinfo( array($db->f('created'), $db->f('lastmodified'), $db->f('vorname'), $db->f('nachname')) );
 		
 		// create view of file // Datei in Originalgröße anzeigen
-		$popup_link      = '<a class="action" href="javascript:void(0)" onmouseout="sf_nd();" ';
+		$popup_link      = '<a class="action toolinfo" href="javascript:void(0)" onmouseout="sf_nd();" ';
 		$popup_link     .= $is_detailview ? ' title="' . $cms_lang['upl_openfileinnewwindow'] . '" ': '';
 		$popup_link     .= 'onclick="new_imagepopup(\'' . $cfg_client['upl_htmlpath'] . $db->f('dirname') . $db->f('filename');
 		$popup_link     .= "','','" . $cms_lang['upl_popupclose'] . "','','" . $db->f('pictwidth') . "','" . $db->f('pictheight') . "','true');";
 		$str_titel       = $db->f('titel')       ? htmlentities($db->f('titel'), ENT_NOQUOTES, 'UTF-8')      : '';
 		$str_description = $db->f('description') ? htmlentities($db->f('description'), ENT_NOQUOTES, 'UTF-8'): '';
-		$file_size_info  = ( $db->f('filesize') > 1024) ? sprintf( "%01.2f", $db->f('filesize')/1024) . '&nbsp;kByte': $db->f('filesize') . '&nbsp;Byte';
-		$file_size_info .= $tmp['DETAILFM1_FILESIZE'] . '&nbsp;-&nbsp;' . $db->f('pictwidth') . 'x' . $db->f("pictheight") . 'px';
+		$file_size_info  = ( $db->f('filesize') > 1024) ? sprintf( "%01.2f", $db->f('filesize')/1024) . '&nbsp;KB': $db->f('filesize') . '&nbsp;Byte';
+		
 		if ($is_detailview) {
 			$tmp['DETAILFM1BLOCKEDIT']    = 'fileblock';
 			$tmp['DETAILFM1_NAMESTART']	  = $popup_link . " window.event.cancelBubble = true;\">";
@@ -366,9 +366,49 @@ function show_files($idopen) {
 				$detail_icon = 'ressource_browser/icons/rb_typ_generic.gif';
 			}
 			$tmp['DETAIL_ICON'] = make_image($detail_icon, '', '16', '16', false, 'class="icon"');
-			$tmp['DETAIL_NAME']        = $popup_link . '" onmouseover="previewPict2(\'' . $thumbsize['thumbnail'] . "', '" . intval($thumbsize['width']);
-			$tmp['DETAIL_NAME']        = $tmp['DETAIL_NAME'] . "', '" . intval($thumbsize['height']) . "', '" . $file_info['created'] . "', '" . $file_info['changed'];
-			$tmp['DETAIL_NAME']        = $tmp['DETAIL_NAME'] . "', '" . $file_info['author'] . "', true, '" . $db->f('filename') . "', '" . $file_size_info . "', '".$idfile."');\" >" . $db->f('filename') . "</a>";
+			$tmp['DETAIL_NAME']        = $popup_link . '">' . $db->f('filename') . '</a>';
+			
+			$upl_fileinfo = array();
+			$upl_fileinfo[0]['key'] = $cms_lang['upl_file_created'];
+			$upl_fileinfo[0]['value'] = $file_info['created'];
+			$upl_fileinfo[1]['key'] = $cms_lang['upl_file_lastmodified'];
+			$upl_fileinfo[1]['value'] = $file_info['changed'];
+			$upl_fileinfo[2]['key'] = $cms_lang['upl_file_size'];
+			$upl_fileinfo[2]['value'] = $file_size_info;
+			
+			if($db->f('pictwidth') > 0 || $db->f('pictheight') > 0)
+			{
+				$upl_fileinfo[3]['key'] = $cms_lang['upl_file_imagesize'];
+				$upl_fileinfo[3]['value'] = $db->f('pictwidth') .'x'. $db->f('pictheight');
+			}
+			
+			$file_popup = '<span class="toolinfo">
+				<table class="toolinfotableside" cellspacing="0" cellpadding="0" border="0">
+					<tr class="headline">
+						<th>'.$cms_lang['upl_file_information'].'</th>
+						<th align="right"><small>idupl</small> '.$idfile.'</th>
+					</tr>';
+			foreach($upl_fileinfo as $i => $tmp_fileinfo)
+			{
+				$class = ($i == 0) ? ' class="first"' : '';
+				$file_popup .= '<tr>
+						<td'.$class.'><strong>'.$tmp_fileinfo['key'].'</strong></td>
+						<td'.$class.' align="right">'.$tmp_fileinfo['value'].'</td>
+					</tr>';
+			}
+			
+			if($db->f('pictthumbwidth') > 0 || $db->f('pictthumbheight') > 0)
+			{
+				$file_popup .= '<tr>
+						<td'.$class.'><strong>'.$cms_lang['upl_file_preview'].'</strong></td>
+						<td'.$class.' align="right"><img src="'.$thumbsize['thumbnail'].'" width="'.$db->f('pictthumbwidth').'" height="'.$db->f('pictthumbheight').'" /></td>
+					</tr>';
+			}
+			$file_popup .= '</table>
+			</span>';
+			
+			$tmp['DETAIL_NAME']        .= $file_popup;
+			
 			$tmp['DETAIL_BGCOLOR']     = '#FFFFFF';
 			$tmp['DETAIL_BGCOLOROVER'] = '#FFF7CE';
 			$tmp['DETAIL_STYLE']       = ' style="padding-left: '.$indent.'px;"';

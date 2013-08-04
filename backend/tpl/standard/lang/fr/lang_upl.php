@@ -51,6 +51,13 @@ $cms_lang['upl_confirm_delete']	  = 'Voulez-vous vraiment effacer le fichier?';
 $cms_lang['upl_newplace']			  = 'vers';
 $cms_lang['upl_root_dir']			  = 'R&eacute;pertoire racine';
 
+$cms_lang['upl_file_information'] = 'Datei-Information';// to translate
+$cms_lang['upl_file_created']				= 'Erstellt am';// to translate
+$cms_lang['upl_file_lastmodified']				= 'Ge&auml;ndert am';// to translate
+$cms_lang['upl_file_size']				= 'Dateigr&ouml;&szlig;e';// to translate
+$cms_lang['upl_file_imagesize']				= 'Bildma&szlig;e';// to translate
+$cms_lang['upl_file_preview']				= 'Bildvorschau';// to translate
+
 $cms_lang['scan_title']			  = 'Synchronisation des r&eacute;pertoires';
 $cms_lang['scan_error']			  = 'Erreur:';
 $cms_lang['scan_done_start']         = 'Progr&egrave;s en cours en pourcentage: ';

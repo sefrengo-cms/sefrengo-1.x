@@ -54,6 +54,13 @@ $cms_lang['upl_confirm_delete']		= 'Confirm file delete!';
 $cms_lang['upl_newplace']				= 'to';
 $cms_lang['upl_root_dir']				= 'Root directory';
 
+$cms_lang['upl_file_information'] = 'File information';// to translate
+$cms_lang['upl_file_created']				= 'Created';// to translate
+$cms_lang['upl_file_lastmodified']				= 'Modified';// to translate
+$cms_lang['upl_file_size']				= 'Filesize';// to translate
+$cms_lang['upl_file_imagesize']				= 'Dimensions';// to translate
+$cms_lang['upl_file_preview']				= 'Preview';// to translate
+
 $cms_lang['scan_title']			  = 'Synchronize directories with database';
 $cms_lang['scan_error']			  = 'Error:';
 $cms_lang['scan_done_start']         = 'Work in progress: ';
