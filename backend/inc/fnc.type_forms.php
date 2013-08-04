@@ -166,7 +166,7 @@ function type_form_wysiwyg($formname, $content, $type_config)
 */
 function type_form_wysiwyg2($formname, $content, $type_config)
 {
-    global $dedi_lang, $client, $lang, $dedi, $cfg_dedi, $cfg_client, $sess;
+    global $dedi_lang, $client, $lang, $dedi, $cfg_dedi, $cfg_client, $sess, $idlay;
 
     $content = type_form_cmslinks_to_templinks($content); 
     // echo "<pre>".$content."</pre><br><hr>";
@@ -178,27 +178,30 @@ function type_form_wysiwyg2($formname, $content, $type_config)
     // echo "<pre>".$content."</pre><br><hr>";
     $content = str_replace('&quot;' . $upl_path_relative, '&quot;' . $cfg_client['htmlpath'] . $upl_path_relative, $content);
 
-    $out = '<script language="Javascript1.2" src="' . $sess->url($cfg_client['htmlpath'] . 'cms/fckeditor/fckeditor.js') . '"></script>' . "\n"; 
+    $out = '<script src="' . $sess->url($cfg_client['htmlpath'] . 'cms/ckeditor/ckeditor.js') . '"></script>' . "\n";
     // Textfeld erstellen
     $out .= "    <td><textarea name=\"$formname\" id=\"$formname\" rows=\"30\" cols=\"52\" style=\"width:640px\">$content</textarea></td>\n";
 
     $out .= '<script type="text/javascript">' . "\n"; 
     // Init Editor
-    global $idlay;
     $type_config['sess_name'] = $sess->name;
     $type_config['sess_id'] = $sess->id;
     $type_config['sf_idlay'] = $idlay;
 
-    $toolbar_set = (trim($type_config['features']) == 'true' || trim($type_config['features']) == '')
+$toolbar_set = (trim($type_config['features']) == 'true' || trim($type_config['features']) == '')
     ? 'SefrengoDefault' : $formname;
-    $out .= "
-	var oFCKeditor_" . $formname . " = new FCKeditor( '" . $formname . "', '100%', 400, '" . $toolbar_set . "' ) ;
-	var sf_BasePath = '" . $cfg_client['htmlpath'] . "cms/fckeditor/';	
-	oFCKeditor_" . $formname . ".BasePath	= sf_BasePath;
-	oFCKeditor_" . $formname . ".Config['CustomConfigurationsPath'] = sf_BasePath + 'editor/sefrengo/fckconfig.php"
-     . "?" . $sess->name . "=" . $sess->id . "&fck_editorname=" . $formname . "&fck_ser=" . base64_encode(serialize($type_config)) . "';
-
-	oFCKeditor_" . $formname . ".ReplaceTextarea() ;
+    
+	$out .= "var sf_BasePath = '" . $cfg_client['htmlpath'] . "cms/ckeditor/';
+	CKEDITOR.replace(
+		'" . $formname . "',
+		{
+			toolbar : '" . $toolbar_set . "',
+			customConfig : sf_BasePath + 'sefrengo/ckconfig.php".
+				"?" . $sess->name . "=" . $sess->id .
+				"&ck_editorname=" . $formname .
+				"&ck_ser=" . base64_encode(serialize($type_config))."'
+		}
+	);
 	</script>
 	";
     return $out;

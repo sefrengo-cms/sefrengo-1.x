@@ -105,32 +105,49 @@ margin-top :7px;
 border: 1px solid #B7D9FF;
 width:100%;
 }
-input.sf_buttonAction{
-background:url({rbImagePath}bg_button.gif) #F4F7FB repeat-x bottom;
-border:1px solid #8E8E8E;
-color:#000000;
-cursor:pointer;
-font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
-padding:3px 0;
-width:90px;
+input.sf_buttonAction,
+input.sf_buttonActionCancel {
+	border: 1px solid #8E8E8E;
+	color: #000000;
+	cursor: pointer;
+	font: bold 10px verdana, helvetica, arial, geneva, sans-serif;
+	margin: 5px 0;
+	padding: 5px 0;
+	width: 90px;
+	background: #fbfbfb; /* Old browsers */
+	background: -moz-linear-gradient(top, #fbfbfb 44%, #e2e2e2 56%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(44%,#fbfbfb), color-stop(56%,#e2e2e2)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* IE10+ */
+	background: linear-gradient(top, #fbfbfb 44%,#e2e2e2 56%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=0 ); /* IE6-9 */
 }
-input.sf_buttonActionOver{
-background:url({rbImagePath}bg_button.gif) #F4F7FB repeat-x top;
-border:1px solid #99CC01;
-color:#000000;
-cursor:pointer;
-font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
-padding:3px 0;
-width:90px;
+input.sf_buttonAction:active,
+input.sf_buttonAction:focus,
+input.sf_buttonAction:hover {
+	border: 1px solid #99CC01;
+	background: #f8fbec; /* Old browsers */
+	background: -moz-linear-gradient(top, #f8fbec 44%, #e1efb4 56%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(44%,#f8fbec), color-stop(56%,#e1efb4)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* IE10+ */
+	background: linear-gradient(top, #f8fbec 44%,#e1efb4 56%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8fbec', endColorstr='#e1efb4',GradientType=0 ); /* IE6-9 */
 }
-input.sf_buttonActionCancelOver{
-background:url({rbImagePath}bg_button_cancel.gif) #F4F7FB repeat-x top;
-border:1px solid #B00101;
-color:#000000;
-cursor:pointer;
-font:bold 10px verdana,helvetica,arial,geneva,sans-serif;
-padding:3px 0;
-width:90px;
+input.sf_buttonActionCancel:active,
+input.sf_buttonActionCancel:focus,
+input.sf_buttonActionCancel:hover {
+	border: 1px solid #B00101;
+	background: #ffecec; /* Old browsers */
+	background: -moz-linear-gradient(top, #ffecec 44%, #ffc1c1 56%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(44%,#ffecec), color-stop(56%,#ffc1c1)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top, #ffecec 44%,#ffc1c1 56%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top, #ffecec 44%,#ffc1c1 56%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, #ffecec 44%,#ffc1c1 56%); /* IE10+ */
+	background: linear-gradient(top, #ffecec 44%,#ffc1c1 56%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffecec', endColorstr='#ffc1c1',GradientType=0 ); /* IE6-9 */
 }
 </style>
 	<script type="text/javascript">
@@ -337,9 +354,18 @@ width:90px;
 			var ressource_type = rb.csr.ressourceName;
 			var picked_name    = document.getElementById('sf_rb_picker').value;
 			var picked_value   = document.getElementById('sf_rb_picker_value').value;
+			var funcNum = rb_getUrlParam('CKEditorFuncNum');
 
 			window.opener.{rbJsCallback};
 			window.close();
+		}
+		
+		function rb_getUrlParam(paramName)
+		{
+			var reParam = new RegExp('(?:[\?&]|&amp;)' + paramName + '=([^&]+)', 'i') ;
+			var match = window.location.search.match(reParam) ;
+		
+			return (match && match.length > 1) ? match[1] : '' ;
 		}
 	-->
 	</script>
@@ -390,8 +416,8 @@ width:90px;
 			<td><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td><input type="text" value="" name="sf_rb_picker" id="sf_rb_picker"><input type="hidden" value="" name="sf_rb_picker_value" id="sf_rb_picker_value"></td></tr></table></td>
 			<td style="width:5px"></td>
 			<td width="200">
-  <input type="button" value="{rbLangOpen}" name="sf_rb_submit" id="sf_rb_submit" class="sf_buttonAction"  onmouseover="this.className='sf_buttonActionOver'" onMouseOut="this.className='sf_buttonAction'" onClick="rb_performJsCallback()" />
-  <input type="button" value="{rbLangCancel}" name="sf_rb_cancel" id="sf_rb_cancel" class="sf_buttonAction" onMouseOver="this.className='sf_buttonActionCancelOver'" onMouseOut="this.className='sf_buttonAction'" onClick="window.close()" />
+  <input type="button" value="{rbLangOpen}" name="sf_rb_submit" id="sf_rb_submit" class="sf_buttonAction" onClick="rb_performJsCallback()" />
+  <input type="button" value="{rbLangCancel}" name="sf_rb_cancel" id="sf_rb_cancel" class="sf_buttonActionCancel" onClick="window.close()" />
 		</tr>
 		</table>
 
