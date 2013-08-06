@@ -1,5 +1,5 @@
 <?PHP
-// File: $Id: class.popupmenubuilder_js.php 28 2008-05-11 19:18:49Z mistral $
+// File: $Id: class.popupmenubuilder_js.php 440 2011-09-10 14:23:27Z bjoern $
 // +----------------------------------------------------------------------+
 // | Version: Sefrengo $Name:  $                                          
 // +----------------------------------------------------------------------+
@@ -20,9 +20,9 @@
 // | GNU General Public License for more details.                         |
 // |                                                                      |
 // +----------------------------------------------------------------------+
-// + Autor: $Author: mistral $
+// + Autor: $Author: bjoern $
 // +----------------------------------------------------------------------+
-// + Revision: $Revision: 28 $
+// + Revision: $Revision: 440 $
 // +----------------------------------------------------------------------+
 // + Description:
 // +----------------------------------------------------------------------+
@@ -80,7 +80,12 @@ class popupmenubuilder_js
 	
 	function add_seperator()
 	{
-		$this->add_title('');
+		$element = array(
+					'type' => 'seperator',
+					'entry' => ''
+					);
+		
+		array_push ($this->stack, $element);
 	}
 	
 	function add_entry($entry, $link='#', $target= '_self', $mouseover_text = '', $optional_js='')
@@ -117,40 +122,25 @@ class popupmenubuilder_js
 		return $out;
 	}
 	
-	function _generate()
-	{
+	function _generate() {
 		if(! empty($this->outstring) ) return $this->outstring;
 
 		$stack_count = count($this->stack);
 		$all = array();
-		$out = '[';
+		$out = '<ul>';
 		//print_r($this->stack[1]);
 		
-		for($i=0; $i<$stack_count; $i++)
-		{
+		for($i=0; $i<$stack_count; $i++) {
 			$element = $this->_generate_element($this->stack[$i]);
-
-			if($this->stack[$i]['type'] == 'title')
-				$out .= $element;
-			else if($this->stack[$i]['type'] == 'entry'){
-				if($this->stack[($i-1)]['type'] != 'entry')
-					$out.= '[';
-
-				$out.= $element;
-
-				if($this->stack[($i+1)]['type'] != 'entry')
-					$out.= ']';
-			}
-
-			array_push($all, $out);
-			$out = '';
+			$out .= $element;
 		}
 
-        $cooked = implode(',', $all);
-		//if($this->stack[($i-1)]['type'] == 'entry')
-		$cooked .= ']';
-
-		$this->outstring = $this->_get_menuimage($cooked);
+		$out.= '</ul>';
+			
+		//array_push($all, $out);
+		
+		$this->outstring = $this->_get_menuimage($out);
+		$out = '';
 		return $this->outstring;
 	}
 
@@ -159,11 +149,18 @@ class popupmenubuilder_js
 		switch($raw['type'])
 		{
 			case 'title':
-			    $cooked = "'".$raw['entry']."'";
+			    $cooked = "<li class=\"sf_hmenu_title\">".$raw['entry']."</li>";
+			    break;
+			case 'seperator':
+			    $cooked = "<li><hr class=\"sf_hmenu_trenner\"></li>";
 			    break;
 			case 'entry':
-			    $cooked = "['".$raw['entry']."','".$raw['link']."','".$raw['mouseover_text']."','"
-							.$raw['target']."','".$raw['optional_js']."']";
+				$onclick_content = '';
+				if($raw['optional_js'] != '')
+				{
+					$onclick_content = " onclick=\"".$raw['optional_js']." return true; return false;\"";
+				}
+			    $cooked = "<li class=\"sf_hmenu_entry\"><a href=\"".$raw['link']."\" rel=\"".$raw['mouseover_text']."\" target=\"".$raw['target']."\" ".$onclick_content.">".$raw['entry']."</a></li>";
 			    break;
 		}
 
@@ -181,11 +178,13 @@ class popupmenubuilder_js
 		$this->stack = array();
 	}
 	
-	function _get_menuimage($menucontent)
-	{
-		return '<img src="'.$this->image.'" width="'.$this->image_width.'" height="'.$this->image_height.'"'
-				.' onmouseover="showmenu(event, '. $menucontent .')" onmouseout="delayhidemenu()" '
-				.' style="cursor:pointer" border="0" />';
+	function _get_menuimage($menucontent) {		
+	return	'<span class="sf_hmenu_wrapper">
+				<span class="sf_hmenu_trigger"><img src="'.$this->image.'" width="'.$this->image_width.'" height="'.$this->image_height.'" /></span>
+				<span class="sf_hovermenu">
+					'. $menucontent .'
+				</span>
+			</span>';
 	}
 }
 

@@ -1,0 +1,100 @@
+
+/* Overwrite style from jquery.qtip.css */
+.qtip-content {
+	padding: 0 !important;
+	border-color: #164283 !important;
+	border-width: 2px !important;
+	background-color: #164283 !important;
+}
+
+.sf_hmenu_wrapper {
+	width: 16px;
+	height: 16px;
+	position:relative !important;
+	overflow:visible !important;
+}
+
+.sf_hmenu_wrapper img {
+	border:0px !important;
+}
+
+
+.sf_hmenu_trigger {
+	position:relative !important;
+	cursor:pointer !important;
+}
+
+/* fixe Breite der Tooltip-Box  */
+.sf_hovermenu {	
+	display:none;
+	background:transparent;
+	min-width:142px !important;
+	z-index:99930 !important;
+	border: 1px solid #164283;
+}
+
+
+/* Formatierung der Links  */
+.sf_hovermenu a:link {text-decoration: none; color:#666; background-color:#fff; display:block; padding:3px 5px;}
+.sf_hovermenu a:visited {text-decoration: none; color:#666; background-color:#fff; display:block; padding:3px 5px;}
+.sf_hovermenu a:active {text-decoration: none; color:#666;background-color:#fff; display:block; padding:3px 5px;}
+.sf_hovermenu a:hover {text-decoration: none; color:#000; background-color:#dfeeff; display:block; padding:3px 5px;}
+
+
+/* allgemeine Formatierung von Rahmen, Schrifttyp
+	und Textfarbe + Texthintergrund der Ueberschriften*/
+.sf_hovermenu ul {
+	list-style-type:none !important;
+	padding:0px !important;
+	margin:0px !important;
+	
+	font-family:verdana, arial, sans-serif !important;
+	font-size:11px !important;
+	color:#fff !important;
+	
+	background-color:#6F91C1 !important;
+	overflow:visible !important;
+	z-index:99999 !important;
+}
+
+.sf_hovermenu ul li {
+	background-image:none !important;
+	padding: 0px !important;
+	margin: 0px !important;
+	text-align:left !important;
+	z-index:1000 !important;
+	line-height:120% !important;
+	overflow:visible !important;
+}
+
+/* Ueberschriften  */
+.sf_hmenu_title {
+	padding: 0px;
+	background-color: #164283;
+	border-style:none;
+	color:#fff;
+	font-weight:bold;
+}
+
+.sf_hovermenu ul li.sf_hmenu_title {
+	padding: 2px 5px !important;
+}
+
+/* Menuepunkte  */
+.sf_hmenu_entry {
+	background-color:#fff;
+	border-style:none;
+	color:#000;
+	font-weight:normal;
+}
+
+
+/* Trennungslinie fuer besondere List-items, z.b. loeschen  */
+.sf_hovermenu hr.sf_hmenu_trenner {
+	color:#164283;
+	background-color:#164283;
+	height:1px;
+	border:1px;
+	margin:0px;
+	
+}

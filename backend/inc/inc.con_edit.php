@@ -658,21 +658,28 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 					$db->query($sql);
 					while ($db->next_record()) {
 						if ($db->f('filetype') == 'js') $code .= "<script src=\"".$db->f('dirname').$db->f('filename')."\" type=\"text/javascript\"></script>\n";
-						else if ($db->f('filetype') == 'css') $code .= "<link rel=\"StyleSheet\" href=\"".$db->f('dirname').$db->f('filename')."\" type=\"text/css\" ".$sf_slash_closing_tag.">\n";
+						else if ($db->f('filetype') == 'css') $code .= "<link rel=\"stylesheet\" href=\"".$db->f('dirname').$db->f('filename')."\" type=\"text/css\" ".$sf_slash_closing_tag.">\n";
 					}
+					$code .= "<link rel=\"stylesheet\" type=\"text/css\" href=\"". $cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/css/sf_hovermenu.css' ."\" />\n";
+					
 					$code .= "<style type=\"text/css\">\n";
 					$code .= "  div.actEditFrame {border:1px solid #AF0F0F; -moz-user-focus: normal;min-height:20px;}\n";
 					$code .= "  div.editFrame {border:1px dashed #BFBFBF; -moz-user-focus: normal;min-height:20px;}\n";
-					$code .= "  #popmenu {position:absolute;width:140px;background-color:menu;font:normal 11px Verdana,Helvetica,Arial,Geneva,sans-serif;z-index:100;visibility:hidden;}\n";
-					$code .= "  .menutitle {font:11px Verdana,Helvetica,Arial,Geneva,sans-serif; color: #FFFFFF;}\n";
-					$code .= "  .menurow {font:11px verdana,helvetica,arial,geneva,sans-serif; color: #777777; padding-left : 10px; padding-right : 10px; }\n";
-					$code .= "  .menurow td {font:11px verdana,helvetica,arial,geneva,sans-serif; color: #777777; padding-left : 10px; padding-right : 10px; }\n";
-					$code .= "  .menurow a {color: #777777; text-decoration : none;}\n";
-					$code .= "  #menurow_over {background-color: #DFEEFF;cursor:pointer;color: #000000;}\n";
-					$code .= "  #menurow_over td {background-color: #DFEEFF;cursor:pointer;color: #000000;}\n";
-					$code .= "  #menurow_over a {color: #000000; text-decoration : none; background-color: #DFEEFF;}\n";
 					$code .= "</style>\n";
-					$code .= "<script src=\"". $cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/js/popupmenu.js' ."\" type=\"text/javascript\"></script>\n";
+					
+					$code .= "<script src=\"". $cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/js/jquery/init.sefrengo.js' ."\" type=\"text/javascript\"></script>\n";
+					$code .= "<script src=\"". $cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/js/jquery/lib/jquery.min.js' ."\" type=\"text/javascript\"></script>\n";
+					
+					$code .= "<script type=\"text/javascript\">/* <![CDATA[ */
+						SF.Config.debug = false;
+						SF.Config.backend_dir = '".$cfg_cms['cms_html_path']."'; // e.g. /backend/
+						SF.Config.js_dir = SF.Config.backend_dir + 'tpl/".$cfg_cms['skin']."/js/jquery/';
+						SF.Config.css_dir = SF.Config.backend_dir + 'tpl/".$cfg_cms['skin']."/css/';
+						SF.Config.img_dir = SF.Config.backend_dir + 'tpl/".$cfg_cms['skin']."/img/';
+					/* ]]> */</script>";
+					
+					$code .= "<script src=\"". $cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/js/jquery/jquery.frontend.js' ."\" type=\"text/javascript\"></script>\n";
+					
           			//TODO NUR BEI GECKO EINBINDEN
           			if($tmp_sniffer['9'] == 'true'){
           				$code .= "<script src=\"".$cfg_cms['cms_html_path']."external/mozile/mozileLoader.js\" type=\"text/javascript\"></script>\n";
@@ -702,7 +709,6 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 						
 					$code .= "//-->\n";
 					$code .= "</script>\n";
-					$code .= "<div id=\"popmenu\" name=\"popmenu\" onmouseover=\"clearhidemenu();highlightmenu(event,'on')\" onmouseout=\"highlightmenu(event,'off');dynamichide(event)\"></div>\n";
 					$code .= "<!--END head//-->\n";
 					$search[] = $cms_mod['container']['full_tag'];
 					$replace[] = $code;
