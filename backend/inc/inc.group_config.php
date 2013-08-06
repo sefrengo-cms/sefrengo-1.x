@@ -98,12 +98,12 @@ if (!empty($errno)) {
 // Links zusammenstellen
 $img_path   = 'tpl/'.$cfg_cms['skin'].'/img/';
 $query = "main.php?area=group&order=$order&ascdesc=$ascdesc&idclient=$idclient&idlang=$idlang&idgroup=$idgroup";
-$url = '<a href="'.$sess->url($query).'" class="action" onmouseover="on(\'%s\');return true;" onmouseout="off();return true;">%s</a>';
+$url = '<a href="'.$sess->url($query).'" class="action">%s</a>';
 $img_abort  = '<img src="' . $img_path . 'but_cancel.gif" alt="' . $cms_lang['gen_abort'] . '" title="' . $cms_lang['gen_abort'];
 $img_abort .= '" width="21" height="21" /></a>';
 
 // Zurück-Link setzen
-$tmp['BACK'] = sprintf($url, $cms_lang['group_back'], $cms_lang['group_back']);
+$tmp['BACK'] = sprintf($url, $cms_lang['group_back']);
 $tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
 
 // Formulareinstellungen

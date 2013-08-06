@@ -92,12 +92,12 @@ echo "<div id=\"main\">\n";
     $sql_install   = ($sql_install != '-1')   ? $sql_install : '';
     $sql_uninstall = ($sql_uninstall != '-1') ? $sql_uninstall : '';
     $sql_update    = ($sql_update != '-1')    ? $sql_update : '';
-    $tmp['BACK'] = "<div class=\"forms\">\n<a class=\"action\" href=\"" . $sess->url("main.php?area=plug&idclient=$client") . "\" onmouseover=\"on('" . $cms_lang['gen_back'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['gen_back'] . "</a>";
+    $tmp['BACK'] = "<div class=\"forms\">\n<a class=\"action\" href=\"" . $sess->url("main.php?area=plug&idclient=$client") . "\">" . $cms_lang['gen_back'] . "</a>";
     if ($editsql != '1' && $idplug >= 1 && $idclient == 0) {
-        $tmp['NEW_SQL'] = " | <a class=\"action\" href=\"" . $sess->url("main.php?area=plug_edit&idplug=$idplug&idclient=$idclient&editsql=1") . "\" onmouseover=\"on('" . $cms_lang['plug_new_sql'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['plug_new_sql'] . "</a>";
-    } elseif($idplug >= 1 && $idclient == 0 && $editsql) $tmp['NEW_SQL'] = " | <a class=action href=\"" . $sess->url("main.php?area=plug_edit&idplug=$idplug&idclient=$idclient&editsql=0") . "\" onmouseover=\"on('" . $cms_lang['plug_edit'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['plug_edit'] . "</a>";
-    elseif(!$import && empty($idplug)) $tmp['NEW_SQL'] = " | <a class=\"action\" href=\"" . $sess->url("main.php?area=plug_edit&idplug=&idclient=$idclient&import=1") . "\" onmouseover=\"on('" . $cms_lang['plug_import_path'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['plug_import_path'] . "</a>";
-    #else $tmp['BACK'] = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug_edit&idplug=&idclient=$idclient") . "\" onmouseover=\"on('" . $cms_lang['gen_back'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['gen_back'] . "</a>";
+        $tmp['NEW_SQL'] = " | <a class=\"action\" href=\"" . $sess->url("main.php?area=plug_edit&idplug=$idplug&idclient=$idclient&editsql=1") . "\">" . $cms_lang['plug_new_sql'] . "</a>";
+    } elseif($idplug >= 1 && $idclient == 0 && $editsql) $tmp['NEW_SQL'] = " | <a class=action href=\"" . $sess->url("main.php?area=plug_edit&idplug=$idplug&idclient=$idclient&editsql=0") . "\">" . $cms_lang['plug_edit'] . "</a>";
+    elseif(!$import && empty($idplug)) $tmp['NEW_SQL'] = " | <a class=\"action\" href=\"" . $sess->url("main.php?area=plug_edit&idplug=&idclient=$idclient&import=1") . "\">" . $cms_lang['plug_import_path'] . "</a>";
+    #else $tmp['BACK'] = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug_edit&idplug=&idclient=$idclient") . "\">" . $cms_lang['gen_back'] . "</a>";
     $idclient = !$idclient ? '0' : $idclient;
     echo "" . $tmp['BACK'] . $tmp['NEW_SQL'] . "";
     echo "  </div>\n";

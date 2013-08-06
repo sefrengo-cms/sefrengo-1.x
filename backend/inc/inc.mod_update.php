@@ -115,14 +115,14 @@ return false;\n
 echo '//-->
 </script>';
 echo '</head>';
-echo '<body id="con-edit" style="overflow:hidden;background:fff;" onload="off();return true;">';
+echo '<body id="con-edit" style="overflow:hidden;background:#fff;">';
 echo "\n<!-- inc.mod_update.php -->\n";
 echo "<div>\n";
 echo "  <div id=\"mod-up\">\n";
 if ($errno == '0417') echo  $cms_lang['mod_confirm_update']; else echo $cms_lang['mod_confirm_reinstall'] . "\n";
 echo "</div>\n";
 
-//$tmp['BACK'] = "<a class=\"action\" href=\"javascript:window.opener.location.href='" . $sess->urlRaw("main.php?area=mod&action=upload&idclient=$idclient&override=false") . "';self.close();\" onmouseover=\"on('" . $cms_lang['gen_abort'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['gen_abort'] . "</a>";
+//$tmp['BACK'] = "<a class=\"action\" href=\"javascript:window.opener.location.href='" . $sess->urlRaw("main.php?area=mod&action=upload&idclient=$idclient&override=false") . "';self.close();\">" . $cms_lang['gen_abort'] . "</a>";
 //echo "     <td align=\"right\">" . $tmp['BACK'] . "</td>";
 
 // Formular zum updaten der Module

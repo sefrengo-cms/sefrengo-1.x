@@ -54,7 +54,7 @@ include('inc/inc.header.php');
  */
 echo "<!-- Anfang inc.mod_config.php -->\n";
 echo "<div id=\"main\">\n";
-$BACK = "<div class=\"forms\"><a class=\"action\" href=\"" . $sess->url("main.php?area=mod&idmod=&idclient=$idclient") . "\" onmouseover=\"on('" . $cms_lang['gen_back'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['gen_back'] . "</a></div>";
+$BACK = "<div class=\"forms\"><a class=\"action\" href=\"" . $sess->url("main.php?area=mod&idmod=&idclient=$idclient") . "\">" . $cms_lang['gen_back'] . "</a></div>";
 echo "".$CONFIG_GLOBAL.$CONFIG_CLIENT.$BACK."";
 
 echo "    <h5>" . $cms_lang['area_mod_config'] . "</h5>";
@@ -128,7 +128,7 @@ echo "    <input type=\"hidden\" name=\"anchor\" value=\"\" />\n";
 echo "    <table class=\"config\" cellspacing=\"1\">\n";
 echo "      <tr valign=\"top\">\n";
 echo "        <td class=\"head\" width=\"110\" valign=\"middle\"><p>" . $cms_lang['mod_modulename'] . "</p></td>\n";
-echo "        <td class=\"headre\">\n<div class=\"forms\">\n<a class=\"action\" href=\"" . $sess->url("main.php?area=mod_config&idmod=" . $idmod . "&idclient=$idclient&resetmod=1") . "\" onmouseover=\"on('" . $cms_lang['gen_fundamental'] . "');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_resetform.gif\" alt=\"" . $cms_lang['mod_config_return'] . "\" title=\"" . $cms_lang['mod_config_return'] . "\" width=\"16\" height=\"16\" /></a>\n</div>\n$modname $modversion</td>\n";
+echo "        <td class=\"headre\">\n<div class=\"forms\">\n<a class=\"action\" href=\"" . $sess->url("main.php?area=mod_config&idmod=" . $idmod . "&idclient=$idclient&resetmod=1") . "\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_resetform.gif\" alt=\"" . $cms_lang['mod_config_return'] . "\" title=\"" . $cms_lang['mod_config_return'] . "\" width=\"16\" height=\"16\" /></a>\n</div>\n$modname $modversion</td>\n";
 echo "      </tr>\n";
 // rechte management
 if (!empty($idmod) && $perm->have_perm(6, 'mod', $idmod)) {

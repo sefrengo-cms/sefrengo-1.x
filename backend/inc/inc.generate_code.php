@@ -137,26 +137,6 @@ if ($db->next_record()) {
 					if ($db->f('filetype') == 'js') $code .= "<script src=\"".$db->f('dirname').$db->f('filename')."\" type=\"text/javascript\"></script>\n";
 					if ($db->f('filetype') == 'css') $code .= "<link rel=\"StyleSheet\" href=\"".$db->f('dirname').$db->f('filename')."\" type=\"text/css\" ".$sf_slash_closing_tag.">\n";
 				}
-				$code .= "<script type=\"text/javascript\">\n";
-				$code .= "<!--\n";
-				$code .= "function cms_status(message) {\n";
-				$code .= "  window.status = message;\n";
-				$code .= "  window.defaultStatus = window.status;\n";
-				$code .= "}\n";
-				//todo: 2remove
-				$code .= "function dedi_status(message) {\n";
-				$code .= "  window.status = message;\n";
-				$code .= "  window.defaultStatus = window.status;\n";
-				$code .= "}\n";
-				$code .= "function on(message) {\n";
-				$code .= '  window.setTimeout("cms_status(\""+message+"\")",10);'."\n";
-				$code .= "}\n";
-				$code .= "function off() {\n";
-				$code .= "  window.status = \"".str_replace('"', '\"', $con_side[$idcatside]['name'])."\";\n";
-				$code .= "  window.defaultStatus = window.status;\n";
-				$code .= "}\n";
-				$code .= "//-->\n";
-				$code .= "</script>\n";
 				$code .= "<!--END head//-->\n";
 				$search[] = $cms_mod['container']['full_tag'];
 				$replace[] = $code;

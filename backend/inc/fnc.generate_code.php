@@ -52,7 +52,7 @@ function generate_configlayer() {
 				$db = new DB_cms;
 				$db->query($sql);
 				$db->next_record();
-				if ($db->f('changed') == '2') $out .= "<td class=\"menutitle\" align=\"right\"><b><font size=\"1\">&nbsp;<a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=side_publish&idcatside='.$idcatside)."\" onmouseover=\"on(\'".$mod_lang['side_publish']."\');return true;\" onmouseout=\"off();return true;\"><img src=\"".$cfg_cms['cms_html_path']."tpl/".$cfg_cms['skin']."/img/but_onpublish.gif\" border=\"0\" width=\"10\" height=\"10\"></a>&nbsp;</font></b></td>";
+				if ($db->f('changed') == '2') $out .= "<td class=\"menutitle\" align=\"right\"><b><font size=\"1\">&nbsp;<a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=side_publish&idcatside='.$idcatside)."\"><img src=\"".$cfg_cms['cms_html_path']."tpl/".$cfg_cms['skin']."/img/but_onpublish.gif\" border=\"0\" width=\"10\" height=\"10\"></a>&nbsp;</font></b></td>";
 			}
 			$out .= "</tr>";
 		}
@@ -60,17 +60,17 @@ function generate_configlayer() {
 
 		// Seite konfigurieren
 		if ($idcatside && $perm->have_perm(20, 'side', $idcatside, $idcat)){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcatside='.$idcatside.'&idside='.$con_side[$idcatside]['idside'].'&idcat='.$con_side[$idcatside]['idcat'].'&idtplconf='.$con_side[$idcatside]['idtplconf'])."\'\" onmouseover=\"on(\'".$mod_lang['side_config']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcatside='.$idcatside.'&idside='.$con_side[$idcatside]['idside'].'&idcat='.$con_side[$idcatside]['idcat'].'&idtplconf='.$con_side[$idcatside]['idtplconf'])."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_config']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcatside='.$idcatside.'&idside='.$con_side[$idcatside]['idside'].'&idcat='.$con_side[$idcatside]['idcat'].'&idtplconf='.$con_side[$idcatside]['idtplconf'])."\'\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcatside='.$idcatside.'&idside='.$con_side[$idcatside]['idside'].'&idcat='.$con_side[$idcatside]['idcat'].'&idtplconf='.$con_side[$idcatside]['idtplconf'])."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_config']."</font></a></td></tr>'\n";
 		}
 
 		// Seite anlegen
 		if ($perm->have_perm('18', 'cat', $idcat) ){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcat='.$idcat.'&idtplconf=0')."\'\" onmouseover=\"on(\'".$mod_lang['side_new']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcat='.$idcat.'&idtplconf=0')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_new']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcat='.$idcat.'&idtplconf=0')."\'\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configside&view='.$view.'&idcat='.$idcat.'&idtplconf=0')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_new']."</font></a></td></tr>'\n";
 		}
 
 		// Seite löschen
 		if ($idcatside && $perm->have_perm(21, 'side', $idcatside, $idcat)){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=side_delete&idcat='.$idcat.'&idside='.$con_side[$idcatside]['idside'])."\" onmouseover=\"on(\'".$mod_lang['side_delete']."\');return true;\" onmouseout=\"off();return true;\" onclick=\"return delete_confirm()\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_delete']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=side_delete&idcat='.$idcat.'&idside='.$con_side[$idcatside]['idside'])."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_delete']."</font></a></td></tr>'\n";
 		}
 
 		// Ordner
@@ -84,17 +84,17 @@ function generate_configlayer() {
 
 		// Ordner konfigurieren
 		if ($perm->have_perm('2', 'cat', $idcat)){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcat='.$idcat.'&idcatside='.$idcatside.'&idcatlang='.$con_tree[$idcat]['idcatlang'].'&idtplconf='.$con_tree[$idcat]['idtplconf'])."\'\" onmouseover=\"on(\'".$mod_lang['side_config']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcat='.$idcat.'&idcatside='.$idcatside.'&idcatlang='.$con_tree[$idcat]['idcatlang'].'&idtplconf='.$con_tree[$idcat]['idtplconf'])."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_config']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcat='.$idcat.'&idcatside='.$idcatside.'&idcatlang='.$con_tree[$idcat]['idcatlang'].'&idtplconf='.$con_tree[$idcat]['idtplconf'])."\'\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcat='.$idcat.'&idcatside='.$idcatside.'&idcatlang='.$con_tree[$idcat]['idcatlang'].'&idtplconf='.$con_tree[$idcat]['idtplconf'])."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_config']."</font></a></td></tr>'\n";
 		}
 
 		// Ordner anlegen
 		if ($perm->have_perm('3', 'cat', $idcat) || $perm->have_perm('4', 'cat', $idcat)){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcatside='.$idcatside.'&parent='.$idcat.'&idtplconf=0')."\'\" onmouseover=\"on(\'".$mod_lang['side_new']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcatside='.$idcatside.'&parent='.$idcat.'&idtplconf=0')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_new']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcatside='.$idcatside.'&parent='.$idcat.'&idtplconf=0')."\'\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con_configcat&view='.$view.'&idcatside='.$idcatside.'&parent='.$idcat.'&idtplconf=0')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_new']."</font></a></td></tr>'\n";
 		}
 
 		// Ordner löschen
 		if (!$idcatside && $perm->have_perm('5', 'cat', $idcat)){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=cat_delete&idcat='.$idcat)."\" onmouseover=\"on(\'".$mod_lang['side_delete']."\');return true;\" onmouseout=\"off();return true;\" onclick=\"return delete_confirm()\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_delete']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con&view='.$view.'&action=cat_delete&idcat='.$idcat)."\"  onclick=\"return delete_confirm()\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_delete']."</font></a></td></tr>'\n";
 		}
 
 		// Modus
@@ -102,15 +102,15 @@ function generate_configlayer() {
 
 		// Seitenübersicht
 		if ($perm->have_perm('1', 'area_con')){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con')."\'\" onmouseover=\"on(\'".$mod_lang['side_edit']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con')."\" target=\"_top\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_overview']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con')."\'\"><a href=\"".$sess->url($cfg_cms['cms_html_path'].'main.php?area=con')."\" target=\"_top\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_overview']."</font></a></td></tr>'\n";
 		}
 
 		// Editor / Vorschau
 		if ($view == 'preview'){
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=edit')."\'\" onmouseover=\"on(\'".$mod_lang['side_edit']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=edit')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_edit']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=edit')."\'\"><a href=\"".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=edit')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_edit']."</font></a></td></tr>'\n";
 		}
 		else{
-			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=preview')."\'\" onmouseover=\"on(\'".$mod_lang['side_preview']."\');return true;\" onmouseout=\"off();return true;\"><a href=\"".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=preview')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_preview']."</font></a></td></tr>'\n";
+			$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='<tr><td class=\"menurow\" onclick=\"document.location.href=\'".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=preview')."\'\"><a href=\"".$sess->url($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&idcatside='.$idcatside.'&view=preview')."\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">".$mod_lang['side_preview']."</font></a></td></tr>'\n";
 		}
 		$out .= "linkset['".$type_container.'_'.$type_number."_side_$type_typenumber']+='</table></td></tr></table>'\n";
 		$out .= "</script>";

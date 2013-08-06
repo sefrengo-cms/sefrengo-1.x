@@ -209,7 +209,7 @@ if ($idclient != '-1') {
             else $tmpid['ENTRY_EDIT'] = "<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" width=\"16\" height=\"16\">"; 
             // Plugin Sql erneut installieren
             /* todo:oldperms!
-            *if ( $idclient > 0 && ($perm->have_perm('area_plug_import') || $perm->have_perm('area_plug_export')) && $plug['install_sql'] != '' ) $tmp['ENTRY_SQL'] = "<a class=\"action\" href=\"".$sess->url("main.php?area=plug&action=copy&idplug=".$plug['idplug']."&into=1&from=1&idclient=$idclient")."\" onmouseover=\"on('".$cms_lang['plug_rebuild_sql']."');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_calendar.gif\" border=\"0\" alt=\"".$cms_lang['plug_rebuild_sql']."\" title=\"".$cms_lang['plug_rebuild_sql']."\" width=\"14\" height=\"14\"></a>";
+            *if ( $idclient > 0 && ($perm->have_perm('area_plug_import') || $perm->have_perm('area_plug_export')) && $plug['install_sql'] != '' ) $tmp['ENTRY_SQL'] = "<a class=\"action\" href=\"".$sess->url("main.php?area=plug&action=copy&idplug=".$plug['idplug']."&into=1&from=1&idclient=$idclient")."\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_calendar.gif\" border=\"0\" alt=\"".$cms_lang['plug_rebuild_sql']."\" title=\"".$cms_lang['plug_rebuild_sql']."\" width=\"14\" height=\"14\"></a>";
 	        *elseif ( $idclient > 0 && $perm->have_perm('area_plug_import') ) $tmp['ENTRY_SQL'] = "<img src=\"tpl/".$cfg_cms['skin']."/img/space.gif\" border=\"0\" width=\"13\" height=\"13\">";// Plugin konfigurieren
 	        */
             // Plugin konfigurieren
@@ -223,7 +223,7 @@ if ($idclient != '-1') {
             // Plugin exportieren
             /* todo:only for repository export!
             /*
-             *if ($idclient != '0' && $perm->have_perm(8, 'plug', $plug['idplug']) && $plug['count'] < 1) $tmp['ENTRY_EXPORT'] = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug&action=copy&idplug=" . $plug['idplug'] . "&from=$client&idclient=$idclient") . "\" onmouseover=\"on('" . $cms_lang['plug_export'] . "');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/export.gif\" border=\"0\" alt=\"" . $cms_lang['plug_export'] . "\" title=\"" . $cms_lang['plug_export'] . "\" width=\"19\" height=\"11\"></a>";
+             *if ($idclient != '0' && $perm->have_perm(8, 'plug', $plug['idplug']) && $plug['count'] < 1) $tmp['ENTRY_EXPORT'] = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug&action=copy&idplug=" . $plug['idplug'] . "&from=$client&idclient=$idclient") . "\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/export.gif\" border=\"0\" alt=\"" . $cms_lang['plug_export'] . "\" title=\"" . $cms_lang['plug_export'] . "\" width=\"19\" height=\"11\"></a>";
              *elseif ($idclient != '0') $tmpid['ENTRY_EXPORT'] = "<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" border=\"0\" width=\"19\" height=\"11\">";
              */
             // Plugin downloaden
@@ -275,9 +275,9 @@ if ($idclient != '-1') {
             * todo:validate list of local plugins
             * todo:oldperms!
             *if ( $perm->have_perm('area_plug_repository_update')  && $rep->enabled() ) {
-            *   if ( $plug['repository_id'] > 0 && !$rep->online() ) $tmp['ENTRY_UPDATE'] = "<a name='norepository' onmouseover=\"on('".$cms_lang['plug_repository_notonline']."');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_offline.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"".$cms_lang['plug_repository_notonline']."\" title=\"".$cms_lang['plug_repository_notonline']."\"></a>";
-            *   elseif ( $rep->plug_updates($plug['repository_id']) && $plug['repository_id'] > 0 ) $tmp['ENTRY_UPDATE'] = "<a href=\"".$sess->url('main.php?area=plug&action=update&idplug='.$plug['idplug'].'&repid='.$db->f('repository_id').'&idclient='.$idclient)."\" onmouseover=\"on('".$cms_lang['plug_repository_update']."');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_onpublish.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"".$cms_lang['plug_repository_update']."\" title=\"".$cms_lang['plug_repository_update']."\"></a>";
-	        *   elseif ( $plug['repository_id'] > 0 ) $tmp['ENTRY_UPDATE'] = "<a name='norepository' onmouseover=\"on('".$cms_lang['plug_repository_noupdate']."');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_online.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"".$cms_lang['plug_repository_noupdate']."\" title=\"".$cms_lang['plug_repository_noupdate']."\"></a>";
+            *   if ( $plug['repository_id'] > 0 && !$rep->online() ) $tmp['ENTRY_UPDATE'] = "<a name='norepository'><img src=\"tpl/".$cfg_cms['skin']."/img/but_offline.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"".$cms_lang['plug_repository_notonline']."\" title=\"".$cms_lang['plug_repository_notonline']."\"></a>";
+            *   elseif ( $rep->plug_updates($plug['repository_id']) && $plug['repository_id'] > 0 ) $tmp['ENTRY_UPDATE'] = "<a href=\"".$sess->url('main.php?area=plug&action=update&idplug='.$plug['idplug'].'&repid='.$db->f('repository_id').'&idclient='.$idclient)."\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_onpublish.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"".$cms_lang['plug_repository_update']."\" title=\"".$cms_lang['plug_repository_update']."\"></a>";
+	        *   elseif ( $plug['repository_id'] > 0 ) $tmp['ENTRY_UPDATE'] = "<a name='norepository'><img src=\"tpl/".$cfg_cms['skin']."/img/but_online.gif\" width=\"13\" height=\"13\" border=\"0\" alt=\"".$cms_lang['plug_repository_noupdate']."\" title=\"".$cms_lang['plug_repository_noupdate']."\"></a>";
             *   else $tmp['ENTRY_UPDATE'] = "<img src=\"tpl/".$cfg_cms['skin']."/img/space.gif\" border=\"0\" width=\"13\" height=\"13\">";
             *}
             */

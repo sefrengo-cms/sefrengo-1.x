@@ -474,7 +474,7 @@ function make_image_link2 ($url = '#', $image = 'space.gif', $description = '', 
 function make_image_link3 ($url = '#', $image = 'space.gif', $image1 = 'space.gif', $description = '', $description1 = '', $class = '', $hash = '', $name = '' ) {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" %s />\n</a>\n<a style=\"text-decoration:none;\" href=\"javascript:history.back()\" onmouseover=\"on('$description1');return true;\" onmouseout=\"off();return true;\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" %s />\n</a>\n", ($name != '') ? 'name="'.$name.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '', ($hash != '') ? '#'.$hash: '', ($class != '') ? 'class="'.$class.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '');
+	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"  alt=\"$description\" %s />\n</a>\n<a style=\"text-decoration:none;\" href=\"javascript:history.back()\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image1."\" alt=\"$description1\" %s />\n</a>\n", ($name != '') ? 'name="'.$name.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '', ($hash != '') ? '#'.$hash: '', ($class != '') ? 'class="'.$class.'" ' : '', ($class != '') ? 'class="'.$class.'" ' : '');
 }
 
 function make_image_link4 ($image = 'space.gif', $image1 = 'space.gif', $description = '', $description1 = '', $class = '', $class1 = '', $backurl = '#', $width = '16', $height = '16' ) {

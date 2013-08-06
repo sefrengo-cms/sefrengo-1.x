@@ -109,17 +109,17 @@ function Popup() {
 	//            each set of 4 values will be used for one table cell
 	//  
 	this.templateentry = [ 
-                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1% onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></a></td></tr>",
-                          "<tr class=\"menurow\" onClick=\"%cms4%window.open('%cms0%','%cms1%');\" onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></td></tr>",
+                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1%><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></a></td></tr>",
+                          "<tr class=\"menurow\" onClick=\"%cms4%window.open('%cms0%','%cms1%');\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></td></tr>",
 
-                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1% onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></a></td></tr>", 
-                          "<tr class=\"menurow\" onClick=\"window.open('%cms0%','%cms1%');\" onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></td></tr>", 
+                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1%><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></a></td></tr>", 
+                          "<tr class=\"menurow\" onClick=\"window.open('%cms0%','%cms1%');\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></td></tr>", 
 
-                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1% onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></a></td>%cms5%</tr>", 
-                          "<tr class=\"menurow\" onClick=\"window.open('%cms0%','%cms1%');\" onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></td>%cms5%</tr>", 
+                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1%><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></a></td>%cms5%</tr>", 
+                          "<tr class=\"menurow\" onClick=\"window.open('%cms0%','%cms1%');\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms3%</font></td>%cms5%</tr>", 
 
-                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1% onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></a></td>%cms5%</tr>", 
-                          "<tr class=\"menurow\" onClick=\"window.open('%cms0%','%cms1%');\" onMouseOver=\"on('%cms2%');return true;\" onMouseOut=\"off();return true;\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></td>%cms5%</tr>" ]
+                          "<tr class=\"menurow\"><td class=\"menuentry\" nowrap><a href=\"%cms0%\" %cms1%><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></a></td>%cms5%</tr>", 
+                          "<tr class=\"menurow\" onClick=\"window.open('%cms0%','%cms1%');\"><td class=\"menuentry\" nowrap><font face=\"Verdana, Arial, Helvetica\" size=\"1\">%cms4%&nbsp;%cms3%</font></td>%cms5%</tr>" ]
 
 	this.createMenuObject  = createMenuObject
 	this.createMenu        = createMenu

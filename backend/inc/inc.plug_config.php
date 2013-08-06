@@ -64,11 +64,11 @@ include('inc/class.values_ct_edit.php');
 /**
  * 4. Bildschirmausgabe aufbereiten und ausgeben
  */
-$BACK = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug&idplug=&idclient=$idclient") . "\" onmouseover=\"on('" . $cms_lang['gen_back'] . "');return true;\" onmouseout=\"off();return true;\">" . $cms_lang['gen_back'] . "</a>\n";
+$BACK = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug&idplug=&idclient=$idclient") . "\">" . $cms_lang['gen_back'] . "</a>\n";
 if($idclient >= 1) {
-    if($perm->have_perm(18, 'plug', $idplug)) $CONFIG_GLOBAL = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug_config&idplug=$idplug&idclient=0") . "\" onmouseover=\"on('Globale" . $cms_lang['plug_konfiguration'] . "');return true;\" onmouseout=\"off();return true;\">Globale " . $cms_lang['plug_konfiguration'] . "</a> |\n";
+    if($perm->have_perm(18, 'plug', $idplug)) $CONFIG_GLOBAL = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug_config&idplug=$idplug&idclient=0") . "\">Globale " . $cms_lang['plug_konfiguration'] . "</a> |\n";
 } else {
-    if($perm->have_perm(4, 'plug', $idplug) || $perm->have_perm(18, 'plug', $idplug)) $CONFIG_CLIENT = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug_config&idplug=$idplug&idclient=$client") . "\" onmouseover=\"on('Client " . $cms_lang['plug_konfiguration'] . "');return true;\" onmouseout=\"off();return true;\">Client " . $cms_lang['plug_konfiguration'] . "</a> |\n";
+    if($perm->have_perm(4, 'plug', $idplug) || $perm->have_perm(18, 'plug', $idplug)) $CONFIG_CLIENT = "<a class=\"action\" href=\"" . $sess->url("main.php?area=plug_config&idplug=$idplug&idclient=$client") . "\">Client " . $cms_lang['plug_konfiguration'] . "</a> |\n";
 }
 echo "<!-- Anfang inc.plug_config.php -->\n";
 echo "<div id=\"main\">\n";

@@ -129,7 +129,7 @@ return false;\n
 echo '//-->
 </script>';
 echo "</head>\n";
-echo '<body id="con-edit" style="overflow:hidden;background:fff;" onload="off();return true;">';
+echo '<body id="con-edit" style="overflow:hidden;background:#fff;">';
 echo "\n<!-- inc.mod_lupdate.php -->\n";
 echo "  <div>\n";
 echo "  <div id=\"mod-up\">\n";

@@ -182,7 +182,7 @@ echo "    <table class=\"config\" cellspacing=\"1\">\n";
         echo "          <td class=\"headre\">";
         // Modul vom Original trennen
         if ($idclient >= 1 && ($perm->have_perm(7, 'mod', $idmod) || $perm->have_perm(8, 'mod', $idmod)) && $source_for_form > 0) {
-        	 echo "<div class=\"forms\">\n<a class=\"action\" href=\"" . $sess->url("main.php?area=mod_edit&idmod=" . $idmod . "&idclient=" . $idclient . "&mod_no_wedding=1&action=" . $action) . "\" onmouseover=\"on('" . $cms_lang['gen_parent'] . "');return true;\" onmouseout=\"off();return true;\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_resetform.gif\" alt=\"" . $wedding . "\" title=\"" . $wedding . "\" width=\"16\" height=\"16\" /></a>\n</div>\n";
+        	 echo "<div class=\"forms\">\n<a class=\"action\" href=\"" . $sess->url("main.php?area=mod_edit&idmod=" . $idmod . "&idclient=" . $idclient . "&mod_no_wedding=1&action=" . $action) . "\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_resetform.gif\" alt=\"" . $wedding . "\" title=\"" . $wedding . "\" width=\"16\" height=\"16\" /></a>\n</div>\n";
         }
         echo '<p>'. $modname . $modname_version .'</p>';
         echo "</td>\n";

@@ -236,11 +236,11 @@ function create_area_checkbox($area, $name, $lang_name, $plugin) {
 
 	unset($tmp);
 
-	$checkbox_cell = "<td width=\"14\" onmouseover=\"on('%s');return true;\" onmouseout=\"off();return true;\" title=\"%s\"><input type=\"checkbox\" name=\"%s_%s\" id=\"%s_%s\" value=\"%s\" %s /></td>";
-	$checkbox_cell_overwrite_ex = "<td width=\"14\" bgcolor=\"#EBD5C7\"  onmouseover=\"on('%s');return true;\" onmouseout=\"off();return true;\" title=\"%s\"><input type=\"checkbox\" name=\"sf_overwrite_existing_perms[%s]\" id=\"sf_overwrite_existing_perms[%s]\"  value=\"yes\" /></td>";
+	$checkbox_cell = "<td width=\"14\" title=\"%s\"><input type=\"checkbox\" name=\"%s_%s\" id=\"%s_%s\" value=\"%s\" %s /></td>";
+	$checkbox_cell_overwrite_ex = "<td width=\"14\" bgcolor=\"#EBD5C7\" title=\"%s\"><input type=\"checkbox\" name=\"sf_overwrite_existing_perms[%s]\" id=\"sf_overwrite_existing_perms[%s]\"  value=\"yes\" /></td>";
 
-	$box_off       = "<th class=\"content6\" width=\"12\" onmouseover=\"on('%s');return true;\" onmouseout=\"off();return true;\" title=\"%s\"><input type=\"radio\" name=\"cms_access_%s\" value=\"%s\" %s onclick=\"cms_rm.set_area('%s', %s, %s)\" /></th>";
-	$box_on        = "<th class=\"content6\" width=\"12\" onmouseover=\"on('%s');return true;\" onmouseout=\"off();return true;\" title=\"%s\"><input type=\"radio\" name=\"cms_access_%s\" value=\"%s\" %s onclick=\"cms_rm.set_area('%s', %s, %s)\" /></th>";
+	$box_off       = "<th class=\"content6\" width=\"12\" title=\"%s\"><input type=\"radio\" name=\"cms_access_%s\" value=\"%s\" %s onclick=\"cms_rm.set_area('%s', %s, %s)\" /></th>";
+	$box_on        = "<th class=\"content6\" width=\"12\" title=\"%s\"><input type=\"radio\" name=\"cms_access_%s\" value=\"%s\" %s onclick=\"cms_rm.set_area('%s', %s, %s)\" /></th>";
 
 	$i   = 0;
 	$max = 0;
@@ -258,7 +258,7 @@ function create_area_checkbox($area, $name, $lang_name, $plugin) {
 				$checked    = $sim_perm->get_checkbox_status($area, '0', 9, $checkvalue);
 				$tmp['PERM_LABEL'] = $tooltip;
 				$tmp['PERM_LABEL_FOR'] = $area_name .'_'. $key2;
-				$tmp['PERM_BUTTON'] = sprintf($checkbox_cell, $tooltip, $tooltip, $area_name, $key2, $area_name, $key2, $checkvalue, $checked);
+				$tmp['PERM_BUTTON'] = sprintf($checkbox_cell, $tooltip, $area_name, $key2, $area_name, $key2, $checkvalue, $checked);
 				$tpl->setVariable($tmp);
 				$tpl->parseCurrentBlock();
 				unset($tmp);
@@ -266,7 +266,7 @@ function create_area_checkbox($area, $name, $lang_name, $plugin) {
 			//overwrite perms
 			$tmp['PERM_LABEL'] = '<i>Vorhandene Rechte zur&uuml;cksetzen</i>';
 			$tmp['PERM_LABEL_FOR'] = "sf_overwrite_existing_perms[$area_name]";
-			$tmp['PERM_BUTTON'] = sprintf($checkbox_cell_overwrite_ex, $tooltip, $tooltip, $area_name, $area_name);
+			$tmp['PERM_BUTTON'] = sprintf($checkbox_cell_overwrite_ex, $tooltip, $area_name, $area_name);
 			$tpl->setVariable($tmp);
 			$tpl->parseCurrentBlock();
 			unset($tmp);
@@ -278,9 +278,9 @@ function create_area_checkbox($area, $name, $lang_name, $plugin) {
 	$area_on_checked  = $sim_perm->get_checkbox_status('cms_access', $area, 8, '1');
 	$area_off_checked = ($area_on_checked == '') ? ' checked ': '';
 	$tooltip = $cms_lang['group_access_area_granted'];
-	$tmp['PERM_AREA_ON']  = sprintf($box_on, $tooltip, $tooltip, $area_name,  '1', $area_on_checked, $area_name, $max, 'true');
+	$tmp['PERM_AREA_ON']  = sprintf($box_on, $tooltip, $area_name,  '1', $area_on_checked, $area_name, $max, 'true');
 	$tooltip = $cms_lang['group_access_area_denied'];
-	$tmp['PERM_AREA_OFF'] = sprintf($box_off, $tooltip, $tooltip, $area_name, '-1', $area_off_checked, $area_name, $max, 'false');
+	$tmp['PERM_AREA_OFF'] = sprintf($box_off, $tooltip, $area_name, '-1', $area_off_checked, $area_name, $max, 'false');
 	$tmp['PERM_AREA']      = $name;
 	$tpl->setVariable($tmp);
 	$tpl->parseCurrentBlock();

@@ -679,27 +679,6 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
           			}
 					$code .= "<script type=\"text/javascript\">\n";
 					$code .= "<!--\n";
-					$code .= "function cms_status(message) {\n";
-					$code .= "  window.status = message;\n";
-					$code .= "  window.defaultStatus = window.status;\n";
-					$code .= "}\n";
-					//todo: 2remove
-					$code .= "function dedi_status(message) {\n";
-					$code .= "  window.status = message;\n";
-					$code .= "  window.defaultStatus = window.status;\n";
-					$code .= "}\n";
-					$code .= "function on(message) {\n";
-					$code .= '  window.setTimeout("cms_status(\""+message+"\")",10);'."\n";
-					$code .= "}\n";
-					$code .= "function off() {\n";
-					$code .= "  window.status = \"".str_replace('"', '\"', $con_side[$idcatside]['name'])."\";\n";
-					$code .= "  window.defaultStatus = window.status;\n";
-					$code .= "}\n";
-					$code .= "function delete_confirm() {\n";
-					$code .= "  if(confirm(\"".$cms_lang['gen_deletealert']."\")) return true;\n";
-					$code .= "  else return false;\n";
-					$code .= "}\n";
-
 					$code .= "function con_setcontent(container,number,type,typenumber) {\n";
 					$code .= "  var thisID = 'content_'+container+'_'+number+'_'+type+'_'+typenumber;\n";
 					$code .= "  eval(\"var a = document.getElementById('\" + thisID + \"');\");\n";

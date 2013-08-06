@@ -124,7 +124,7 @@ if (empty($view)) {
 	echo "  <script src=\"tpl/".$cfg_cms['skin']."/js/standard.js\" type=\"text/javascript\"></script>\n";
 	echo "  <script src=\"tpl/".$cfg_cms['skin']."/js/tabpane.js\" type=\"text/javascript\"></script>\n";
 	echo "</head>\n";
-	echo "<body id=\"con-edit2\" onload=\"off();return true;\">\n";
+	echo "<body id=\"con-edit2\">\n";
 }
 
 echo "<!-- Anfang inc.con_configcat.php -->\n";
