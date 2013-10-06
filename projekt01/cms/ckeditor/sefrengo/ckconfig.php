@@ -81,7 +81,8 @@ CKEDITOR.editorConfig = function( config ) {
         ['Link','Unlink','Anchor','Image','Table','HorizontalRule','SpecialChar'],
         ['TextColor','BGColor'],
         '/',
-        [<?php echo (! empty($ck_conf['selectablestyles']) ) ? "'Styles',":"" ?>'Format','Font','FontSize']
+        [<?php echo (! empty($ck_conf['selectablestyles']) ) ? "'Styles',":"" ?>'Format','Font','FontSize'],
+		['Source']
     ];
     
     config.toolbar_<?php echo $ck_editorname ?> = <?php echo $ck_menu_items ?>;
