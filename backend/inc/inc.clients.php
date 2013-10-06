@@ -551,7 +551,7 @@ function clients_get_collapselink($button, $desc, $idclient)
 {
 	global $c_conf;
 
-	$im = sprintf($c_conf['html_image'], $button, $desc, $desc, 16, 16, 'class="icon"');
+	$im = sprintf($c_conf['html_image'], $button, $desc, 16, 16, 'class="icon"');
 	$lin = sprintf($c_conf['html_link_collapse'] , $idclient, $desc, $im);
 	
 	return $lin;
@@ -560,8 +560,10 @@ function clients_get_collapselink($button, $desc, $idclient)
 function clients_get_imagelink($button, $urlparms, $desc, $width = 16, $height= 16)
 {
 	global $c_conf;
+	
+	print_r($c_conf['html_image']);
 
-	$im = sprintf($c_conf['html_image'], $button, $desc, $desc, $width, $height, '');
+	$im = sprintf($c_conf['html_image'], $button, $desc, $width, $height, '');
 	$lin = sprintf($c_conf['html_link'] , '&'.$urlparms, $desc, $im);
 	
 	return $lin;
@@ -571,7 +573,7 @@ function clients_get_imagelinkextern($button, $urlparms, $desc, $width = 16, $he
 {
 	global $c_conf;
 
-	$im = sprintf($c_conf['html_image'], $button, $desc, $desc, $width, $height, '');
+	$im = sprintf($c_conf['html_image'], $button, $desc, $width, $height, '');
 	$lin = sprintf($c_conf['html_link_extern'] , '&'.$urlparms, $desc, $im);
 	
 	return $lin;
@@ -582,7 +584,7 @@ function clients_get_imagedeletelink($button, $urlparms, $desc, $width = 16, $he
 {
 	global $c_conf;
 
-	$im = sprintf($c_conf['html_image'], $button, $desc, $desc, $width, $height, '');
+	$im = sprintf($c_conf['html_image'], $button, $desc, $width, $height, '');
 	$lin = sprintf($c_conf['html_link_delete'] , '&'.$urlparms, $desc, $im);
 	
 	return $lin;
