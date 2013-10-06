@@ -560,8 +560,6 @@ function clients_get_collapselink($button, $desc, $idclient)
 function clients_get_imagelink($button, $urlparms, $desc, $width = 16, $height= 16)
 {
 	global $c_conf;
-	
-	print_r($c_conf['html_image']);
 
 	$im = sprintf($c_conf['html_image'], $button, $desc, $width, $height, '');
 	$lin = sprintf($c_conf['html_link'] , '&'.$urlparms, $desc, $im);
