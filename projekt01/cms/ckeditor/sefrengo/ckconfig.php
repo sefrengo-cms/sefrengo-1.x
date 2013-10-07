@@ -50,6 +50,38 @@ $res_file_im->setWithSubfoders($with_subfolders);
 $rb_image->addRessource($res_file_im);
 $rb_image->setJSCallbackFunction('CKEDITOR.tools.callFunction', array('ckeditor_funcNum','picked_value') );
 
+
+function getCssFilenames($idlay)
+{
+	global $cms_db, $db, $cfg_client;
+
+	$filenames = array();
+	
+	if(is_numeric($idlay) === TRUE)
+	{
+		//CSS and JS file include
+		$sql = "SELECT
+					D.dirname, B.filename
+				FROM
+					". $cms_db['lay_upl'] ." A
+					LEFT JOIN ". $cms_db['upl'] ." B USING(idupl)
+					LEFT JOIN ". $cms_db['filetype'] ." C USING(idfiletype)
+					LEFT JOIN ". $cms_db['directory'] ." D on B.iddirectory=D.iddirectory
+				WHERE
+					A.idlay='$idlay' AND
+					C.filetype = 'css'";
+		//echo $sql;
+		$db->query($sql);
+		
+		while ($db->next_record())
+		{
+			$filenames[] =$cfg_client['htmlpath'] . $db->f('dirname') . $db->f('filename');
+		}
+	}
+
+	return $filenames;
+}
+
 header("Content-Type: text/javascript");
 
 //print_r($ck_conf);
@@ -62,7 +94,16 @@ CKEDITOR.editorConfig = function( config ) {
     
     config.defaultLanguage = 'de';
     
-    config.contentsCss = CKEDITOR.basePath + 'sefrengo/inc.ck_style_collector.php?<?php echo $ck_session_string .'&sf_idlay='. $ck_conf['sf_idlay'] ?>';
+	<?php
+		$filenames = getCssFilenames($ck_conf['sf_idlay']);
+		
+		if(count($filenames) > 0)
+		{
+			echo "config.contentsCss = ['".implode("','", $filenames)."'];";
+		}
+		
+		unset($filenames);
+	?>
     
     config.fullPage = false;
     config.extraPlugins = 'colorbutton,find,font,justify,maximize,newpage,preview,print,sourcearea';
