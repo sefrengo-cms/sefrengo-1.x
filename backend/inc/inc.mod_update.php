@@ -86,8 +86,8 @@ echo "<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"de\" lang=\"de\">\
 echo "<head>\n";
 echo "  <meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\" />\n";
 echo '  <title>Sefrengo '.$cfg_cms['version'].'</title>';
-echo "\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"tpl/standard/css/styles.css\" />\n";
-echo "  <script src=\"tpl/standard/js/standard.js\" type=\"text/javascript\"></script>\n";
+echo "\n  <link rel=\"stylesheet\" type=\"text/css\" href=\"tpl/".$cfg_cms['skin']."/css/styles.css\" />\n";
+echo "  <script src=\"tpl/".$cfg_cms['skin']."/js/standard.js\" type=\"text/javascript\"></script>\n";
 echo '<script type="text/javascript">
 <!--';
 echo "
