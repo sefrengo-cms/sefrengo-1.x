@@ -1,0 +1,7 @@
+--------------------------------------------------------------------------------
+
+Die Sefrengo(R) Lizenzbestimmungen finden Sie unter backend/license.html
+
+The Sefrengo(R) license agreement is located at backend/license.html
+
+--------------------------------------------------------------------------------
