@@ -100,12 +100,12 @@ switch($action) {
         if ($errno == '1617') {
             // Plugin Update?
             $link = $sess->url('main.php?area=plug&action=upload&idclient=' . $idclient);
-            $tpl_in['ONLOAD_FUNCTION'] = "confirm_to_url('" . sprintf($cms_lang['plug_confirm_update'], $s_upload['plugname'], $s_upload['plugversion']) . "','" . $link . "','override');";
+            $body_onload_func = "confirm_to_url('" . sprintf($cms_lang['plug_confirm_update'], $s_upload['plugname'], $s_upload['plugversion']) . "','" . $link . "','override');";
             $sess->freeze();
         } elseif ($errno == '1619') {
             // Plugin Reinstall?
             $link = $sess->url('main.php?area=plug&action=upload&idclient=' . $idclient);
-            $tpl_in['ONLOAD_FUNCTION'] = "confirm_to_url('" . sprintf($cms_lang['plug_confirm_reinstall'], $s_upload['plugname'], $s_upload['plugversion']) . "','" . $link . "','override');";
+            $body_onload_func = "confirm_to_url('" . sprintf($cms_lang['plug_confirm_reinstall'], $s_upload['plugname'], $s_upload['plugversion']) . "','" . $link . "','override');";
             $sess->freeze();
         }
         break;

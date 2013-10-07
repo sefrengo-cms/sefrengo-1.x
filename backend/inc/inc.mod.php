@@ -137,7 +137,7 @@ switch($action) {
         if ($errno == '0417' || $errno == '0419') {
             // Modul Update ||Reinstall?
             $link = $sess->url('main.php?area=mod_update&idclient=' . $idclient. '&errno=' . $errno);
-            $tpl_in['ONLOAD_FUNCTION'] = "new_window('$link', 'updatewin','scrollbars=yes', 450, 400, 'true');";
+            $body_onload_func = "new_window('$link', 'updatewin','scrollbars=yes', 450, 400, 'true');";
         } 
         break;
     case 'delete': // Modul löschen
@@ -195,7 +195,7 @@ switch($action) {
         	// Modul Update?
             $errno = '0417';
         	$link = $sess->url('main.php?area=mod_lupdate&idclient=' . $idclient . '&idmod=' . $idmod . '&sourceid=' . $sourceid);
-            $tpl_in['ONLOAD_FUNCTION'] = "new_window('$link', 'updatewin','scrollbars=yes', 450, 400, 'true');";
+            $body_onload_func = "new_window('$link', 'updatewin','scrollbars=yes', 450, 400, 'true');";
             break;
 		}
 		else $errno = '1500';

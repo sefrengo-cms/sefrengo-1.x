@@ -51,6 +51,12 @@ if ($area == 'con_frameheader') {
 include_once("class.header.php");
 
 $sf_header = new SF_Header();
+
+if(isset($body_onload_func))
+{
+	$sf_header->setBodyOnLoadFunction($body_onload_func);
+}
+
 $sf_header->generate();
 
 // show template and clear $tpl variable
