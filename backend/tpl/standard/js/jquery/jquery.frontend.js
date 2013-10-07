@@ -32,9 +32,12 @@ SF.Plugin.create(
 							x: -4
 						}
 					},
+					show: {
+						delay: 0
+					},
 					hide: {
 						fixed: true,
-						delay: 500
+						delay: 300
 					}
 				},
 				$wrapper = $jqsf('.sf_hmenu_wrapper', scope);

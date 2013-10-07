@@ -228,10 +228,11 @@ SF.Plugin.create(
 						}
 					},
 					show: {
-						delay: 500
+						delay: 300
 					},
 					hide: {
 						//fixed: true // for testing purpose
+						delay: 0
 					},
 					style: {
 						classes: 'sfTooltip',
