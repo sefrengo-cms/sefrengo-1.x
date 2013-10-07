@@ -18,10 +18,6 @@
 	
 	<script src="tpl/{SKIN}/js/{SKIN}.js" type="text/javascript"></script>
 	<script src="tpl/{SKIN}/js/tabpane.js" type="text/javascript"></script>
-	<script type="text/javascript" src="tpl/{SKIN}/js/overlib.js"><!-- overLIB (c) Erik Bosrup --></script>
-	<script type="text/javascript" src="tpl/{SKIN}/js/overlib_hideform.js"></script>
-	<script type="text/javascript" src="tpl/{SKIN}/js/overlib_draggable.js"></script>
-	<script type="text/javascript" src="tpl/{SKIN}/js/overlib_positioncap.js"></script>
 	
 	<script type="text/javascript" src="tpl/{SKIN}/js/jquery/init.sefrengo.js"></script>
 	<script type="text/javascript" src="tpl/{SKIN}/js/jquery/lib/jquery.min.js"></script>
