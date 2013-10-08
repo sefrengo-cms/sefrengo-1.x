@@ -23,8 +23,7 @@ Installation
 --------------------------
 1. Entpacken Sie die Dateien aus dem Archiv
 2. Laden Sie die Dateien auf Ihren Webserver. Achten Sie darauf, dass die Dateien per FTP im Textmodus übertragen werden.
-3. Öffnen Sie in Ihrem Browser die URL http://www.domain.tld/pfad/setup/
-   Ersetzen Sie www.domain.tld/pfad/ mit dem Pfad Ihrer Installation
+3. Öffnen Sie in Ihrem Browser die URL http://www.domain.tld/pfad/setup/, wobei Sie www.domain.tld/pfad/ mit dem Pfad Ihrer Installation ersetzen müssen.
 4. Folgen Sie den Anweisungen des Installations-Assistenten
 
 
