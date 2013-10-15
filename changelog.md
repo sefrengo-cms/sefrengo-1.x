@@ -2,6 +2,25 @@ Changelog
 ================================================================================================
 
 
+Sefrengo v1.5.0
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.05.00<br/>
+Release: 17.10.2013
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.5.0>
+
+* Modernized backend style and rebuilt header
+  * CHANGED: Rebuild the Sefrengo backend header
+  * ADDED: Used style and some JS functionalities of unreleased Sefrengo v2.0.0-beta3
+  * ADDED: Added jQuery 1.10.2 + qTip 2.1.1 library
+  * ADDED: Show name for logged in user in header
+  * REMOVED: Removed overlib.js; use jQuery qTip instead
+* Switched WYSIWYG to CKEditor 4.1.3 
+  * REMOVED: FCKEditor
+  * ADDED: CKEditor 4.1.3
+
+
+
 Sefrengo v1.4.6
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.04.06<br/>
