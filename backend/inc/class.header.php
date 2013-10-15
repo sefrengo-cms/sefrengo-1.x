@@ -628,7 +628,12 @@ class SF_Header
 	 */	
 	private function _setTemplateVariables()
 	{
-		$tpl_in['VERSION'] = $this->cfg_cms['version'];
+		$version = explode('.',$this->cfg_cms['version']);
+		foreach($version as $index => $version_part)
+		{
+			$version[$index] = ltrim($version_part, '0');
+		}
+		$tpl_in['VERSION'] = 'v'.implode('.', $version);
 		$tpl_in['MAIN_MENU_ENTRYS'] = $out;
 		$tpl_in['MAX_SUBMENUS'] = $this->maincount;
 		$tpl_in['ACTIVE_SUBMENU_LAYER'] = $this->active_submenu_layer;
