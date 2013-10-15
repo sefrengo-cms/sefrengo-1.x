@@ -21,22 +21,21 @@ Im Zuge der Installation erfolgt eine Prüfung, ob Ihre Systemumgebung alle Vora
 
 Installation
 --------------------------
-1. Entpacken Sie die Dateien aus dem Archiv
+1. Entpacken Sie die Dateien aus dem Archiv.
 2. Laden Sie die Dateien auf Ihren Webserver. Achten Sie darauf, dass die Dateien per FTP im Textmodus übertragen werden.
-3. Öffnen Sie in Ihrem Browser die URL http://www.domain.tld/pfad/setup/
-   Ersetzen Sie www.domain.tld/pfad/ mit dem Pfad Ihrer Installation
-4. Folgen Sie den Anweisungen des Installations-Assistenten
+3. Öffnen Sie in Ihrem Browser die URL http://www.domain.tld/pfad/setup/, wobei Sie www.domain.tld/pfad/ mit dem Pfad Ihrer Installation ersetzen müssen.
+4. Folgen Sie den Anweisungen des Installations-Assistenten.
 
 
 Online Unterstützung
 --------------------------
-* [Homepage](http://www.sefrengo.org): Allgemeine Informationen rund um die Entwicklung von Sefrengo
-* [Forum](http://forum.sefrengo.org): Hier finden Sie Rat und Unterstützung von und durch die Mitglieder der Sefrengo Community
+* [Homepage](http://www.sefrengo.org): Allgemeine Informationen rund um die Entwicklung von Sefrengo.
+* [Forum](http://forum.sefrengo.org): Hier finden Sie Rat und Unterstützung von und durch die Mitglieder der Sefrengo Community.
 * [Dokumentation](http://wiki.sefrengo.org): Hier kann jeder mitmachen und sein Wissen rund um Sefrengo mit anderen teilen.
 
 
 Lizenzbestimmungen & Rechtliches
 ----------------------------------------------------
-Die Sefrengo Lizenzbestimmungen finden Sie unter backend/license.html
+Die Sefrengo Lizenzbestimmungen finden Sie unter backend/license.html.
 
 Sefrengo ist ein eingetrages Markenzeichen und urheberechtlich geschützt.
