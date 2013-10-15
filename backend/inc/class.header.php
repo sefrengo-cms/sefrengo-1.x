@@ -632,6 +632,9 @@ class SF_Header
 		foreach($version as $index => $version_part)
 		{
 			$version[$index] = ltrim($version_part, '0');
+			
+			if(strlen($version[$index]) == 0)
+        $version[$index] = "0";
 		}
 		$tpl_in['VERSION'] = 'v'.implode('.', $version);
 		$tpl_in['MAIN_MENU_ENTRYS'] = $out;
