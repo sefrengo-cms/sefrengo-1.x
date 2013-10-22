@@ -78,6 +78,11 @@ class SF_GUI_ContentStylerHTML extends SF_GUI_ContentStylerPlain {
     	global $db, $cms_db, $idlay, $client;
     
     	$css = $class;
+		$out = array(
+			'style' => '',
+			'type' => '',
+			'fullstyle' => ''
+		);
     
     	// Style from DB have highest priority
     	if (is_numeric($dbstyle)) {
@@ -104,7 +109,9 @@ class SF_GUI_ContentStylerHTML extends SF_GUI_ContentStylerPlain {
     		$out['fullstyle'] = $out['type'] .'="'. $out['style'] . '"';
     		return $out;
     	}
-    	return '';
+		
+		// empty style array
+    	return $out;
     }
     
     
