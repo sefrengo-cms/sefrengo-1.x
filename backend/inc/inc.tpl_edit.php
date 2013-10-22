@@ -228,14 +228,13 @@ if ($idlay) {
 		echo "      <input type=\"hidden\" name=\"container\" value=\"".implode(',', $list['id'])."\" />\n";
 		natsort ($list['id']);
 		foreach ($list['id'] as $value) {
-			echo "      <tr>\n";
-                        
+
 			// Containername
 			$_container_name = !empty($list[$value]['title']) ? $list[$value]['title']:"$value. ".$cms_lang['tpl_container']."";
+			
+			echo ($anchor == $_container_name) ? "      <tr id=\"edit_container\">\n" : "      <tr>\n";
+
 			printf ("        <td class=\"head\"%s>%s</td>\n", (${'c'.$value}) ? ' rowspan="2"':'', (!empty($list[$value]['title'])) ? $list[$value]['title']:"$value. ".$cms_lang['tpl_container']."");
-			if ($anchor == $_container_name) {
-				echo '<a name="edit_container"></a>';
-			}
 
 			// Modul auswählen
 			printf ("        <td class=\"%s\">", (${'c'.$value}) ? 'headre':'content');
