@@ -265,16 +265,47 @@ if ($code) {
 			header ('Status: 404 Not Found');
 		}
 
-		//Sefrengolinks ersetzen
-		$in = array("!cms://idcat=(\d+)!e",
-			    "!cms://idcatside=(\d+)!e");
-		$out = array('\$con_tree[\\1][\'link\']',
-			     '\$con_side[\\1][\'link\']');
-		if ($cfg_client['url_rewrite'] == '2') {
-			array_push($in, "!(<a[\s]+[^>]*?href[\s]?=[\s\"\']+)#(.*?)([\"\'])!i");
-			array_push($out, '\\1'.str_replace('&', '&amp;', $_SERVER['REQUEST_URI']).'#\\2\\3');
+		// Sefrengolinks ersetzen
+		// Anonymous functions become available with PHP 5.3.0 and preg_replace with /e modifier is deprecated since PHP 5.5.0
+		// @see: http://www.php.net/manual/en/reference.pcre.pattern.modifiers.php#reference.pcre.pattern.modifiers.eval
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0)
+		{
+			$code = preg_replace_callback(
+				'!cms://idcat=(\d+)!',
+				function($match) use ($con_tree) {
+					return $con_tree[$match[1]]['link'];
+				},
+				$code);
+				
+			$code = preg_replace_callback(
+				'!cms://idcatside=(\d+)!',
+				function($match) use ($con_side) {
+					return $con_side[$match[1]]['link'];
+				},
+				$code);
+				
+			if ($cfg_client['url_rewrite'] == '2')
+			{
+				$code = preg_replace_callback(
+					'!(<a[\s]+[^>]*?href[\s]?=[\s\"\']+)#(.*?)([\"\'])!',
+					function($match) {
+						return $match[1].str_replace('&', '&amp;', $_SERVER['REQUEST_URI']).'#'.$match[2].$match[3];
+					},
+					$code);
+			}
 		}
-		$code = preg_replace($in, $out, $code);
+		else
+		{
+			$in = array("!cms://idcat=(\d+)!e",
+					"!cms://idcatside=(\d+)!e");
+			$out = array('\$con_tree[\\1][\'link\']',
+					 '\$con_side[\\1][\'link\']');
+			if ($cfg_client['url_rewrite'] == '2') {
+				array_push($in, "!(<a[\s]+[^>]*?href[\s]?=[\s\"\']+)#(.*?)([\"\'])!i");
+				array_push($out, '\\1'.str_replace('&', '&amp;', $_SERVER['REQUEST_URI']).'#\\2\\3');
+			}
+			$code = preg_replace($in, $out, $code);
+		}
 
 	
 		if ($cfg_client['url_rewrite'] == '1') {
