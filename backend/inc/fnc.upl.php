@@ -147,7 +147,8 @@ function upl_deletefile(){
 	if (empty($idupl)) return '1402'; // fileid is missing
 
 	// rechte prüfen für delete file
-	if (!$perm->have_perm(21, 'file', $idupl, $idexpand)) return '1701';
+  $directory_tree = explode("_", $idexpand);
+	if (!$perm->have_perm(21, 'file', $idupl, $directory_tree[0])) return '1701';
 
 	// so far no error conditions ... delete file and db record
 	$fm->delete_file( (int) $idupl, (int) $client);
@@ -170,7 +171,8 @@ function upl_copyfile(){
 	global $fm, $newfilename, $movetargetid, $idupl, $client, $cfg_client, $perm, $idexpand;
 
 	// rechte prüfen für copy file
-	if (!$perm->have_perm(19, 'file', $idupl, $idexpand)) return '1701';
+  $directory_tree = explode("_", $idexpand);
+	if (!$perm->have_perm(19, 'file', $idupl, $directory_tree[0])) return '1701';
 
 	if ($fm->is_filename_in_use_fs( (int) $movetargetid, $newfilename )) return '1401'; // filename is used, copy not possible
 	if (!$fm->copy_file_fs( (int) $movetargetid, $newfilename, (int) $idupl)) return '1403'; // copy in filesystem failed
@@ -190,7 +192,8 @@ function upl_movefile(){
 	global $fm, $newfilename, $movetargetid, $idupl, $idexpand, $client, $cfg_client, $perm;
 
 	// rechte prüfen für move file
-	if (!$perm->have_perm(19, 'file', $idupl, $idexpand)) return '1701';
+  $directory_tree = explode("_", $idexpand);
+	if (!$perm->have_perm(19, 'file', $idupl, $directory_tree[0])) return '1701';
 
 	if ($fm ->is_filename_in_use_fs( (int) $movetargetid, $newfilename )    ) return '1401'; // filename is used, move not possible
 	if (!$fm->move_file_fs( (int) $movetargetid, $newfilename, (int) $idupl)) return $fm->errno; // move in filesystem failed
@@ -205,7 +208,8 @@ function upl_downloadfile(){
 	global $fm, $idupl, $cfg_client, $perm, $idexpand;
 
 	// rechte prüfen für download file
-	if (!$perm->have_perm(24, 'file', $idupl, $idexpand)) return '1701';
+  $directory_tree = explode("_", $idexpand);
+	if (!$perm->have_perm(24, 'file', $idupl, $directory_tree[0])) return '1701';
 
 	$fm->get_file((int)$idupl);
 	// so far no error conditions ... get directory and filename
