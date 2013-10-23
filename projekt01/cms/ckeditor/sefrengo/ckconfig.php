@@ -35,7 +35,7 @@ $rb->addRessource($res_links);
 //$res_prototype = new SF_GUI_RESSOURCES_RessourceItemPrototype();
 //$rb->addRessource($res_prototype);
 
-$rb->setJSCallbackFunction('CKEDITOR.tools.callFunction', array('ckeditor_funcNum','picked_value') );
+$rb->setJSCallbackFunction('CKEDITOR.tools.callFunction', array('funcNum','picked_value') );
 
 //imagebrowser
 $rb_image = $sf_factory->getObjectForced('GUI', 'RessourceBrowser');
@@ -48,7 +48,7 @@ $res_file_im->setFolderIds( ckConfigStringToArray($ck_conf['imagefolders']) );
 $with_subfolders = ($ck_conf['imagesubfolders'] != 'false') ? true:false;
 $res_file_im->setWithSubfoders($with_subfolders);
 $rb_image->addRessource($res_file_im);
-$rb_image->setJSCallbackFunction('CKEDITOR.tools.callFunction', array('ckeditor_funcNum','picked_value') );
+$rb_image->setJSCallbackFunction('CKEDITOR.tools.callFunction', array('funcNum','picked_value') );
 
 
 function getCssFilenames($idlay)
