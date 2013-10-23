@@ -1,5 +1,9 @@
 
 /* Overwrite style from jquery.qtip.css */
+body {
+  min-height: 50px;
+}
+
 .qtip-content {
 	padding: 0 !important;
 	border-color: #164283 !important;
