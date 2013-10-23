@@ -273,7 +273,7 @@ unset($tmp);
 if ($idclient != '-1') {
     // Module aus der Datenbank suchen
     $modlist = $rep->mod_list($idclient);
-    if (is_array($modlist)) {
+    if (is_array($modlist) && count($modlist) > 0) {
         $tpl->setCurrentBlock('ENTRY');
         foreach ($modlist as $mod) {
             $mod['titel'] = ( ' ++ ' .$cms_lang['gen_description'] . ' ++ &#10;' . (($mod['cat'] != '') ? $cms_lang['gen_cat'] . ': ' . htmlentities($mod['cat'], ENT_COMPAT, 'UTF-8') . ' &#10;' : '') .
@@ -370,7 +370,7 @@ if ($idclient != '-1') {
 } else {
     // Repository
     $modlist = $rep->mod_list($idclient);
-    if (is_array($modlist)) {
+    if (is_array($modlist) && count($modlist) > 0) {
         $tpl->setCurrentBlock('ENTRY');
         foreach ($modlist as $mod) {
             if (!$perm->have_perm(15, 'mod', 0) && (strpos($mod['version'], 'dev') != false && $mod['version'] != '')) continue;

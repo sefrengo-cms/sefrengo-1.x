@@ -33,7 +33,7 @@
 <!-- END ENTRY -->
 <!-- BEGIN NOENTRY -->
       <tr>
-        <td class="entry" colspan="4">{PLUG_NOPLUGINS}<td>
+        <td class="entry" colspan="5" style="background:#fff">{PLUG_NOPLUGINS}</td>
       </tr>
 <!-- END NOENTRY -->
 <!-- BEGIN FILEUPLOAD -->

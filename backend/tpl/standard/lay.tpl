@@ -20,7 +20,7 @@
 <!-- END ENTRY -->
 <!-- BEGIN NOENTRY -->
       <tr>
-        <td class="entry" colspan="2">{LAY_NOLAYOUTS}<td>
+        <td class="entry" colspan="3" style="background:#fff">{LAY_NOLAYOUTS}<td>
       </tr>
 <!-- END NOENTRY -->
     </table>

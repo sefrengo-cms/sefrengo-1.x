@@ -60,7 +60,7 @@
 <!-- END DETAILFM2 -->
 <!-- BEGIN NODETAIL -->
 				<tr>
-					<td class="entry" colspan="2">{CONTENT}<td>
+					<td class="entry" colspan="3" style="background:#fff">{CONTENT}</td>
 				</tr>
 <!-- END NODETAIL -->
 

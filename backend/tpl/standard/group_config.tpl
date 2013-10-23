@@ -34,7 +34,7 @@
 			<!-- END MAIN_RIGHTS_ROW --><!-- END MAIN_RIGHTS -->
 			<!-- BEGIN EMPTY -->
 		      <tr>
-		        <td class="entry nowrap">{LANG_NOGROUPS}<td>
+		        <td class="entry nowrap" style="background:#fff">{LANG_NOGROUPS}<td>
 		      </tr>
 			<!-- END EMPTY -->
 		      <tr>

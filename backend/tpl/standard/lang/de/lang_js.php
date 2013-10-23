@@ -18,14 +18,14 @@ $cms_lang['js_file_delete_cancel']		= 'Abbrechen';
 $cms_lang['js_file_duplicate']			= 'Datei kopieren';
 $cms_lang['js_file_edit']				= 'Datei bearbeiten';
 $cms_lang['js_file_new']				= 'Neue Datei';
-$cms_lang['js_fileimport']				= 'Upload Javascript-Datei';
+$cms_lang['js_fileimport']				= 'Javascript-Datei hochladen';
 $cms_lang['js_import']					= 'Datei importieren';
 $cms_lang['js_export']					= 'Datei exportieren';
 $cms_lang['js_lastmodified']			= 'Ge&auml;ndert am';
 $cms_lang['js_nofile']					= 'Es gibt keine Javascript-Datei.';
 $cms_lang['js_nofiles']				= 'Es gibt keine Javascript-Datei.';
 $cms_lang['js_submit_form']			= '&Auml;nderungen speichern';
-$cms_lang['js_file_download']         	= 'Datei downloaden';
+$cms_lang['js_file_download']         	= 'Datei herunterladen';
 $cms_lang['js_edit_rights']         	= 'Rechte bearbeiten';
 
 // 12xx = JS

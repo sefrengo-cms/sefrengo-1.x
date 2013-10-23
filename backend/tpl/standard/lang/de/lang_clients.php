@@ -9,6 +9,7 @@ $cms_lang['clients_clients'] = 'Projekte';
 $cms_lang['clients_headline'] = 'Projekte / Sprachen';
 $cms_lang['clients_desc'] = 'Beschreibung';
 $cms_lang['clients_actions'] = 'Aktionen';
+$cms_lang['clients_lang_start'] = 'Globale Startsprache setzen';
 $cms_lang['clients_lang_edit'] = 'Sprache bearbeiten / umbenennen';
 $cms_lang['clients_lang_delete'] = 'Sprache l&ouml;schen';
 $cms_lang['clients_abort'] = 'Abbrechen';

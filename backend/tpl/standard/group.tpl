@@ -32,7 +32,7 @@
         <td class="entry buttons" align="right">{BUTTON_EDIT} {BUTTON_CONFIG} {BUTTON_AKTIVE} {BUTTON_DELETE}</td>
       </tr><!-- END POSTENTRY --><!-- BEGIN EMPTY -->
       <tr bgcolor="#ffffff">
-        <td class="entry" colspan="2">{LANG_NOGROUPS}<td>
+        <td class="entry" colspan="3">{LANG_NOGROUPS}</td>
       </tr><!-- END EMPTY -->
     </table>
 </div>

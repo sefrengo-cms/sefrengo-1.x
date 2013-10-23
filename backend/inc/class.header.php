@@ -664,6 +664,8 @@ class SF_Header
 			$tpl_in['LOGGED_USER'] = $this->lng['gen_welcome'] . ', ' . $this->auth->auth['uname'];
 		}
 		$tpl_in['SKIN'] = $this->cfg_cms['skin'];
+		$tpl_in['DELETE_MSG'] = $this->lng['gen_deletealert'];
+		
 		
 		$this->tpl->setCurrentBlock('__global__');
 		$this->tpl->setVariable($tpl_in);

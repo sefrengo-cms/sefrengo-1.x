@@ -194,7 +194,7 @@ if ($idclient != '-1') {
     // Plugine aus der Datenbank suchen
     $tpl->setCurrentBlock('ENTRY');
     $pluglist = $rep->plug_list($idclient);
-    if (is_array($pluglist)) {
+    if (is_array($pluglist) && count($pluglist) > 0) {
         foreach ($pluglist as $plug) {
             if (!$perm->have_perm(1, 'plug', $plug['idplug'])) continue;
             if (!$perm->have_perm(15, 'plug', 0) && (strpos($plug['version'], 'dev') != false && $plug['version'] != '')) continue;
@@ -259,7 +259,7 @@ if ($idclient != '-1') {
     // Repository
     $tpl->setCurrentBlock('ENTRY');
     $pluglist = $rep->plug_list($idclient);
-    if (is_array($pluglist)) {
+    if (is_array($pluglist) && count($pluglist) > 0) {
         foreach ($pluglist as $plug) {
             if (!$perm->have_perm(15, 'plug', 0) && (strpos($plug['version'], 'dev') != false && $plug['version'] != '')) continue;
             $plug['count'] = (int) $rep->plug_count('0', $plug['repository_id'], true); 

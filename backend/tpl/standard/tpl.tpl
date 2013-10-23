@@ -22,7 +22,7 @@
 <!-- END ENTRY -->
 <!-- BEGIN NOENTRY -->
       <tr>
-        <td class="entry" colspan="2">{TPL_NOTEMPLATES}<td>
+        <td class="entry" colspan="3" style="background:#fff">{TPL_NOTEMPLATES}</td>
       </tr>
 <!-- END NOENTRY -->
     </table>

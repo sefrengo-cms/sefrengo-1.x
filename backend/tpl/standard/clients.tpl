@@ -83,19 +83,19 @@
 		     {FORM_START}
 		     <td class="entry">{ENTRY_TITLEFIELD}</td>
 		     <td class="entry label">
-		              <label>{LANG_DESCFIELD}</label>
+		              <label for="newdesc">{LANG_DESCFIELD}</label>
 		             {ENTRY_DESCFIELD}
 		           <br />
-		             <label>{LANG_CHARSET}</label>
+		             <label for="charset">{LANG_CHARSET}</label>
 		             {ENTRY_CHARSET}
 		           <br />
-		             <label>{LANG_ISO_3166}</label>
+		             <label for="iso_3166">{LANG_ISO_3166}</label>
 		             {ENTRY_ISO_3166}
 		           <br />
-		             <label>{LANG_REWRITE_KEY}</label>
+		             <label for="rewrite_key">{LANG_REWRITE_KEY}</label>
 		             {ENTRY_REWRITE_KEY}
 		           <br />
-		             <label>{LANG_REWRITE_MAPPING}</label>
+		             <label for="rewrite_mapping">{LANG_REWRITE_MAPPING}</label>
 		             {ENTRY_REWRITE_MAPPING}
 		     </td>
 		     <td class="entry nowrap">{ENTRY_RIGHTS} {ENTRY_SUBMIT} {ENTRY_CANCEL}</td>

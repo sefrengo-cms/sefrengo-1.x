@@ -116,7 +116,7 @@ $c_conf['html_form'] = '<form action="main.php" name ="'. $c_conf['html_formname
 <input type="hidden" name="area" value="'.$area.'" />'."\n".'
 <input type="hidden" name="'. $sess-> name. '" value="'.$sess -> id.'" />'."\n";
 $c_conf['html_field_hidden'] = '<input type="hidden" name="%s" value="%s" />'."\n";
-$c_conf['html_field_text'] = '<input type="text" name="%s" value="%s" style="width:%spx" maxlength="%s" />'."\n";
+$c_conf['html_field_text'] = '<input type="text" name="%s" id="%s" value="%s" style="width:%spx" maxlength="%s" />'."\n";
 $c_conf['html_field_submit'] = '<input type="image" class="toolinfo" src="'.$c_conf['image_path'].'but_confirm.gif" title="'.$cms_lang['clients_submit'].'" />';
 $c_conf['iso_3166_codes'] = array(
 								'af-ZA' => 'Afrikaans - South Africa',
@@ -314,9 +314,9 @@ function clients_get_langrow($idclient, $idlang, $client_array, $c_conf)
 	//starlang
 	if($perm->have_perm( 28, 'clientlangs', $idlang) ){
 		if ($client_array[$idclient]['langs'][$idlang]['is_start'] == 1) {
-			$tpl_data['ENTRY_STARTLANG'] = clients_get_imagelink('but_start_yes.gif', 'action=makestartlang&cid='.$idclient.'&lid='.$idlang, 'globale Startsprache setzen', 16, 16);
+			$tpl_data['ENTRY_STARTLANG'] = clients_get_imagelink('but_start_yes.gif', 'action=makestartlang&cid='.$idclient.'&lid='.$idlang, $cms_lang['clients_lang_start'], 16, 16);
 		} else {
-			$tpl_data['ENTRY_STARTLANG'] = clients_get_imagelink('but_start_no.gif', 'action=makestartlang&cid='.$idclient.'&lid='.$idlang, 'globale Startsprache setzen', 16, 16);
+			$tpl_data['ENTRY_STARTLANG'] = clients_get_imagelink('but_start_no.gif', 'action=makestartlang&cid='.$idclient.'&lid='.$idlang, $cms_lang['clients_lang_start'], 16, 16);
 		}
 	}
 	
@@ -343,15 +343,15 @@ function clients_get_langeditrow($idclient, $idlang, $client_array, $c_conf)
 	$tpl_data['FORM_START']  = $c_conf['html_form'] . sprintf($c_conf['html_field_hidden'], 'action', 'save_edited_lang');
 	$tpl_data['FORM_START'] .= sprintf($c_conf['html_field_hidden'], 'idlang', $idlang);
 	$tpl_data['FORM_START'] .= sprintf($c_conf['html_field_hidden'], 'collapse', $idclient);
-	$tpl_data['ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'newname', $client_array[$idclient]['langs'][$idlang]['name'], 150, 70);
+	$tpl_data['ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'newname', 'newname', $client_array[$idclient]['langs'][$idlang]['name'], 150, 70);
 	$tpl_data['LANG_DESCFIELD'] = 'Beschreibung: ';
-	$tpl_data['ENTRY_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', $client_array[$idclient]['langs'][$idlang]['desc'], 300, 150);
+	$tpl_data['ENTRY_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', 'newdesc', $client_array[$idclient]['langs'][$idlang]['desc'], 300, 150);
 	$tpl_data['LANG_CHARSET'] = 'Sprachcodierung: ';
 	$tpl_data['ENTRY_CHARSET'] = clients_get_charset_selectbox($client_array[$idclient]['langs'][$idlang]['charset']);
 	$tpl_data['LANG_ISO_3166'] = 'Automatische Standardsprache (Browserabh&auml;ngig): ';
-	$tpl_data['LANG_REWRITE_KEY'] = 'Kurzzeichen f&uuml;r URL- Rewrite: ';
-	$tpl_data['ENTRY_REWRITE_KEY'] = sprintf($c_conf['html_field_text'], 'rewrite_key', $client_array[$idclient]['langs'][$idlang]['rewrite_key'], 150, 70);
-	$tpl_data['LANG_REWRITE_MAPPING'] = 'URL- Filter f&uuml;r URL- Rewrite: ';
+	$tpl_data['LANG_REWRITE_KEY'] = 'Kurzzeichen f&uuml;r URL-Rewrite: ';
+	$tpl_data['ENTRY_REWRITE_KEY'] = sprintf($c_conf['html_field_text'], 'rewrite_key', 'rewrite_key', $client_array[$idclient]['langs'][$idlang]['rewrite_key'], 150, 70);
+	$tpl_data['LANG_REWRITE_MAPPING'] = 'URL-Filter f&uuml;r URL-Rewrite: ';
 	
 	//make iso select
 	$my_iso = array(''=>'--');
@@ -394,7 +394,7 @@ function clients_get_charset_selectbox($selected_charset = '')
 }
 
 function clients_get_select($fieldname, $element_array, $selected) {
-	$out = '<select name="'.$fieldname.'" size="1">' ."\n";
+	$out = '<select name="'.$fieldname.'" id="'.$fieldname.'" size="1">' ."\n";
 	
 	foreach($element_array AS $k=>$v)
 	{
@@ -414,9 +414,9 @@ function clients_get_langnewrow($idclient, $client_array, $c_conf)
 	
 	$tpl_data['FORM_START']  = $c_conf['html_form'] . sprintf($c_conf['html_field_hidden'], 'action', 'save_new_lang');
 	$tpl_data['FORM_START'] .= sprintf($c_conf['html_field_hidden'], 'collapse', $idclient);
-	$tpl_data['ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'newname', $cms_lang['clients_lang_new'], 150, 70);
+	$tpl_data['ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'newname', 'newname', $cms_lang['clients_lang_new'], 150, 70);
 	$tpl_data['LANG_DESCFIELD'] = $cms_lang['clients_desc'] .': ';
-	$tpl_data['ENTRY_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', '', 350, 150);
+	$tpl_data['ENTRY_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', 'newdesc', '', 350, 150);
 	$tpl_data['LANG_CHARSET'] = $cms_lang['clients_charset'] .': ';
 	$tpl_data['ENTRY_CHARSET'] = clients_get_charset_selectbox();
 	
@@ -485,8 +485,8 @@ function clients_get_projecteditrow($idclient, $client_array, $collapse, $c_conf
 	$tpl_data['PR_FORM_START']  = $c_conf['html_form'] . sprintf($c_conf['html_field_hidden'], 'action', 'save_edited_client');
 	$tpl_data['PR_FORM_START'] .= sprintf($c_conf['html_field_hidden'], 'cid', $idclient);
 	$tpl_data['PR_FORM_START'] .= sprintf($c_conf['html_field_hidden'], 'collapse', $collapse);
-	$tpl_data['PR_ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'newname', htmlentities($client_array[$idclient]['name'], ENT_COMPAT, 'UTF-8'), 150, 70);
-	$tpl_data['PR_ENTRY_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', htmlentities($client_array[$idclient]['desc'], ENT_COMPAT, 'UTF-8'), 350, 150);
+	$tpl_data['PR_ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'newname', 'newname', htmlentities($client_array[$idclient]['name'], ENT_COMPAT, 'UTF-8'), 150, 70);
+	$tpl_data['PR_ENTRY_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', 'newdesc', htmlentities($client_array[$idclient]['desc'], ENT_COMPAT, 'UTF-8'), 350, 150);
 
 	if($perm->have_perm(6, 'clients', $idclient) ){
 		$panel = $perm->get_right_panel('clients', $idclient, array( 'formname'=> $c_conf['html_formname'] ), 'img' );
@@ -521,20 +521,20 @@ function clients_get_projectnewrow($c_conf)
 
 	$tpl_data['PRN_FORM_START']  = $c_conf['html_form'] . sprintf($c_conf['html_field_hidden'], 'action', 'save_new_client');
 	$tpl_data['PRN_FORM_START']  .= sprintf($c_conf['html_field_hidden'], 'cid', $nextclient);
-	$tpl_data['PRN_ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'project_name', htmlentities($project_name, ENT_COMPAT, 'UTF-8'), 150, 70);
+	$tpl_data['PRN_ENTRY_TITLEFIELD'] = sprintf($c_conf['html_field_text'], 'project_name', 'project_name', htmlentities($project_name, ENT_COMPAT, 'UTF-8'), 150, 70);
 
 	$tpl_data['PRN_DESC'] = $cms_lang['clients_client_desc'] .': ';
-	$tpl_data['PRN_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', htmlentities($newdesc, ENT_COMPAT, 'UTF-8'), 350, 150);
+	$tpl_data['PRN_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newdesc', 'newdesc', htmlentities($newdesc, ENT_COMPAT, 'UTF-8'), 350, 150);
 	$tpl_data['PRN_PATH'] = $cms_lang['clients_client_path'] .': ';
-	$tpl_data['PRN_PATHFIELD'] = sprintf($c_conf['html_field_text'], 'newpath', htmlentities($newpath, ENT_COMPAT, 'UTF-8'), 350, 150);
+	$tpl_data['PRN_PATHFIELD'] = sprintf($c_conf['html_field_text'], 'newpath', 'newpath', htmlentities($newpath, ENT_COMPAT, 'UTF-8'), 350, 150);
 	$tpl_data['PRN_URL'] = $cms_lang['clients_client_url'] .': ';
-	$tpl_data['PRN_URLFIELD'] = sprintf($c_conf['html_field_text'], 'newurl', htmlentities($newurl, ENT_COMPAT, 'UTF-8'), 350, 150);
+	$tpl_data['PRN_URLFIELD'] = sprintf($c_conf['html_field_text'], 'newurl', 'newurl', htmlentities($newurl, ENT_COMPAT, 'UTF-8'), 350, 150);
 	$tpl_data['PRN_WITH_DIR'] = $cms_lang['clients_client_directory'] .': ';
-	$tpl_data['PRN_WITH_DIRFIELD'] = '<input class="withdir" type="checkbox" name="with_dir" value="1" checked="checked" />';
+	$tpl_data['PRN_WITH_DIRFIELD'] = '<input class="withdir" type="checkbox" name="with_dir" id="with_dir" value="1" checked="checked" />';
 	$tpl_data['PRN_LANG'] = $cms_lang['clients_client_start_lang'] .': ';
-	$tpl_data['PRN_LANGFIELD'] = sprintf($c_conf['html_field_text'], 'newlang', htmlentities($newlang, ENT_COMPAT, 'UTF-8'), 350, 150);
+	$tpl_data['PRN_LANGFIELD'] = sprintf($c_conf['html_field_text'], 'newlang', 'newlang', htmlentities($newlang, ENT_COMPAT, 'UTF-8'), 350, 150);
 	$tpl_data['PRN_LANG_DESC'] = $cms_lang['clients_lang_desc'] .': ';
-	$tpl_data['PRN_LANG_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newlangdesc', htmlentities($newlangdesc, ENT_COMPAT, 'UTF-8'), 350, 150);
+	$tpl_data['PRN_LANG_DESCFIELD'] = sprintf($c_conf['html_field_text'], 'newlangdesc', 'newlangdesc', htmlentities($newlangdesc, ENT_COMPAT, 'UTF-8'), 350, 150);
 	$tpl_data['PRN_LANG_CHARSET'] = $cms_lang['clients_lang_charset'] .': ';
 	$tpl_data['PRN_CHARSETFIELD'] = clients_get_charset_selectbox($charset);
 	

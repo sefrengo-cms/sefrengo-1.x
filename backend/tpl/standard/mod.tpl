@@ -33,7 +33,7 @@
 <!-- END ENTRY -->
 <!-- BEGIN NOENTRY -->
       <tr>
-        <td class="content7" colspan="4">{MOD_NOMODULES}<td>
+        <td class="entry" colspan="5" style="background:#fff">{MOD_NOMODULES}</td>
       </tr>
 <!-- END NOENTRY -->
 <!-- BEGIN FILEUPLOAD -->

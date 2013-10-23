@@ -42,8 +42,8 @@ $cms_lang['set_repository_server']			= 'Repository-Server';
 $cms_lang['set_repository_updatetime']			= 'Updateintervall';
 $cms_lang['set_repository_path']			= 'Repository-Service';
 $cms_lang['set_repository_pingtime']			= 'Pingintervall';
-$cms_lang['set_repository_show_up2date']		= 'Repository-Status Up2Date anzeigen';
-$cms_lang['set_repository_show_offline']		= 'Repository-Status Offline anzeigen';
+$cms_lang['set_repository_show_up2date']		= 'Repository-Status \'Aktuell\' anzeigen';
+$cms_lang['set_repository_show_offline']		= 'Repository-Status \'Offline\' anzeigen';
 $cms_lang['set_auto_repair_dependency']		= 'Repository-Abh&auml;ngigkeiten automatisch aufl&ouml;sen';
 
 $cms_lang['set_db_cache']				= 'Datenbank-Cache konfigurieren';
