@@ -81,6 +81,10 @@ class SF_GUI_RessourceBrowser extends SF_API_Object{
 	}
 	
 	function importConfig($conf_string) {
+		// check if conf string is urldecoded
+		if (strstr($conf_string, '%2') && !strstr($conf_string, '/')) {
+			$conf_string = urldecode($conf_string);
+		}
 		$conf_string = base64_decode($conf_string);
 		if (function_exists("gzcompress")) {
 			$conf_string = gzuncompress($conf_string);
