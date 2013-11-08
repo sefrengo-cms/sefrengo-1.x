@@ -2,7 +2,11 @@
 ## Sefrengo
 #################
 
+backend/logs/errorlog.txt
 backend/inc/config.php
+backend/plugins/*
+!backend/plugins/index.html
+projekt01/logs/errorlog.txt
 projekt02/*
 projekt03/*
 
