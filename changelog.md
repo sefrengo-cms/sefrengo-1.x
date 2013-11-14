@@ -2,6 +2,23 @@ Changelog
 ================================================================================================
 
 
+Sefrengo v1.5.1
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.05.01<br/>
+Release: 15.11.2013
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.5.1>
+
+* FIXED: [Template bearbeiten: Nach Auswahl direkt zum Modul springen](https://github.com/sefrengo-cms/sefrengo-1.x/issues/2)
+* FIXED: [PHP 5.5: /e modifier is deprecated](https://github.com/sefrengo-cms/sefrengo-1.x/issues/4)
+* FIXED: [class.SF_GUI_ContentStylerHTML.php: Illegal string offset 'type'](https://github.com/sefrengo-cms/sefrengo-1.x/issues/5)
+* FIXED: [Dateimanager: Datei kann nicht gelöscht/kopiert/verschoben werden](https://github.com/sefrengo-cms/sefrengo-1.x/issues/6)
+* FIXED: [Seite bearbeiten: Bearbeitungsmenü verschwindet bei einer Neuinstallation](https://github.com/sefrengo-cms/sefrengo-1.x/issues/7)
+* FIXED: [Ressource Browser: ckeditor_funcNum is not defined](https://github.com/sefrengo-cms/sefrengo-1.x/issues/8)
+* FIXED: [Ressource Browser: Verzeichnisse werden nicht angezeigt](https://github.com/sefrengo-cms/sefrengo-1.x/issues/10)
+
+
+
 Sefrengo v1.5.0
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.05.00<br/>
