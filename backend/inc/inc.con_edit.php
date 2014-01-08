@@ -295,9 +295,17 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 
 	// Formularelemente includieren
 	include_once($cms_path.'inc/fnc.type_forms.php');
-	$code .= '<head>'."\n";
-	$code .= '<title>Sefrengo | Edit- Mode</title>'."\n";
-	$code .= '<meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'" />'."\n";
+	$code .= '<!doctype html>
+	<!--[if lt IE 7]> <html class="no-js ie6 oldie" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+	<!--[if IE 7]>    <html class="no-js ie7 oldie" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+	<!--[if IE 8]>    <html class="no-js ie8 oldie" xmlns="http://www.w3.org/1999/xhtml"> <![endif]-->
+	<!--[if gt IE 8]><!--> <html  class="no-js" xmlns="http://www.w3.org/1999/xhtml"> <!--<![endif]-->
+	<head>
+	<meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'" />
+	<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+	<meta name="robots" content="noindex, nofollow" />
+	<title>Sefrengo | Edit-Mode</title>
+	<link rel="shortcut icon" href="favicon.ico" />'."\n";
 	$code .= '<link rel="stylesheet" type="text/css" href="'.$cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/css/styles.css" />'."\n";
 	$code .= '<link rel="stylesheet" type="text/css" href="'.$cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/css/dynCalendar.css" />'."\n";
 	$code .= '<script type="text/javascript" src="'.$cfg_cms['cms_html_path'].'tpl/'.$cfg_cms['skin'].'/js/dynCalendarBrowserSniffer.js"></script>'."\n";

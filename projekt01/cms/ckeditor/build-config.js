@@ -1,6 +1,6 @@
 ﻿
 /**
- * @license Copyright (c) 2003-2013, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.html or http://ckeditor.com/license
  */
 
@@ -14,7 +14,7 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'moono',
+	skin: 'moonocolor',
 	preset: 'standard',
 	ignore: [
 		'dev',
@@ -69,7 +69,8 @@ var CKBUILDER_CONFIG = {
 		'richcombo' : 1,
 		'listblock' : 1,
 		'fakeobjects' : 1,
-		'menubutton' : 1
+		'menubutton' : 1,
+		'indentlist' : 1
 	},
 	languages : {
 		'de' : 1,
