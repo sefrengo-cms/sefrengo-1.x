@@ -179,3 +179,13 @@ CKEDITOR.editorConfig = function( config ) {
     config.filebrowserImageBrowseLinkUrl = '<?php echo $rb->exportConfigURL().'&'.$ck_session_string ?>';
     config.filebrowserImageBrowseUrl = '<?php echo $rb_image->exportConfigURL().'&'.$ck_session_string ?>';
 }
+
+CKEDITOR.on('dialogDefinition', function(e) {
+    // NOTE: this is an instance of CKEDITOR.dialog.definitionObject
+    var dd = e.data.definition; 
+
+    if (e.data.name === 'link') {
+		var protocol = dd.contents[0].elements[1].children[0].children[0];
+		protocol.default = ''; // set protocol to 'Other' instead of 'http://'
+	}
+});

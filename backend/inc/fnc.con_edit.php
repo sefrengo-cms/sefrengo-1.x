@@ -36,8 +36,9 @@ function con_edit_save_content ($idsidelang, $container, $number, $idtype, $type
 
 	$author = $auth->auth['uid'];
 	
+	$value = str_replace("http://cms://", "cms://", $value);
 	// strip trailingslashes if they occur in internal links  
-  $value = preg_replace('#cms://(idcatside|idcat)=(\d+)/#U', 'cms://\1=\2', $value);
+	$value = preg_replace('#cms://(idcatside|idcat)=(\d+)/#U', 'cms://\1=\2', $value);
 	
 	set_magic_quotes_gpc($value);
 
