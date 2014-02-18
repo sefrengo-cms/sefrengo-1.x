@@ -2,6 +2,19 @@ Changelog
 ================================================================================================
 
 
+Sefrengo v1.6.0
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.00<br/>
+Release: 18.02.2014
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.0>
+
+* FIXED: Bugfix for unwanted http://cms:// in CKEditor link dialog
+* FIXED: Updated CKEditor to v4.3.2 (dropped browser compatibility for IE7 and Firefox 3.6)
+* FIXED: Bugfix for entity encoding in ContentFlex modul on new installation 
+
+
+
 Sefrengo v1.5.1
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.05.01<br/>
