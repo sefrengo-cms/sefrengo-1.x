@@ -13,8 +13,8 @@ Systemvoraussetzungen
 Für den Betrieb von Sefrengo benötigen Sie:
 
 * Webserver mit PHP Unterstützung (Apache Webserver empfohlen)
-* PHP 4.3.2 oder höher
-* MySQL 3.53 oder höher (MySQL 4.1.x empfohlen)
+* PHP 5.3 oder höher
+* MySQL 5.0 oder höher
 
 Im Zuge der Installation erfolgt eine Prüfung, ob Ihre Systemumgebung alle Vorausetzungen erfüllt.
 
