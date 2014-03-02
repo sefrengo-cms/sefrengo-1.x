@@ -275,8 +275,8 @@ class SF_Header
 					{
 						if (! array_key_exists($k, $sf_forbiddenvars) )
 						{
-							$this->tpl->setVariable('FIELD-NAME',$k);
-							$this->tpl->setVariable('FIELD-VALUE',$v);
+							$this->tpl->setVariable('FIELD-NAME',htmlentities($k, ENT_COMPAT, 'UTF-8'));
+							$this->tpl->setVariable('FIELD-VALUE',htmlentities($v, ENT_COMPAT, 'UTF-8'));
 							$this->tpl->parseCurrentBlock();
 						}
 					}
