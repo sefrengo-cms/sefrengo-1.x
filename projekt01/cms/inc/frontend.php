@@ -264,34 +264,33 @@ if ($code) {
 			header("HTTP/1.1 404 Not Found"); 
 			header ('Status: 404 Not Found');
 		}
-
+		
 		// Sefrengolinks ersetzen
 		// Anonymous functions become available with PHP 5.3.0 and preg_replace with /e modifier is deprecated since PHP 5.5.0
 		// @see: http://www.php.net/manual/en/reference.pcre.pattern.modifiers.php#reference.pcre.pattern.modifiers.eval
 		if (version_compare(PHP_VERSION, '5.3.0') >= 0)
 		{
-			$code = preg_replace_callback(
-				'!cms://idcat=(\d+)!',
-				function($match) use ($con_tree) {
-					return $con_tree[$match[1]]['link'];
-				},
-				$code);
-				
-			$code = preg_replace_callback(
-				'!cms://idcatside=(\d+)!',
-				function($match) use ($con_side) {
-					return $con_side[$match[1]]['link'];
-				},
-				$code);
+			function match_tree(array $match) {
+				global $con_tree;
+				return $con_tree[$match[1]]['link'];
+			}
+			
+			$code = preg_replace_callback('!cms://idcat=(\d+)!', 'match_tree', $code);
+			
+			function match_side(array $match) {
+				global $con_side;
+				return $con_side[$match[1]]['link'];
+			}
+			
+			$code = preg_replace_callback('!cms://idcatside=(\d+)!', 'match_side', $code);
 				
 			if ($cfg_client['url_rewrite'] == '2')
 			{
-				$code = preg_replace_callback(
-					'!(<a[\s]+[^>]*?href[\s]?=[\s\"\']+)#(.*?)([\"\'])!',
-					function($match) {
-						return $match[1].str_replace('&', '&amp;', $_SERVER['REQUEST_URI']).'#'.$match[2].$match[3];
-					},
-					$code);
+				function match_amp(array $match) {
+					return $match[1].str_replace('&', '&amp;', $_SERVER['REQUEST_URI']).'#'.$match[2].$match[3];
+				}
+				
+				$code = preg_replace_callback('!(<a[\s]+[^>]*?href[\s]?=[\s\"\']+)#(.*?)([\"\'])!', 'match_amp', $code);
 			}
 		}
 		else
