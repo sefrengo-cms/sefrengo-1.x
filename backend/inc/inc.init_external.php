@@ -72,6 +72,16 @@ if(! defined('SKIP_COMMON_SETTINGS') ){
 	}
 	
 	$sefrengo = ( empty($sefrengo) ) ? $_COOKIE['sefrengo']: $sefrengo;
+	
+	// check numeric vars to prevent SQL injection errors
+	$numeric_vars = array('idclient','idlang','idbackendmenu','idcatlang','idcat','idcatside','iduser','idtpl','idtplconf','parent','rootparent','sortindex','idlay','author','visible','idside','is_start','idclientslang','idcode','idcontainer','idmod','idplug','idcontainerconf','idcontent','idsidelang','idtype','container','number','online','idcss','idcssupl','idupl','sid','iddirectory','parentid','idfiletype','idgroup','idjs','idlang','is_start','idlayupl','idperm','idrepository','idside','idtracker','user_id','idvalues','idval','u_g_id');
+
+	foreach($numeric_vars as $varname) {
+		if(isset($$varname) && !(empty($$varname) || is_numeric($$varname))) {
+			die('ERROR! Found non-numeric variable which must be numeric! Execution was stopped, due to a possible SQL injection.');
+			exit;
+		}
+	}
 }
 
 // notwendige Dateien includen

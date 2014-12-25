@@ -622,12 +622,11 @@ if (! $have_config_tpl_perm && !$have_enter_tpl_perm && ! $have_meta_perm ) {
 	$tpl_data['BUTTONS_BOTTOM'] = '';
 }
 
-
 $tpl_data['IDTPLCONF'] = $idtplconf;
 $tpl_data['LASTMODIFIED'] = $lastmodified;
 $tpl_data['AUTHOR'] = $author;
 $tpl_data['CREATED'] = $created;
-$tpl_data['IDCATSIDE'] = $idcatside;
+$tpl_data['IDCATSIDE'] = ($idcatside === NULL) ? '' : $idcatside;
 $tpl_data['CON_SIDECONFIG'] = $cms_lang['con_sideconfig'];
 $tpl_data['SIDE_TITLE_DESC'] = $cms_lang['con_title'];
 $tpl_data['SIDE_TITLE'] = empty($title) ? '' : $title;
