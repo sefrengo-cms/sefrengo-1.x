@@ -78,30 +78,36 @@ if ($db->next_record()) {
 
 	$idlay = $db->f('idlay');
 	
-	//set doctype
-	if ($sf_doctype_autoinsert == 1) {
-		$doctype = '';
-		switch ($sf_doctype) {
-			case 'xhtml-1.0-trans':
-				$doctype = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'."\n";
-				break;
-			case 'html-4.0.1-trans':
-				$doctype = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'."\n";
-				break;
-		}
-	}
-	$layout = $doctype . $layout;
-	$sf_slash_closing_tag = '';
+    //set doctype
+    if ($sf_doctype_autoinsert == 1) {
+        $doctype = '';
+        switch ($sf_doctype) {
+            case 'xhtml-1.0-trans':
+                $doctype = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">'."\n";
+                break;
+            case 'html-4.0.1-trans':
+                $doctype = '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">'."\n";
+                break;
+             case 'html-5':
+                $doctype = '<!doctype html>'."\n";
+                break;
+        }
+    }
+    $layout = $doctype . $layout;
+    $sf_slash_closing_tag = '';
 
-	switch ($sf_doctype) {
-		case 'html-4.0.1-trans':
-			$sf_slash_closing_tag = '';
-			break;
-		case 'xhtml-1.0-trans':
-		default:
-			$sf_slash_closing_tag = ' /';
-			break;
-	}	
+    switch ($sf_doctype) {
+        case 'html-4.0.1-trans':
+            $sf_slash_closing_tag = '';
+            break;
+        case 'html-5':
+            $sf_slash_closing_tag = '';
+            break;
+        case 'xhtml-1.0-trans':
+        default:
+            $sf_slash_closing_tag = ' /';
+            break;
+    }
 	
 	// Container generieren
 	$list = extract_cms_tags($layout);
