@@ -80,6 +80,7 @@ if (! $perm->is_admin() && $idgroup == 1) {
 		$idgroup = 0;
 }
 $searchterm = $_REQUEST['searchterm'];
+$searchterm = htmlentities($searchterm, ENT_COMPAT, 'utf-8');
 $page = (int) $_REQUEST['page'];
 $changepage1 = (int) $_REQUEST['changepage1'];
 $changepage2 = (int) $_REQUEST['changepage2'];
@@ -123,7 +124,7 @@ $tmp['LANG_ACTIONS'] = $cms_lang['user_action'];
 
 //search
 if (strlen($searchterm) > 0) {
-	$tmp['SEARCHRESET'] = 'Ansicht gefiltert nach <strong>"'.htmlentities($searchterm, ENT_COMPAT, 'utf-8').'"</strong> |
+	$tmp['SEARCHRESET'] = 'Ansicht gefiltert nach <strong>"'.$searchterm.'"</strong> |
           <a class="action" href="'.sprintf($base_url, $order, $ascdesc).'&amp;page=1'.'">zur&uuml;cksetzen</a>';
     $tmp['SEARCHTERM'] = $searchterm;
 } else {
