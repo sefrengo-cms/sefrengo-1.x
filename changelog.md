@@ -1,6 +1,19 @@
 Changelog
 ================================================================================================
 
+Sefrengo v1.6.1
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.01<br/>
+Release: 04.01.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.1>
+
+* FIXED: Check numeric variables to prevent SQL injections
+* FIXED: Converted searchterm to HTML entities
+* FIXED: Updated CKEditor to v4.4.6
+* ADDED: Added HTML5 doctype to select in edit layout (thanks to dederpapst3000)
+
+
 
 Sefrengo v1.6.0
 ------------------------------------------------------------------------------------------------
