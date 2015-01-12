@@ -169,7 +169,7 @@ class DB_cms extends DB_Sql {
 													WHERE
 													name = '" . addslashes( $this->cache_name ) . "'
 													AND
-													sid = '" . $this->cache_id . "'";
+													sid = '" . addslashes( $this->cache_id ) . "'";
                     $this->cache_db->query( $sql );
                     break;
             } 
@@ -259,9 +259,9 @@ class DB_cms extends DB_Sql {
             $return = false;
             $sql = "SELECT val FROM
 								 " . $cms_db['db_cache'] . " WHERE
-									 name = '" . $this->cache_name . "'
+									 name = '" . addslashes( $this->cache_name ) . "'
 									 AND
-									 sid =  '" . $cache_id . "'";
+									 sid =  '" . addslashes( $cache_id ) . "'";
             if ( !$this->cache_db->query( $sql ) ) return;
             $oldmode = $this->cache_db->get_fetch_mode();
             $this->cache_db->set_fetch_mode( 'DB_FETCH_ASSOC' );
@@ -428,11 +428,11 @@ class cms_CT_Sql extends CT_Sql {
         $ret = true;
         $cquery = sprintf("select count(*) from %s where sid='%s' and name='%s'",
             $cms_db['sessions'],
-            $id,
-            $name);
+            addslashes($id),
+            addslashes($name));
         $squery = sprintf("select sid from %s where sid  = '%s' and name = '%s'",
             $cms_db['sessions'],
-            $id,
+            addslashes($id),
             addslashes($name));
         $this->db->query($squery);
         if ( $this->db->affected_rows() == 0
@@ -454,8 +454,8 @@ class cms_CT_Sql extends CT_Sql {
             $this->db->query(sprintf("delete from %s where name = '%s' and sid != '%s' and user_id = '%s'",
                 $cms_db[sessions],
                 addslashes($name),
-                $str,
-                $id));
+                addslashes($str),
+                addslashes($id)));
         }
     }
     function ac_sigleid($name, $id) {
@@ -467,11 +467,11 @@ class cms_CT_Sql extends CT_Sql {
             $ret = false;
             $cquery = sprintf("select count(*) from %s where user_id='%s' and name='%s'",
                 $cms_db['sessions'],
-                $id,
-                $name);
+                addslashes($id),
+                addslashes($name));
             $squery = sprintf("select sid from %s where user_id='%s' and name='%s'",
                 $cms_db['sessions'],
-                $id,
+                addslashes($id),
                 addslashes($name));
             $this->db->query($squery);
             if ( $this->db->affected_rows() == 0
