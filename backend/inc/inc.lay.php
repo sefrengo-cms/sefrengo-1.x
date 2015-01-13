@@ -55,7 +55,7 @@ switch($action)
 			exit;
 		}
 		break;
-	case 'delete':  // Layout löschen
+	case 'delete':  // Layout lÃ¶schen
 		$perm->check(5, 'lay', $idlay);
 		$errno = lay_delete_layout($idlay);
 		break;
@@ -106,10 +106,10 @@ while ($db->next_record())
 	$idlay = $db->f('idlay');
 
 	//Darf aktuelles Layout sehen, wenn nicht, Schleifendurchgang abbrechen
-	//In der Standardübersicht
+	//In der StandardÃ¼bersicht
 	if(! $perm->have_perm(1, 'lay', $idlay)) continue;
 	
-	// Hintergrundfarbe wählen
+	// Hintergrundfarbe wÃ¤hlen
 	if ($idclient=='0') {
          	$tmp['ENTRY_BGCOLOR'] = '#FFFFFF';
             $tmp['OVERENTRY_BGCOLOR'] = '#FFF7CE';
@@ -133,7 +133,7 @@ while ($db->next_record())
 	// Layout exportieren - Recht exportieren (8)
 	if ($idclient!='0' && $perm->have_perm(8, 'lay', $idlay) ) $tmp['ENTRY_EXPORT'] = "\n<a href=\"".$sess->url("main.php?area=lay&action=copy&idlay=".$db->f('idlay')."&from=$client&idclient=$idclient")."\"><img src=\"tpl/".$cfg_cms['skin']."/img/export.gif\" alt=\"".$cms_lang['lay_export']."\" title=\"".$cms_lang['lay_export']."\" width=\"16\" height=\"16\" /></a>";
 
-	//Layout löschen - Recht löschen (5) 
+	//Layout lÃ¶schen - Recht lÃ¶schen (5) 
 	if ($db->f('deletable')=='1' &&  $perm->have_perm(5, 'lay', $idlay)  ) $tmp['ENTRY_DELBUT'] = "\n<a href=\"".$sess->url('main.php?area=lay&action=delete&idlay='.$db->f('idlay').'&idclient='.$idclient)."\" onclick=\"return delete_confirm()\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"".$cms_lang['lay_delete']."\" title=\"".$cms_lang['lay_delete']."\" /></a>";
 	else $tmp['ENTRY_DELBUT'] = "\n<img src=\"tpl/".$cfg_cms['skin']."/img/space.gif\" border=\"0\" width=\"16\" height=\"16\">";
 

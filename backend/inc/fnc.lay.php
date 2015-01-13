@@ -61,7 +61,7 @@ function lay_edit_layout($idlay, $name, $description, $code, $doctype, $doctype_
 
 	// Layout existiert - updaten
 	} else {
-		// hat sich das Layout geändert?
+		// hat sich das Layout geÃ¤ndert?
 		$sql = "SELECT code FROM ".$cms_db['lay'] ." WHERE idlay='$idlay'";
 		$db->query($sql);
 		$db->next_record();
@@ -96,28 +96,26 @@ function lay_edit_layout($idlay, $name, $description, $code, $doctype, $doctype_
 	while ($db->next_record()) $tmp_files['css'][] = $db->f('idupl');
 	if (!is_array($tmp_files['css'])) $tmp_files['css']['0']='0';
 	if (!is_array($css)) $css['0'] = '0';
-
+    // alle CSS-Dateien aus lay_upl lÃ¶schen
+	foreach ($tmp_files['css'] as $value)
+	{
+		
+			$sql = "DELETE FROM $cms_db[lay_upl] WHERE idupl='$value' AND idlay='$idlay'";
+			$db->query($sql);
+			$change = 'true';
+	
+	} 
 	// benutzte CSS-Dateien in lay_upl schreiben
 	foreach ($css as $value)
 	{
-		if (!in_array($value,$tmp_files['css'])) {
 			if ($value != '0') {
 				$sql = "INSERT INTO $cms_db[lay_upl] (idlay, idupl) VALUES ('$idlay', '$value')";
 				$db->query($sql);
 				$change = 'true';
 			}
-		}
 	}
 
-	// unbenutze CSS-Dateien aus lay_upl löschen
-	foreach ($tmp_files['css'] as $value)
-	{
-		if (!in_array($value,$css)) {
-			$sql = "DELETE FROM $cms_db[lay_upl] WHERE idupl='$value' AND idlay='$idlay'";
-			$db->query($sql);
-			$change = 'true';
-		}
-	}
+	
 
 	// welche JS-Dateien werden benutzt?
 	$sql = "SELECT B.idupl FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C ON B.idfiletype=C.idfiletype WHERE idlay='$idlay' AND C.filetype='js'";
@@ -125,31 +123,31 @@ function lay_edit_layout($idlay, $name, $description, $code, $doctype, $doctype_
 	while ($db->next_record()) $tmp_files['js'][] = $db->f('idupl');
 	if (!is_array($tmp_files['js'])) $tmp_files['js']['0']='0';
 	if (!is_array($js)) $js['0'] = '0';
+    
+	// alle JS-Dateien aus lay_upl lÃ¶schen
+	foreach ($tmp_files['js'] as $value)
+	{
 
+			$sql = "DELETE FROM $cms_db[lay_upl] WHERE idupl='$value' AND idlay='$idlay'";
+			$db->query($sql);
+			$change = 'true';
+	
+	}
 	// benutzte JS-Dateien in lay_upl schreiben
 	foreach ($js as $value)
 	{
-		if (!in_array($value,$tmp_files['js'])) {
+	
 			if ($value != '0') {
 				$sql = "INSERT INTO $cms_db[lay_upl] (idlay, idupl) VALUES ('$idlay', '$value')";
 				$db->query($sql);
 				$change = 'true';
 			}
-		}
+		
 	}
 
-	// unbenutze JS-Dateien aus lay_upl löschen
-	foreach ($tmp_files['js'] as $value)
-	{
-		if (!in_array($value,$js)) {
-			$sql = "DELETE FROM $cms_db[lay_upl] WHERE idupl='$value' AND idlay='$idlay'";
-			$db->query($sql);
-			$change = 'true';
-		}
-	}
 
 	if ($change) {
-		// Status der 'code' Tabelle ändern
+		// Status der 'code' Tabelle Ã¤ndern
 		$list = get_idtplconf_by_using_type($idlay, 'lay');
 		$list = get_idcode_by_idtplconf($list);
 		change_code_status($list, '1');
@@ -208,11 +206,11 @@ function lay_delete_layout($idlay) {
 	$db->query($sql);
 	if ($db->affected_rows()) return '0301';
 	else {
-		// Layout löschen
+		// Layout lÃ¶schen
 		$sql = "DELETE FROM ". $cms_db['lay'] ." WHERE idlay='$idlay'";
 		$db->query($sql);
 
-		// Einträge aus lay_upl löschen
+		// EintrÃ¤ge aus lay_upl lÃ¶schen
 		$sql = "DELETE FROM ". $cms_db['lay_upl'] ." WHERE idlay='$idlay'";
 		$db->query($sql);
 

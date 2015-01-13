@@ -46,8 +46,77 @@ if (isset($changeclient)) {
 }
 
 include('inc/inc.header.php');
-
-
+?>
+<script>
+/* HTML5 Sortable (http://farhadi.ir/projects/html5sortable)
+ * Released under the MIT license.
+ */(function(a){var b,c=a();a.fn.sortable=function(d){var e=String(d);return d=a.extend({connectWith:!1},d),this.each(function(){if(/^enable|disable|destroy$/.test(e)){var f=a(this).children(a(this).data("items")).attr("draggable",e=="enable");e=="destroy"&&f.add(this).removeData("connectWith items").off("dragstart.h5s dragend.h5s selectstart.h5s dragover.h5s dragenter.h5s drop.h5s");return}var g,h,f=a(this).children(d.items),i=a("<"+(/^ul|ol$/i.test(this.tagName)?"li":"div")+' class="sortable-placeholder">');f.find(d.handle).mousedown(function(){g=!0}).mouseup(function(){g=!1}),a(this).data("items",d.items),c=c.add(i),d.connectWith&&a(d.connectWith).add(this).data("connectWith",d.connectWith),f.attr("draggable","true").on("dragstart.h5s",function(c){if(d.handle&&!g)return!1;g=!1;var e=c.originalEvent.dataTransfer;e.effectAllowed="move",e.setData("Text","dummy"),h=(b=a(this)).addClass("sortable-dragging").index()}).on("dragend.h5s",function(){b.removeClass("sortable-dragging").show(),c.detach(),h!=b.index()&&f.parent().trigger("sortupdate",{item:b}),b=null}).not("a[href], img").on("selectstart.h5s",function(){return this.dragDrop&&this.dragDrop(),!1}).end().add([this,i]).on("dragover.h5s dragenter.h5s drop.h5s",function(e){return!f.is(b)&&d.connectWith!==a(b).parent().data("connectWith")?!0:e.type=="drop"?(e.stopPropagation(),c.filter(":visible").after(b),!1):(e.preventDefault(),e.originalEvent.dataTransfer.dropEffect="move",f.is(this)?(d.forcePlaceholderSize&&i.height(b.outerHeight()),b.hide(),a(this)[i.index()<a(this).index()?"after":"before"](i),c.not(i).detach()):!c.is(this)&&!a(this).children(d.items).length&&(c.detach(),a(this).append(i)),!1)})})}})(jQuery);
+		function makeCssList(){
+			$(".cssFormItems").remove();
+			$(".csslist.usedlist li").each(function(i) {
+		        $(".csslist.usedlist").append("<input class=\"cssFormItems\" type=\"hidden\" name=\"css[]\" value=\""+$(this).attr('data-value')+"\" />");
+		    });
+		}
+		function makeJsList(){
+			$(".jsFormItems").remove();
+			$(".jslist.usedlist li").each(function(i) {
+		        $(".jslist.usedlist").append("<input class=\"jsFormItems\" type=\"hidden\" name=\"js[]\" value=\""+$(this).attr('data-value')+"\" />");
+		    });
+		}
+		$(function() {
+			makeCssList();
+			makeJsList();
+			$('.csslist').sortable({
+				connectWith: '.csslist'
+			}).bind('sortupdate', function(e, ui) {
+				makeCssList();	
+			}).bind('mouseout', function(e, ui) {
+				makeCssList();	
+			});
+			$('.jslist').sortable({
+				connectWith: '.jslist'
+			}).bind('sortupdate', function(e, ui) {
+				makeJsList();	
+			}).bind('mouseout', function(e, ui) {
+				makeJsList();	
+			});
+		});
+	</script>
+	<style type="text/css">
+	.connected li {
+			list-style: none;
+			border: 1px solid #D6D6D6;
+			margin: 1px;
+			padding: 2px;
+			min-height:16px;
+			cursor:move;
+			color:#777;
+		}
+		.connected, .sortable, .exclude, .handles {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			min-height:50px;
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+		.list{
+			border:1px solid #D6D6D6;
+			overflow:hidden;
+		}
+		.list:hover{
+			overflow:auto;
+		}
+		.usedlist li,.connected li:hover{
+			background-color:#fff;
+			color:#000;
+		}
+	</style>
+<?php
 echo "<!-- Anfang inc.lay_edit.php -->\n";
 echo "<div id=\"main\">\n";
 echo "    <h5>".$cms_lang['area_lay_edit']."</h5>";
@@ -79,14 +148,14 @@ else{
 }
 
 // Benutzen CSS-Dateien in Array schreiben
-$sql = "SELECT B.idupl FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C ON B.idfiletype=C.idfiletype WHERE idlay='$idlay' AND C.filetype='css' AND B.status IN (4,5)";
+$sql = "SELECT B.idupl FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C ON B.idfiletype=C.idfiletype WHERE idlay='$idlay' AND C.filetype='css' AND B.status IN (4,5) ORDER BY A.idlayupl ASC";
 $db->query($sql);
 while ($db->next_record()) {
 	$used_files['css'][] = $db->f('idupl');
 }
 
 // Benutzen JS-Dateien in Array schreiben
-$sql = "SELECT B.idupl FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C ON B.idfiletype=C.idfiletype WHERE idlay='$idlay' AND C.filetype='js' AND B.status IN (4,5)";
+$sql = "SELECT B.idupl FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C ON B.idfiletype=C.idfiletype WHERE idlay='$idlay' AND C.filetype='js' AND B.status IN (4,5) ORDER BY A.idlayupl ASC";
 $db->query($sql);
 while ($db->next_record()) {
 	$used_files['js'][] = $db->f('idupl');
@@ -154,40 +223,68 @@ echo "          </tr>\n";
 echo "        </table></td>\n";
 echo "      </tr>\n";
 echo "      <tr>\n";
-echo "        <td colspan=\"2\"><table>\n";
+echo "        <td colspan=\"2\"><table border=0>\n";
 echo "          <tr>\n";
+
+
+$cssIcon = make_image('ressource_browser/icons/rb_typ_css.gif', '', '16', '16', false, 'class="icon"');
+$jsIcon = make_image('ressource_browser/icons/rb_typ_js.gif', '', '16', '16', false, 'class="icon"');
 
 // Stylesheet-Dateien suchen
 $sql = "SELECT A.idupl, A.filename, A.description FROM $cms_db[upl] A left join $cms_db[filetype] B on A.idfiletype=B.idfiletype WHERE A.idclient='$client' AND B.filetype='css' AND A.status IN (4,5) ORDER BY A.filename";
 $db->query($sql);
-echo "            <td width=\"400\">\n<select style=\"height: 150px; width: 380px;\" name=\"css[]\" multiple=\"multiple\" size=\"5\">\n";
+$used=array();
+$notused="";
 if ($db->affected_rows()) {
-	if (is_array($used_files['css'])) echo "              <option value=\"0\">".$cms_lang['lay_nofile']."</option>\n";
-	else echo "              <option value=\"0\" selected=\"selected\">".$cms_lang['lay_nofile']."</option>\n";
 	while ($db->next_record()) {
 		if (is_array($used_files['css'])) {
-			if (in_array($db->f('idupl'),$used_files['css'])) printf ("              <option value=\"".$db->f('idupl')."\" selected=\"selected\">".$db->f('filename')."%s</option>\n", ($db->f('description')) ? ' - '.$db->f('description') : '');
-			else printf ("              <option value=\"".$db->f('idupl')."\">".$db->f('filename')."%s</option>\n", ($db->f('description')) ? ' - '.$db->f('description') : '');
- } else printf ("              <option value=\"".$db->f('idupl')."\">".$db->f('filename')."%s</option>\n", ($db->f('description')) ? ' - '.$db->f('description') : '');
+			if (in_array($db->f('idupl'),$used_files['css'])){
+				$used[array_search($db->f('idupl'),$used_files['css'])]=sprintf ("<li data-value=\"".$db->f('idupl')."\" selected=\"selected\" title=\"%s\">".$cssIcon.$db->f('filename')."</li>\n", ($db->f('description')) ? $db->f('description') : '');
+			}else{
+				$notused.=sprintf ("<li data-value=\"".$db->f('idupl')."\" title=\"%s\">".$cssIcon.$db->f('filename')."</li>\n", ($db->f('description')) ? $db->f('description') : '');
+			}
+ 		} else{
+			$notused.=sprintf ("<li data-value=\"".$db->f('idupl')."\" title=\"%s\">".$cssIcon.$db->f('filename')."</li>\n", ($db->f('description')) ? $db->f('description') : '');
+		}
 	}
-} else echo "              <option value=\"0\" selected=\"selected\">".$cms_lang['lay_nofile']."</option>\n";
-echo "            </select></td>\n";
+}
+ksort($used);
+
+echo "            <td width=\"200\"><b>benutzt</b><br />
+<ul class=\"csslist connected usedlist list\" style=\"height: 150px; width: 180px;\">".implode("",$used)."</ul>
+</td>
+<td width=\"200\"><b>verfügbar</b>\n
+<ul class=\"csslist connected list no2\" style=\"height: 150px; width: 180px;\">".$notused."</ul>
+<!-- select name=\"css[]\" multiple=\"multiple\" size=\"5\"></select -->\n";
+
+echo "            </td>\n";
 
 // Javascript-Dateien suchen
 $sql = "SELECT A.idupl, A.filename, A.description FROM $cms_db[upl] A left join $cms_db[filetype] B on A.idfiletype=B.idfiletype WHERE A.idclient='$client' AND B.filetype='js' AND A.status IN (4,5) ORDER BY A.filename";
 $db->query($sql);
-echo "            <td width=\"400\">\n<select style=\"height: 150px; width: 380px;\" name=\"js[]\" multiple=\"multiple\" size=\"5\">\n";
-if ($db->affected_rows()) {
-	if (is_array($used_files['js'])) echo "              <option value=\"0\">".$cms_lang['lay_nofile']."</option>\n";
-	else echo "              <option value=\"0\" selected=\"selected\">".$cms_lang['lay_nofile']."</option>\n";
+$used=array();
+$notused="";
+if ($db->affected_rows()) {	
 	while ($db->next_record()) {
 		if (is_array($used_files['js'])) {
-			if (in_array($db->f('idupl'),$used_files['js'])) printf ("              <option value=\"".$db->f('idupl')."\" selected=\"selected\">".$db->f('filename')."%s</option>\n", ($db->f('description')) ? ' - '.$db->f('description') : '');
-			else printf ("              <option value=\"".$db->f('idupl')."\">".$db->f('filename')."%s</option>\n", ($db->f('description')) ? ' - '.$db->f('description') : '');
-                 } else printf ("              <option value=\"".$db->f('idupl')."\">".$db->f('filename')."%s</option>\n", ($db->f('description')) ? ' - '.$db->f('description') : '');
+			if (in_array($db->f('idupl'),$used_files['js'])){ 
+				$used[array_search($db->f('idupl'),$used_files['js'])]=sprintf ("<li data-value=\"".$db->f('idupl')."\" selected=\"selected\" title=\"%s\">".$jsIcon.$db->f('filename')."</li>\n", ($db->f('description')) ? $db->f('description') : '');
+			}else{
+				$notused.=sprintf ("<li data-value=\"".$db->f('idupl')."\" title=\"%s\">".$jsIcon.$db->f('filename')."</li>\n", ($db->f('description')) ? $db->f('description') : '');
+			}
+ 		} else{
+			$notused.=sprintf ("<li data-value=\"".$db->f('idupl')."\" title=\"%s\">".$jsIcon.$db->f('filename')."</li>\n", ($db->f('description')) ? $db->f('description') : '');
+		}
 	}
-} else echo "              <option value=\"0\" selected=\"selected\">".$cms_lang['lay_nofile']."</option>\n";
-echo "            </select></td>\n";
+}
+ksort($used);
+echo "<td width=\"200\"><b>benutzt</b><br />
+<ul class=\"jslist connected usedlist list\" style=\"height: 150px; width: 180px;\">".implode("",$used)."</ul>
+</td>
+<td width=\"200\"><b>verfügbar</b>\n
+<ul class=\"jslist connected list no2\" style=\"height: 150px; width: 180px;\">".$notused."</ul>\n";
+
+echo "            </td>\n";
 echo "          </tr>\n";
 echo "        </table></td>\n";
 echo "      </tr>\n";

@@ -137,7 +137,7 @@ if ($db->next_record()) {
 							LEFT JOIN ". $cms_db['filetype'] ." C USING(idfiletype)
 							LEFT JOIN ". $cms_db['directory'] ." D on B.iddirectory=D.iddirectory
 						WHERE
-							idlay='$idlay'";
+							idlay='$idlay' ORDER BY A.idlayupl";
 				$db->query($sql);
 				while ($db->next_record()) {
 					if ($db->f('filetype') == 'js') $code .= "<script src=\"".$db->f('dirname').$db->f('filename')."\" type=\"text/javascript\"></script>\n";
