@@ -149,7 +149,7 @@ class DB_cms extends DB_Sql {
                     $sql = "REPLACE INTO
 												 " . $cms_db['db_cache'] . " (sid, name, val, changed, releasetime, groups, item)
 													VALUES (
-													'" . $this->cache_id . "',
+													'" . addslashes( $this->cache_id ) . "',
 													'" . addslashes( $this->cache_name ) . "',
 													'" . addslashes( serialize( $this->cache ) ) . "',
 													'" . $now . "',

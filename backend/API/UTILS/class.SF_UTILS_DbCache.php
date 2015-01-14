@@ -45,8 +45,8 @@ class SF_UTILS_DbCache extends SF_API_Object {
 				FROM
 					" . $cms_db['db_cache'] . " 
 				WHERE
-					sid = '".$key ."'
-					AND name = '".$this->cache_name."'";
+					sid = '".addslashes($key) ."'
+					AND name = '".addslashes($this->cache_name)."'";
 		
 		$this->db->Execute($sql);
 		
@@ -72,8 +72,8 @@ class SF_UTILS_DbCache extends SF_API_Object {
 				FROM
 					" . $cms_db['db_cache'] . " 
 				WHERE
-					sid = '".$key ."'
-					AND name = '".$this->cache_name."'
+					sid = '".addslashes($key)."'
+					AND name = '".addslashes($this->cache_name)."'
 					AND (changed + releasetime) > '".$this->now ."'";
 		$rs = $this->db->Execute($sql);
 		
