@@ -81,7 +81,7 @@ $numeric_vars = array('idclient','idlang','idbackendmenu','idcatlang','idcat','i
 foreach($numeric_vars as $varname) {
 	if(isset($$varname) && !(empty($$varname) || is_numeric($$varname))) {
 		//die('ERROR! Found non-numeric variable which must be numeric! Execution was stopped, due to a possible SQL injection.');
-		$$varname = addslashes($$varname);
+		$$varname = intval($$varname);
 	}
 }
 
