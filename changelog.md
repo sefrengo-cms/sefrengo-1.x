@@ -1,6 +1,18 @@
 Changelog
 ================================================================================================
 
+Sefrengo v1.6.2
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.02<br/>
+Release: 25.01.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.2>
+
+* FIXED: Escaped strings for session ids and name
+* ADDED: Sortable CSS and JS files for layouts (thanks to sidd)
+
+
+
 Sefrengo v1.6.1
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.06.01<br/>
