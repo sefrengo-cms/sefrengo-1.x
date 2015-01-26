@@ -112,6 +112,8 @@ $cms_lang['lay_js']					= 'Javascript';
 $cms_lang['lay_nofile']			    = 'pas de fichier';
 $cms_lang['lay_duplicate']				= 'Dupliquer la mise en page';
 $cms_lang['lay_copy_of']				= 'Copie de ';
+$cms_lang['lay_nofile']			    = 'pas de fichier';
+$cms_lang['lay_used']			    = 'utilis&eacute;';
 
 $cms_lang['tpl_action']			 	= 'Actions';
 $cms_lang['tpl_actions']['10']			= 'Nouveau mod&egrave;le';
