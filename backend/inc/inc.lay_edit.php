@@ -250,10 +250,10 @@ if ($db->affected_rows()) {
 }
 ksort($used);
 
-echo "            <td width=\"200\"><b>benutzt</b><br />
+echo "            <td width=\"200\"><b>".$cms_lang['lay_used']."</b><br />
 <ul class=\"csslist connected usedlist list\" style=\"height: 150px; width: 180px;\">".implode("",$used)."</ul>
 </td>
-<td width=\"200\"><b>verfügbar</b>\n
+<td width=\"200\"><b>".$cms_lang['lay_available']."</b>\n
 <ul class=\"csslist connected list no2\" style=\"height: 150px; width: 180px;\">".$notused."</ul>
 <!-- select name=\"css[]\" multiple=\"multiple\" size=\"5\"></select -->\n";
 
@@ -278,10 +278,10 @@ if ($db->affected_rows()) {
 	}
 }
 ksort($used);
-echo "<td width=\"200\"><b>benutzt</b><br />
+echo "<td width=\"200\"><b>".$cms_lang['lay_used']."</b><br />
 <ul class=\"jslist connected usedlist list\" style=\"height: 150px; width: 180px;\">".implode("",$used)."</ul>
 </td>
-<td width=\"200\"><b>verfügbar</b>\n
+<td width=\"200\"><b>".$cms_lang['lay_available']."</b>\n
 <ul class=\"jslist connected list no2\" style=\"height: 150px; width: 180px;\">".$notused."</ul>\n";
 
 echo "            </td>\n";

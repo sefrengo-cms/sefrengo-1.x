@@ -571,6 +571,13 @@ class Image_Transform_Driver_GD extends Image_Transform
                 imagefill($new_img, 0, 0, $color);
             }
         }
+        $type = strtolower(($type == '') ? $this->type : $type);
+        if($type=="png"){  
+        	imagealphablending($new_img, false);
+			imagesavealpha($new_img,true);
+			$transparent = imagecolorallocatealpha($new_img, 255, 255, 255, 127);
+			imagefilledrectangle($new_img, 0, 0, $width, $height, $transparent);
+		}
         return $new_img;
     }
 }

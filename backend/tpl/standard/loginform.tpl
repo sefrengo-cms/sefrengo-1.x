@@ -39,7 +39,7 @@ include('tpl/standard/lang/'.$cfg_cms['backend_lang'].'/lang_general.php');
   <div id="content">
     <p>
      <span class="hide"><?PHP echo $cms_lang['login_username'].": "; ?></span>
-     <input class="breit" name="username" type="text" value="<?php print (isset($this->auth['uname']) ? $this->auth['uname'] : '') ?>" id="username" tabindex="1" maxlength="32" onfocus="this.style.backgroundColor='#FFF5CE'" onblur="this.style.backgroundColor='#ffffff'" />
+     <input class="breit" name="username" type="text" value="<?php print(htmlspecialchars(isset($this->auth['uname']) ? $this->auth['uname'] : '')) ?>" id="username" tabindex="1" maxlength="32" onfocus="this.style.backgroundColor='#FFF5CE'" onblur="this.style.backgroundColor='#ffffff'" />
      </p>
      <p>
      <span class="hide"><?PHP echo $cms_lang["login_password"].": "; ?></span>
