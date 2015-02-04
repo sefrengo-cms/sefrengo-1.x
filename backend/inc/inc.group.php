@@ -47,7 +47,7 @@ switch ($action) {
 		break;
 	case 'delete':
 		group_delete();
-		//Wird eine gruppe gelöscht, wird eventuell noch eine aufgeklappte Spracheinstellung angezeigt - redirect um das zu verhindern
+		//Wird eine gruppe gelÃ¶scht, wird eventuell noch eine aufgeklappte Spracheinstellung angezeigt - redirect um das zu verhindern
 		header ('HTTP/1.1 302 Moved Temporarily');
 		header ('Location:'.$sess->urlRaw("main.php?area=group&order=$order&ascdesc=$ascdesc"));
 		exit;
@@ -83,7 +83,7 @@ if (!empty($errno)) {
 $tmp['NEW_GROUP'] = '<a href="'.sprintf($base_url, 'group_edit', $order, $ascdesc).'" class="action">Neue Gruppe</a>';
 
 
-// Tabellenüberschrift
+// TabellenÃ¼berschrift
 $tmp['LANG_NAME'] = '<a href ="'.sprintf($base_url, 'group', 'name', ($order == 'name' && ($ascdesc == 'ASC' || $ascdesc == '')) ? 'DESC' : 'ASC').'">'.$cms_lang['group_name'].'</a>';
 $tmp['LANG_DESCRIPTION'] = '<a href ="'.sprintf($base_url, 'group', 'description', ($order == 'description' && ($ascdesc == 'ASC' || $ascdesc == '')) ? 'DESC' : 'ASC').'">'.$cms_lang['group_description'].'</a>';
 $tmp['LANG_ACTIONS'] = $cms_lang['group_actions'];
@@ -92,6 +92,16 @@ unset($tmp);
 
 // Usergruppen auflisten
 $tpl->setCurrentBlock('PREENTRY');
+
+/*
+*  vorerst so gelÃ¶st, weil wenn order=if(1=1,sleep(5),0) wirkt weder add_slashes noch mysql_real_escape_string
+**/
+if(isset($order)){
+	if($order!=="name"){
+		$order = "description";
+	}
+}
+
 $sql = "SELECT * FROM ".$cms_db['groups']." WHERE is_deletable = '1' ORDER BY $order $ascdesc";
 $db->query($sql);
 while ($db->next_record()) {
@@ -144,5 +154,5 @@ if ($idgroup) {
 		$tpl->parseCurrentBlock();
 		unset($tmp);
 	}
-}
+}  
 ?>
