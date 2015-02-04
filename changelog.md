@@ -1,6 +1,22 @@
 Changelog
 ================================================================================================
 
+Sefrengo v1.6.3
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.03<br/>
+Release: 04.02.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.3>
+
+Commits are contributed by @screengarden (sidd)
+* FIXED: Language-Fix for Sortable Css/JS
+* FIXED: SQL-Injection-Fix
+* FIXED: XSS-FIX
+* FIXED: PNG-Alpha Fix
+* FIXED: SQL-Injections & XSS fixes laut Protokoll
+
+
+
 Sefrengo v1.6.2
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.06.02<br/>

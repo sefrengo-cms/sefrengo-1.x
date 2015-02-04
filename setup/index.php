@@ -130,7 +130,8 @@ class setup {
 							'updates_from.01.05.00.sql',
 							'updates_from.01.05.01.sql',
 							'updates_from.01.06.00.sql',
-							'updates_from.01.06.01.sql');
+							'updates_from.01.06.01.sql',
+							'updates_from.01.06.02.sql');
 
 	/**
 	* Konstruktor. Catch all globals
@@ -140,7 +141,7 @@ class setup {
 		$this -> catch_globals();
 		$this -> version['prior'] = '01';
 		$this -> version['minor'] = '06';
-		$this -> version['fix']   = '02';
+		$this -> version['fix']   = '03';
 		$this -> version_text = $this -> version['prior'];
 		$this -> version_text .= '.';
 		$this -> version_text .= $this -> version['minor'];
