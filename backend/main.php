@@ -209,7 +209,7 @@ $rep        = new repository;
 if ( $cfg_rep['repository_init_plugins'] ) $rep->init_plugins();
 
 // Area wählen
-if(@!include("inc/inc.".preg_replace('/[^a-zA-Z0-9 -]/','',$area).".php")){
+if(@!include("inc/inc.".preg_replace('/[^a-zA-Z0-9_-]/','',$area).".php")){
  	die("Stop. Maybe XSS?");
 };
 
