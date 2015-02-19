@@ -78,7 +78,7 @@ if (! is_file($this_dir.'inc/config.php')) {
 }
 
 // check numeric vars to prevent SQL injection errors
-$numeric_vars = array('idclient','cid','page','idexpand','idlang','idexpandshort','idbackendmenu','idcatlang','idcat','idcatside','iduser','idtpl','idtplconf','parent','rootparent','sortindex','idlay','author','visible','idside','is_start','idclientslang','idcode','idcontainer','idmod','idplug','idcontainerconf','idcontent','idsidelang','idtype','container','number','online','idcss','idcssupl','idupl','iddirectory','parentid','idfiletype','idgroup','idjs','idlang','is_start','idlayupl','idperm','idrepository','idside','idtracker','user_id','idvalues','idval','u_g_id','value_id');
+$numeric_vars = array('idclient','cid','page','idlang','idexpandshort','idbackendmenu','idcatlang','idcat','idcatside','iduser','idtpl','idtplconf','parent','rootparent','sortindex','idlay','author','visible','idside','is_start','idclientslang','idcode','idcontainer','idmod','idplug','idcontainerconf','idcontent','idsidelang','idtype','container','number','online','idcss','idcssupl','idupl','iddirectory','parentid','idfiletype','idgroup','idjs','idlang','is_start','idlayupl','idperm','idrepository','idside','idtracker','user_id','idvalues','idval','u_g_id','value_id');
 
 foreach($numeric_vars as $varname) {
 	if(isset($$varname) && !(empty($$varname) || is_numeric($$varname))) {
@@ -88,7 +88,7 @@ foreach($numeric_vars as $varname) {
 }
 
 // check the non-numeric vars to prevent SQL injection errors
-$nonnumeric_vars = array('action','area','collapse','ascdesc','order','searchterm','viewtype');
+$nonnumeric_vars = array('action','area','collapse','idexpand','ascdesc','order','searchterm','viewtype');
 
 foreach($nonnumeric_vars as $varname) {
 	if(isset($$varname) && !empty($$varname)) {
