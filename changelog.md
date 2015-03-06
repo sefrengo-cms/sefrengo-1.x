@@ -1,6 +1,19 @@
 Changelog
 ================================================================================================
 
+Sefrengo v1.6.4
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.04<br/>
+Release: 03.03.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.4>
+
+Commits are contributed by @screengarden (sidd)
+* FIXED: Multi-Domain & Underscore - Fix 
+* FIXED: Filemanager fix
+
+
+
 Sefrengo v1.6.3
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.06.03<br/>
