@@ -48,6 +48,7 @@ body {
 /* allgemeine Formatierung von Rahmen, Schrifttyp
 	und Textfarbe + Texthintergrund der Ueberschriften*/
 .sf_hovermenu ul {
+	display: block !important;
 	list-style-type:none !important;
 	padding:0px !important;
 	margin:0px !important;
@@ -62,6 +63,7 @@ body {
 }
 
 .sf_hovermenu ul li {
+	display: block !important;
 	background-image:none !important;
 	padding: 0px !important;
 	margin: 0px !important;
