@@ -411,17 +411,17 @@ function tree_level_order_light($node_id = '0', $level = '0')
 
 
 function make_image ($image = 'space.gif', $description = '', $width = '', $height = '', $popup = '', $attr = '') {
-	global $cfg_cms, $cms_lang;
+	global  $cfg_cms;
 
-	$image_width = (is_numeric($width)) ? ' width="'. $width .'" ': '';
-	$image_height = (is_numeric($height)) ? ' height="'. $height .'" ': '';
-	$image_popup = ($popup != '') ? ' onmouseover="sf_overlib('.$popup.');" onmouseout="sf_nd();" ' : '';
-	$image_final = '<img src="tpl/'.$cfg_cms['skin'].'/img/'.$image.'" '. $image_width . $image_height . $image_popup .' alt="" '.$attr.' />';
-	return $image_final;
+	return sprintf("\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s />\n%s",
+				($width != '') ? " width=\"$width\"" : '', 
+				($height != '') ? " height=\"$height\"" : '', 
+				($popup == '') ? " alt=\"$description\"" : 'alt=""',
+				($popup != '') ? $popup : '');
 }
 
 function make_image_link ($url = '#', $image = 'space.gif', $description = '', $width = '', $height = '', $target = '', $popup = '', $anchor ='', $class='') {
-	global $sess, $cfg_cms, $cms_lang;
+	global $sess, $cfg_cms;
 
 	return sprintf("\n<a style=\"text-decoration:none;\" href=\"".$sess->url($url). $anchor ."\" %s %s %s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s />\n</a>\n%s",
 				($target != '') ? "target=\"$target\"" : '', 
@@ -486,12 +486,10 @@ function make_image_link4 ($image = 'space.gif', $image1 = 'space.gif', $descrip
 function make_image_link5 ($url = '#', $image = 'space.gif', $description = '', $width = '', $height = '', $target = '', $targetpara = '', $popup = '', $popupheader = '', $class = '', $hash = '', $name = '', $linktext = '', $imgclass = '' ) {
 	global $sess, $cfg_cms, $cms_lang;
 
-	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\" onClick=\"window.open('about:blank','".$target."','".$targetpara."')\"  onmouseover=\"%sreturn true;\" onmouseout=\"%sreturn true;\"%s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s%s%s />$linktext</a>\n",
+	return sprintf("\n<a style=\"text-decoration:none;\" %s%shref=\"".$sess->url($url)."%s\" onClick=\"window.open('about:blank','".$target."','".$targetpara."')\"%s>\n<img src=\"tpl/".$cfg_cms['skin']."/img/".$image."\"%s%s %s%s%s />$linktext</a>\n",
 	($name != '')     ? 'name="'.$name.'" ' : '',
 	($class != '')    ? 'class="'.$class.'" ' : '', 
 	($hash != '')     ? '#'.$hash: '',
-	($popup != '')    ? 'sf_overlib('.$popup.');' : '',
-	($popup != '')    ? 'sf_nd();' : '',
 	($target != '')   ? " target=\"$target\"" : '',
 	($width != '')    ? " width=\"$width\""       : '',
 	($height != '')   ? " height=\"$height\""     : '',
