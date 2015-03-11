@@ -42,7 +42,6 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 include('inc/fnc.tpl.php');
 include('inc/fnc.mipforms.php');
 include('inc/fnc.mod_rewrite.php');
-ini_set("error_reporting","22519");
 /**
  * 2. Eventuelle Actions/ Funktionen abarbeiten
  */
