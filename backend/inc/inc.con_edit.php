@@ -666,6 +666,12 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 					$code .= '<?PHP if ($con_side[$idcatside][\'meta_description\'] != \'\') echo \'<meta name="description" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_description\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 					$code .= '<?PHP if ($con_side[$idcatside][\'meta_keywords\'] != \'\') echo \'<meta name="keywords" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_keywords\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 					$code .= '<?PHP if ($con_side[$idcatside][\'meta_robots\'] != \'\') echo \'<meta name="robots" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_robots\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
+					
+					$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_title\'] != \'\') echo \'<meta property="og:title" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_title\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
+					$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_image\'] != \'\') echo \'<meta property="og:image" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_image\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
+					$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_description\'] != \'\') echo \'<meta property="og:description" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_description\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
+					$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_author\'] != \'\') echo \'<meta property="article:author" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_author\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
+					
 					$code .= '<meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'"'.$sf_slash_closing_tag.'>'."\n";
 					$code .= "<meta http-equiv=\"expires\" content=\"0\"".$sf_slash_closing_tag.">\n";
 					$sql = "SELECT C.filetype, D.dirname, B.filename FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C USING(idfiletype) LEFT JOIN $cms_db[directory] D ON B.iddirectory=D.iddirectory WHERE idlay='$idlay' ORDER BY A.idlayupl";
