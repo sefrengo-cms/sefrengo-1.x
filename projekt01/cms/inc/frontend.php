@@ -151,6 +151,7 @@ if($con_side[$idcatside]['online'] != 1 || $con_tree[$idcat]['visible'] != 1){
 if(! empty($idcatside) && ! empty($con_side[$idcatside]['idsidelang'])){
 	$sql = "SELECT
 				meta_author, meta_description, meta_keywords, meta_robots, meta_redirect,
+				metasocial_title,metasocial_image,metasocial_description,metasocial_author,
 				meta_redirect_url, summary, author, created, lastmodified,
 				IF ( ((online & 0x04) = 0x01) ,'1' ,'0') AS protected
 			FROM
@@ -159,7 +160,7 @@ if(! empty($idcatside) && ! empty($con_side[$idcatside]['idsidelang'])){
 				idsidelang= ". $con_side[$idcatside]['idsidelang'];
 	$db->query($sql);
 	$db->next_record();
-	$con_side[$idcatside]['meta_author'] = $db->f('meta_author');
+ 	$con_side[$idcatside]['meta_author'] = $db->f('meta_author');
 	$con_side[$idcatside]['meta_description'] = $db->f('meta_description');
 	$con_side[$idcatside]['meta_keywords'] = $db->f('meta_keywords');
 	$con_side[$idcatside]['meta_robots'] = $db->f('meta_robots');
@@ -170,6 +171,11 @@ if(! empty($idcatside) && ! empty($con_side[$idcatside]['idsidelang'])){
 	$con_side[$idcatside]['created'] = $db->f('created');
 	$con_side[$idcatside]['lastmodified'] = $db->f('lastmodified');
 	$con_side[$idcatside]['protected'] = $db->f('protected');
+	
+	$con_side[$idcatside]['metasocial_title'] = $db->f('metasocial_title');
+	$con_side[$idcatside]['metasocial_image'] = $db->f('metasocial_image');
+	$con_side[$idcatside]['metasocial_description'] = $db->f('metasocial_description');
+	$con_side[$idcatside]['metasocial_author'] = $db->f('metasocial_author');
 }
 
 

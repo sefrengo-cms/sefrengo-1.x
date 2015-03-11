@@ -43,7 +43,7 @@ function callback_enddate(date, month, year)
 <h5>{AREA_TITLE}</h5>
 <!-- BEGIN ERROR_BLOCK -->
 <p class="errormsg">{ERR_MSG}</p><!-- END ERROR_BLOCK -->
-<form name="editform" method="post" action="{FORM_ACTION}">
+<form name="editform" id="editcontent" method="post" action="{FORM_ACTION}">
 <input type="hidden" name="action" value="save" />
 <input type="hidden" name="idtplconf" value="{IDTPLCONF}" />
 <input type="hidden" name="lastmodified" value="{LASTMODIFIED}" />
@@ -207,7 +207,7 @@ function callback_enddate(date, month, year)
  <!-- BEGIN META -->
 <table class="config" id="siteconfhack1" cellspacing="1">
   <tr>
-    <td class="head nowrap" rowspan="8" width="110">
+    <td class="head nowrap" rowspan="10" width="110">
       <p>{LANG_CON_METACONFIG}</p>
     </td>
     <td class="headre" colspan="3">
@@ -261,6 +261,36 @@ function callback_enddate(date, month, year)
       </td>
       </tr>
       </table>
+    </td>
+  </tr>
+  
+  <tr>
+    <td class="headre" colspan="3">
+            <!-- Ueberschrift Social -->
+            {LANG_META_SOCIAL}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+            <!-- Feld Social -->
+            <table>
+			     <tr>
+				 <td width="150">{LANG_META_SOCIAL_TITLE}</td>
+				 <td><input type="text" name="metasocial_title" style="width:318px" value="{META_SOCIAL_TITLE}" /></td>
+			     </tr>
+				 <tr>
+				 <td width="150">{LANG_META_SOCIAL_IMAGE}</td>
+				 <td>{META_SOCIAL_IMAGE}</td>
+			     </tr>
+				 <tr>
+				 <td width="150">{LANG_META_SOCIAL_DESCRIPTION}</td>
+				 <td><input type="text" name="metasocial_description" style="width:318px" value="{META_SOCIAL_DESCRIPTION}" /></td>
+			     </tr>
+				 <tr>
+				 <td width="150">{LANG_META_AUTHOR}</td>
+				 <td><input type="text" name="metasocial_author" style="width:318px" value="{META_SOCIAL_AUTHOR}" /></td>
+			     </tr> 
+		    </table>
     </td>
   </tr>
   <tr>

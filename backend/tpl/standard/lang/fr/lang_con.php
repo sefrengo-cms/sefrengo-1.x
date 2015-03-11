@@ -53,6 +53,7 @@ $cms_lang['con_metaauthor']				= 'Auteur';
 $cms_lang['con_metadescription']			= 'Description br&egrave;ve';
 $cms_lang['con_metakeywords']				= 'Mots-clefs (Veuillez les s&eacute;parer par une virgule)';
 $cms_lang['con_metarobots']				= 'R&eacute;f&eacute;rencement pour moteurs de recherche';
+$cms_lang['con_metasocial']				= 'Social';
 $cms_lang['con_metaredirect']				= 'Redirection';
 $cms_lang['con_metaredirect_url']  			= 'Adresse universelle de redirection';
 $cms_lang['con_metarobotsif']				= 'Indexer la page et suivre les liens qu\'elle contient (index, follow)';

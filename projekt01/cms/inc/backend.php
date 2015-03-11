@@ -102,6 +102,7 @@ $con_side =& $SF_pageinfos->getPageinfoDataArrayByRef();
 if(! empty($idcatside) ){
 	$sql = "SELECT
 				meta_author, meta_description, meta_keywords, meta_robots, meta_redirect,
+				metasocial_title,metasocial_image,metasocial_description,metasocial_author, 
 				meta_redirect_url, summary, author, created, lastmodified
 			FROM
 				".$cms_db['side_lang']."
@@ -119,6 +120,11 @@ if(! empty($idcatside) ){
 	$con_side[$idcatside]['author'] = $db->f('author');
 	$con_side[$idcatside]['created'] = $db->f('created');
 	$con_side[$idcatside]['lastmodified'] = $db->f('lastmodified');
+	
+	$con_side[$idcatside]['metasocial_title'] = $db->f('metasocial_title');
+	$con_side[$idcatside]['metasocial_image'] = $db->f('metasocial_image');
+	$con_side[$idcatside]['metasocial_description'] = $db->f('metasocial_description');
+	$con_side[$idcatside]['metasocial_author'] = $db->f('metasocial_author');
 }
 
 

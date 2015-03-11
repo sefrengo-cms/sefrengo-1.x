@@ -114,12 +114,13 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 						(idside, idlang, idtplconf, title, meta_keywords, summary, online, 
 							meta_redirect, meta_redirect_url, author, created, 
 							lastmodified, user_protected, visited, edit_ttl, meta_author, 
-							meta_description, meta_robots, meta_redirect_time) 
+							meta_description, meta_robots, meta_redirect_time,metasocial_title,metasocial_image,metasocial_description,metasocial_author) 
 					VALUES 
 						('".$db->f('idside')."', '$lang', '0', '$title', '$meta_keywords', '$summary', '$online', 
 							'".$db->f('meta_redirect')."', '$meta_redirect_url', '".$db->f('author')."', '".time()."', 
 							'".time()."', '".$db->f('user_protected')."', '".$db->f('visited')."', '".$db->f('edit_ttl')."', '$meta_author', 
-							'$meta_description', '$meta_robots', '".$db->f('meta_redirect_time')."')";
+							'$meta_description', '$meta_robots', '".$db->f('meta_redirect_time')."'
+							, '".$db->f('metasocial_title')."', '".$db->f('metasocial_image')."', '".$db->f('metasocial_description')."', '".$db->f('metasocial_author')."')";
 			// change JB
 			$db2->query($sql2);
 		}

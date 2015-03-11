@@ -65,7 +65,7 @@ foreach ($types_to_register as $global_type) {
 		$arr = @${'_'.$global_type};
                 if (@count($arr) > 0) extract($arr, EXTR_OVERWRITE);
         }
-}
+} 
 $cfg_cms = '';$cfg_client ='';
 
 $sefrengo = ( empty($sefrengo) ) ? $_COOKIE['sefrengo']: $sefrengo;
