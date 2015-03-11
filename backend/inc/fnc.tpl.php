@@ -833,7 +833,7 @@ function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, 
 		$sql .= " meta_redirect_time = '$meta_redirect_time', rewrite_use_automatic = '$rewrite_use_automatic', rewrite_url = '$rewrite_url',metasocial_title='$metasocial_title',metasocial_image='$metasocial_image',metasocial_description='$metasocial_description',metasocial_author='$metasocial_author' ";
 		$sql .= 'WHERE idsidelang = ' . $idsidelang;
 		$db->query($sql);
-		echo $sql;
+		
 		// in welchem Ordner existiert die Seite?
 		$sql = 'SELECT idcat FROM ' . $cms_db['cat_side'] . ' WHERE idside = ' . $idside;
 		$tmp_idcat = array();
