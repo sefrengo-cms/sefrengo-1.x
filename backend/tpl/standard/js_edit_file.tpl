@@ -32,9 +32,9 @@
 					</tr>
 					<tr>
 						<td class="head">{EDIT_JSCODENAME}</td>
-						<td><textarea class="w800" cols="45" rows="15" name="{EDIT_JSCODE_NAME}" id="{EDIT_JSCODE_NAME}" wrap="off">{EDIT_JSCODE}</textarea>
+						<td><textarea class="w800" cols="45" rows="15" name="{EDIT_JSCODE_NAME}" id="{EDIT_JSCODE_NAME}" wrap="off">{EDIT_JSCODE}</textarea>{EDIT_JSCODE_CKEDITOR}
 						</td>
-					</tr>
+					</tr>   
 				<!-- BEGIN JS_MANAGEMENT -->
 					<tr>
 						<td class="head">{JS_MANAGEMENT_TOPIC}</td>
