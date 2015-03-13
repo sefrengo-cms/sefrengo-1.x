@@ -139,10 +139,15 @@ function showRB($content){
     $rb->setJSCallbackFunction('sf_getImage' . $formname, array('picked_name', 'picked_value'));
     $rb_url = $rb->exportConfigURL();
  
+ 	if($content==""){
+		$preview=$cfg_client['space']; 
+	}else{
+	    $preview=$content;
+	}
 
     $out .= '<table style="height:' . ($cfg_client['thumb_size'] + 20) . 'px"><tr>
 <td style="background-color:#efefef;border:1px solid black;text-align:center;vertical-align:middle;width:' . ($cfg_client['thumb_size'] + 20) . 'px;">
-<img id="' . $formname . '" src="' . $content . '"  border="0" width="100" />
+<img id="' . $formname . '" src="' . $preview . '"  border="0" width="100" />
 </td><td valign="bottom">';
 
     $out .= "<input type=\"hidden\" name=\"metasocial_image\" value=\"$content\"><input type=\"text\" name=\"metasocial_imagedisplay\" readonly=\"readonly\" value=\"" . $content . "\" style=\"width:180px\" >\n";
@@ -553,7 +558,7 @@ if ($have_enter_tpl_perm) {
 		$db->next_record();
 		$idlay = $db->f('idlay');
 	}
-	echo "        <option value=\"0\" selected=\"selected\">Ordnertemplate</option>";
+	echo "        <option value=\"0\" selected=\"selected\">Ordnertemplate</option>";  //fehlender Textbaustein
 
 	// Templates Auflisten
 	$sql = "SELECT idtpl, name FROM $cms_db[tpl] WHERE idclient='$client' ORDER BY name";
