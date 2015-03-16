@@ -291,8 +291,31 @@ echo "      </tr>\n";
 // Quellcode
 echo "      <tr valign=\"top\">\n";
 echo "        <td class=\"head\">".$cms_lang['lay_code']."</td>\n";
-echo "        <td colspan=\"2\"><textarea class=\"w800\" name=\"code\" rows=\"26\" cols=\"52\" wrap=\"off\">$code</textarea></td>\n";
+echo "        <td colspan=\"2\"><textarea class=\"w800\" name=\"code\" id=\"code\" rows=\"26\" cols=\"52\" wrap=\"off\">$code</textarea></td>\n";
 echo "      </tr>\n";
+
+echo '<script src="' . $sess->url($cfg_client['htmlpath'] . 'cms/ckeditor/ckeditor.js') . '"></script>' . "\n
+<script>
+	
+	var sf_BasePath = '" . $cfg_client['htmlpath'] . "cms/ckeditor/';
+	CKEDITOR.replace(
+		'code',
+		{
+			customConfig : sf_BasePath + 'sefrengo/ckconfig.php'
+		}
+	);
+	CKEDITOR.config.toolbarGroups = [];
+	CKEDITOR.config.extraPlugins = 'codemirror';
+	CKEDITOR.config.removePlugins = 'elementspath' ;
+	CKEDITOR.config.resize_enabled = false;
+	CKEDITOR.config.codemirror = {
+		mode: 'htmlmixed'
+	}
+	CKEDITOR.config.startupMode = 'source';
+	CKEDITOR.config.height = '450px';
+	</script>";
+
+
 // Buttons
 
 echo "      <tr>\n";

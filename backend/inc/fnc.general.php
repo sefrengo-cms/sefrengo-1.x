@@ -615,5 +615,16 @@ function negotiateLanguage($supported, $default = 'en-US')
 
     return $default;
 }
+/**
+   * Is String an Url?
+   */     
+function isUrl($url){
+  	
 
+    if(filter_var($url, FILTER_VALIDATE_URL)){ 
+        return true; 
+    }else{
+	   	return false;
+	}
+}
 ?>

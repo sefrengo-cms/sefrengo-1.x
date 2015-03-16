@@ -157,7 +157,7 @@ function js_editfile() {
 
 	$fileclient = (empty($idclient)) ? 0: $client;
 	// check necessary values
-	if ((empty($idjsfile) && empty($jsfilename)) || !$fm->validate_filename($jsfilename)) return '1201'; // filename is missing
+	if ((empty($idjsfile) && empty($jsfilename)) || (!$fm->validate_filename($jsfilename))&&!isUrl($jsfilename)) return '1201'; // filename is missing
 
 	//take care for extentions
 	$pos = strpos ($jsfilename, ".".$js_filetype);
@@ -169,17 +169,19 @@ function js_editfile() {
 	// create a db-entry for a js-file
 	// uses cms_upl to store the information needed
 	if (!empty($idjsfile)) {
-		// js-file is existing, so update it
-		update_jscontent($idjsfile, $jsfilecontent, $status );
-		// update js-file record, if not in import area
-		if (!empty($fileclient)) {
-			$tmp_data = get_jscontent_data( $idjsfile, 0 );
-			$fm->update_file2((int) $tmp_data['idupl'], (int) $tmp_data['idclient'], $tmp_data['filename'], (int) $tmp_data['iddirectory'], (int) $tmp_data['idfiletype'], 5, $jsfiledescription, '');
-			if (!empty($fm->errno)) return '1218'; // update file data failed, if this happens we have a big problem ... :(
-
-			// perms to be set, check if user got the perms to change perms
-			if ($perm->have_perm('6', 'js_file', $idjsfile)) {
-				$perm->set_group_rights( 'js_file', $idjsfile, $cms_gruppenids, $cms_gruppenrechte, $cms_gruppenrechtegeerbt, $cms_gruppenrechteueberschreiben, '', 0xFFFFFFFF, '0' );
+		if(isUrl($jsfilename)==false){
+			// js-file is existing, so update it
+			update_jscontent($idjsfile, $jsfilecontent, $status );
+			// update js-file record, if not in import area
+			if (!empty($fileclient)) {
+				$tmp_data = get_jscontent_data( $idjsfile, 0 );
+				$fm->update_file2((int) $tmp_data['idupl'], (int) $tmp_data['idclient'], $tmp_data['filename'], (int) $tmp_data['iddirectory'], (int) $tmp_data['idfiletype'], 5, $jsfiledescription, '');
+				if (!empty($fm->errno)) return '1218'; // update file data failed, if this happens we have a big problem ... :(
+	
+				// perms to be set, check if user got the perms to change perms
+				if ($perm->have_perm('6', 'js_file', $idjsfile)) {
+					$perm->set_group_rights( 'js_file', $idjsfile, $cms_gruppenids, $cms_gruppenrechte, $cms_gruppenrechtegeerbt, $cms_gruppenrechteueberschreiben, '', 0xFFFFFFFF, '0' );
+				}
 			}
 		}
 	}
@@ -188,7 +190,6 @@ function js_editfile() {
 		$idupl = $fm->insert_file((int)$fileclient, $jsfilename, $js_directory, $js_filetype, (int) 5, $jsfiledescription);
 		// insert js-file-content in cms_js
 		if (empty($idupl)) return '1203';
-
 		$idjsfile = insert_jscontent($idupl, $fileclient, $jsfilecontent, 1, '', 0);
 		if (!empty($idjsfile)) {
 			$perm->set_owner_rights( 'js_file', $idjsfile, 0x000031B7); // set ownerrights for current language and user
@@ -197,10 +198,13 @@ function js_editfile() {
 			$fm->delete_file($idupl, $fileclient, false, 'path');
 			return '1203';
 		}
+		
 	}
 	if (!empty($idclient)) {
-		remove_magic_quotes_gpc($jsfilecontent);
-		$fm->write_file_fs($js_directory, $jsfilename, $jsfilecontent, 'path');
+		if(isUrl($jsfilename)==false){
+			remove_magic_quotes_gpc($jsfilecontent);
+			$fm->write_file_fs($js_directory, $jsfilename, $jsfilecontent, 'path');
+		}
 	}
 	return ((!empty($fm->errno)) ? '1417': '');  // write js-file failed, file could not be written else no errno
 }

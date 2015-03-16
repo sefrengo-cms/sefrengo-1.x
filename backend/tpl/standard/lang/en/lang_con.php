@@ -52,6 +52,7 @@ $cms_lang['con_publish']				= 'Publish modifications';
 $cms_lang['con_metaauthor']				= 'Author';
 $cms_lang['con_metadescription']			= 'Short description';
 $cms_lang['con_metakeywords']				= 'Keywords (comma separated)';
+$cms_lang['con_metasocial']				= 'Social';
 $cms_lang['con_metarobots']				= 'Meta robot entries';
 $cms_lang['con_metaredirect']				= 'Redirect';
 $cms_lang['con_metaredirect_url']  			= 'Redirect URL';

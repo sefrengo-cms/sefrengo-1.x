@@ -53,6 +53,7 @@ $cms_lang['con_metaauthor']				= 'Autor';
 $cms_lang['con_metadescription']			= 'Kurzbeschreibung';
 $cms_lang['con_metakeywords']				= 'Schlagw&ouml;rter (Bitte mit Komma trennen)';
 $cms_lang['con_metarobots']				= 'Aufnahme in Suchmaschinen';
+$cms_lang['con_metasocial']				= 'Social';
 $cms_lang['con_metaredirect']				= 'Weiterleitung';
 $cms_lang['con_metaredirect_url']  			= 'Weiterleitungsziel';
 $cms_lang['con_metarobotsif']				= 'Seite indizieren, allen Links folgen (index, follow)';

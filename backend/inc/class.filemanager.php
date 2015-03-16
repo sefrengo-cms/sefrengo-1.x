@@ -1528,7 +1528,7 @@ class filemanager extends fileaccess {
   	$isOkay = (preg_match('/[\/\?\*\"\<\>\|\n\t\r\\\\ßÄÜÖäöü€@]/', $name) == 0);
   	$isOkay = $isOkay && (strlen($name) < 200);
   	return $isOkay;
-  }
+  } 
 
 } // end class filemanager
 ?>

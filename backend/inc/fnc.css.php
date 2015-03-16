@@ -274,14 +274,16 @@ function css_editfile() {
 	// get validator object
 	$validate = get_validator('css_validator');
 	
-	$error = '';
+	$error = '';  
 
-	// check necessary values
-	if (empty($filename) ||  !$validate->filename($filename)) return '1106'; // filename is missing
+	// check necessary values       
+	if (empty($filename) || (!$fm->validate_filename($filename))&&!isUrl($filename)) return '1106'; // filename is missing
 
 	//take care for quotes and extentions
-	$pos = strpos ($filename, '.'.$filetype);
-	if ($pos === false) $filename .= '.'.$filetype;
+	if(isUrl($filename)==false){
+		$pos = strpos ($filename, '.'.$filetype);
+		if ($pos === false) $filename .= '.'.$filetype;
+	}
 	// check if filename is used
 	if (is_duplicate_filename( $idclient, $filename, $filedirname, $filetype, $idcssfile )) return '1107';
 
@@ -289,32 +291,37 @@ function css_editfile() {
 	// create a db-entry for a css-file
 	// uses con_upl to store the information needed
 	if (!empty($idcssfile)) {
-		// delete existing css-file - to be done before a name changes
-		$cssfilename = unlink_cssfile($idcssfile);
-		// update db record
-		if (empty($errno)) {
-			$fm->update_file2( (int)$idcssfile, (int) $idclient, $filename, $filedirname, $filetype, (int) $status, $filedescription, '');
-			if (!empty($fm->errno)) {
-				// update failed ... create css_file to prevent loss of data and return error
-				$error = $fm->errno;
-				generate_cssfile($idcssfile);
-				return $error;
-			} else {
-  				// any right to be set
-				if ($perm->have_perm('6', 'css_file', $idcssfile)) {
-					$perm->set_group_rights( 'css_file', $idcssfile, $cms_gruppenids, $cms_gruppenrechte, $cms_gruppenrechtegeerbt, $cms_gruppenrechteueberschreiben, '', 0xFFFFFFFF, '0' );
+		if(isUrl($filename)==false){
+			// delete existing css-file - to be done before a name changes
+			$cssfilename = unlink_cssfile($idcssfile);
+			// update db record
+			if (empty($errno)) {
+				$fm->update_file2( (int)$idcssfile, (int) $idclient, $filename, $filedirname, $filetype, (int) $status, $filedescription, '');
+				if (!empty($fm->errno)) {
+					// update failed ... create css_file to prevent loss of data and return error
+					$error = $fm->errno;
+					generate_cssfile($idcssfile);
+					return $error;
+				} else {
+	  				// any right to be set
+					if ($perm->have_perm('6', 'css_file', $idcssfile)) {
+						$perm->set_group_rights( 'css_file', $idcssfile, $cms_gruppenids, $cms_gruppenrechte, $cms_gruppenrechtegeerbt, $cms_gruppenrechteueberschreiben, '', 0xFFFFFFFF, '0' );
+					}
 				}
 			}
 		}
 	} else {
 		// create new css-file in cms_upl and leave if any errors have occured
 		$idcssfile = $fm->insert_file((int)$idclient, $filename, $filedirname, $filetype, (int) $status, $filedescription);
-		if (empty($idcssfile)) return '1110';
+		if(isUrl($filename)==false){
+			if (empty($idcssfile)) return '1110';
+		}
 		// set $status as flag for new file
 		$status = 0;
 		// set perms for new file
 		$perm->xcopy_perm('0', 'area_css', $idcssfile, 'css_file', 0x303731B7, 0, 0, true);  // copy rights from area_css
 		$perm->set_owner_rights( 'css_file', $idcssfile, 0x303731B7); // set ownerrights for current language and user
+	    
 	}
 
 	// set a marker on all css-rules of the css-file that has been related before
@@ -325,7 +332,7 @@ function css_editfile() {
 	if ($status) change_status_of_all_cssrules_of_file( $idcssfile, 0x04, '|');
 	// jb - 04.09.2004 
 	// Kopieren von CSS-Files erstellt eigenständige Kopie statt abhängigen Clone
-	if (is_array($idcss)) {
+	if (is_array($idcss)&&isUrl($filename)==false) {
 		reset ($idcss);
 		$status_ids = array(0);
 		foreach ($idcss as $value) {
