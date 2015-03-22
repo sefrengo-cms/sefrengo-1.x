@@ -161,6 +161,25 @@ $tmp['EDIT_JSFILEDESC_VALUE'] = $jsfiledescription;
 $tmp['EDIT_JSCODENAME'] = $cms_lang["js_file_content"];
 $tmp['EDIT_JSCODE_NAME'] = 'jsfilecontent';
 $tmp['EDIT_JSCODE'] = $jsfilecontent;
+$tmp['EDIT_JSCODE_CKEDITOR'] ='<script src="' . $sess->url($cfg_client['htmlpath'] . 'cms/ckeditor/ckeditor.js') . '"></script>' . "\n
+<script>
+	
+	var sf_BasePath = '" . $cfg_client['htmlpath'] . "cms/ckeditor/';
+	CKEDITOR.replace(
+		'jsfilecontent',
+		{
+			customConfig : sf_BasePath + 'sefrengo/ckconfig.php'
+		}
+	);
+	CKEDITOR.config.toolbarGroups = [];
+	CKEDITOR.config.extraPlugins = 'codemirror';
+	CKEDITOR.config.removePlugins = 'elementspath' ;
+	CKEDITOR.config.resize_enabled = false;
+	CKEDITOR.config.codemirror = {
+		mode: 'javascript'
+	}
+	CKEDITOR.config.startupMode = 'source';
+	</script>";
 
 /*
 ** button-related

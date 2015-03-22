@@ -544,7 +544,7 @@ if (is_array($catlist)) {
 				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('main.php?area=con_configcat&idcat='.$con_tree[$a]['idcat'].'&idtplconf='.$con_tree[$a]['idtplconf'], 'but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup, '', 'toolinfo');
 			}
 			else{
-				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image('but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16',$folder_popup, '', 'toolinfo');
+				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('#sideanchor', 'but_folder_info.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup, '', 'toolinfo');
 			}
 
 		// unkonfiguriert
@@ -573,7 +573,7 @@ if (is_array($catlist)) {
 				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('main.php?area=con_configcat&idcat='.$con_tree[$a]['idcat'].'&idtplconf='.$con_tree[$a]['idtplconf'], 'but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup, '', 'toolinfo');
 			}
 			else{
-				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image('but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16',$folder_popup, '', 'toolinfo');
+				$tpl_cat_values['BUTTON_CAT_CONFIG'] = make_image_link('#sideanchor', 'but_folder_off.gif', $cms_lang['con_cat_config'], '16', '16', '', $folder_popup, '', 'toolinfo');
 			}
 		}
 
@@ -829,9 +829,9 @@ if (is_array($catlist)) {
 								$tpl_side_values['SIDECONFIG'] =  make_image_link('main.php?area=con_configside&idside='.$tmp_side['idside'].'&idcat='.$con_tree[$a]['idcat'].'&idcatside='.$tmp_side['idcatside'].'&idtplconf='.$tmp_side_idtplconf, 'but_sideinfo.gif', $cms_lang['con_actions']['30'],  '16', '16', '', $side_popup, '', 'toolinfo').' ';
 						} else {
 							if($sefrengoPDA->pageDoubletExists( (int) $tmp_side['idside']))
-								$tpl_side_values['SIDECONFIG'] =  make_image('but_sideinfo_doublet.gif', $cms_lang['con_actions']['30'],  '16', '16', $side_popup, '', 'toolinfo').' ';
+								$tpl_side_values['SIDECONFIG'] = make_image_link('#sideanchor', 'but_sideinfo_doublet.gif', $cms_lang['con_actions']['30'], '16', '16', '', $side_popup, '', 'toolinfo').'&nbsp;';
 							else
-								$tpl_side_values['SIDECONFIG'] =  make_image('but_sideinfo.gif', $cms_lang['con_actions']['30'],  '16', '16', $side_popup, '', 'toolinfo').'&nbsp;';
+								$tpl_side_values['SIDECONFIG'] = make_image_link('#sideanchor', 'but_sideinfo.gif', $cms_lang['con_actions']['30'], '16', '16', '', $side_popup, '', 'toolinfo').'&nbsp;';
 						}
 
 						// Seite: bearbeiten
@@ -914,12 +914,15 @@ if (is_array($catlist)) {
 							} else $tpl_side_values['BUTTON_PUBLISH'] = make_image('space.gif', '', '16', '16');
 
 							// Seite: bearbeiten
-							if($perm->have_perm(19, 'side', $tmp_side['idcatside'], $tmp_side['idcat'])) $tpl_side_values['BUTTON_EDIT'] =   "<a href=\"".$sess->url('main.php?area=con_editframe&idcatside='.$tmp_side['idcatside'])."\" ><img src=\"tpl/".$cfg_cms['skin']."/img/but_edit.gif\" alt=\"".$cms_lang['con_editside']."\" title=\"".$cms_lang['con_editside']."\" width=\"16\" height=\"16\" /></a>";
-							else $tpl_side_values['BUTTON_EDIT'] = make_image('space.gif', '',  '16', '16');
+							if($perm->have_perm(19, 'side', $tmp_side['idcatside'], $tmp_side['idcat'])) {
+								$tpl_side_values['BUTTON_EDIT'] = make_image_link('main.php?area=con_editframe&idcatside='.$tmp_side['idcatside'], 'but_edit.gif', $cms_lang['con_editside'],  '16', '16','','','#sideanchor');
+							} else {
+								$tpl_side_values['BUTTON_EDIT'] = make_image('space.gif', '',  '16', '16');
+							}
 
-							//Seite koieren
+							//Seite kopieren
 							if( $perm->have_perm(18, 'cat', $tmp_side['idcat']) ) {
-								$tpl_side_values['BUTTON_COPY'] =   "<a href=\"".$sess->url('main.php?area=con_copyside&idcatside='.$tmp_side['idcatside'].'&idcat='.$tmp_side['idcat'])."\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_duplicate.gif\" alt=\"Seite kopieren\" title=\"Seite kopieren\" width=\"16\" height=\"16\" /></a>";
+								$tpl_side_values['BUTTON_COPY'] = make_image_link('main.php?area=con_copyside&idcatside='.$tmp_side['idcatside'].'&idcat='.$tmp_side['idcat'], 'but_duplicate.gif', 'Seite kopieren',  '16', '16','','','#sideanchor');
 							} else {
 								$tpl_side_values['BUTTON_COPY'] = make_image('space.gif', '',  '16', '16');
 							}

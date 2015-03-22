@@ -42,7 +42,6 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 include('inc/fnc.tpl.php');
 include('inc/fnc.mipforms.php');
 include('inc/fnc.mod_rewrite.php');
-
 /**
  * 2. Eventuelle Actions/ Funktionen abarbeiten
  */
@@ -86,6 +85,7 @@ switch($action) {
                                        , $author, $title, $meta_keywords, $summary, $online, $user_protected
                                        , $view, $created, $lastmodified, $startdate, $starttime, $enddate, $endtime
                                        , $meta_author, $meta_description, $meta_robots, $meta_redirect_time
+                                       , $metasocial_title,$metasocial_image,$metasocial_description,$metasocial_author
                                        , $meta_redirect, $meta_redirect_url, $rewrite_use_automatic, $rewrite_url
                                        , $idlay, $use_redirect);
 		if ( isset($_REQUEST['sf_apply']) ) {
@@ -99,6 +99,74 @@ switch($action) {
 		$cconfig = tpl_change($idlay);
 		break;
 }
+function type_config_string_to_array($string)
+{
+    if (! empty($string) && $string != 'true' && $string != 'false') {
+        if (substr($string, 0, 1) == ',') {
+            $string = substr($string, 1);
+        } 
+    } else {
+        return array();
+    } 
+
+    $string = str_replace(' ', '', $string);
+    $arr = explode(',', $string);
+    foreach($arr AS $k => $v) {
+        if ($v == '') {
+            unset($arr[$k]);
+        } 
+    } 
+
+    return $arr;
+}
+function showRB($content){
+	global $db, $cms_db, $cms_lang, $client, $cfg_client; 
+    // Standardfiletypes laden, wenn keine anderen angegeben, defaults laden
+    $ft = strtolower(trim($type_config['filetypes']));
+    $filetypes = (empty($ft) || $ft == 'true') ? 'jpg,jpeg,gif,png': $ft;
+    $formname="editform";
+    $match = array();
+    $pathway_string = '';
+	$rb = $GLOBALS['sf_factory']->getObjectForced('GUI', 'RessourceBrowser');
+
+    $res_file = $GLOBALS['sf_factory']->getObjectForced('GUI/RESSOURCES', 'FileManager');
+    $res_file->setFiletypes(type_config_string_to_array($filetypes));
+    $res_file->setFolderIds(type_config_string_to_array($type_config['folders']));
+    $res_file->setWithSubfoders(($type_config['subfolders'] != 'false'));
+    #$res_file->setReturnValueMode('sefrengolink');
+
+    $rb->addRessource($res_file);
+    $rb->setJSCallbackFunction('sf_getImage' . $formname, array('picked_name', 'picked_value'));
+    $rb_url = $rb->exportConfigURL();
+ 
+ 	if($content==""){
+		$preview=$cfg_client['space']; 
+	}else{
+	    $preview=$content;
+	}
+
+    $out .= '<table style="height:' . ($cfg_client['thumb_size'] + 20) . 'px"><tr>
+<td style="background-color:#efefef;border:1px solid black;text-align:center;vertical-align:middle;width:' . ($cfg_client['thumb_size'] + 20) . 'px;">
+<img id="' . $formname . '" src="' . $preview . '"  border="0" width="100" />
+</td><td valign="bottom">';
+
+    $out .= "<input type=\"hidden\" name=\"metasocial_image\" value=\"$content\"><input type=\"text\" name=\"metasocial_imagedisplay\" readonly=\"readonly\" value=\"" . $content . "\" style=\"width:180px\" >\n";
+    $out .= "<input type='button' value='DEL' onclick=\"sf_getImage" . $formname . "('', '');\" />";
+    $out .= "&nbsp;<input type='button' value='...' onclick=\"new_window('$rb_url', 'rb', '', screen.width * 0.7, screen.height * 0.7, 'true')\" />";
+    $out .= '</td></tr></table>' . "\n";
+    $out .= '<script type="text/javascript">
+	<!--
+	function sf_getImage' . $formname . '(name, value) {
+		editcontent.metasocial_image.value= value;
+		editcontent.metasocial_imagedisplay.value= name;
+		sf_loadPreviewPic("' . $cfg_client['upl_htmlpath'] . '"+name, "' . $cfg_client['thumbext'] . '", "' . $formname . '");
+
+	}
+	-->
+	</script>';
+    return $out;
+}
+
 
 /**
  * 3. Eventuelle Dateien zur Darstellung includieren
@@ -121,6 +189,7 @@ else {
 	echo "</head>\n";
 	echo "<body id=\"con-edit2\">\n";
 }
+
 
 
 if ((!$action && $idside) || isset($_REQUEST['sf_apply']) && ! $sf_is_rewrite_error) {
@@ -149,6 +218,17 @@ if ((!$action && $idside) || isset($_REQUEST['sf_apply']) && ! $sf_is_rewrite_er
 	$meta_description = htmlentities($db->f('meta_description'), ENT_COMPAT, 'UTF-8');
 	$meta_keywords = htmlentities($db->f('meta_keywords'), ENT_COMPAT, 'UTF-8');
 	$meta_robots = $db->f('meta_robots');
+	/*
+	*   Start Social-Addon by screengarden.de
+	*/
+	$metasocial_title= htmlentities($db->f('metasocial_title'), ENT_COMPAT, 'UTF-8');
+	$metasocial_image= htmlentities($db->f('metasocial_image'), ENT_COMPAT, 'UTF-8');
+	$metasocial_description= htmlentities($db->f('metasocial_description'), ENT_COMPAT, 'UTF-8');
+	$metasocial_author= htmlentities($db->f('metasocial_author'), ENT_COMPAT, 'UTF-8'); 
+	/*
+	*   End Social-Addon by screengarden.de
+	*/
+	
 	$meta_redirect = ($db->f('meta_redirect') == '1') ? ' checked' : '';
 	$meta_robots_time = $db->f('meta_robots_time');
 	$meta_redirect_url = ($db->f('meta_redirect_url') != '') ? $db->f('meta_redirect_url') : 'http://';
@@ -172,6 +252,16 @@ if ((!$action && $idside) || isset($_REQUEST['sf_apply']) && ! $sf_is_rewrite_er
 	$meta_description = htmlentities($cfg_lang['meta_description'], ENT_COMPAT, 'UTF-8');
 	$meta_keywords = htmlentities($cfg_lang['meta_keywords'], ENT_COMPAT, 'UTF-8');
 	$meta_robots = htmlentities($cfg_lang['meta_robots'], ENT_COMPAT, 'UTF-8');
+	/*
+	*   Start Social-Addon by screengarden.de
+	*/
+	$metasocial_title= "";
+	$metasocial_image= "";
+	$metasocial_description=$meta_description;
+	$metasocial_author= $meta_author; 
+	/*
+	*   End Social-Addon by screengarden.de
+	*/
 	$meta_redirect_url = 'http://';
 	$rewrite_use_automatic = 1;
 	$rewrite_url    = '';
@@ -366,6 +456,22 @@ if ($have_meta_perm) {
 	$tpl_data['META_AUTHOR'] = $meta_author;
 	$tpl_data['META_ROBOTS'] = $html_robots;
 	$tpl_data['LANG_META_REDIRECT'] = $cms_lang['con_metaredirect'];
+	/*
+	*   Start Social-Addon by screengarden.de
+	*/	
+	$tpl_data['LANG_META_SOCIAL'] = $cms_lang['con_metasocial'];
+	$tpl_data['LANG_META_SOCIAL_TITLE'] = $cms_lang['con_metasocial_title'];
+	$tpl_data['LANG_META_SOCIAL_IMAGE'] = $cms_lang['con_metasocial_image'];
+	$tpl_data['LANG_META_SOCIAL_DESCRIPTION'] = $cms_lang['con_metasocial_description'];
+	$tpl_data['LANG_META_SOCIAL_AUTHOR'] = $cms_lang['con_metaauthor']; 
+	
+	$tpl_data['META_SOCIAL_TITLE'] = $metasocial_title;
+	$tpl_data['META_SOCIAL_IMAGE'] = showRB($metasocial_image);
+	$tpl_data['META_SOCIAL_DESCRIPTION'] = $metasocial_description;
+	$tpl_data['META_SOCIAL_AUTHOR'] = $metasocial_author; 
+	/*
+	*   End Social-Addon by screengarden.de
+	*/
 	$tpl_data['META_REDIRECT'] = $meta_redirect;
 	$tpl_data['META_REDIRECT_URL'] = $meta_redirect_url;
 	$tpl->setVariable($tpl_data);
@@ -452,7 +558,7 @@ if ($have_enter_tpl_perm) {
 		$db->next_record();
 		$idlay = $db->f('idlay');
 	}
-	echo "        <option value=\"0\" selected=\"selected\">Ordnertemplate</option>";
+	echo "        <option value=\"0\" selected=\"selected\">Ordnertemplate</option>";  //fehlender Textbaustein
 
 	// Templates Auflisten
 	$sql = "SELECT idtpl, name FROM $cms_db[tpl] WHERE idclient='$client' ORDER BY name";

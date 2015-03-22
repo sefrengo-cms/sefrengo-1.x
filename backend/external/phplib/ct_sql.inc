@@ -136,7 +136,7 @@ class CT_Sql {
 	global $cms_db;
     $this->db->query(sprintf("select val from %s where sid  = '%s' and name = '%s'",
       $cms_db['sessions'],
-      $id,
+      addslashes($id),
       addslashes($name)));
     if ($this->db->next_record()) {
       $str  = $this->db->f("val");

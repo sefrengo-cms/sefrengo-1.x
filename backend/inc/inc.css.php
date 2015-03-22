@@ -148,26 +148,27 @@ if ($idclient != 0) {
 			$tmp['ENTRY_IMEXPORT']   = make_image_link2 ( '#', 'space.gif', '', 16, 16, '', '', '', 'action', '', '', '', 'action' );
 
 			// button: expand css-file
-			if ($_idcssfile == $idexpand)
-				$tmp['ENTRY_SHOWDETAIL'] = make_image_link2 ("main.php?area=css&idclient=$idclient", 'but_minus.gif', $cms_lang['css_hiderules'], '16', '16', '', '', '', 'action', 'showthis');
-			else
-				$tmp['ENTRY_SHOWDETAIL'] = make_image_link2 ("main.php?area=css&idexpand=".$_idcssfile."&idclient=$idclient", 'but_plus.gif', $cms_lang['css_showrules'], '16', '16', '', '', '', 'action', 'showthis');
-			
+			if(isUrl($db->f('filename'))==false){
+				if ($_idcssfile == $idexpand)
+					$tmp['ENTRY_SHOWDETAIL'] = make_image_link2 ("main.php?area=css&idclient=$idclient", 'but_minus.gif', $cms_lang['css_hiderules'], '16', '16', '', '', '', 'action', 'showthis');
+				else
+					$tmp['ENTRY_SHOWDETAIL'] = make_image_link2 ("main.php?area=css&idexpand=".$_idcssfile."&idclient=$idclient", 'but_plus.gif', $cms_lang['css_showrules'], '16', '16', '', '', '', 'action', 'showthis');
+			}
 			$tmp['ENTRY_ICON'] = make_image('ressource_browser/icons/rb_typ_css.gif', '', '16', '16', false, 'class="icon"');
 			
 			// button: new css-rule
-			if ($perm->have_perm('18', 'css_file', $_idcssfile)) 
+			if ($perm->have_perm('18', 'css_file', $_idcssfile)&&isUrl($db->f('filename'))==false) 
 				$tmp['ENTRY_NEW'] = make_image_link2 ("main.php?area=css_edit&idcssfile=".$_idcssfile."&idcss=0&idclient=$idclient", 'but_newstyle.gif', $cms_lang['css_new'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 
 			// button: download css-file
-			if ($perm->have_perm('8', 'css_file', $_idcssfile)) {
+			if ($perm->have_perm('8', 'css_file', $_idcssfile)&&isUrl($db->f('filename'))==false) {
 				$tmp['ENTRY_DOWNLOAD'] = make_image_link2 ("main.php?area=css&action=downloadfile&idcssfile=".$_idcssfile."&idclient=$idclient&idexpand=$idexpand", 'but_download.gif', $cms_lang['css_file_download'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 			}
-			if ($perm->have_perm('3', 'css_file', $_idcssfile)) {
+			if ($perm->have_perm('3', 'css_file', $_idcssfile)&&isUrl($db->f('filename'))==false) {
 			// button: edit css-file
 				$tmp['ENTRY_EDIT'] = make_image_link2 ("main.php?area=css_edit_file&idcssfile=".$_idcssfile."&idclient=$idclient&idexpand=$idexpand", 'but_edit.gif', $cms_lang['css_file_edit'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 				// button: duplicate css-file, benötigt zusätzlich create rechte
-			if ($perm->have_perm('2', 'area_css')) {
+			if ($perm->have_perm('2', 'area_css')&&isUrl($db->f('filename'))==false) {
 				$tmp['ENTRY_DUPLICATE'] = make_image_link2 ("main.php?area=css_edit_file&idcssfilecopy=".$_idcssfile."&idclient=$idclient&idexpand=$idexpand", 'but_duplicate.gif', $cms_lang['css_file_duplicate'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 				}
 			}
@@ -176,7 +177,7 @@ if ($idclient != 0) {
 				$tmp['ENTRY_DELBUT'] = make_image_link2 ("main.php?area=css&action=50&idexpand=$idexpand&idcssfile=".$_idcssfile."&idclient=$idclient", 'but_deleteside.gif', $cms_lang['css_file_delete'], '16', '16', '', '', '', 'action', 'deletethis', '', '', 'action');
 			}
 			// button: import css-rules
-			if ($perm->have_perm('29', 'css_file', $_idcssfile)) {
+			if ($perm->have_perm('29', 'css_file', $_idcssfile)&&isUrl($db->f('filename'))==false) {
 				$tmp['ENTRY_IMEXPORT'] = make_image_link2 ("main.php?area=css&idcssfile=".$_idcssfile."&idclient=0&idexpand=$idexpand", 'import.gif', $cms_lang['css_import'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 			}
 

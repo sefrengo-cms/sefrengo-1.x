@@ -49,8 +49,10 @@ if (defined('E_STRICT'))
 	$error_reporting &= ~E_STRICT;
 }
 error_reporting ($error_reporting);
+
+
 // error_reporting (E_ALL);
-// Flag für Windows-Systeme, um auf Windows nicht existierende Befehle zu blocken
+// Flag fÃ¼r Windows-Systeme, um auf Windows nicht existierende Befehle zu blocken
 $is_win =  strtoupper(substr(PHP_OS, 0, 3) == 'WIN');
 
 // alle GET, POST und COOKIE wegen Globals_off parsen
@@ -63,7 +65,7 @@ foreach ($types_to_register as $global_type) {
 		$arr = @${'_'.$global_type};
                 if (@count($arr) > 0) extract($arr, EXTR_OVERWRITE);
         }
-}
+} 
 $cfg_cms = '';$cfg_client ='';
 
 $sefrengo = ( empty($sefrengo) ) ? $_COOKIE['sefrengo']: $sefrengo;
@@ -76,7 +78,7 @@ if (! is_file($this_dir.'inc/config.php')) {
 }
 
 // check numeric vars to prevent SQL injection errors
-$numeric_vars = array('idclient','idlang','idbackendmenu','idcatlang','idcat','idcatside','iduser','idtpl','idtplconf','parent','rootparent','sortindex','idlay','author','visible','idside','is_start','idclientslang','idcode','idcontainer','idmod','idplug','idcontainerconf','idcontent','idsidelang','idtype','container','number','online','idcss','idcssupl','idupl','iddirectory','parentid','idfiletype','idgroup','idjs','idlang','is_start','idlayupl','idperm','idrepository','idside','idtracker','user_id','idvalues','idval','u_g_id','value_id');
+$numeric_vars = array('idclient','cid','page','idlang','idexpandshort','idbackendmenu','idcatlang','idcat','idcatside','iduser','idtpl','idtplconf','parent','rootparent','sortindex','idlay','author','visible','idside','is_start','idclientslang','idcode','idcontainer','idmod','idplug','idcontainerconf','idcontent','idsidelang','idtype','container','number','online','idcss','idcssupl','idupl','iddirectory','parentid','idfiletype','idgroup','idjs','idlang','is_start','idlayupl','idperm','idrepository','idside','idtracker','user_id','idvalues','idval','u_g_id','value_id');
 
 foreach($numeric_vars as $varname) {
 	if(isset($$varname) && !(empty($$varname) || is_numeric($$varname))) {
@@ -85,6 +87,14 @@ foreach($numeric_vars as $varname) {
 	}
 }
 
+// check the non-numeric vars to prevent SQL injection errors
+$nonnumeric_vars = array('action','area','collapse','idexpand','ascdesc','order','searchterm','viewtype');
+
+foreach($nonnumeric_vars as $varname) {
+	if(isset($$varname) && !empty($$varname)) {
+		$$varname = htmlspecialchars($$varname, ENT_QUOTES);
+	}
+}
 require_once ($this_dir.'inc/config.php');
 //Load API
 require_once ($this_dir.'API/inc.apiLoader.php');
@@ -157,7 +167,7 @@ $val_ct->values_ct();
 if (isset($area)) $sid_area = $area;
 else $area = $sid_area;
 
-// Wenn area nicht erlaubt ist, redirecten auf erlaubte area, wenn möglich
+// Wenn area nicht erlaubt ist, redirecten auf erlaubte area, wenn mÃ¶glich
 $pos = strpos($area, '_');
 $allowed_area = (!$pos) ? $area: substr( $area, 0, $pos );
 if( !$perm->have_perm('area_'. $allowed_area) && $area != 'logout' && $area != 'plugin'){
@@ -172,11 +182,11 @@ if( !$perm->have_perm('area_'. $allowed_area) && $area != 'logout' && $area != '
 $lang_dir = $this_dir.'tpl/'.$cfg_cms['skin'].'/lang/'.$cfg_cms['backend_lang'].'/';
 $lang_defdir = $this_dir.'tpl/standard/lang/deutsch/';
 require_once( ( file_exists($lang_dir.'lang_general.php') ? $lang_dir: $lang_defdir ) .'lang_general.php');
-// Sprachdatei für Area einlesen
+// Sprachdatei fÃ¼r Area einlesen
 if (file_exists ($lang_dir."lang_$area.php")) {
 	include_once($lang_dir."lang_$area.php");
 } else {
-	$deb -> collect('Fehlt: Sprachdatei für Area: ' . $area);
+	$deb -> collect('Fehlt: Sprachdatei fÃ¼r Area: ' . $area);
 	if (file_exists ($lang_defdir."lang_$area.php")) {
 		include_once($lang_defdir."lang_$area.php");
 	}
@@ -185,7 +195,7 @@ if (file_exists ($lang_dir."lang_$area.php")) {
 //todo: 2remove
 $dedi_lang =& $cms_lang;
 
-// Rechte überprüfen
+// Rechte Ã¼berprÃ¼fen
 $cfg_client = $val_ct -> get_by_group('cfg_client', $client);
 $deb -> collect('Projekt Id: ' . $client);
 $deb -> collect('Lang Id: '    . $lang);
@@ -198,8 +208,10 @@ $rep        = new repository;
 // Run init Plugins
 if ( $cfg_rep['repository_init_plugins'] ) $rep->init_plugins();
 
-// Area wählen
-include("inc/inc.$area.php");
+// Area wÃ¤hlen
+if(@!include("inc/inc.".preg_replace('/[^a-zA-Z0-9_-]/','',$area).".php")){
+ 	die("Stop. Maybe XSS?");
+};
 
 // Template ausspucken
 $tpl->show();
@@ -210,7 +222,7 @@ $output = ob_get_contents();
 ob_end_clean();
 $output .= $deb -> show();
 
-//eventuelle autostarts ausführen:
+//eventuelle autostarts ausfÃ¼hren:
 if (is_array($cfg_cms['autostart']['backend'])) {
 	foreach($cfg_cms['autostart']['backend'] as $value) include_once $cfg_cms['cms_path'] .'plugins/'. $value;
 }

@@ -1,6 +1,47 @@
 Changelog
 ================================================================================================
 
+Sefrengo v1.6.4
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.04<br/>
+Release: 03.03.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.4>
+
+Commits are contributed by @screengarden (sidd)
+* FIXED: Multi-Domain & Underscore - Fix 
+* FIXED: Filemanager fix
+
+
+
+Sefrengo v1.6.3
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.03<br/>
+Release: 04.02.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.3>
+
+Commits are contributed by @screengarden (sidd)
+* FIXED: Language-Fix for Sortable Css/JS
+* FIXED: SQL-Injection-Fix
+* FIXED: XSS-FIX
+* FIXED: PNG-Alpha Fix
+* FIXED: SQL-Injections & XSS fixes laut Protokoll
+
+
+
+Sefrengo v1.6.2
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.02<br/>
+Release: 25.01.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6.2>
+
+* FIXED: Escaped strings for session ids and name
+* ADDED: Sortable CSS and JS files for layouts (thanks to sidd)
+
+
+
 Sefrengo v1.6.1
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.06.01<br/>

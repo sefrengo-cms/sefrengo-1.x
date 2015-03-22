@@ -796,6 +796,11 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 		$meta_redirect_url = make_string_dump($db3->f('meta_redirect_url'));
 		$rewrite_url = make_string_dump($db3->f('rewrite_url'));
 		
+		$metasocial_title = make_string_dump($db3->f('metasocial_title'));
+		$metasocial_image = make_string_dump($db3->f('metasocial_image'));
+		$metasocial_description = make_string_dump($db3->f('metasocial_description'));
+		$metasocial_author = make_string_dump($db3->f('metasocial_author'));
+		
 		//get the stat
 		$online = ((int) $db3->f('online') & 0xFF);
 
@@ -831,11 +836,13 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 						meta_redirect, meta_redirect_url, author, 
 						created, lastmodified, user_protected, visited, edit_ttl, 
 						meta_author, meta_description, meta_robots, meta_redirect_time,
+						,metasocial_title,metasocial_image,metasocial_description,metasocial_author
 						rewrite_use_automatic, rewrite_url, start, end) 
 				VALUES ('".$idside_to."', '$idlang', '0', '$title', '$meta_keywords', '$summary', '$online',
 					 '".$db3->f('meta_redirect')."', '$meta_redirect_url', '".$db3->f('author')."', 
 					'".time()."', '".time()."', '".$db3->f('user_protected')."', '".$db3->f('visited')."', '".$db3->f('edit_ttl')."', 
 					'$meta_author', '$meta_description', '$meta_robots', '".$db3->f('meta_redirect_time')."',
+					 '".$db->f('metasocial_title')."', '".$db->f('metasocial_image')."', '".$db->f('metasocial_description')."', '".$db->f('metasocial_author')."',
 					'1', '$rewrite_url', ".time().", ".time().")";
 		$db2->query($sql2);
 	}

@@ -175,13 +175,13 @@ class values_ct
 		//build query
 
 		$sql_group = (empty($mixed['group'])) ? 0: ''.$mixed['group'];
-		$sql_client = (empty($mixed['client'])) ? '': 'AND idclient IN ('. $mixed['client'] .')';
-		$sql_lang = (empty($mixed['lang'])) ? '': 'AND idlang IN ('. $mixed['lang'] .')';
+		$sql_client = (empty($mixed['client'])) ? '': 'AND idclient IN ('. intval($mixed['client']) .')';
+		$sql_lang = (empty($mixed['lang'])) ? '': 'AND idlang IN ('. intval($mixed['lang']) .')';
 		$sql_key = (empty($mixed['key'])) ? '': 'AND V.key1 = "'. $mixed['key'] . '" ';
 		$sql_key2 = (empty($mixed['key2'])) ? '': 'AND V.key2 = "'. $mixed['key2'] . '" ';
 		$sql_key3 = (empty($mixed['key3'])) ? '': 'AND V.key3 = "'. $mixed['key3'] . '" ';
 		$sql_key4 = (empty($mixed['key4'])) ? '': 'AND V.key4 = "'. $mixed['key4'] . '" ';
-		$sql_id = (empty($mixed['id'])) ? "": "AND V.idvalues = '". $mixed['id'] . "' ";
+		$sql_id = (empty($mixed['id'])) ? "": "AND V.idvalues = '". intval($mixed['id']) . "' ";
 
 
 		$sql = "SELECT 		*

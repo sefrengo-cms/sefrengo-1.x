@@ -250,10 +250,10 @@ if ($db->affected_rows()) {
 }
 ksort($used);
 
-echo "            <td width=\"200\"><b>benutzt</b><br />
+echo "            <td width=\"200\"><b>".$cms_lang['lay_used']."</b><br />
 <ul class=\"csslist connected usedlist list\" style=\"height: 150px; width: 180px;\">".implode("",$used)."</ul>
 </td>
-<td width=\"200\"><b>verfügbar</b>\n
+<td width=\"200\"><b>".$cms_lang['lay_available']."</b>\n
 <ul class=\"csslist connected list no2\" style=\"height: 150px; width: 180px;\">".$notused."</ul>
 <!-- select name=\"css[]\" multiple=\"multiple\" size=\"5\"></select -->\n";
 
@@ -278,10 +278,10 @@ if ($db->affected_rows()) {
 	}
 }
 ksort($used);
-echo "<td width=\"200\"><b>benutzt</b><br />
+echo "<td width=\"200\"><b>".$cms_lang['lay_used']."</b><br />
 <ul class=\"jslist connected usedlist list\" style=\"height: 150px; width: 180px;\">".implode("",$used)."</ul>
 </td>
-<td width=\"200\"><b>verfügbar</b>\n
+<td width=\"200\"><b>".$cms_lang['lay_available']."</b>\n
 <ul class=\"jslist connected list no2\" style=\"height: 150px; width: 180px;\">".$notused."</ul>\n";
 
 echo "            </td>\n";
@@ -291,8 +291,31 @@ echo "      </tr>\n";
 // Quellcode
 echo "      <tr valign=\"top\">\n";
 echo "        <td class=\"head\">".$cms_lang['lay_code']."</td>\n";
-echo "        <td colspan=\"2\"><textarea class=\"w800\" name=\"code\" rows=\"26\" cols=\"52\" wrap=\"off\">$code</textarea></td>\n";
+echo "        <td colspan=\"2\"><textarea class=\"w800\" name=\"code\" id=\"code\" rows=\"26\" cols=\"52\" wrap=\"off\">$code</textarea></td>\n";
 echo "      </tr>\n";
+
+echo '<script src="' . $sess->url($cfg_client['htmlpath'] . 'cms/ckeditor/ckeditor.js') . '"></script>' . "\n
+<script>
+	
+	var sf_BasePath = '" . $cfg_client['htmlpath'] . "cms/ckeditor/';
+	CKEDITOR.replace(
+		'code',
+		{
+			customConfig : sf_BasePath + 'sefrengo/ckconfig.php'
+		}
+	);
+	CKEDITOR.config.toolbarGroups = [];
+	CKEDITOR.config.extraPlugins = 'codemirror';
+	CKEDITOR.config.removePlugins = 'elementspath' ;
+	CKEDITOR.config.resize_enabled = false;
+	CKEDITOR.config.codemirror = {
+		mode: 'htmlmixed'
+	}
+	CKEDITOR.config.startupMode = 'source';
+	CKEDITOR.config.height = '450px';
+	</script>";
+
+
 // Buttons
 
 echo "      <tr>\n";

@@ -115,6 +115,8 @@ $cms_lang['lay_js']					= 'Javascript';
 $cms_lang['lay_nofile']				= 'No files';
 $cms_lang['lay_duplicate']				= 'Publish layout';
 $cms_lang['lay_copy_of']				= 'Copy of ';
+$cms_lang['lay_used']			    = 'used';
+$cms_lang['lay_available']			    = 'available';
 
 $cms_lang['tpl_action']				= 'Action';
 $cms_lang['tpl_actions']['10']			= 'New template';

@@ -5,7 +5,7 @@
 # --------------------------------------------------------
 
 #
-# Tabellenstruktur für Tabelle `cms_values`
+# Tabellenstruktur fÃ¼r Tabelle `cms_values`
 #
 DROP TABLE IF EXISTS cms_values;
 CREATE TABLE `cms_values` (
@@ -35,65 +35,65 @@ CREATE TABLE `cms_values` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4195 ;
 
 #
-# Daten für Tabelle `cms_values`
+# Daten fÃ¼r Tabelle `cms_values`
 #
 
 # css editor regexp und werte
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'word-spacing', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'word-spacing', 'position', '', '', '(?:\\-?öREGEXP0ö)|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'word-spacing', 'position', '', '', '(?:\\-?Ã¶REGEXP0Ã¶)|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'word-spacing', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'word-spacing', 'units', '0', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'width', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'width', 'position', '', '', '(?:öREGEXP0ö)|(?:öREGEXP1ö)|öREGEXP2ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'width', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'width', 'units', '2', '', 'auto', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'width', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'width', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'white-space', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'white-space', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'white-space', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'white-space', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'white-space', 'units', '0', '', 'whitespace', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'vertical-align', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'vertical-align', 'position', '', '', 'öREGEXP0ö|(?:\\-?öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'vertical-align', 'position', '', '', 'Ã¶REGEXP0Ã¶|(?:\\-?Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'vertical-align', 'units', '1', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'vertical-align', 'units', '0', '', 'valign', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-transform', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-transform', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-transform', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-transform', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-indent', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-transform', 'units', '0', '', 'ttrans', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-indent', 'position', '', '', '\\-?(?:(?:öREGEXP0ö)|(?:öREGEXP1ö))', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-indent', 'position', '', '', '\\-?(?:(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶))', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-indent', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-indent', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-decoration', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-decoration', 'position', '', '', '(öREGEXP0ö|öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-decoration', 'position', '', '', '(Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-align', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-decoration', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-decoration', 'units', '0', '', 'tdeco', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-top', 'position', '', '', '(?:öREGEXP0ö)|(?:öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-top', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-top', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'text-align', 'units', '0', '', 'talign', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-right', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-top', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-top', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-right', 'position', '', '', '(?:öREGEXP0ö)|(?:öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-right', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-left', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-right', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-right', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-left', 'position', '', '', '(?:öREGEXP0ö)|(?:öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-left', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-bottom', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-left', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-left', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-bottom', 'position', '', '', '(?:öREGEXP0ö)|(?:öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-bottom', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding', 'flags', '', '', '100', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-bottom', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding-bottom', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding', 'position', '', '', '(?:(?:öREGEXP0ö)|(?:öREGEXP1ö)){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding', 'position', '', '', '(?:(?:Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶)){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'padding', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-top', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-top', 'units', '2', '', 'auto', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-top', 'position', '', '', '(?:(?:\\-?öREGEXP0ö)|(?:\\-?öREGEXP1ö)|öREGEXP2ö){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-right', 'position', '', '', '(?:(?:\\-?öREGEXP0ö)|(?:\\-?öREGEXP1ö)|öREGEXP2ö){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-top', 'position', '', '', '(?:(?:\\-?Ã¶REGEXP0Ã¶)|(?:\\-?Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-right', 'position', '', '', '(?:(?:\\-?Ã¶REGEXP0Ã¶)|(?:\\-?Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-right', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-top', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-top', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -101,22 +101,22 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-right', 'units'
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-right', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-right', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-left', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-left', 'position', '', '', '(?:(?:\\-?öREGEXP0ö)|(?:\\-?öREGEXP1ö)|öREGEXP2ö){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-left', 'position', '', '', '(?:(?:\\-?Ã¶REGEXP0Ã¶)|(?:\\-?Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-left', 'units', '2', '', 'auto', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-left', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-left', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-bottom', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-bottom', 'position', '', '', '(?:(?:\\-?öREGEXP0ö)|(?:\\-?öREGEXP1ö)|öREGEXP2ö){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-bottom', 'position', '', '', '(?:(?:\\-?Ã¶REGEXP0Ã¶)|(?:\\-?Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-bottom', 'units', '2', '', 'auto', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-bottom', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin-bottom', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin', 'flags', '', '', '100', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin', 'position', '', '', '(?:(?:\\-?öREGEXP0ö)|(?:\\-?öREGEXP1ö)|öREGEXP2ö){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin', 'position', '', '', '(?:(?:\\-?Ã¶REGEXP0Ã¶)|(?:\\-?Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin', 'units', '2', '', 'auto', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'margin', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-type', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-type', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-type', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-type', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-position', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-type', 'units', '0', '', 'listtype', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -124,42 +124,42 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-image', 'fl
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-position', 'units', '0', '', 'listpos', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-image', 'units', '0', '', 'url', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-image', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-image', 'position', '', '', '(öREGEXP0ö)|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style-image', 'position', '', '', '(Ã¶REGEXP0Ã¶)|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'flags', '', '', '99', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'units', '2', '', 'listposition', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'units', '3', '', 'listtype', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'position', '', '', '(öREGEXP0ö)|öREGEXP1ö|öREGEXP2ö|öREGEXP3ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'position', '', '', '(Ã¶REGEXP0Ã¶)|Ã¶REGEXP1Ã¶|Ã¶REGEXP2Ã¶|Ã¶REGEXP3Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'list-style', 'units', '0', '', 'url', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'position', '', '', '(öREGEXP0ö)|(öREGEXP1ö)|(öREGEXP2ö)|(öREGEXP3ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'position', '', '', '(Ã¶REGEXP0Ã¶)|(Ã¶REGEXP1Ã¶)|(Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'units', '3', '', 'decimal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'units', '2', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'line-height', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'letter-spacing', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'letter-spacing', 'position', '', '', '(\\-?öREGEXP0ö)|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'letter-spacing', 'position', '', '', '(\\-?Ã¶REGEXP0Ã¶)|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'letter-spacing', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'height', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'letter-spacing', 'units', '0', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'height', 'units', '2', '', 'auto', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'height', 'position', '', '', '(öREGEXP0ö)|(öREGEXP1ö)|öREGEXP2ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'height', 'position', '', '', '(Ã¶REGEXP0Ã¶)|(Ã¶REGEXP1Ã¶)|Ã¶REGEXP2Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-weight', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'height', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'height', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-weight', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-weight', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-variant', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-weight', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-weight', 'units', '0', '', 'fweight', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-variant', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-variant', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-variant', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-variant', 'units', '0', '', 'fvariant', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-style', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-style', 'units', '1', '', 'normal', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-style', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-style', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-size', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-style', 'units', '0', '', 'fstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-size', 'position', '', '', '(öREGEXP0ö)|(öREGEXP1ö)|(öREGEXP2ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-size', 'position', '', '', '(Ã¶REGEXP0Ã¶)|(Ã¶REGEXP1Ã¶)|(Ã¶REGEXP2Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-size', 'units', '2', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-size', 'units', '1', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-size', 'units', '0', '', 'fsize', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -168,25 +168,25 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-family', 'flags',
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font-family', 'units', '0', '', 'string', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'font', 'units', '0', '', 'string', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'float', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'float', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'float', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'float', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'display', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'float', 'units', '0', '', 'float', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'display', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'display', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'display', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'display', 'units', '0', '', 'display', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'color', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'color', 'units', '0', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'clear', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'clear', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'clear', 'position', '', '', 'öREGEXP0ö|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'clear', 'position', '', '', 'Ã¶REGEXP0Ã¶|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'clear', 'units', '0', '', 'clear', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-width', 'position', '', '', '(?:öREGEXP0ö|(?:öREGEXP1ö)){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-width', 'position', '', '', '(?:Ã¶REGEXP0Ã¶|(?:Ã¶REGEXP1Ã¶)){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-width', 'flags', '', '', '116', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-width', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-width', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-width', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-width', 'position', '', '', 'öREGEXP0ö|(öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-width', 'position', '', '', 'Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-width', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-style', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-width', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -196,12 +196,12 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'flags', 
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top-color', 'units', '0', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'units', '2', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'units', '3', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'position', '', '', '(öREGEXP0ö|(öREGEXP1ö))|(öREGEXP2ö)|(öREGEXP3ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'position', '', '', '(Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶))|(Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-style', 'units', '0', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-style', 'flags', '', '', '116', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-top', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-width', 'position', '', '', 'öREGEXP0ö|(öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-width', 'position', '', '', 'Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-width', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-width', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-style', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -210,7 +210,7 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-color', '
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-color', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right-style', 'units', '0', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'flags', '', '', '243', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'position', '', '', '(öREGEXP0ö|(öREGEXP1ö))|(öREGEXP2ö)|(öREGEXP3ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'position', '', '', '(Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶))|(Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'units', '2', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'units', '3', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -218,21 +218,21 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-right', 'units'
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-width', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-width', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-width', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-width', 'position', '', '', 'öREGEXP0ö|(öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-width', 'position', '', '', 'Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-color', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-style', 'units', '0', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-style', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left-color', 'units', '0', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'position', '', '', '(öREGEXP0ö|(öREGEXP1ö))|(öREGEXP2ö)|(öREGEXP3ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'position', '', '', '(Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶))|(Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'flags', '', '', '243', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'units', '3', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'units', '2', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-color', 'flags', '', '', '116', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-left', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-color', 'position', '', '', '(öREGEXP0ö){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-color', 'position', '', '', '(Ã¶REGEXP0Ã¶){1,4}', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-color', 'units', '0', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-width', 'position', '', '', 'öREGEXP0ö|(öREGEXP1ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-width', 'position', '', '', 'Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-width', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-width', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-width', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -241,13 +241,13 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-color', 
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-style', 'units', '0', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom-color', 'units', '0', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'flags', '', '', '243', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'position', '', '', '(öREGEXP0ö|(öREGEXP1ö))|(öREGEXP2ö)|(öREGEXP3ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'position', '', '', '(Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶))|(Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'units', '3', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'units', '2', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border-bottom', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border', 'flags', '', '', '243', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border', 'position', '', '', '(öREGEXP0ö|(öREGEXP1ö))|(öREGEXP2ö)|(öREGEXP3ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border', 'position', '', '', '(Ã¶REGEXP0Ã¶|(Ã¶REGEXP1Ã¶))|(Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border', 'units', '3', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border', 'units', '2', '', 'borderstyle', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'border', 'units', '0', '', 'borderwidth', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -256,21 +256,21 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-repeat', 'u
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-repeat', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-position', 'flags', '', '', '98', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-position', 'units', '2', '', 'bgpos', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-position', 'position', '', '', '(?:(öREGEXP0ö)|(öREGEXP1ö)){1,2}|(öREGEXP2ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-position', 'position', '', '', '(?:(Ã¶REGEXP0Ã¶)|(Ã¶REGEXP1Ã¶)){1,2}|(Ã¶REGEXP2Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-position', 'units', '1', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-position', 'units', '0', '', 'percent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-image', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-image', 'units', '1', '', 'none', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-image', 'position', '', '', '(?:öREGEXP0ö)|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-image', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-color', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-image', 'units', '0', '', 'url', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-color', 'position', '', '', '(?:öREGEXP0ö)|öREGEXP1ö', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-color', 'position', '', '', '(?:Ã¶REGEXP0Ã¶)|Ã¶REGEXP1Ã¶', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-color', 'units', '1', '', 'transparent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-color', 'units', '0', '', 'color', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-attachment', 'flags', '', '', '241', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background-attachment', 'units', '0', '', 'attachment', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background', 'flags', '', '', '102', 0, NULL, NULL, 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background', 'position', '', '', '(öREGEXP0ö)|(?:öREGEXP1ö|öREGEXP2ö)|(öREGEXP3ö)|(öREGEXP4ö)|(öREGEXP5)|(öREGEXP6ö)|(öREGEXP7ö)|(öREGEXP8ö)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background', 'position', '', '', '(Ã¶REGEXP0Ã¶)|(?:Ã¶REGEXP1Ã¶|Ã¶REGEXP2Ã¶)|(Ã¶REGEXP3Ã¶)|(Ã¶REGEXP4Ã¶)|(Ã¶REGEXP5)|(Ã¶REGEXP6Ã¶)|(Ã¶REGEXP7Ã¶)|(Ã¶REGEXP8Ã¶)', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background', 'units', '7', '', 'bgpos', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background', 'units', '8', '', 'transparent', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_elements', 'background', 'units', '6', '', 'length', 0, NULL, NULL, 'txt', NULL, NULL, 0);
@@ -321,7 +321,7 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'css_units', 'auto', 'v', '', '', 'auto
 INSERT INTO cms_values VALUES ('', 0, 0, 'css_units', 'attachment', 'v', '', '', 'fixed|scroll', 0, NULL, NULL, 'txt', NULL, NULL, 0);
 
 # cms config
-INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'version', '', '', '', '01.06.01', '0', NULL, NULL, '', NULL, NULL, '0');
+INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'version', '', '', '', '01.06.05', '0', NULL, NULL, '', NULL, NULL, '0');
 
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'cms_path', NULL, NULL, NULL, '<!--{cms_path}-->backend/', 100, 'set_cms_path', NULL, 'txt', NULL, NULL, '1');
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'cms_html_path', NULL, NULL, NULL, '<!--{cms_full_http_path}-->backend/', 101, 'set_html_path', NULL, 'txt', NULL, NULL, '1');
@@ -345,7 +345,7 @@ INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'session_backend_lifetime', '', 
 
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'repository_enabled', '', '', '', '0', 600, 'set_repository_enabled', 'set_repository', 'txt', NULL, NULL, 0);
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'repository_auto_version', '', '', '', '1', 610, 'set_repository_auto_version', '', 'txt', NULL, NULL, 0);
-INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'trouble_chars', '', '', '', 'äöüßéèáà<>|+', 0, 'set_trouble_chars', 'set_filemanager', 'txt', NULL, NULL, 0);
+INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'trouble_chars', '', '', '', 'Ã¤Ã¶Ã¼ÃŸÃ©Ã¨Ã¡Ã <>|+', 0, 'set_trouble_chars', 'set_filemanager', 'txt', NULL, NULL, 0);
 
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'db_cache_enabled', '', '', '', '1', 800, 'set_db_cache_enabled', 'set_db_cache', 'txt', NULL, NULL, 1);
 INSERT INTO cms_values VALUES ('', 0, 0, 'cfg', 'db_cache_name', '', '', '', 'db_cache', 805, 'set_db_cache_name', NULL, 'txt', NULL, NULL, 0);

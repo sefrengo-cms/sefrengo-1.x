@@ -213,12 +213,12 @@ function set_filedata($db, $imorexport, $idclient) {
 	$tmp['ENTRY_IMEXPORT']  = make_image_link2($url = '#', $image = 'space.gif', '', '16', '16', '', '', '', 'action', '', '', '', 'action');
 
 	// button: download js-file - wenn nicht im import
-	if (!empty($idclient) && $perm->have_perm(8, $test_type, $test_id)) {
+	if (!empty($idclient) && $perm->have_perm(8, $test_type, $test_id)&&isUrl($db->f('filename'))==false) {
 		$tmp['ENTRY_DOWNLOAD'] = make_image_link2 ("main.php?area=js&action=downloadfile&idjsfile=".$db->f('idupl')."&idclient=$idclient", 'but_download.gif', $cms_lang['js_file_download'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 	}
   
 	// buttons: edit, copy, 
-	if ((!empty($idjs) && $perm->have_perm(3, $test_type, $test_id)) || (empty($idclient) && $perm->have_perm(3, $test_type, $test_id))) {
+	if ((!empty($idjs) && $perm->have_perm(3, $test_type, $test_id)&&isUrl($db->f('filename'))==false) || (empty($idclient) && $perm->have_perm(3, $test_type, $test_id)&&isUrl($db->f('filename'))==false)) {
 		// button: edit js-file
 		$tmp['ENTRY_EDIT']   = make_image_link2 ("main.php?area=js_edit_file&idjsfile=".$idjs."&idclient=$idclient", 'but_edit.gif', $cms_lang['js_file_edit'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 		// button: duplicate js-file -- benötigt auch Neu-Anlegen-Rechte
@@ -232,7 +232,7 @@ function set_filedata($db, $imorexport, $idclient) {
   
 	// button: export js-file
 	$rights_okay = ($imorexport == 'import') ? $perm->have_perm(13, $test_type, $test_id): $perm->have_perm(14, $test_type, $test_id);
-	if ($rights_okay && !empty($idjs) ) {
+	if ($rights_okay && !empty($idjs)&&isUrl($db->f('filename'))==false ) {
 		$upl = ($imorexport == 'import') ? '&idupl='.$db->f('idupl'): '';
 		$tmp['ENTRY_IMEXPORT']= make_image_link2 ("main.php?area=js&action=".$imorexport."&idjsfile=".$idjs.$upl."&idclient=$idclient", $imorexport.'.gif', $cms_lang['js_'.$imorexport], '16', '16', '', '', '', 'action', '', '', '', 'action');
 	}
