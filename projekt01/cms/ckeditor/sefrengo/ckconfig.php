@@ -108,7 +108,19 @@ CKEDITOR.editorConfig = function( config ) {
     config.fullPage = false;
     config.extraPlugins = 'colorbutton,find,font,justify,maximize,newpage,preview,print,sourcearea';
     
-    config.protectedSource.push( /<script[\s\S]*?\/script>/gi ); // <SCRIPT> tags.
+	// Advanced Content Filter (ACF) since http://ckeditor.com/blog/CKEditor-4.1-Released
+	// Allow all HTML tags
+	config.allowedContent = {
+		$1: {
+			// Use the ability to specify elements as an object.
+			elements: CKEDITOR.dtd,
+			attributes: true,
+			styles: true,
+			classes: true
+		}
+	};
+	// Disallow script and attributes starting with 'on'
+	config.disallowedContent = 'script; *[on*]';
     
     config.toolbar_SefrengoDefault =
     [
