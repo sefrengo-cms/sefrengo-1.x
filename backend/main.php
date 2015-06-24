@@ -114,6 +114,7 @@ include_once ($this_dir.'inc/class.repository.php');
 // Klassen initialisieren
 $deb = new cms_debug;
 $db = new DB_cms;
+$adb =& sf_factoryGetObject('DATABASE', 'Ado');
 $db_query = new querybuilder_factory();
 $db_query = $db_query -> get_db($db, 'cms_db', $this_dir.'inc/');
 $val_ct = new values_ct();
