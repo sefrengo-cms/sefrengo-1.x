@@ -32,25 +32,23 @@
 // +----------------------------------------------------------------------+
 
 function group_set_active($is_active) {
-	global $db, $cms_db, $idgroup;
-
-	$sql = "UPDATE ".$cms_db['groups']." SET is_active='$is_active' WHERE idgroup='$idgroup'";
-	$db->query($sql);
+	global $adb, $cms_db, $idgroup;
+	$adb->AutoExecute($cms_db['groups'], array('is_active' => (bool)$is_active), 'UPDATE', "idgroup = ".(int)$idgroup);
 }
 
 function group_delete() {
-	global $db, $cms_db, $idgroup, $perm;
+	global $adb, $cms_db, $idgroup, $perm;
 
-	// Systemadmin kann nicht gelöscht werden
+	// Systemadmin kann nicht gelï¿½scht werden
 	if ($idgroup >= 3) {
-		$sql = "DELETE FROM ".$cms_db['groups']." WHERE idgroup='$idgroup'";
-		$db->query($sql);
+		$sql = "DELETE FROM ".$cms_db['groups']." WHERE idgroup=?";
+		$adb->Execute($sql, array($idgroup));
 		$perm->delete_perms_by_group($idgroup, '-1');
 	}
 }
 
 function group_save() {
-	global $cms_db, $db, $idgroup, $name, $description, $oldname;
+	global $cms_db, $adb, $idgroup, $name, $description, $oldname;
 
 	// Kein Gruppenname
 	if (trim($name) == '') return 'group_noname';
@@ -58,57 +56,62 @@ function group_save() {
 	// keine Sonderzeichen in Gruppenname
 	if (!eregi("[0-9a-zA-Z]", $name)) return 'group_incorrectcharacter';
 
-	// Username auf Existenz prüfen
+	// check existency
 	if ($name != $oldname) {
-		$sql = "SELECT idgroup, name FROM ".$cms_db['groups']." WHERE name='$name' LIMIT 0, 1";
-		$db->query($sql);
-		if ($db->next_record()){
-			if($db->f('idgroup') != $idgroup ) 
+		$sql = "SELECT idgroup FROM ".$cms_db['groups']." WHERE name=? LIMIT 0, 1";
+		$rs = $adb->Execute($sql, array($name));
+		while (!$rs->EOF) {
+			if($rs->fields['idgroup'] != $idgroup)
 				return 'group_existname';
+			$rs->MoveNext();
 		}
+		$rs->Close();
 	}
+	$record = array('name' => $name, 'description' => $description);
 	if ($idgroup != '') {
-		$sql = "UPDATE ".$cms_db['groups']." SET name='$name', description='$description' WHERE idgroup ='$idgroup'";
-		$db->query($sql);
+		$adb->AutoExecute($cms_db['groups'], $record, 'UPDATE', "idgroup = ".$idgroup);
 	}
 	else {
-		$sql = "INSERT INTO ". $cms_db['groups'] ." VALUES ('', '$name', '$description', '0', '1', '1')";
-		$db->query($sql);
-		$idgroup = mysql_insert_id();
+		$record['is_sys_admin'] = 0;
+		$record['is_active'] = 1;
+		$record['is_deletable'] = 1;
+		$adb->AutoExecute($cms_db['groups'], $record, 'INSERT');
+		$idgroup = $adb->Insert_ID();
 	}
 }
 
-// jb_todo: workflow check, wegen löschen der rechte
+// jb_todo: workflow check, wegen lï¿½schen der rechte
 function group_visible_lang() {
-	global $cms_db, $db, $idgroup, $idlang, $perm;
+	global $cms_db, $adb, $idgroup, $idlang, $perm;
 
-	// Gruppe suchen
-	$sql = "SELECT idgroup FROM ".$cms_db['perms']." WHERE idgroup='$idgroup' AND type = 'lang' AND id='$idlang' LIMIT 0, 1";
-	$db->query($sql);
+	// group look up
+	$sql = "SELECT idgroup FROM ".$cms_db['perms']." WHERE idgroup=? AND type=? AND id=? LIMIT 0, 1";
+	$rs = $adb->Execute($sql, array($idgroup, 'lang', $idlang));
 
-	// Rechte löschen/eintragen
-	if ($db->affected_rows()) {
+	// add or delete perms
+	if ($rs === FALSE || $rs->EOF) {
+		$perm->new_perm( $idgroup, 'lang', $idlang, 1, 0);
+	} else {
 		$perm->delete_perms_by_group($idgroup, $idlang);
 		$perm->delete_perms($idlang, 'lang', $idgroup);
-	} else {
-		$perm->new_perm( $idgroup, 'lang', $idlang, 1, 0);
 	}
+	$rs->Close();
 }
 
 function reindex_sort() {
-	global $ssort, $db, $cms_db, $reindex;
+	global $ssort, $adb, $cms_db, $reindex;
 
 	foreach (array_keys($reindex) as $kat) {
 		ksort($ssort[$kat]);
 		$index = 0;
 		foreach ($ssort[$kat] as $idcatside) {
 			$index++;
-			$sql = "UPDATE $cms_db[cat_side] SET sortindex=$index WHERE idcatside = $idcatside";
-			$db->query($sql);
+			$sql = "UPDATE ".$cms_db['cat_side']." SET sortindex=? WHERE idcatside=?;";
+			$adb->Execute($sql, array($index, $idcatside));
 		}
 	}
 
-	// Navigationstree aus Cache löschen
+	// Navigationstree aus Cache lï¿½schen
 	sf_factoryCallMethod('UTILS', 'DbCache', null, null, 'flushByGroup', array('frontend', 'tree'));
 }
 
@@ -117,14 +120,13 @@ function reindex_sort() {
 //
 
 function group_reset_existing_perms($idgroup, $idlang, $types_to_clean) {
-	global $cms_db;
+	global $cms_db, $adb;
 	
 	$idgroup = (int) $idgroup;
 	$idlang = (int) $idlang;
 	if ($idgroup < 1 || $idlang < 1 || ! is_array($types_to_clean)) {
 		return false;
 	}
-	$db =& sf_factoryGetObject('DATABASE', 'Ado');
 	foreach ($types_to_clean AS $k => $v) {
 		$types_to_clean[$k] = addslashes($v);
 	}
@@ -132,22 +134,21 @@ function group_reset_existing_perms($idgroup, $idlang, $types_to_clean) {
 	$sql = "DELETE FROM 
 				".$cms_db['perms']."
 			WHERE 
-				idgroup = '$idgroup'
-				AND idlang = '$idlang'
+				idgroup = ?
+				AND idlang = ?
 				AND type IN ($types)
 				AND id != '0'";
-	$db->Execute($sql);
-	
-	return true;	
+	$adb->Execute($sql, array($idgroup, $idlang));
+	return true;
 }
 
 function group_save_perms() {
-	global $perm, $cms_perm_val, $db, $cms_db, $idgroup, $idlang, $val_ct, $deb, $val_ct;
+	global $cms_perm_val, $adb, $cms_db, $idgroup, $idlang, $val_ct;
 
 	$array      = $cms_perm_val['cms_access'];
 	
 	//print_r($sf_overwrite_existing_perms);
-	//rechte zurücksetzen
+	//rechte zurï¿½cksetzen
 	$overwrite_existing_perms = $_POST['sf_overwrite_existing_perms'];
 	if (is_array($overwrite_existing_perms)) {
 		$perm_meta = $val_ct->get_by_group('user_perms');
@@ -169,18 +170,19 @@ function group_save_perms() {
 	// zuerst cms_access und bereiche speichern
 	$sql_array = array();
 	foreach ($array as $key => $value) {
-		// für die übermittlung durch den browser muss der Punkt in der Versionsnummer durch einen unterstrich ersetzt werden
-		// dies ist bei der ermittlung des neuen perm-wertes zu berücksichtigen ... die eintragung selbst erfolgt mit dem Punkt
-		// und wird bei der Abfrage von Rechte auch mit der Punktnotation durchgeführt
+		// fï¿½r die ï¿½bermittlung durch den browser muss der Punkt in der Versionsnummer durch einen unterstrich ersetzt werden
+		// dies ist bei der ermittlung des neuen perm-wertes zu berï¿½cksichtigen ... die eintragung selbst erfolgt mit dem Punkt
+		// und wird bei der Abfrage von Rechte auch mit der Punktnotation durchgefï¿½hrt
 		$perm_area = str_replace('.', '_', $key);
 		$perm_val = $GLOBALS['cms_access_'.$perm_area];
-		$sql = "SELECT idperm FROM ". $cms_db['perms'] ." WHERE idgroup = $idgroup AND idlang = $idlang AND type = 'cms_access' AND id = '$key'";
-		$db->query($sql);
-		$idperm = ($db->next_record()) ? $db->f("idperm"): '';
+		$sql = "SELECT idperm FROM ". $cms_db['perms'] ." WHERE idgroup=? AND idlang=? AND type='cms_access' AND id=?";
+		$rs = $adb->Execute($sql, array($idgroup, $idlang, $key));
+		$idperm = ($rs == FALSE || $rs->EOF) ? '' : $rs->fields['idperm'];
+		$rs->Close();
 		if (!empty($idperm)) {
-			_update_or_delete_perm( $perm_val,  $idperm, $sql_array );
-		} else {
-			_insert_perm( $perm_val, $idgroup, $idlang, 'cms_access', $key, $sql_array );
+			array_push($sql_array, _update_or_delete_perm($perm_val, $idperm));
+		} else if($perm_val > 0) {
+			array_push($sql_array, _insert_perm($perm_val, $idgroup, $idlang, 'cms_access', $key));
 		}
 		// Perms der Bereiche speichern
 		$perm_val = 0;
@@ -189,43 +191,43 @@ function group_save_perms() {
 				$perm_val |= $GLOBALS[$perm_area."_".$key2];
 			}
 		}
-		$sql = "SELECT idperm FROM ". $cms_db['perms'] ." WHERE idgroup = $idgroup AND idlang = $idlang AND type = '$key' AND id = '0'";
-		$db->query($sql);
-		$idperm = ($db->next_record()) ? $db->f("idperm"): '';
+		$sql = "SELECT idperm FROM ". $cms_db['perms'] ." WHERE idgroup=? AND idlang=? AND type=? AND id='0'";
+		$rs = $adb->Execute($sql, array($idgroup, $idlang, $key));
+		$idperm = ($rs == FALSE || $rs->EOF) ? '' : $rs->fields['idperm'];
+		$rs->Close();
 		if (!empty($idperm)) {
-			_update_or_delete_perm( $perm_val,  $idperm, $sql_array );
-		} else {
-			_insert_perm( $perm_val, $idgroup, $idlang, $key, '0', $sql_array );
+			array_push($sql_array, _update_or_delete_perm($perm_val,  $idperm));
+		} else if($perm_val > 0) {
+			array_push($sql_array, _insert_perm($perm_val, $idgroup, $idlang, $key, '0'));
 		}
 	}
-	// führe alle sqls gesammelt durch
+	// fï¿½hre alle sqls gesammelt durch
 	_do_sql_queries($sql_array);
 }
 
 // helper function
 function _do_sql_queries(&$sql_array ) {
-	global $db;
+	global $adb;
 	$max = count($sql_array);
 	for($i = 0; $i < $max; $i++) {
-		$db->query($sql_array[$i]);
+		$adb->Execute($sql_array[$i]);
 	}
 }
 
-function _insert_perm( $perm, $idgroup, $idlang, $type, $key, &$sql_array ) {
+function _insert_perm( $perm, $idgroup, $idlang, $type, $key) {
 	global $cms_db;
-	if ($perm > 0) {
-		$sql_array[] = "INSERT INTO ". $cms_db['perms'] ." VALUES('', '$idgroup', '$idlang',  '$type', '$key', '$perm')";
-	}
+	return "INSERT INTO ". $cms_db['perms'] ." VALUES('', '$idgroup', '$idlang',  '$type', '$key', '$perm')";
 }
 
-function _update_or_delete_perm( $perm, $idperm, &$sql_array ) {
+function _update_or_delete_perm( $perm, $idperm) {
 	global $cms_db;
+	// Rechte aktualisieren
 	if ($perm > 0) {
-		// Rechte aktualisieren
-		$sql_array[] = "UPDATE ". $cms_db['perms'] ." SET perm = '$perm' WHERE idperm = " . $idperm;
+		return "UPDATE ". $cms_db['perms'] ." SET perm = '$perm' WHERE idperm = " . $idperm;
+
+	// Rechte lï¿½schen
 	} else {
-		// Rechte löschen
-		$sql_array[] = 'DELETE FROM ' . $cms_db['perms'] . ' WHERE idperm = ' . $idperm;
+		return 'DELETE FROM ' . $cms_db['perms'] . ' WHERE idperm = ' . $idperm;
 	}
 }
 
@@ -244,9 +246,9 @@ function create_area_checkbox($area, $name, $lang_name, $plugin) {
 
 	$i   = 0;
 	$max = 0;
-	// für die übermittlung durch den browser muss der Punkt in der Versionsnummer durch einen unterstrich ersetzt werden
-	// dies ist bei der ermittlung des neuen perm-wertes zu berücksichtigen ... die eintragung selbst erfolgt mit dem Punkt
-	// und wird bei der Abfrage von Rechte auch mit der Punktnotation durchgeführt
+	// fï¿½r die ï¿½bermittlung durch den browser muss der Punkt in der Versionsnummer durch einen unterstrich ersetzt werden
+	// dies ist bei der ermittlung des neuen perm-wertes zu berï¿½cksichtigen ... die eintragung selbst erfolgt mit dem Punkt
+	// und wird bei der Abfrage von Rechte auch mit der Punktnotation durchgefï¿½hrt
 	$area_name  = ($plugin) ? str_replace('.', '_', $area): $area;
 	if (!empty($cms_perm_val[$area])) {
 		$tpl->setCurrentBlock('MAIN_RIGHTS_ROW');

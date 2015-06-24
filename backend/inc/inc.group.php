@@ -102,57 +102,61 @@ if(isset($order)){
 	}
 }
 
-$sql = "SELECT * FROM ".$cms_db['groups']." WHERE is_deletable = '1' ORDER BY $order $ascdesc";
-$db->query($sql);
-while ($db->next_record()) {
+$sql = "SELECT * FROM ".$cms_db['groups']." WHERE is_deletable = '1' ORDER BY ? ?";
+$rs = $adb->Execute($sql, array($order, $ascdesc));
+while (!$rs->EOF) {
 	$tr_color = $row_bgcolor['project'];
-	if ($db->f('idgroup') == $idgroup) {
+	if ($rs->fields['idgroup'] == $idgroup) {
 		$tpl->setCurrentBlock('ENTRY');
 		$tr_color = $row_bgcolor['project_active'];
 	}
 	$tmp['BGCOLOR'] = $tr_color;
 	$tmp['ENTRY_ICON'] = make_image('but_group.gif', '', '16', '16', false, 'class="icon"');
-	$tmp['NAME'] = htmlentities($db->f('name'), ENT_COMPAT, 'UTF-8');
-	$tmp['DESCRIPTION'] = htmlentities($db->f('description'), ENT_COMPAT, 'UTF-8');
-	$tmp['BUTTON_EDIT'] = '<a href="'.sprintf($base_url, 'group_edit', $order, $ascdesc).'&idgroup='.$db->f('idgroup').'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_edit.gif" border="0" alt="'.$cms_lang['group_edit'].'" title="'.$cms_lang['group_edit'].'" width="16" height="16" /></a>';
-	$tmp['BUTTON_CONFIG'] = '<a href="'.sprintf($base_url.'%s', 'group', $order, $ascdesc, ($db->f('idgroup') != $idgroup) ? '&idgroup='.$db->f('idgroup') : '').'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_config.gif" border="0" alt="'.$cms_lang['group_config'].'" title="'.$cms_lang['group_config'].'" width="16" height="16" /></a>';
-	$tmp['BUTTON_AKTIVE'] = ($db->f('is_active') == '0') ? '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=activate&idgroup='.$db->f('idgroup').'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_offline.gif" border="0" alt="'.$cms_lang['group_on'].'" title="'.$cms_lang['group_on'].'" width="16" height="16" /></a>' : '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=deactivate&idgroup='.$db->f('idgroup').'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_online.gif" border="0" alt="'.$cms_lang['group_off'].'" title="'.$cms_lang['group_off'].'" width="16" height="16" /></a>';
-	$tmp['BUTTON_DELETE'] = '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=delete&idgroup='.$db->f('idgroup').'" onclick="return delete_confirm()"><img src="tpl/'.$cfg_cms['skin'].'/img/but_delete.gif" alt="'.$cms_lang['group_delete'].'" title="'.$cms_lang['group_delete'].'" width="16" height="16" /></a>';
+	$tmp['NAME'] = htmlentities($rs->fields['name'], ENT_COMPAT, 'UTF-8');
+	$tmp['DESCRIPTION'] = htmlentities($rs->fields['description'], ENT_COMPAT, 'UTF-8');
+	$tmp['BUTTON_EDIT'] = '<a href="'.sprintf($base_url, 'group_edit', $order, $ascdesc).'&idgroup='.$rs->fields['idgroup'].'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_edit.gif" border="0" alt="'.$cms_lang['group_edit'].'" title="'.$cms_lang['group_edit'].'" width="16" height="16" /></a>';
+	$tmp['BUTTON_CONFIG'] = '<a href="'.sprintf($base_url.'%s', 'group', $order, $ascdesc, ($rs->fields['idgroup'] != $idgroup) ? '&idgroup='.$rs->fields['idgroup'] : '').'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_config.gif" border="0" alt="'.$cms_lang['group_config'].'" title="'.$cms_lang['group_config'].'" width="16" height="16" /></a>';
+	$tmp['BUTTON_AKTIVE'] = ($rs->fields['is_active'] == '0') ? '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=activate&idgroup='.$rs->fields['idgroup'].'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_offline.gif" border="0" alt="'.$cms_lang['group_on'].'" title="'.$cms_lang['group_on'].'" width="16" height="16" /></a>' : '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=deactivate&idgroup='.$rs->fields['idgroup'].'"><img src="tpl/'.$cfg_cms['skin'].'/img/but_online.gif" border="0" alt="'.$cms_lang['group_off'].'" title="'.$cms_lang['group_off'].'" width="16" height="16" /></a>';
+	$tmp['BUTTON_DELETE'] = '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=delete&idgroup='.$rs->fields['idgroup'].'" onclick="return delete_confirm()"><img src="tpl/'.$cfg_cms['skin'].'/img/but_delete.gif" alt="'.$cms_lang['group_delete'].'" title="'.$cms_lang['group_delete'].'" width="16" height="16" /></a>';
 	$tpl->setVariable($tmp);
 	$tpl->parseCurrentBlock();
 	unset($tmp);
-	if ($db->f('idgroup') == $idgroup) {
+	if ($rs->fields['idgroup'] == $idgroup) {
 		$tpl->setCurrentBlock('POSTENTRY');
 	}
+	$rs->MoveNext();
 }
-if (!$db->affected_rows()) {
+if ($rs === FALSE) {
 	$tpl -> setCurrentBlock('EMPTY');
 	$tmp['LANG_NOGROUPS'] = $cms_lang['group_nogroups'];
 	$tpl->setVariable($tmp);
 	$tpl->parse('EMPTY');
 	unset($tmp);
 }
+$rs->Close();
 
 // Sprachen zuordnen
 if ($idgroup) {
 	$sim_perm = new cms_perms($client_id, $idlang, true, $idgroup);
 	$tpl->setCurrentBlock('CONFIG');
-	$db2 = new DB_cms;
 	$sql = "SELECT A.idclient, A.name, B.idlang, B.name AS lang FROM ". $cms_db['clients'] ." A, ". $cms_db['lang'] ." B LEFT JOIN ". $cms_db['clients_lang'] ." C USING(idlang) WHERE A.idclient = C.idclient ORDER BY A.idclient, lang";
-	$db2->query($sql);
-	while ($db2->next_record()) {
+	$rs = $adb->Execute($sql);
+	while (!$rs->EOF) {
 		$tmp['BGCOLOR'] = $row_bgcolor['project_lang'];
 		$tmp['ENTRY_ICON'] = make_image('but_permission.gif', '', '16', '16');
-		$tmp['NAME'] = htmlentities($db2->f('name'), ENT_COMPAT, 'UTF-8');
-		$tmp['DESCRIPTION'] = htmlentities($db2->f('lang'), ENT_COMPAT, 'UTF-8');
-		if ($sim_perm -> have_perm('1', 'lang', $db2->f('idlang'))) {
-			$tmp['BUTTON_CONFIG'] = '<a href="'.sprintf($base_url, 'group_config', $order, $ascdesc).'&idgroup='.$idgroup.'&idlang='.$db2->f('idlang').'&idclient='.$db2->f('idclient').'" onmouseover="on(\''.$cms_lang['group_langconfig'].'\');return true;" onmouseout="off()" ;return true;"><img src="tpl/'.$cfg_cms['skin'].'/img/but_config.gif" border="0" alt="'.$cms_lang['group_langconfig'].'" title="'.$cms_lang['group_langconfig'].'" width="16" height="16" /></a>';
-			$tmp['BUTTON_AKTIVE'] = '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=activate_lang&idgroup='.$idgroup.'&idlang='.$db2->f('idlang').'" onmouseover="on(\''.$cms_lang['group_langoff'].'\');return true;" onmouseout="off()" ;return true;"><img src="tpl/'.$cfg_cms['skin'].'/img/but_online.gif" border="0" alt="'.$cms_lang['group_langoff'].'" title="'.$cms_lang['group_langoff'].'" width="16" height="16" /></a>';
-                 } else $tmp['BUTTON_AKTIVE'] = '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=activate_lang&idgroup='.$idgroup.'&idlang='.$db2->f('idlang').'" onmouseover="on(\''.$cms_lang['group_langon'].'\');return true;" onmouseout="off()" ;return true;"><img src="tpl/'.$cfg_cms['skin'].'/img/but_offline.gif" border="0" alt="'.$cms_lang['group_langon'].'" title="'.$cms_lang['group_langon'].'" width="16" height="16" /></a>';
+		$tmp['NAME'] = htmlentities($rs->fields['name'], ENT_COMPAT, 'UTF-8');
+		$tmp['DESCRIPTION'] = htmlentities($rs->fields['lang'], ENT_COMPAT, 'UTF-8');
+		if ($sim_perm -> have_perm('1', 'lang', $rs->fields['idlang'])) {
+			$tmp['BUTTON_CONFIG'] = '<a href="'.sprintf($base_url, 'group_config', $order, $ascdesc).'&idgroup='.$idgroup.'&idlang='.$rs->fields['idlang'].'&idclient='.$rs->fields['idclient'].'" onmouseover="on(\''.$cms_lang['group_langconfig'].'\');return true;" onmouseout="off()" ;return true;"><img src="tpl/'.$cfg_cms['skin'].'/img/but_config.gif" border="0" alt="'.$cms_lang['group_langconfig'].'" title="'.$cms_lang['group_langconfig'].'" width="16" height="16" /></a>';
+			$tmp['BUTTON_AKTIVE'] = '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=activate_lang&idgroup='.$idgroup.'&idlang='.$rs->fields['idlang'].'" onmouseover="on(\''.$cms_lang['group_langoff'].'\');return true;" onmouseout="off()" ;return true;"><img src="tpl/'.$cfg_cms['skin'].'/img/but_online.gif" border="0" alt="'.$cms_lang['group_langoff'].'" title="'.$cms_lang['group_langoff'].'" width="16" height="16" /></a>';
+                 } else $tmp['BUTTON_AKTIVE'] = '<a href="'.sprintf($base_url, 'group', $order, $ascdesc).'&action=activate_lang&idgroup='.$idgroup.'&idlang='.$rs->fields['idlang'].'" onmouseover="on(\''.$cms_lang['group_langon'].'\');return true;" onmouseout="off()" ;return true;"><img src="tpl/'.$cfg_cms['skin'].'/img/but_offline.gif" border="0" alt="'.$cms_lang['group_langon'].'" title="'.$cms_lang['group_langon'].'" width="16" height="16" /></a>';
 		$tmp['SPACE'] = '<img src="tpl/'.$cfg_cms['skin'].'/img/space.gif" width="16" height="16" />';
 		$tpl->setVariable($tmp);
 		$tpl->parseCurrentBlock();
 		unset($tmp);
+
+		$rs->MoveNext();
 	}
+	$rs->Close();
 }  
 ?>

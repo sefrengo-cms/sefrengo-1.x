@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.group.php');
@@ -88,12 +88,15 @@ $tmp['LANG_DESCRIPTION'] = $cms_lang['group_description'];
 // Formulareinstellungen
 $tmp['FORM_URL'] = $sess->url('main.php');
 if (!isset($name) && !empty($idgroup)) {
-	$sql = "SELECT name, description FROM ".$cms_db['groups']." WHERE idgroup='$idgroup' LIMIT 0, 1";
-	$db->query($sql);
-	$db->next_record();
-	$tmp['FORM_NAME'] = htmlspecialchars($db->f('name'), ENT_COMPAT, 'UTF-8');
-	$tmp['FORM_OLDNAME'] = htmlspecialchars($db->f('name'), ENT_COMPAT, 'UTF-8');
-	$tmp['FORM_DESCRIPTION'] = htmlspecialchars($db->f('description'), ENT_COMPAT, 'UTF-8');
+	$sql = "SELECT name, description FROM ".$cms_db['groups']." WHERE idgroup=? LIMIT 0, 1";
+	$rs = $adb->Execute($sql, array($idgroup));
+	while (!$rs->EOF) {
+		$tmp['FORM_NAME'] = htmlspecialchars($rs->fields['name'], ENT_COMPAT, 'UTF-8');
+		$tmp['FORM_OLDNAME'] = htmlspecialchars($rs->fields['name'], ENT_COMPAT, 'UTF-8');
+		$tmp['FORM_DESCRIPTION'] = htmlspecialchars($rs->fields['description'], ENT_COMPAT, 'UTF-8');
+		$rs->MoveNext();
+	}
+
 } else {
 	remove_magic_quotes_gpc($name);
 	remove_magic_quotes_gpc($description);
