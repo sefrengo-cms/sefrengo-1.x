@@ -37,7 +37,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 include_once('inc/fnc.clients.php');
 include_once('inc/fnc.lang.php');
@@ -65,7 +65,7 @@ switch($action)
 		$perm->check(3, 'clients', $cid);
 		$errno = clients_rename_client($cid, $newname, $newdesc);
 		break;
-	case 'delete_client':  //Projekt löschen
+	case 'delete_client':  //Projekt lï¿½schen
 		$perm->check(5, 'clients', $cid);
 		$errno = clients_delete_client($cid);
 		break;
@@ -78,7 +78,7 @@ switch($action)
 		$perm->check(19, 'clientlangs', $idlang);
 		$errno = lang_rename_language($idlang, $newname, $newdesc, $charset, $_REQUEST['rewrite_key'], $_REQUEST['rewrite_mapping']);
 		break;
-	case 'delete_lang':  // Sprache löschen
+	case 'delete_lang':  // Sprache lï¿½schen
 		//collapse ist idclient
 		$perm->check(21, 'clientlangs', $idlang);
 		$errno = lang_delete_language($collapse, $lid);
@@ -505,13 +505,13 @@ function clients_get_projectnewrow($c_conf)
 {	
 	global $cms_lang;
 	
-	global $db, $cms_db, $cfg_client; 
+	global $adb, $cms_db, $cfg_client;
 	global $project_name, $newdesc, $newpath, $newurl, $with_dir, $newlang, $newlangdesc, $charset; 
 	
 	$sql = "SELECT MAX(idclient) AS max FROM ". $cms_db['clients'];
-	$db->query($sql);
-	$db->next_record();
-	$nextclient = $db->f('max') + 1;
+	$rs = $adb->Execute($sql);
+	$nextclient = $rs->fields['max'] + 1;
+	$rs->Close();
 	$project_name = ($project_name == '') ? $nextclient . '. '. $cms_lang['clients_client']: $project_name;
 	$newpath = ($newpath == '') ? strrev(strstr(strrev(substr($cfg_client['path'],0,-1)),'/'))."projekt0".$nextclient."/" : $newpath;
 	$newurl = ($newurl == '') ? strrev(strstr(strrev(substr($cfg_client['htmlpath'],0,-1)),'/'))."projekt0".$nextclient."/" : $newurl;

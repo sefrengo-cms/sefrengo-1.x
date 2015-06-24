@@ -33,7 +33,7 @@
 
 function clients_get_clients()
 {
-	global $db, $perm, $cms_db;
+	global $adb, $perm, $cms_db;
 
 	$sql = "SELECT DISTINCT 
 				* 
@@ -43,22 +43,24 @@ function clients_get_clients()
 			ORDER BY 
 				A.name";
 
-	$db->query($sql);
+	$rs = $adb->Execute($sql);
 
 	$prev_client = '';
-	while($db->next_record()) 
+	while(!$rs->EOF)
 	{
-		if ($perm -> have_perm(1, 'clients', $db->f('idclient')) && $prev_client != $db->f('idclient')) {
-			$p_id = $db->f('idclient');
+		if ($perm -> have_perm(1, 'clients', $rs->fields['idclient']) && $prev_client != $rs->fields['idclient']) {
+			$p_id = $rs->fields['idclient'];
 			$projects['order'][] = $p_id;
-			$projects[$p_id]['name'] = $db->f('name');
-			$projects[$p_id]['desc'] = $db->f('description');
+			$projects[$p_id]['name'] = $rs->fields['name'];
+			$projects[$p_id]['desc'] = $rs->fields['description'];
 			//wenn mehrere sprachen in einem client sind, verhindern, 
-			//dass der client öfters als ein mal angezeigt wird
-			$prev_client = $db->f('idclient');
+			//dass der client ï¿½fters als ein mal angezeigt wird
+			$prev_client = $rs->fields['idclient'];
 		}
 		$projects['num_clients'] = count($projects['order']);
+		$rs->MoveNext();
 	}
+	$rs->Close();
 	
 	$projects['num_langs'] = 0;
 	if(is_array($projects['order'])){
@@ -77,7 +79,7 @@ function clients_get_clients()
 
 function clients_get_langs($idclient, $disable_perms = false)
 {
-	global $db, $perm, $cms_db;
+	global $adb, $perm, $cms_db;
 
 	$sql = "SELECT 
 				A.idlang, A.name , A.description, A.charset, A.iso_3166_code, A.rewrite_key, A.rewrite_mapping, A.is_start
@@ -88,31 +90,33 @@ function clients_get_langs($idclient, $disable_perms = false)
 				B.idclient='$idclient' 
 			ORDER BY idlang";
 
-	$db->query($sql);
+	$rs = $adb->Execute($sql);
 
-	while($db->next_record()) 
+	while(!$rs->EOF)
 	{
-		if ($disable_perms || $perm -> have_perm(17, 'clientlangs', $db->f('idlang')) ) {
-			$l_id = $db->f('idlang');
+		if ($disable_perms || $perm -> have_perm(17, 'clientlangs', $rs->fields['idlang']) ) {
+			$l_id = $rs->fields['idlang'];
 			$langs['order'][] = $l_id;
-			$langs[$l_id]['name'] = $db->f('name');
-			$langs[$l_id]['desc'] = $db->f('description');
-			$langs[$l_id]['charset'] = $db->f('charset');
-			$langs[$l_id]['iso_3166_code'] = $db->f('iso_3166_code');
-			$langs[$l_id]['rewrite_key'] = $db->f('rewrite_key');
-			$langs[$l_id]['rewrite_mapping'] = $db->f('rewrite_mapping');
-			$langs[$l_id]['is_start'] = $db->f('is_start');
+			$langs[$l_id]['name'] = $rs->fields['name'];
+			$langs[$l_id]['desc'] = $rs->fields['description'];
+			$langs[$l_id]['charset'] = $rs->fields['charset'];
+			$langs[$l_id]['iso_3166_code'] = $rs->fields['iso_3166_code'];
+			$langs[$l_id]['rewrite_key'] = $rs->fields['rewrite_key'];
+			$langs[$l_id]['rewrite_mapping'] = $rs->fields['rewrite_mapping'];
+			$langs[$l_id]['is_start'] = $rs->fields['is_start'];
 		}
+		$rs->MoveNext();
 	}
+	$rs->Close();
 	
 	return $langs;
 }
 
 function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $with_dir, $newlang, $newlangdesc, $charset)
 {
-	global $db, $cms_db, $auth, $cfg_cms, $perm;
+	global $adb, $cms_db, $auth, $cfg_cms, $perm;
 	global $errno, $user_msg;
-	//Globals die für Neue Sprache anlegen gebraucht werden
+	//Globals die fï¿½r Neue Sprache anlegen gebraucht werden
 	global $sess, $lang;
 	
 	$project_name = empty($project_name) ? 'Neues Projekt': $project_name;
@@ -134,7 +138,7 @@ function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $w
 		}
 	}
 
-	// SQL Einträge
+	// SQL Eintrï¿½ge
 	$sql_array = file($cfg_cms['cms_path'].'tpl/projektvorlage.sql');
 	foreach ($sql_array as $sql)
 	{
@@ -148,11 +152,11 @@ function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $w
 			$sql = str_replace("<!--{projectdesc}-->",$newdesc,$sql);
 			$sql = str_replace("<!--{userid}-->",$auth->auth['uid'],$sql);
 			$sql = str_replace("<!--{time}-->",time(),$sql);
-			$db->query($sql);
+			$adb->Execute($sql);
 		}
 	};
 
-	//neue rechte einfügen für client
+	//neue rechte einfï¿½gen fï¿½r client
 	$perm->xcopy_perm(0, 'area_clients', $cid, 'clients', 0xFFFFFFFF, 0, 0, true);  // make new userright
 	
 	//Neue Sprache anlegen
@@ -160,9 +164,9 @@ function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $w
 	$errno = lang_new_language($cid, $newlang, $newlangdesc, $charset, '', 'standard', false);
 	
 	$sql = "SELECT MAX(idlang) AS max FROM ". $cms_db['lang'];
-	$db->query($sql);
-	$db->next_record();
-	$nextlang = $db->f('max');
+	$rs = $adb->Execute($sql);
+	$nextlang = $rs->fields['max'];
+	$rs->Close();
 	
 	//set new lang as startlang
 	lang_make_start_lang($cid, $nextlang);
@@ -174,7 +178,7 @@ function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $w
 		fclose($fh);
 	}
 
-	//neue rechte einfügen für sprache
+	//neue rechte einfï¿½gen fï¿½r sprache
 	$perm->xcopy_perm($cid, 'clients', $nextlang, 'clientlangs', 0xFFFF0000, 0, 0, true);
 	
 	//langstring for new client success userinfo
@@ -185,22 +189,16 @@ function clients_new_client($cid, $project_name, $newdesc, $newpath, $newurl, $w
 
 function clients_rename_client($idclient, $name, $desc) 
 {
-	global $db, $auth, $cms_db, $val_ct, $perm;
+	global $adb, $auth, $cms_db, $val_ct, $perm;
 
-	set_magic_quotes_gpc($name);
-	set_magic_quotes_gpc($desc);
+	$record = array(
+		'name' => $name,
+		'description' => $desc,
+		'author' => $auth->auth['uid'],
+		'lastmodified' => time()
+	);
 
-	$sql = "UPDATE 
-				".$cms_db['clients'] ."
-			SET 
-				name='$name', 
-				description='$desc', 
-				author='".$auth->auth['uid']."', 
-				lastmodified='".time()."' 
-			WHERE 
-				idclient='$idclient'";
-	
-	$db->query($sql);
+	$adb->AutoExecute($cms_db['clients'], $record, 'UPDATE', "idclient = ".(int)$idclient);
 
 	//Rechte setzen
 	if ($perm->have_perm(6, 'clients', $idclient)) {
@@ -211,7 +209,7 @@ function clients_rename_client($idclient, $name, $desc)
 
 function clients_delete_client($idclient)
 {
-	global $db, $sess, $cms_db, $val_ct;
+	global $adb, $cms_db, $val_ct;
 
 	$langs = clients_get_langs($idclient);
 	
@@ -237,7 +235,7 @@ function clients_delete_client($idclient)
 					". $v . "
 				WHERE
 					idclient=$idclient";
-		$db-> query($sql);
+		$adb->Execute($sql);
 	}
 	
 	/* ADDED RECURSIVE FILEDELETE LATER
@@ -248,9 +246,9 @@ function clients_delete_client($idclient)
 	if(strlen($octalperms) == 5) $octal_final = substr($octalperms,2);
 	else $octal_final = substr($octalperms,3);
 	$octal_back_nr = substr($octal_final,2);
-	//Warnung, wenn perm für public < 6
+	//Warnung, wenn perm fï¿½r public < 6
 	if($octal_back_nr < 6){
-		echo "WARNUNG! Die Dateirechte der CSS- Datei entsprechen momentan 'CHMOD $octal_final'. Änderungen an der Datei lassen sich vermutlich nicht speichern";
+		echo "WARNUNG! Die Dateirechte der CSS- Datei entsprechen momentan 'CHMOD $octal_final'. ï¿½nderungen an der Datei lassen sich vermutlich nicht speichern";
 		return;
 	}
 	*/
