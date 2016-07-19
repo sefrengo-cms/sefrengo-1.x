@@ -789,6 +789,8 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 		}
 		
 		$summary = make_string_dump($db3->f('summary'));
+    $meta_title = make_string_dump($db3->f('meta_title'));
+    $meta_other = make_string_dump($db3->f('meta_other'));
 		$meta_author = make_string_dump($db3->f('meta_author'));
 		$meta_description = make_string_dump($db3->f('meta_description'));
 		$meta_keywords = make_string_dump($db3->f('meta_keywords'));
@@ -832,13 +834,13 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 		//echo $online;exit;
 		
 		$sql2 = "INSERT INTO ".$cms_db['side_lang']." 
-					(idside, idlang, idtplconf, title, meta_keywords, summary, online, 
+					(idside, idlang, idtplconf, title, meta_title, meta_other, meta_keywords, summary, online, 
 						meta_redirect, meta_redirect_url, author, 
 						created, lastmodified, user_protected, visited, edit_ttl, 
 						meta_author, meta_description, meta_robots, meta_redirect_time,
 						,metasocial_title,metasocial_image,metasocial_description,metasocial_author
 						rewrite_use_automatic, rewrite_url, start, end) 
-				VALUES ('".$idside_to."', '$idlang', '0', '$title', '$meta_keywords', '$summary', '$online',
+				VALUES ('".$idside_to."', '$idlang', '0', '$title', '$meta_title','$meta_other','$meta_keywords', '$summary', '$online',
 					 '".$db3->f('meta_redirect')."', '$meta_redirect_url', '".$db3->f('author')."', 
 					'".time()."', '".time()."', '".$db3->f('user_protected')."', '".$db3->f('visited')."', '".$db3->f('edit_ttl')."', 
 					'$meta_author', '$meta_description', '$meta_robots', '".$db3->f('meta_redirect_time')."',

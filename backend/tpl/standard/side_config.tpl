@@ -207,9 +207,22 @@ function callback_enddate(date, month, year)
  <!-- BEGIN META -->
 <table class="config" id="siteconfhack1" cellspacing="1">
   <tr>
-    <td class="head nowrap" rowspan="8" width="110">
+    <td class="head nowrap" rowspan="12" width="110">
       <p>{LANG_CON_METACONFIG}</p>
     </td>
+    <td class="headre" colspan="3">
+            <!-- Ueberschrift meta Title -->
+            {LANG_META_TITLE}
+    </td>
+  </tr>
+  
+  <tr>
+    <td colspan="3">
+            <!-- Feld meta Title -->
+            <input class="w800" type="text" name="meta_title" value="{META_TITLE}" />
+    </td>
+  </tr>
+  <tr>
     <td class="headre" colspan="3">
             <!-- Ueberschrift meta description -->
             {LANG_META_DESC}
@@ -263,6 +276,19 @@ function callback_enddate(date, month, year)
       </table>
     </td>
   </tr>
+  
+  <tr>
+    <td class="headre" colspan="3">
+            <!-- Ueberschrift meta OTHER -->
+            {LANG_META_OTHER}
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+            <textarea class="w800" id="meta_other"  name="meta_other" rows="5" cols="50">{META_OTHER}</textarea>
+    </td>
+  </tr>
+  
   <tr>
     <td class="headre" colspan="3">
             <!-- Ueberschrift Weiterleitung -->
@@ -325,7 +351,7 @@ function callback_enddate(date, month, year)
 {BUTTONS_BOTTOM}
 </table>
 </form>
-</div>
+</div> 
 <div class="footer">{FOOTER_LICENSE}</div>
 </body>
 </html>

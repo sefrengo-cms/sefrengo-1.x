@@ -81,6 +81,7 @@ $SF_catinfos->setLinkUseIdlang($sf_use_idlang_in_link);
 $SF_catinfos->setLinkExtraUrlstring('');
 $SF_catinfos->generate();
 $con_tree =& $SF_catinfos->getCatinfoDataArrayByRef();
+ #var_dump($con_tree);
 $tlo_tree =& $SF_catinfos->getParentDependanceDataArrayByRef();
 
 $deb -> collect('File:' .__FILE__.' Line:' .__LINE__, 'mem');
@@ -150,7 +151,7 @@ if($con_side[$idcatside]['online'] != 1 || $con_tree[$idcat]['visible'] != 1){
 // es gibt keine idsidelang, wenn der user nicht das recht hat, die seite zu sehen
 if(! empty($idcatside) && ! empty($con_side[$idcatside]['idsidelang'])){
 	$sql = "SELECT
-				meta_author, meta_description, meta_keywords, meta_robots, meta_redirect,
+				meta_title,meta_other,meta_author, meta_description, meta_keywords, meta_robots, meta_redirect,
 				metasocial_title,metasocial_image,metasocial_description,metasocial_author,
 				meta_redirect_url, summary, author, created, lastmodified,
 				IF ( ((online & 0x04) = 0x01) ,'1' ,'0') AS protected
@@ -160,7 +161,9 @@ if(! empty($idcatside) && ! empty($con_side[$idcatside]['idsidelang'])){
 				idsidelang= ". $con_side[$idcatside]['idsidelang'];
 	$db->query($sql);
 	$db->next_record();
- 	$con_side[$idcatside]['meta_author'] = $db->f('meta_author');
+ 	$con_side[$idcatside]['meta_title'] = $db->f('meta_title');
+  $con_side[$idcatside]['meta_other'] = $db->f('meta_other');
+  $con_side[$idcatside]['meta_author'] = $db->f('meta_author');
 	$con_side[$idcatside]['meta_description'] = $db->f('meta_description');
 	$con_side[$idcatside]['meta_keywords'] = $db->f('meta_keywords');
 	$con_side[$idcatside]['meta_robots'] = $db->f('meta_robots');

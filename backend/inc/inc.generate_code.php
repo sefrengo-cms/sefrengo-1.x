@@ -108,18 +108,22 @@ if ($db->next_record()) {
             $sf_slash_closing_tag = ' /';
             break;
     }
-	
+
 	// Container generieren
-	$list = extract_cms_tags($layout);
+	$list = extract_cms_tags($layout);  
 	if (is_array($list)) {
 		foreach ($list as $cms_mod['container']) {
-			// foot-Container?
+      //foot-container?
+      
+        
+			
 			if ($cms_mod['container']['type'] == 'foot') {
 				$code ='';
+				//foot
 				$code .= "<!--START foot//-->\n";
 
                 
-				//JS include
+				//JS and CSS file include
 				$sql = "SELECT
 							C.filetype, D.dirname, B.filename
 						FROM
@@ -149,13 +153,14 @@ if ($db->next_record()) {
       // Head-Container?
 			}else if ($cms_mod['container']['type'] == 'head') {
 				$code ='';
+        
 				//head
 				// Meta-Tags generieren
 				$code .= "<!--START head//-->\n";
+				$code .= '<title>'.htmlspecialchars($con_side[$idcatside]['meta_title'], ENT_COMPAT, 'utf-8').'</title>';
 				$code .= "<meta name=\"generator\" content=\"Sefrengo / www.sefrengo.org\" ".$sf_slash_closing_tag.">\n";
-
 				$code .= '<CMSPHP> if ($cfg_client[\'url_rewrite\'] == \'2\') echo \'<base href="\'.htmlspecialchars(str_replace(\'{%http_host}\',  $_SERVER[\'HTTP_HOST\'], $cfg_client[\'url_rewrite_basepath\']), ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; </CMSPHP>';
-				$code .= '<?PHP if ($con_side[$idcatside][\'meta_author\'] != \'\') echo \'<meta name="author" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_author\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
+        $code .= '<?PHP if ($con_side[$idcatside][\'meta_author\'] != \'\') echo \'<meta name="author" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_author\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 				$code .= '<?PHP if ($con_side[$idcatside][\'meta_description\'] != \'\') echo \'<meta name="description" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_description\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 				$code .= '<?PHP if ($con_side[$idcatside][\'meta_keywords\'] != \'\') echo \'<meta name="keywords" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_keywords\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 				$code .= '<?PHP if ($con_side[$idcatside][\'meta_robots\'] != \'\') echo \'<meta name="robots" content="\'.htmlspecialchars($con_side[$idcatside][\'meta_robots\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
@@ -170,7 +175,9 @@ if ($db->next_record()) {
 				$code .= '<?PHP } ?>';
 				
 				$code .= '<meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'"'.$sf_slash_closing_tag.'>'."\n";
-                
+				
+				$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo htmlspecialchars($con_side[$idcatside][\'meta_other\'], ENT_COMPAT, \'utf-8\')."\n"; ?>';	
+				
 				//JS and CSS file include
 				$sql = "SELECT
 							C.filetype, D.dirname, B.filename
@@ -188,8 +195,9 @@ if ($db->next_record()) {
 					}else{
 						$dirname=$db->f('dirname'); 
 					}
+
 					if ($db->f('filetype') == 'css'){
-						$code .= "<link rel=\"stylesheet\" href=\"".$dirname.$db->f('filename')."\" type=\"text/css\" ".$sf_slash_closing_tag.">\n";
+						$code .= "<link rel=\"stylesheet\" href=\"".$cfg_client["htmlpath"].$dirname.$db->f('filename')."\" type=\"text/css\" ".$sf_slash_closing_tag.">\n";
 					} 
 				}
 				$code .= "<!--END head//-->\n";
@@ -307,11 +315,11 @@ if ($db->next_record()) {
 
 					// ist Modul sichtbar?
 					if ($container[$cms_mod['container']['id']]['1'] == '0') {
-						$replace[] = '<!--START '.$cms_mod['container']['id'].'//--><CMSPHP> $cms_mod[\'container\'][\'id\']=\''.$cms_mod['container']['id'].'\'; </CMSPHP>'.$output.'<!--END '.$cms_mod['container']['id'].'//-->';
+						$replace[] = '<!-- '.$cms_mod['container']['id'].'--><CMSPHP> $cms_mod[\'container\'][\'id\']=\''.$cms_mod['container']['id'].'\'; </CMSPHP>'.$output.'<!-- /'.$cms_mod['container']['id'].' -->';
 						//todo: 2remove
 						//$replace[] = '<!--START '.$cms_mod['container']['id'].'//--><DEDIPHP> $cms_mod[\'container\'][\'id\']=\''.$cms_mod['container']['id'].'\'; </DEDIPHP>'.$output.'<!--END '.$cms_mod['container']['id'].'//-->';
 					}	else {
-						$replace[] = '<!--START '.$cms_mod['container']['id'].'//--><CMSPHP> $cms_mod[\'container\'][\'id\']=\''.$cms_mod['container']['id'].'\'; if(\''.$container[$cms_mod['container']['id']]['1'].'\'==$auth->auth[\'uid\']) { </CMSPHP>'.$output.'<CMSPHP> } </CMSPHP><!--END '.$cms_mod['container']['id'].'//-->';
+						$replace[] = '<!-- '.$cms_mod['container']['id'].'--><CMSPHP> $cms_mod[\'container\'][\'id\']=\''.$cms_mod['container']['id'].'\'; if(\''.$container[$cms_mod['container']['id']]['1'].'\'==$auth->auth[\'uid\']) { </CMSPHP>'.$output.'<CMSPHP> } </CMSPHP><!-- /'.$cms_mod['container']['id'].' -->';
 						//todo: 2remove
 						//$replace[] = '<!--START '.$cms_mod['container']['id'].'//--><DEDIPHP> $cms_mod[\'container\'][\'id\']=\''.$cms_mod['container']['id'].'\'; if(\''.$container[$cms_mod['container']['id']]['1'].'\'==$auth->auth[\'uid\']) { </DEDIPHP>'.$output.'<CMSPHP> } </CMSPHP><!--END '.$cms_mod['container']['id'].'//-->';
 					}
@@ -359,7 +367,7 @@ if ($sql_links != '') {
 				AND A.idupl IN ($sql_links)";
 	$db->query($sql);
 	while($db->next_record()){
-		$cms_file[$db->f('id')] = $cfg_client['upl_htmlpath'].$db->f('dirname').$db->f('filename');
+		$cms_file[$db->f('id')] = $cfg_client["htmlpath"].$cfg_client['upl_htmlpath'].$db->f('dirname').$db->f('filename');
 	}
 }
 //...und ersetzen
