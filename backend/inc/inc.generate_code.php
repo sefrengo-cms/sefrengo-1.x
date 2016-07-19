@@ -169,7 +169,7 @@ if ($db->next_record()) {
 				$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_image\'] != \'\') echo \'<meta property="og:image" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_image\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 				$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_description\'] != \'\') echo \'<meta property="og:description" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_description\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
 				$code .= '<?PHP if ($con_side[$idcatside][\'metasocial_author\'] != \'\') echo \'<meta property="article:author" content="\'.htmlspecialchars($con_side[$idcatside][\'metasocial_author\'], ENT_COMPAT, \'utf-8\').\'"'.$sf_slash_closing_tag.'>\'."\n"; ?>';
-				$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo htmlspecialchars($con_side[$idcatside][\'meta_other\'], ENT_COMPAT, \'utf-8\')."\n"; ?>';	
+				$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo $con_side[$idcatside][\'meta_other\']."\n"; ?>';	
 				$code .= '<meta property="og:type" content="website" />
 <meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'"'.$sf_slash_closing_tag.'>'."\n";
                 
