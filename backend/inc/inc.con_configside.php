@@ -84,7 +84,7 @@ switch($action) {
 		con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, $idcatside, $idcatnew
                                        , $author, $title, $meta_keywords, $summary, $online, $user_protected
                                        , $view, $created, $lastmodified, $startdate, $starttime, $enddate, $endtime
-                                       , $meta_author, $meta_description, $meta_robots, $meta_redirect_time
+                                       , $meta_other, $meta_title, $meta_author, $meta_description, $meta_robots, $meta_redirect_time
                                        , $metasocial_title,$metasocial_image,$metasocial_description,$metasocial_author
                                        , $meta_redirect, $meta_redirect_url, $rewrite_use_automatic, $rewrite_url
                                        , $idlay, $use_redirect);
@@ -214,7 +214,9 @@ if ((!$action && $idside) || isset($_REQUEST['sf_apply']) && ! $sf_is_rewrite_er
 	$endtime       = date('H:i', $db->f('end'));
 	$online        = $db->f('online');
 	$userprotected = ($db->f('user_protected') == '1') ? 'selected' : '';
-	$meta_author = htmlentities($db->f('meta_author'), ENT_COMPAT, 'UTF-8');
+	$meta_title = htmlentities($db->f('meta_title'), ENT_COMPAT, 'UTF-8');
+  $meta_other = htmlentities($db->f('meta_other'), ENT_COMPAT, 'UTF-8');
+  $meta_author = htmlentities($db->f('meta_author'), ENT_COMPAT, 'UTF-8');
 	$meta_description = htmlentities($db->f('meta_description'), ENT_COMPAT, 'UTF-8');
 	$meta_keywords = htmlentities($db->f('meta_keywords'), ENT_COMPAT, 'UTF-8');
 	$meta_robots = $db->f('meta_robots');
@@ -249,7 +251,9 @@ if ((!$action && $idside) || isset($_REQUEST['sf_apply']) && ! $sf_is_rewrite_er
 	$db->next_record();
 	$meta_author = htmlentities($db->f('name').' '.$db->f('surname'), ENT_COMPAT, 'UTF-8');
 	$cfg_lang = $val_ct -> get_by_group('cfg_lang', $client, $lang);
-	$meta_description = htmlentities($cfg_lang['meta_description'], ENT_COMPAT, 'UTF-8');
+	$meta_title = htmlentities($cfg_lang['meta_title'], ENT_COMPAT, 'UTF-8');
+  $meta_other = htmlentities($cfg_lang['meta_other'], ENT_COMPAT, 'UTF-8');
+  $meta_description = htmlentities($cfg_lang['meta_description'], ENT_COMPAT, 'UTF-8');
 	$meta_keywords = htmlentities($cfg_lang['meta_keywords'], ENT_COMPAT, 'UTF-8');
 	$meta_robots = htmlentities($cfg_lang['meta_robots'], ENT_COMPAT, 'UTF-8');
 	/*
@@ -446,6 +450,10 @@ if ($have_move_perm) {
 $have_meta_perm = (is_numeric($idcatside)) ? $perm->have_perm(29, 'side', $idcatside, $idcat): $perm -> have_perm(29, 'cat', $idcat);
 if ($have_meta_perm) {
 	$tpl->setCurrentBlock('META');
+  $tpl_data['LANG_META_OTHER'] = $cms_lang['con_metaother'];
+  $tpl_data['META_OTHER'] = $meta_other;
+  $tpl_data['LANG_META_TITLE'] = $cms_lang['con_metatitle'];
+  $tpl_data['META_TITLE'] = $meta_title;
 	$tpl_data['LANG_CON_METACONFIG'] = $cms_lang['con_metaconfig'];
 	$tpl_data['LANG_META_DESC'] = $cms_lang['con_metadescription'];
 	$tpl_data['META_DESC'] = $meta_description;
@@ -479,7 +487,9 @@ if ($have_meta_perm) {
 	unset($tpl_data);
 } else {
 	$tpl->setCurrentBlock('HIDDEN_FIELDS');
-	$tpl_data['HIDDEN_FIELDS'] = '<input type="hidden" name="meta_description" value="'. $meta_description .'" />
+	$tpl_data['HIDDEN_FIELDS'] = '<input type="hidden" name="meta_title" value="'. $meta_title .'" />
+  <input type="hidden" name="meta_other" value="'. $meta_other .'" />
+  <input type="hidden" name="meta_description" value="'. $meta_description .'" />
 	  <input type="hidden" name="meta_keywords" value="'. $meta_keywords .'" />
 	  <input type="hidden" name="meta_author" value="'. $meta_author .'" />
 	  <input type="hidden" name="meta_redirect_url" value="'. $meta_redirect_url .'" />'

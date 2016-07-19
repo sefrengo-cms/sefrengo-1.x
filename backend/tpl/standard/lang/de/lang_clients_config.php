@@ -47,6 +47,8 @@ $cms_lang['setuse_css_ignore_error_rules']		= 'Fehlerhafte CSS-Regeln in CSS-Dat
 $cms_lang['setuse_remove_empty_directories']	= 'Leere Dateiverzeichnisse beim Abgleichen l&ouml;schen 1=ja/0=nein';
 
 $cms_lang['set_meta']							= 'Metaangaben vorkonfigurieren';
+$cms_lang['set_meta_title']				= 'Seitentitel';
+$cms_lang['set_meta_other']				= 'Weitere Meta-Angaben';
 $cms_lang['set_meta_description']				= 'Seitenbeschreibung';
 $cms_lang['set_meta_keywords']					= 'Suchbegriffe';
 $cms_lang['set_meta_robots']					= 'Suchmaschinenanweisung';

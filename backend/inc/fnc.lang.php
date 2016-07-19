@@ -100,7 +100,9 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 		while ($db->next_record()) {
 			$title = make_string_dump($db->f('title'));
 			$summary = make_string_dump($db->f('summary'));
-			$meta_author = make_string_dump($db->f('meta_author'));
+			$meta_other = make_string_dump($db->f('meta_other'));
+      $meta_title = make_string_dump($db->f('meta_title'));
+      $meta_author = make_string_dump($db->f('meta_author'));
 			$meta_description = make_string_dump($db->f('meta_description'));
 			$meta_keywords = make_string_dump($db->f('meta_keywords'));
 			$meta_robots = make_string_dump($db->f('meta_robots'));
@@ -111,12 +113,12 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 			$online = ((int) $db->f('online') & 0xFC);
 			$sql2 = "INSERT INTO 
 						".$cms_db['side_lang']." 
-						(idside, idlang, idtplconf, title, meta_keywords, summary, online, 
+						(idside, idlang, idtplconf, title, meta_title,meta_other,meta_keywords, summary, online, 
 							meta_redirect, meta_redirect_url, author, created, 
 							lastmodified, user_protected, visited, edit_ttl, meta_author, 
 							meta_description, meta_robots, meta_redirect_time,metasocial_title,metasocial_image,metasocial_description,metasocial_author) 
 					VALUES 
-						('".$db->f('idside')."', '$lang', '0', '$title', '$meta_keywords', '$summary', '$online', 
+						('".$db->f('idside')."', '$lang', '0', '$title', '$meta_title','$meta_other','$meta_keywords', '$summary', '$online', 
 							'".$db->f('meta_redirect')."', '$meta_redirect_url', '".$db->f('author')."', '".time()."', 
 							'".time()."', '".$db->f('user_protected')."', '".$db->f('visited')."', '".$db->f('edit_ttl')."', '$meta_author', 
 							'$meta_description', '$meta_robots', '".$db->f('meta_redirect_time')."'
@@ -277,6 +279,20 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 
 	//Metaangaben für Sprache
 	$sql = "INSERT INTO ". $cms_db['values'] ." (idclient, idlang, group_name, key1, 
+			conf_sortindex, conf_desc_langstring, conf_head_langstring, conf_input_type, 
+			conf_input_type_val, conf_input_type_langstring, conf_visible) 
+			VALUES ($idclient, $lang, 'cfg_lang', 'meta_title', 
+			601, 'set_meta_title', '', 'txt', NULL, NULL, 1)";
+	$db->query($sql);
+  
+  $sql = "INSERT INTO ". $cms_db['values'] ." (idclient, idlang, group_name, key1, 
+			conf_sortindex, conf_desc_langstring, conf_head_langstring, conf_input_type, 
+			conf_input_type_val, conf_input_type_langstring, conf_visible) 
+			VALUES ($idclient, $lang, 'cfg_lang', 'meta_other', 
+			601, 'set_meta_other', '', 'txt', NULL, NULL, 1)";
+	$db->query($sql);
+  
+  $sql = "INSERT INTO ". $cms_db['values'] ." (idclient, idlang, group_name, key1, 
 				conf_sortindex, conf_desc_langstring, conf_head_langstring, conf_input_type, 
 				conf_input_type_val, conf_input_type_langstring, conf_visible) 
 				VALUES ($idclient, $lang, 'cfg_lang', 'meta_description', 

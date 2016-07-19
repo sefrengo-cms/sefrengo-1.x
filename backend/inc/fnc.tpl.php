@@ -650,12 +650,12 @@ function con_config_folder_save($idcat, $idcatside, $idtpl, $view, $idtplconf, $
 function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, $idcatside, $idcatnew
                                        , $author, $title, $meta_keywords, $summary, $online, $user_protected
                                        , $view, $created, $lastmodified, $startdate, $starttime, $enddate, $endtime
-                                       , $meta_author, $meta_description, $meta_robots, $meta_redirect_time
+                                       , $meta_other, $meta_title, $meta_author, $meta_description, $meta_robots, $meta_redirect_time
                                        , $metasocial_title,$metasocial_image,$metasocial_description,$metasocial_author
                                        , $meta_redirect, $meta_redirect_url, $rewrite_use_automatic, $rewrite_url
                                        , $idlay, $use_redirect = true) {
 	global $db, $client, $sess, $perm, $lang, $cms_db, $cfg_client, $cms_lang, $val_ct,$idcatside, $idside;
-
+  
 	if(! (is_numeric($idtpl) || is_int($idtpl) ) ) return;
 	if(! (is_numeric($idtplconf) || is_int($idtplconf) ) ) return;
 	
@@ -687,7 +687,9 @@ function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, 
 	$meta_redirect_url = ($meta_redirect_url == 'http://' || $meta_redirect_url == '') ? '' : $meta_redirect_url;
 	set_magic_quotes_gpc($title);
 	set_magic_quotes_gpc($summary);
-	set_magic_quotes_gpc($meta_author);
+	set_magic_quotes_gpc($meta_other);
+  set_magic_quotes_gpc($meta_title);
+  set_magic_quotes_gpc($meta_author);
 	set_magic_quotes_gpc($meta_description);
 	set_magic_quotes_gpc($meta_keywords);
 	set_magic_quotes_gpc($meta_robots);
@@ -751,13 +753,17 @@ function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, 
 			}
 
 			if ($tmp_lang == $lang)	{
-        	    $tmp_meta_description = $meta_description;
+        	    $tmp_meta_title = $meta_title;
+              $tmp_meta_title = $meta_other;
+              $tmp_meta_description = $meta_description;
 	            $tmp_meta_keywords = $meta_keywords;
             	$tmp_meta_robots = $meta_robots;
 			} else {
 
     	        $cfg_lang = $val_ct -> get_by_group('cfg_lang', $client, $tmp_lang);
-        	    $tmp_meta_description = htmlentities($cfg_lang['meta_description'], ENT_COMPAT, 'UTF-8');
+        	    $tmp_meta_title = htmlentities($cfg_lang['meta_title'], ENT_COMPAT, 'UTF-8');
+              $tmp_meta_other = htmlentities($cfg_lang['meta_other'], ENT_COMPAT, 'UTF-8');
+              $tmp_meta_description = htmlentities($cfg_lang['meta_description'], ENT_COMPAT, 'UTF-8');
 	            $tmp_meta_keywords = htmlentities($cfg_lang['meta_keywords'], ENT_COMPAT, 'UTF-8');
             	$tmp_meta_robots = htmlentities($cfg_lang['meta_robots'], ENT_COMPAT, 'UTF-8');
             }
@@ -765,12 +771,14 @@ function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, 
 	
 			$sql  = 'INSERT INTO ' . $cms_db['side_lang'];
 			$sql .= ' (idside, idlang, title, meta_keywords, summary, created, lastmodified, author, meta_redirect, meta_redirect_url,';
-			$sql .= ' user_protected, online, start, end, meta_author, meta_description, meta_robots, meta_redirect_time, rewrite_use_automatic, rewrite_url,metasocial_title,metasocial_image,metasocial_description,metasocial_author) ';
+			$sql .= ' user_protected, online, start, end, meta_title,meta_other,meta_author, meta_description, meta_robots, meta_redirect_time, rewrite_use_automatic, rewrite_url,metasocial_title,metasocial_image,metasocial_description,metasocial_author) ';
 			$sql .= 'VALUES (';
 			$sql .= " '$idside', '$tmp_lang', '$title', '$tmp_meta_keywords', '$summary', '$created', '$lastmodified', '$author', ";
 			$sql .= " '$meta_redirect', '$meta_redirect_url', '$user_protected', '$side_online', '$side_start', '$side_end', ";
-			$sql .= " '$meta_author', '$tmp_meta_description', '$tmp_meta_robots', '$meta_redirect_time', '$rewrite_use_automatic', '$rewrite_url','$metasocial_title','$metasocial_image','$metasocial_description','$metasocial_author')";
-			$db->query($sql);
+			$sql .= " '$meta_title','$meta_other','$meta_author', '$tmp_meta_description', '$tmp_meta_robots', '$meta_redirect_time', '$rewrite_use_automatic', '$rewrite_url','$metasocial_title','$metasocial_image','$metasocial_description','$metasocial_author')";
+
+      
+      $db->query($sql);
 		}
 
 		// idsidelang für die Templateerstellung raussuchen
@@ -826,10 +834,10 @@ function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, 
 
 		// update der 'side_lang' Tabelle
 		$sql  = 'UPDATE ' . $cms_db['side_lang']. ' ';
-		$sql .= 'SET';
+		$sql .= 'SET';                                   
 		$sql .= " title='$title', meta_keywords='$meta_keywords', summary='$summary', meta_redirect='$meta_redirect', ";
 		$sql .= " meta_redirect_url='$meta_redirect_url', user_protected = '$user_protected', online = $change_online, start='$start', ";
-		$sql .= " end='$end', meta_author='$meta_author', meta_description='$meta_description', meta_robots='$meta_robots', ";
+		$sql .= " end='$end', meta_title='$meta_title',meta_other='$meta_other',meta_author='$meta_author', meta_description='$meta_description', meta_robots='$meta_robots', ";
 		$sql .= " meta_redirect_time = '$meta_redirect_time', rewrite_use_automatic = '$rewrite_use_automatic', rewrite_url = '$rewrite_url',metasocial_title='$metasocial_title',metasocial_image='$metasocial_image',metasocial_description='$metasocial_description',metasocial_author='$metasocial_author' ";
 		$sql .= 'WHERE idsidelang = ' . $idsidelang;
 		$db->query($sql);

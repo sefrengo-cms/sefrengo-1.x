@@ -47,6 +47,8 @@ $cms_lang['setuse_css_ignore_error_rules']		= 'Sauvergarder les r&egrave;gles CS
 $cms_lang['setuse_remove_empty_directories']	= 'Supprimer les r&eacute;pertoires vides lors de la synchronisation 1=oui/0=non';
 
 $cms_lang['set_meta']							= 'Pr&eacute;configurer les m&eacute;ta-donn&eacute;es';
+$cms_lang['set_meta_title']				= 'Titre de la page';
+$cms_lang['set_meta_other']				= 'D\'autres méta-valeurs';
 $cms_lang['set_meta_description']				= 'Description de la page';
 $cms_lang['set_meta_keywords']					= 'Termes de recherche';
 $cms_lang['set_meta_robots']					= 'Instruction pour moteur de recherche';

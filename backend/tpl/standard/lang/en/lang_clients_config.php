@@ -46,6 +46,8 @@ $cms_lang['setuse_css_ignore_error_rules'] 	= 'include invalid CSS rules in CSS 
 $cms_lang['setuse_remove_empty_directories']	= 'Delete empty directories on sychnonization 1=yes/0=no';
 
 $cms_lang['set_meta']							= 'META entries predefinition';
+$cms_lang['set_meta_title']				= 'META page title';
+$cms_lang['set_meta_other']				= 'Additional meta-values';
 $cms_lang['set_meta_description']				= 'META page description';
 $cms_lang['set_meta_keywords']					= 'META keywords';
 $cms_lang['set_meta_robots']					= 'META robots directives';
