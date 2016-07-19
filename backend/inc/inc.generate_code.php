@@ -113,8 +113,41 @@ if ($db->next_record()) {
 	$list = extract_cms_tags($layout);
 	if (is_array($list)) {
 		foreach ($list as $cms_mod['container']) {
-			// Head-Container?
-			if ($cms_mod['container']['type'] == 'head') {
+			// foot-Container?
+			if ($cms_mod['container']['type'] == 'foot') {
+				$code ='';
+				$code .= "<!--START foot//-->\n";
+
+                
+				//JS include
+				$sql = "SELECT
+							C.filetype, D.dirname, B.filename
+						FROM
+							". $cms_db['lay_upl'] ." A
+							LEFT JOIN ". $cms_db['upl'] ." B USING(idupl)
+							LEFT JOIN ". $cms_db['filetype'] ." C USING(idfiletype)
+							LEFT JOIN ". $cms_db['directory'] ." D on B.iddirectory=D.iddirectory
+						WHERE
+							idlay='$idlay' ORDER BY A.idlayupl";
+				$db->query($sql);
+				while ($db->next_record()) {
+					if(isUrl($db->f('filename'))){
+						$dirname="";
+					}else{
+						$dirname=$db->f('dirname'); 
+					}
+					if ($db->f('filetype') == 'js'){  
+						$code .= "<script src=\"".$cfg_client["htmlpath"].$dirname.$db->f('filename')."\" type=\"text/javascript\"></script>\n";
+					}
+					
+				}
+				$code .= "<!--END foot//-->\n";
+				$search[] = $cms_mod['container']['full_tag'];
+				$replace[] = $code;
+
+			// Seitenkonfigurationslayer?
+      // Head-Container?
+			}else if ($cms_mod['container']['type'] == 'head') {
 				$code ='';
 				//head
 				// Meta-Tags generieren
@@ -151,9 +184,6 @@ if ($db->next_record()) {
 						$dirname="";
 					}else{
 						$dirname=$db->f('dirname'); 
-					}
-					if ($db->f('filetype') == 'js'){  
-						$code .= "<script src=\"".$dirname.$db->f('filename')."\" type=\"text/javascript\"></script>\n";
 					}
 					if ($db->f('filetype') == 'css'){
 						$code .= "<link rel=\"stylesheet\" href=\"".$dirname.$db->f('filename')."\" type=\"text/css\" ".$sf_slash_closing_tag.">\n";
