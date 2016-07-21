@@ -481,10 +481,10 @@ function rewriteGetPageUrl($idcatside, $idlang, $force_langprefix = false) {
 	if ($rewrite_use_automatic == 1) {
 		$alias = rewriteGetCatUrl($con_side[$idcatside]['idcat'], $idlang, $force_langprefix);	
 		$string = rewriteGetPageAlias($idcatside, $idlang);
-		return $alias. $string. $cfg_client['url_rewrite_suffix'];
+		return $cfg_client['htmlpath'].$alias. $string. $cfg_client['url_rewrite_suffix'];
 	} else {
 		$sessionstring = ($sess->mode=='getrewrite') ? $sess->id.'/':''; 
-		return $sessionstring . rewriteGetPageAlias($idcatside, $idlang);
+		return $cfg_client['htmlpath'].$sessionstring . rewriteGetPageAlias($idcatside, $idlang);
 	}
 }
 
@@ -505,7 +505,7 @@ function rewriteGetCatUrl($idcat, $idlang, $force_langprefix = false) {
 	$langprefix = ( ($lang == $startlang && $cfg_client['url_langid_in_defaultlang'] == '0') && $force_langprefix != true ) ? '':$sf_lang_stack[$idlang]['rewrite_key']. '/';
 	
 	$alias = $sessionstring . $langprefix . $alias;
-	return $alias;
+	return $cfg_client['htmlpath'].$alias;
 	
 }
 
