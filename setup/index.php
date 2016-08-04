@@ -130,7 +130,10 @@ class setup {
 							'updates_from.01.05.00.sql',
 							'updates_from.01.05.01.sql',
 							'updates_from.01.06.00.sql',
-							'updates_from.01.06.01.sql');
+							'updates_from.01.06.01.sql',
+							'updates_from.01.06.02.sql',
+							'updates_from.01.06.03.sql',
+							'updates_from.01.06.04.sql');
 
 	/**
 	* Konstruktor. Catch all globals
@@ -140,7 +143,7 @@ class setup {
 		$this -> catch_globals();
 		$this -> version['prior'] = '01';
 		$this -> version['minor'] = '06';
-		$this -> version['fix']   = '02';
+		$this -> version['fix']   = '05';
 		$this -> version_text = $this -> version['prior'];
 		$this -> version_text .= '.';
 		$this -> version_text .= $this -> version['minor'];
@@ -1193,7 +1196,7 @@ class setup {
 	* @return void
 	*/
 	function insert_sql_dump($special_replace = false) {
-		// Zeitinterval vergroeßern
+		// Zeitinterval vergroeÃŸern
 		@set_time_limit(0);
 		
 		$this->_mysql_connect();
