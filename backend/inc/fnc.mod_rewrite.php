@@ -481,7 +481,7 @@ function rewriteGetPageUrl($idcatside, $idlang, $force_langprefix = false) {
 	if ($rewrite_use_automatic == 1) {
 		$alias = rewriteGetCatUrl($con_side[$idcatside]['idcat'], $idlang, $force_langprefix);	
 		$string = rewriteGetPageAlias($idcatside, $idlang);
-		return $cfg_client['htmlpath'].$alias. $string. $cfg_client['url_rewrite_suffix'];
+		return $alias. $string. $cfg_client['url_rewrite_suffix'];
 	} else {
 		$sessionstring = ($sess->mode=='getrewrite') ? $sess->id.'/':''; 
 		return $cfg_client['htmlpath'].$sessionstring . rewriteGetPageAlias($idcatside, $idlang);
