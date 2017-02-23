@@ -85,7 +85,7 @@ function extract_cms_tags($in, $sort='') {
 					}
 				}
 
-				// Alle Attribute für returnwert aufbereiten
+				// Alle Attribute fÃ¼r returnwert aufbereiten
 //				$arrAttr['id'] = sprintf("%01d",$arrAttr['id']);
 				if ($sort == 'type') {
 					//$out[type][id][attributekey] = attributevalue
@@ -245,7 +245,7 @@ function get_idcode_by_idtplconf($list) {
 			$db->query($sql);
 			while ($db->next_record()) $tmp[] = $db->f('idcode');
 
-			// das Template gehört einem Ordner
+			// das Template gehÃ¶rt einem Ordner
 			if (!$db->affected_rows()) {
 				$sql = "SELECT 
 							idcode 
@@ -277,7 +277,7 @@ function get_idsidelang_by_idtplconf($list) {
 			$db->query($sql);
 			while ($db->next_record()) $tmp[] = $db->f('idsidelang');
 
-			// das Template gehört einem Ordner
+			// das Template gehÃ¶rt einem Ordner
 			if (!$db->affected_rows()) {
 				$sql = "SELECT idsidelang FROM $cms_db[cat_lang] A LEFT JOIN $cms_db[cat_side] B USING(idcat) LEFT JOIN $cms_db[side_lang] C USING(idside) WHERE A.idtplconf='$value' AND A.idlang=C.idlang AND C.idtplconf='0'";
 				$db->query($sql);
@@ -289,12 +289,15 @@ function get_idsidelang_by_idtplconf($list) {
 }
 
 function set_magic_quotes_gpc(&$code) {
-	if (get_magic_quotes_gpc() == 0) $code = addslashes($code);
-	if (ini_get(magic_quotes_sybase) != 0) {
+	if (get_magic_quotes_gpc() == 0) {
+		$code = addslashes($code);
+	} else if (ini_get(magic_quotes_sybase) != 0) {
 		$code = str_replace("''", "'", $code);
 		$code = str_replace("\\", "\\\\", $code);
 		$code = str_replace("'", "\'", $code);
 		$code = str_replace('"', '\"', $code);
+	} else {
+		$code = mysql_real_escape_string($code);
 	}
 }
 
@@ -348,7 +351,7 @@ function make_array_to_urlstring($in) {
     $in = array_diff($in, $tmp);
 	foreach($in as $key => $value) {
 		if (is_array($value)) {
-			// leere Arrayelemente löschen und in String wandeln
+			// leere Arrayelemente lÃ¶schen und in String wandeln
 			$value = array_diff($value, $tmp);
 			
 			if (is_array($value)) {
@@ -510,7 +513,7 @@ function make_nav_link($class='', $url='#', $mousetext='', $linktext='', $end='&
 	return sprintf("\n<a %s href=\"%s\">%s</a>%s", ($class != '') ? "class=\"$class\"": '' , $sess->url($url), $linktext, $end);
 }
 
-// Lädt eine Validator-Klasse für Überprüfungen beim CSS-Editor oder File-Uploads
+// LÃ¤dt eine Validator-Klasse fÃ¼r ÃœberprÃ¼fungen beim CSS-Editor oder File-Uploads
 function get_validator($name) {
 	global $cfg_cms;
 
