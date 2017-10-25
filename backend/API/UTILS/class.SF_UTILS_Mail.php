@@ -137,8 +137,8 @@ class SF_UTILS_Mail extends SF_API_Object {
 		include_once('Mail.php');
 		include_once('Mail/mime.php');
 		
-    	$mime =& new Mail_mime($this->crlf);
-    	$mail =& Mail::factory('mail');
+    	$mime = new Mail_mime($this->crlf);
+    	$mail = Mail::factory('mail');
     	
     	//set encoding		
 		$mime->_build_params['head_charset'] = $mime->_build_params['text_charset'] = $mime->_build_params['html_charset'] = $this->charset;

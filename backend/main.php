@@ -66,7 +66,7 @@ foreach ($types_to_register as $global_type) {
                 if (@count($arr) > 0) extract($arr, EXTR_OVERWRITE);
         }
 } 
-$cfg_cms = '';$cfg_client ='';
+$cfg_cms = array();$cfg_client ='';
 
 $sefrengo = ( empty($sefrengo) ) ? $_COOKIE['sefrengo']: $sefrengo;
 
@@ -95,6 +95,7 @@ foreach($nonnumeric_vars as $varname) {
 		$$varname = htmlspecialchars($$varname, ENT_QUOTES);
 	}
 }
+/** @define "$this_dir" "/var/www/sefrengodev/htdocs/backend/" */
 require_once ($this_dir.'inc/config.php');
 //Load API
 require_once ($this_dir.'API/inc.apiLoader.php');
@@ -108,8 +109,6 @@ require_once ($this_dir.'inc/fnc.general.php');
 require_once ($this_dir.'inc/fnc.libary.php');
 include_once ($this_dir.'inc/class.querybuilder_factory.php');
 include_once ($this_dir.'inc/class.repository.php');
-
-
 
 // Klassen initialisieren
 $deb = new cms_debug;

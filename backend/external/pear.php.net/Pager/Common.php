@@ -1147,7 +1147,7 @@ class Pager_Common
     function getPerPageSelectBox($start=5, $end=30, $step=5, $showAllData=false, $extraParams=array())
     {
         require_once 'Pager/HtmlWidgets.php';
-        $widget =& new Pager_HtmlWidgets($this);
+        $widget = new Pager_HtmlWidgets($this);
         return $widget->getPerPageSelectBox($start, $end, $step, $showAllData, $extraParams);
     }
 
@@ -1171,7 +1171,7 @@ class Pager_Common
     function getPageSelectBox($params = array(), $extraAttributes = '')
     {
         require_once 'Pager/HtmlWidgets.php';
-        $widget =& new Pager_HtmlWidgets($this);
+        $widget = new Pager_HtmlWidgets($this);
         return $widget->getPageSelectBox($params, $extraAttributes);
     }
 

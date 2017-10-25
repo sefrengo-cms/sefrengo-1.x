@@ -331,7 +331,7 @@ class SF_GUI_ContentStylerHTML extends SF_GUI_ContentStylerPlain {
     					A.idclient='$client' 
     					AND idupl='".$id."'";
     					
-    		$db =& new DB_cms;
+    		$db = new DB_cms;
     		$db->query($sql);
     		if ($db->next_record()){
     			$mod_url = $cfg_client['upl_htmlpath'].$db->f('dirname').$db->f('filename');
@@ -542,7 +542,7 @@ class SF_GUI_ContentStylerHTML extends SF_GUI_ContentStylerPlain {
     		// Wenn idupl gefordert, Ausgabe - FRONTEND, BACKEND
     		if($type_config['mode'] == 'id') return $id;
     	
-    		$db =& new DB_cms;
+    		$db = new DB_cms;
     		$sql = "SELECT
     					A.*, B.filetype, C.dirname
     				FROM

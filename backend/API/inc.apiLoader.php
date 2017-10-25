@@ -47,8 +47,7 @@ ini_set('include_path', '.'
 
 //echo $ini_original . $cfg_cms['cms_path'].  'external/adodb/';
 
-
-
+/** @define "$_api_path" "/var/www/sefrengodev/htdocs/backend/API/" */
 require_once ($_api_path.'API/class.SF_API_Object.php');
 require_once ($_api_path.'API/class.SF_API_ObjectStore.php');
 require_once ($_api_path.'API/class.SF_API_ObjectFactory.php');

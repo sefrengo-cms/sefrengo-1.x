@@ -61,8 +61,8 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 
 	// Webseitencontent duplizieren
 	if ($from_lang != '' && $copy_content) {
-		$db2 =& new DB_cms;
-		$db3 =& new DB_cms;
+		$db2 = new DB_cms;
+		$db3 = new DB_cms;
 		
 		// Zeitinterval vergrößern
 		@set_time_limit(0);

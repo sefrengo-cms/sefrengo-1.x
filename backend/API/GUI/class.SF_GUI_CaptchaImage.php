@@ -9,7 +9,7 @@ class SF_GUI_CaptchaImage extends SF_API_Object {
 	function SF_GUI_CaptchaImage() {
 		global $cfg_cms, $cfg_client;
 		include_once $cfg_cms['cms_path'].'external/misc/class.captcha.php';
-		$this->captcha_object =& new captcha();
+		$this->captcha_object = new captcha();
 		$this->picture_path = $cfg_client["path"].'cms/files/tmp/captcha';
 		if (! is_dir($cfg_client["path"].'cms/files/tmp')) {
 			mkdir ($cfg_client["path"].'cms/files/tmp', 0777);

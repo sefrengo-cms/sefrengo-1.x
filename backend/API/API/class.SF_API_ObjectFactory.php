@@ -340,7 +340,7 @@ class SF_API_ObjectFactory {
             $pstring = '();';
         } 
 
-        $to_eval = '$obj =& new ' . $full_classname . $pstring;
+        $to_eval = '$obj = new ' . $full_classname . $pstring;
         eval($to_eval);
         if ($obj->_API_checkObject()) return $obj;
         

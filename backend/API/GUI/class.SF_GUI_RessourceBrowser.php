@@ -201,7 +201,7 @@ class SF_GUI_RessourceBrowser extends SF_API_Object{
 		$this->parse();
 		
 		include_once ('HTML/Template/IT.php');
-		$this->tpl =& new HTML_Template_IT($this->cfg['html_path'] .'tpl/'.$this->cfg['skin'].'/');
+		$this->tpl = new HTML_Template_IT($this->cfg['html_path'] .'tpl/'.$this->cfg['skin'].'/');
 		//print_r($this->tpl);
 		switch ($this->_current_display) {
 			case 'inner':
