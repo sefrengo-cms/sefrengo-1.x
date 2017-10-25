@@ -32,7 +32,7 @@
 // +----------------------------------------------------------------------+
 
 // MYSQL
-$cfg_cms['db_type']		= 'mysql';
+$cfg_cms['db_type']		= 'mysqli';
 $cfg_cms['db_host']		= '<!--{host}-->';
 $cfg_cms['db_database']		= '<!--{db}-->';
 $cfg_cms['db_user']		= '<!--{user}-->';
