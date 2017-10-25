@@ -87,13 +87,13 @@ class DB_cms extends DB_Sql {
         if ( $this->cache_mode == 'DB_READ_CACHE' ) {
             $this->Record = $this->cache[$this->Row];
         } elseif ( $this->fetch_mode == 'DB_FETCH_ARRAY' ) {
-            $this->Record = @mysql_fetch_array( $this->Query_ID );
+            $this->Record = @mysqli_fetch_array( $this->Query_ID );
         } elseif ( $this->fetch_mode == 'DB_FETCH_ASSOC' ) {
-            $this->Record = @mysql_fetch_assoc( $this->Query_ID );
+            $this->Record = @mysqli_fetch_assoc( $this->Query_ID );
         } 
         $this->Row += 1;
-        $this->Errno = mysql_errno();
-        $this->Error = mysql_error();
+        $this->Errno = mysqli_errno($this->Link_ID);
+        $this->Error = mysqli_error($this->Link_ID);
         $stat = is_array( $this->Record );
         if ( !$stat && $this->Auto_Free && !$this->EOF ) {
             $this->free();
@@ -284,7 +284,7 @@ class DB_cms extends DB_Sql {
     } 
     // free result
     function free() {
-        @mysql_free_result( $this->Query_ID );
+        @mysqli_free_result( $this->Query_ID );
         $this->Query_ID = 0;
         $this->delete_cache();
         $this->write_cache();
@@ -310,7 +310,7 @@ class DB_cms extends DB_Sql {
     // return the last insert id
     function insert_id() {
         // if (mysql_affected_rows($this->Link_ID)>0) return mysql_insert_id($this->Link_ID);
-        return mysql_insert_id( $this->Link_ID );
+        return mysqli_insert_id( $this->Link_ID );
     } 
     // fetch a query in a array
     function fetch_query( $Sql, $Mode = 'DB_FETCH_ASSOC' ) {
@@ -357,10 +357,10 @@ class DB_cms extends DB_Sql {
         if ( $this->Debug ) {
             $deb->collect( 'MySql: ' . $Query_String, 'sql' );
         } 
-        $this->Query_ID = @mysql_query( $Query_String, $this->Link_ID );
+        $this->Query_ID = @mysqli_query( $this->Link_ID ,  $Query_String);
         $this->Row = 0;
-        $this->Errno = mysql_errno();
-        $this->Error = mysql_error();
+        $this->Errno = mysqli_errno($this->Link_ID);
+        $this->Error = mysqli_error($this->Link_ID);
         if ( !$this->Query_ID ) {
             $this->halt( "Invalid SQL: " . $Query_String );
         } elseif( $Cache_it >= 1 && $this->use_cache ) {

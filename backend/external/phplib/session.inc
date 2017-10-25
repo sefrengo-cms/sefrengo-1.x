@@ -60,13 +60,15 @@ class Session {
     function register( $things ) {
         $things = explode( ',', $things );
         reset( $things );
-        while ( list( , $thing ) = each( $things ) ) {
-            $thing = trim( $thing );
-            if ( $thing ) {
-                $this->pt[$thing] = true;
-            } 
-        } 
-    } 
+        if (!empty($things)) {
+            foreach ($things as $thing) {
+                $thing = trim( $thing );
+                if ( $thing ) {
+                    $this->pt[$thing] = true;
+                }
+            }
+        }
+    }
 
     function is_registered( $name ) {
         if ( isset( $this->pt[$name] ) && $this->pt[$name] == true )
@@ -77,13 +79,15 @@ class Session {
     function unregister( $things ) {
         $things = explode( ',', $things );
         reset( $things );
-        while ( list( , $thing ) = each( $things ) ) {
-            $thing = trim( $thing );
-            if ( $thing ) {
-                unset( $this->pt[$thing] );
-            } 
-        } 
-    } 
+        if (!empty($things)) {
+            foreach ($things as $thing) {
+                $thing = trim( $thing );
+                if ( $thing ) {
+                    unset( $this->pt[$thing] );
+                }
+            }
+        }
+    }
     // get_id():
     //
     // Propagate the session id according to mode and lifetime.
@@ -154,9 +158,9 @@ class Session {
                 } 
                 // Remove session ID info from QUERY String - it is in cookie
                 if ( isset( $_SERVER['QUERY_STRING'] ) && ( '' != $_SERVER['QUERY_STRING'] ) ) {
-                    $_SERVER['QUERY_STRING'] = ereg_replace(
+                    $_SERVER['QUERY_STRING'] = preg_replace(
                         //"(^|&)" . quotemeta( urlencode( $this->name ) ) . '=' . $id . "(&|$)",
-                        "(^|&)" . quotemeta( urlencode( $this->name ) ) . "=(.)*(&|$)",
+                        "/(^|&)" . quotemeta( urlencode( $this->name ) ) . "=(.)*(&|$)/",
                         "\\1", $_SERVER['QUERY_STRING'] );
                 }
                 break;
@@ -173,9 +177,9 @@ class Session {
                 } 
 
                 if ( isset( $_SERVER['QUERY_STRING'] ) && ( "" != $_SERVER['QUERY_STRING'] ) ) {
-                    $_SERVER['QUERY_STRING'] = ereg_replace( 
+                    $_SERVER['QUERY_STRING'] = preg_replace(
                         // "(^|&)".quotemeta(urlencode($this->name)).'='.$id."(&|$)",
-                        "(^|&)" . quotemeta( urlencode( $this->name ) ) . "=(.)*(&|$)",
+                        "/(^|&)" . quotemeta( urlencode( $this->name ) ) . "=(.)*(&|$)/",
                         "\\1", $_SERVER['QUERY_STRING'] );
                 }
                 break;
@@ -218,12 +222,12 @@ class Session {
         
         if ( !$this->session_enabled ) return $url;
         
-        $url = ereg_replace( 
+        $url = preg_replace(
             // "([&?])".quotemeta(urlencode($this->name)).'='.$this->id."(&|$)",
-            "(&amp;|\?)" . quotemeta( urlencode( $this->name ) ) . "=(.)*(&amp;|$)",
+            "/(&amp;|\?)" . quotemeta( urlencode( $this->name ) ) . "=(.)*(&amp;|$)/",
             "\\1", $url ); 
         // Remove trailing ?/& if needed
-        $url = ereg_replace( "(&amp;|\?)+$", '', $url );
+        $url = preg_replace( "/(&amp;|\?)+$/", '', $url );
 
         // Generate Tokenize Session
         if( $this->use_token_sid ) {
@@ -291,10 +295,13 @@ class Session {
         } 
 
         $qstring = "";
-        while ( list( $k, $v ) = each( $qarray ) ) {
-            $qstring .= $sep_char . urlencode( $k ) . "=" . urlencode( $v );
-            $sep_char = "&";
-        } 
+
+        if (!empty($qarray)) {
+            foreach ($qarray as $k => $v) {
+                $qstring .= $sep_char . urlencode( $k ) . "=" . urlencode( $v );
+                $sep_char = "&";
+            }
+        }
 
         return $qstring;
     } 
@@ -322,7 +329,7 @@ class Session {
                 $str .= "\$$var = array(); ";
                 while ( "array" == $l ) {
                     // Structural recursion
-                    $this->serialize( $var . "['" . ereg_replace( "([\\'])", "\\\\1", $k ) . "']", $str );
+                    $this->serialize( $var . "['" . preg_replace( "#([\\'])#", "\\\\1", $k ) . "']", $str );
                     eval( "\$l = gettype(list(\$k)=each(\$$var));" );
                 } 
 
@@ -341,7 +348,7 @@ class Session {
             default: 
                 // $$var is an atom. Extract it to $l, then generate code.
                 eval( "\$l = \$$var;" );
-                $str .= "\$$var = '" . ereg_replace( "([\\'])", "\\\\1", $l ) . "'; ";
+                $str .= "\$$var = '" . preg_replace( "#([\\'])#", "\\\\1", $l ) . "'; ";
                 break;
         } 
     } 
@@ -364,12 +371,14 @@ class Session {
         $this->serialize( "this->pt", $str );
 
         reset( $this->pt );
-        while ( list( $thing ) = each( $this->pt ) ) {
-            $thing = trim( $thing );
-            if ( $thing ) {
-                $this->serialize( "GLOBALS['" . $thing . "']", $str );
-            } 
-        } 
+        if (!empty($this->pt)) {
+            foreach ($this->pt as $thing) {
+                $thing = trim( $thing );
+                if ( $thing ) {
+                    $this->serialize( "GLOBALS['" . $thing . "']", $str );
+                }
+            }
+        }
 
         $r = $this->that->ac_store( $this->id, $this->name, $str );
         $this->release_lock();
@@ -407,10 +416,12 @@ class Session {
             return;
 
         reset( $$arrayname );
-        while( list( $key, $val ) = each( $$arrayname ) ) {
-            $GLOBALS[$key] = $val;
-        } 
-    } 
+        if (!empty($$arrayname)) {
+            foreach ($$arrayname as $key => $val) {
+                $GLOBALS[$key] = $val;
+            }
+        }
+    }
     //
     // All this is support infrastructure for the start() method
     //
@@ -603,6 +614,7 @@ class Session {
 
     function get_challenge() {
         // out Challenge
+        $token = null;
         for ($i = 0; $i<$this->tok_lenght / 4; $i++) {
     	   $token .= sprintf( "%04X", mt_rand( 0, 65535 ) );
     	}

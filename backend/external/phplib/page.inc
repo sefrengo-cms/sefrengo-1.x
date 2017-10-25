@@ -66,14 +66,20 @@ function page_close() {
 
 function sess_load($session) {
 	reset($session);
-	while (list($k,$v) = each($session)) {
-		$GLOBALS[$k] = new $v;
-		$GLOBALS[$k]->start();
-	}
+    if (!empty($session)) {
+        foreach ($session as $k => $v) {
+            $GLOBALS[$k] = new $v;
+            $GLOBALS[$k]->start();
+        }
+    }
 }
 
 function sess_save($session) {
 	reset($session);
-	while (list(,$v) = each($session)) $GLOBALS[$v]->freeze();
+    if (!empty($session)) {
+        foreach ($session as $k => $v) {
+            $GLOBALS[$v]->freeze();
+        }
+    }
 }
 ?>
