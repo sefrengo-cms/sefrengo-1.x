@@ -18,14 +18,12 @@ function page_open($feature) {
 		$sess = new $feature['sess'];
 		$sess->start();
 
-
-
-
 		// the auth feature depends on sess
 		if (isset($feature['auth'])) {
 			global $auth;
 
 			if (!isset($auth)) $auth = new $feature['auth'];
+			/** @var cms_Backend_Auth $auth */
 			$auth->start();
 			if(! $sess -> session_enabled){ return false ;}
 

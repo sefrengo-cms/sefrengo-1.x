@@ -61,7 +61,7 @@ class Session {
         $things = explode( ',', $things );
         reset( $things );
         if (!empty($things)) {
-            foreach ($things as $thing) {
+            foreach ($things as $key => $thing) {
                 $thing = trim( $thing );
                 if ( $thing ) {
                     $this->pt[$thing] = true;
@@ -80,7 +80,7 @@ class Session {
         $things = explode( ',', $things );
         reset( $things );
         if (!empty($things)) {
-            foreach ($things as $thing) {
+            foreach ($things as $key => $thing) {
                 $thing = trim( $thing );
                 if ( $thing ) {
                     unset( $this->pt[$thing] );
@@ -372,7 +372,7 @@ class Session {
 
         reset( $this->pt );
         if (!empty($this->pt)) {
-            foreach ($this->pt as $thing) {
+            foreach ($this->pt as $thing => $value) {
                 $thing = trim( $thing );
                 if ( $thing ) {
                     $this->serialize( "GLOBALS['" . $thing . "']", $str );
@@ -380,6 +380,7 @@ class Session {
             }
         }
 
+        /** @var cms_CT_Sql $this->that */
         $r = $this->that->ac_store( $this->id, $this->name, $str );
         $this->release_lock();
 

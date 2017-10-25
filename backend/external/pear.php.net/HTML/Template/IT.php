@@ -917,9 +917,13 @@ class HTML_Template_IT
         $content = fread($fh, filesize($filename));
         fclose($fh);
 
-        return preg_replace(
-            "#<!-- INCLUDE (.*) -->#ime", "\$this->getFile('\\1')", $content
-        );
+        //        return preg_replace(
+        //            "#<!-- INCLUDE (.*) -->#ime", "\$this->getFile('\\1')", $content
+        //        );
+        // Modification for php7
+        return preg_replace_callback("#<!-- INCLUDE (.*) -->#im", function ($match) {
+            return $this->getFile($match[1]);
+        }, $content);
     } // end func getFile
 
     /**

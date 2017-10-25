@@ -228,7 +228,7 @@ if (is_array($cfg_cms['autostart']['backend'])) {
 
 // Seite komprimieren und ausgeben
 $ACCEPT_ENCODING = getenv("HTTP_ACCEPT_ENCODING");
-if (($cfg_cms['gzip'] == '1') && ereg("gzip",$ACCEPT_ENCODING) && (false == headers_sent())) {
+if (($cfg_cms['gzip'] == '1') && preg_match("/gzip/",$ACCEPT_ENCODING) && (false == headers_sent())) {
      @ob_start('ob_gzhandler');
      eval($cfg_cms['manipulate_output']);
      @ob_end_flush();

@@ -41,7 +41,7 @@ class SF_DATABASE_Ado extends SF_API_Object{
 		$this->_API_objectIsSingleton(true);
 		
 		include_once('adodb.inc.php');
-		$this->conn_ado =& ADONewConnection('mysql');
+		$this->conn_ado =& ADONewConnection('mysqli');
 		
 		if ($cfg_cms['db_mysql_pconnect'] === true) {
 			$this->conn_ado->PConnect($GLOBALS['cfg_cms']['db_host'], $GLOBALS['cfg_cms']['db_user'], 
