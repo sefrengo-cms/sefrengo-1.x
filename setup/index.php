@@ -139,7 +139,7 @@ class setup {
 	/**
 	* Konstruktor. Catch all globals
 	*/
-	function setup()
+	function __construct()
 	{
 		$this -> catch_globals();
 		$this -> version['prior'] = '01';

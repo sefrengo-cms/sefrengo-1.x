@@ -938,7 +938,7 @@ function insert_cssrelation( $idcss, $idcssfile ) {
 	$sql  = 'INSERT INTO ' . $cms_db['css_upl'] . ' (idcss, idupl) VALUES ';
 	$sql .= '(' . $idcss . ', ' . $idcssfile . ')';
 	$db->query($sql);
-	return mysql_insert_id();
+	return mysqli_insert_id($GLOBALS['db']->Link_ID);
 }
 
 //
