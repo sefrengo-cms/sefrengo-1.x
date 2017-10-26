@@ -56,7 +56,7 @@ function group_save() {
 	if (trim($name) == '') return 'group_noname';
 
 	// keine Sonderzeichen in Gruppenname
-	if (!eregi("[0-9a-zA-Z]", $name)) return 'group_incorrectcharacter';
+	if (!preg_match("/[0-9a-zA-Z]/i", $name)) return 'group_incorrectcharacter';
 
 	// Username auf Existenz prüfen
 	if ($name != $oldname) {
