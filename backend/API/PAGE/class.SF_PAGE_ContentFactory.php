@@ -118,7 +118,7 @@ class SF_PAGE_Content extends SF_API_Object
 	var $db;
 	var $styler = array();
 	
-	function SF_PAGE_Content($idtype)
+	function __construct($idtype)
 	{
 		$this->defaults['idtype'] = $idtype;
 		$this->db =& sf_factoryGetObject('DATABASE', 'Ado');
@@ -344,22 +344,22 @@ class SF_PAGE_Content extends SF_API_Object
 
 class SF_PAGE_ContentText extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentText() { $this->defaults['typename'] = 'text'; parent::SF_PAGE_Content(1); }
+	function __construct() { $this->defaults['typename'] = 'text'; parent::__construct(1); }
 }
 
 class SF_PAGE_ContentWysiwyg extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentWysiwyg() { $this->defaults['typename'] = 'wysiwyg'; parent::SF_PAGE_Content(2); }
+	function __construct() { $this->defaults['typename'] = 'wysiwyg'; parent::__construct(2); }
 }
 
 class SF_PAGE_ContentTextarea extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentTextarea() { $this->defaults['typename'] = 'textarea'; parent::SF_PAGE_Content(3); }
+	function __construct() { $this->defaults['typename'] = 'textarea'; parent::__construct(3); }
 }
 
 class SF_PAGE_ContentImage extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentImage() { $this->defaults['typename'] = 'image'; parent::SF_PAGE_Content(array('url'=> 4, 'desc'=> 5)); }
+	function __construct() { $this->defaults['typename'] = 'image'; parent::__construct(array('url'=> 4, 'desc'=> 5)); }
 	function getValue() { return $this->getUrl(); }
 	function getUrl() { return $this->data['content']['4']['value']; }
 	function getDesc() { return $this->data['content']['5']['value']; }
@@ -373,7 +373,7 @@ class SF_PAGE_ContentImage extends SF_PAGE_Content
 
 class SF_PAGE_ContentLink extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentLink() { $this->defaults['typename'] = 'link'; parent::SF_PAGE_Content(array('url'=> 6, 'name'=> 7, 'target'=> 8)); }
+	function __construct() { $this->defaults['typename'] = 'link'; parent::__construct(array('url'=> 6, 'name'=> 7, 'target'=> 8)); }
 	function getValue() { return $this->getUrl(); }
 	function getUrl() { return $this->data['content']['6']['value']; }
 	function getName() { return $this->data['content']['7']['value']; }
@@ -388,12 +388,12 @@ class SF_PAGE_ContentLink extends SF_PAGE_Content
 
 class SF_PAGE_ContentSourcecode extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentSourcecode() { $this->defaults['typename'] = 'sourcecode'; parent::SF_PAGE_Content(9); }
+	function __construct() { $this->defaults['typename'] = 'sourcecode'; parent::__construct(9); }
 }
 
 class SF_PAGE_ContentFile extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentFile() { $this->defaults['typename'] = 'file'; parent::SF_PAGE_Content(array('url'=> 10, 'name'=> 11, 'target'=> 12)); }
+	function __construct() { $this->defaults['typename'] = 'file'; parent::__construct(array('url'=> 10, 'name'=> 11, 'target'=> 12)); }
 	function getValue() { return $this->getUrl(); }
 	function getUrl() { return $this->data['content']['10']['value']; }
 	function getName() { return $this->data['content']['11']['value']; }
@@ -409,32 +409,32 @@ class SF_PAGE_ContentFile extends SF_PAGE_Content
 
 class SF_PAGE_ContentWysiwyg2 extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentWysiwyg2() { $this->defaults['typename'] = 'wysiwyg2'; parent::SF_PAGE_Content(13); }
+	function __construct() { $this->defaults['typename'] = 'wysiwyg2'; parent::__construct(13); }
 }
 
 class SF_PAGE_ContentSelect extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentSelect() { $this->defaults['typename'] = 'select'; parent::SF_PAGE_Content(14); }
+	function __construct() { $this->defaults['typename'] = 'select'; parent::__construct(14); }
 }
 
 class SF_PAGE_ContentHidden extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentHidden() { $this->defaults['typename'] = 'hidden'; parent::SF_PAGE_Content(15); }
+	function __construct() { $this->defaults['typename'] = 'hidden'; parent::__construct(15); }
 }
 
 class SF_PAGE_ContentCheckbox extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentCheckbox() { $this->defaults['typename'] = 'checkbox'; parent::SF_PAGE_Content(16); }
+	function __construct() { $this->defaults['typename'] = 'checkbox'; parent::__construct(16); }
 }
 
 class SF_PAGE_ContentRadio extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentRadio() { $this->defaults['typename'] = 'radio'; parent::SF_PAGE_Content(17); }
+	function __construct() { $this->defaults['typename'] = 'radio'; parent::__construct(17); }
 }
 
 class SF_PAGE_ContentDate extends SF_PAGE_Content 
 {
-	function SF_PAGE_ContentDate() { $this->defaults['typename'] = 'date'; parent::SF_PAGE_Content(18); }
+	function __construct() { $this->defaults['typename'] = 'date'; parent::__construct(18); }
 }
 
 ?>

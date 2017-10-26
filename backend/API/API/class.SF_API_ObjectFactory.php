@@ -67,7 +67,7 @@ class SF_API_ObjectFactory {
     * @param string $api_path
     * @param (object) $object_store
     */
-    function SF_API_ObjectFactory($api_path, &$object_store) {
+    function __construct($api_path, &$object_store) {
         $this->api_path = $api_path;
         $this->object_store = $object_store;
     } 

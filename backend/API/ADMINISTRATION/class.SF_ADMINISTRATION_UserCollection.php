@@ -18,7 +18,7 @@ class SF_ADMINISTRATION_UserCollection extends SF_API_Object {
 							);
 	
 	
-	function SF_ADMINISTRATION_UserCollection() {
+	function __construct() {
 		$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');
 	}
 	

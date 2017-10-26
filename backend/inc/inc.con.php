@@ -55,7 +55,7 @@ class cmsPageDoubletAudit{
 	/**
 	 * Construtor, generates data for idatsidecheking
 	 */
-	function  cmsPageDoubletAudit(){
+	function __construct(){
 		global $db, $cms_db, $lang;
 
 		$sql ="SELECT

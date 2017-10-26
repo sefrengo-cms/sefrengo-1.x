@@ -100,7 +100,7 @@ class SF_API_Object {
     * The Class Constructor.
     *
     */
-    function SF_API_Object() { ;
+    function __construct() { ;
     } 
 
     /**
@@ -228,7 +228,7 @@ class SF_API_Object {
     * @uses Call this for instance the object.
     */
     function _API_instance() { 
-        return SF_API_Object::SF_API_Object();// overwrite me
+        return SF_API_Object::__construct();// overwrite me
     }
     
     /**

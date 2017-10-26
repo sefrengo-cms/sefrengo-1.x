@@ -45,7 +45,7 @@ class SF_GUI_RESSOURCES_FileManager extends SF_GUI_RESSOURCES_Abstract{
 	/**
 	 * Konstructor
 	 */
-	function SF_GUI_RESSOURCES_FileManager() 
+	function __construct()
 	{
 		global $cms_lang;
 		$this->lang =& $cms_lang;

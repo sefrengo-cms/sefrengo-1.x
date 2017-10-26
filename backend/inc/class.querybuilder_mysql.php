@@ -48,7 +48,7 @@
 class querybuilder_mysql extends querybuilder
 {
 	// constructor
-	function querybuilder_mysql() {
+	function __construct() {
 	}
 
 	//

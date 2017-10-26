@@ -35,7 +35,7 @@ class cms_event {
 	var $events = array();
 	var $returnval = array();
 
-	function cms_event($val_ct) {
+	function __construct($val_ct) {
 		$this -> events = $val_ct -> get_by_group('events');
 	}
 

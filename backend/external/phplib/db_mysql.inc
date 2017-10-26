@@ -43,7 +43,7 @@ class DB_Sql {
 
 
   /* public: constructor */
-  function DB_Sql($query = "") {
+  function __construct($query = "") {
       $this->query($query);
   }
 

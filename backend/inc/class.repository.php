@@ -50,7 +50,7 @@ class repository {
     * constructor
     *
     */
-    function repository() {
+    function __construct() {
         global $val_ct, $perm, $cfg_cms, $db, $cms_db, $cms_lang, $auth, $client, $lang, $sess;
         // get global values
         $this->_db = $db = new DB_cms;

@@ -73,7 +73,7 @@ class SF_GUI_RessourceBrowser extends SF_API_Object{
 	var $_js_callback_func = 'rbDefaultCallback(ressource_type, picked_name, picked_value)';
 	
 	
-	function SF_GUI_RessourceBrowser() {
+	function __construct() {
 		global $cms_lang;
 		$this->lang =& $cms_lang ;
 		$this->cfg =& $GLOBALS['cfg_cms'];
@@ -464,7 +464,7 @@ class SF_UTILS_ArrayNumericIterator {
 	var $pos_current = 0;
 	var $pos_max = 0;
 	
-	function SF_UTILS_ArrayNumericIterator($arr) {
+	function __construct($arr) {
 		$this->arr = $arr;
 		$this->pos_max = count($this->arr);
 	}

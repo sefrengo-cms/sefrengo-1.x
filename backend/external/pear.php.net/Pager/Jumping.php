@@ -65,7 +65,7 @@ class Pager_Jumping extends Pager_Common
      *                          and their values
      * @access public
      */
-    function Pager_Jumping($options = array())
+    function __construct($options = array())
     {
         $err = $this->setOptions($options);
         if ($err !== PAGER_OK) {

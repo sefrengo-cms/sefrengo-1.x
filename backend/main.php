@@ -160,7 +160,7 @@ $sid_lang         = $lang;
 $sid_lang_charset = $lang_charset;
 
 // Multilanguage initialisieren
-$val_ct->values_ct();
+$val_ct->__construct();
 
 // Area initialisieren
 if (isset($area)) $sid_area = $area;

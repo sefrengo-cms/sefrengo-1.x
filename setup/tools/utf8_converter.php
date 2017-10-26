@@ -22,7 +22,7 @@ class UTF8Converter{
 	var $mysql_con_handle;
 	
 	
-	function UTF8Converter() {
+	function __construct() {
 		$this->action = $_REQUEST['action'];
 		$this->importDataString();
 	}
@@ -133,16 +133,20 @@ class UTF8Converter{
 		}
 		
 		$sql = 'SHOW TABLES';
-		$result = mysql_query ($sql, $this->mysql_con_handle);
+		$result = mysqli_query ($this->mysql_con_handle, $sql);
 		//print_r($this->data);
-        while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
+        while ($line = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
            foreach ($line AS $col_value) {
 				$sel = (in_array($col_value, $this->data['tables'])) ? 'selected="selected"': '';
-				$options .= sprintf('  <option value="%s"  %s>%s</option>'. "\n", $col_value, $sel, $col_value);
+
+               if (!isset($options)) {
+                   $options = '';
+               }
+               $options .= sprintf('  <option value="%s"  %s>%s</option>'. "\n", $col_value, $sel, $col_value);
 			}
         }
 
-        mysql_free_result($result);
+        mysqli_free_result($result);
 		$select  = '<select name="tables[]" size="20" multiple="multiple">' ."\n";
 		$select .= $options;
 		$select .= '</select>' ."\n";
@@ -234,9 +238,9 @@ class UTF8Converter{
 	
 	function paintSuccessScreen() {
 		foreach($this->data['tables'] AS $v) {
-			mysql_query('DROP TABLE IF EXISTS '.$v.$this->tables_postfix_backup);
-			mysql_query('ALTER TABLE '.$v.' RENAME '.$v.$this->tables_postfix_backup);
-			mysql_query('ALTER TABLE '.$v.$this->tables_postfix_converted.' RENAME '.$v);
+			mysqli_query($this->mysql_con_handle,'DROP TABLE IF EXISTS '.$v.$this->tables_postfix_backup);
+			mysqli_query($this->mysql_con_handle,'ALTER TABLE '.$v.' RENAME '.$v.$this->tables_postfix_backup);
+			mysqli_query($this->mysql_con_handle,'ALTER TABLE '.$v.$this->tables_postfix_converted.' RENAME '.$v);
 		}
 		
 		$out = '';
@@ -260,17 +264,15 @@ class UTF8Converter{
 			$sql = trim($v);
 			if (!empty($sql)) {
 				//echo $sql. "<br /><br />";
-				mysql_query ($sql,  $this->mysql_con_handle);
+				mysqli_query($this->mysql_con_handle, $sql);
 			}
 		}
 		
 	}
-	
-	
-	
+
 	function _connect() {
-		$con_handle = @mysql_connect ($this->data['host'], $this->data['username'], $this->data['password']);
-		if(! mysql_select_db ($this->data['database'], $con_handle) ) {
+		$con_handle = @mysqli_connect($this->data['host'], $this->data['username'], $this->data['password']);
+		if(! mysqli_select_db($con_handle, $this->data['database']) ) {
 			return false;
 		}
 		$this->mysql_con_handle = $con_handle;
@@ -329,13 +331,13 @@ class UTF8Converter{
 		//
 		// Ok lets grab the fields...
 		//
-		$result = mysql_query($field_query);
+		$result = mysqli_query($this->mysql_con_handle, $field_query);
 		if(!$result)
 		{
 			die("Failed in get_table_def (show fields)");
 		}
 	
-		while ($row = mysql_fetch_array($result))
+		while ($row = mysqli_fetch_array($result))
 		{	
 			
 			$schema_create .= '	`' . $row['Field'] . '` ' . $row['Type'];
@@ -360,18 +362,18 @@ class UTF8Converter{
 		//
 		// Drop the last ',$crlf' off ;)
 		//
-		$schema_create = ereg_replace(',' . $crlf . '$', "", $schema_create);
+		$schema_create = preg_replace('#,' . $crlf . '$#', "", $schema_create);
 	
 		//
 		// Get any Indexed fields from the database...
 		//
-		$result = mysql_query($key_query);
+		$result = mysqli_query($this->mysql_con_handle, $key_query);
 		if(!$result)
 		{
 			die("FAILED IN get_table_def (show keys)");
 		}
 	
-		while($row = mysql_fetch_array($result))
+		while($row = mysqli_fetch_array($result))
 		{
 			//print_r($row);echo "-- $x<br>";
 			$kname = $row['Key_name'];
@@ -384,8 +386,11 @@ class UTF8Converter{
 			{
 				$kname = "FULLTEXT|$kname";
 			}
-	
-			if(!is_array($index[$kname]))
+
+            if (!isset($index) || !is_array($index)) {
+			    $index = [];
+            }
+            if(!is_array($index[$kname]))
 			{
 				$index[$kname] = array();
 			}
@@ -442,14 +447,14 @@ class UTF8Converter{
 		// Grab the data from the table.
 		//
 		//echo "SELECT * FROM $table LIMIT $limit_start, $limit_max";
-		$result = mysql_query("SELECT * FROM $table LIMIT $limit_start, $limit_max");
+		$result = mysqli_query($this->mysql_con_handle, "SELECT * FROM $table LIMIT $limit_start, $limit_max");
 	
 		if (!$result)
 		{
 			die("Failed in get_table_content (select *) - SELECT * FROM $table");
 		}
 	
-		if(mysql_num_rows($result) > 0)
+		if(mysqli_num_rows($result) > 0)
 		{
 			$schema_insert = "\n#\n# Table Data for $table\n#\n";
 		}
@@ -464,21 +469,21 @@ class UTF8Converter{
 		// Loop through the resulting rows and build the sql statement.
 		//
 	
-		while ($row = mysql_fetch_array($result))
+		while ($row = mysqli_fetch_array($result))
 		{
 			$table_list = '(';
-			$num_fields = mysql_num_fields($result);
+			$num_fields = mysqli_num_fields($result);
 			//
 			// Grab the list of field names.
 			//
 			for ($j = 0; $j < $num_fields; $j++)
 			{
-				$table_list .=  @mysql_field_name($result, $j) . ', ';
+				$table_list .=  @mysqli_fetch_field_direct($result, $j)->name . ', ';
 			}
 			//
 			// Get rid of the last comma
 			//
-			$table_list = ereg_replace(', $', '', $table_list);
+			$table_list = preg_replace('#, $#', '', $table_list);
 			$table_list .= ')';
 			//
 			// Start building the SQL statement.
@@ -511,14 +516,21 @@ class UTF8Converter{
 			//
 			// Get rid of the the last comma.
 			//
-			$schema_insert = ereg_replace(',$', '', $schema_insert);
+			$schema_insert = preg_replace('#,$#', '', $schema_insert);
 			$schema_insert .= ');'."\n";
-	
-			$final .= $schema_insert;
+
+            if (!isset($final)) {
+                $final = '';
+            }
+            $final .= $schema_insert;
 	
 		}
-		
-		//echo $final; exit;
+
+        if (empty($final)) {
+		    $final = '';
+        }
+
+        //echo $final; exit;
 		return trim($final);
 	}
 	
@@ -629,6 +641,3 @@ class UTF8Converter{
 
 $u8c = new UTF8Converter();
 $u8c->start();
-
-
-?>

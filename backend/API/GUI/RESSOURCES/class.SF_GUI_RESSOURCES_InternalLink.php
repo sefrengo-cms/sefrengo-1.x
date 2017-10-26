@@ -47,7 +47,7 @@ class SF_GUI_RESSOURCES_InternalLink extends SF_GUI_RESSOURCES_Abstract
 	/**
 	 * Konstruktor
 	 */
-	function SF_GUI_RESSOURCES_InternalLink() 
+	function __construct()
 	{
 		global $cms_lang;
 		$this->lang =& $cms_lang;

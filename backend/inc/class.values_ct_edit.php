@@ -54,7 +54,7 @@ class values_ct_edit extends values_ct
 	* KONSTRUKTOR - Konfiguration
 	*
 	*/
-	function values_ct_edit($mixed = '')
+	function __construct($mixed = '')
 	{
 		global $cms_lang, $vid;
 

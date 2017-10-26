@@ -17,7 +17,7 @@ class SF_UTILS_Mail extends SF_API_Object {
     
     var $db_names;
 
-    function SF_UTILS_Mail() {
+    function __construct() {
 		global $cms_db;		
 		$this->db =& $GLOBALS['sf_factory']->getObject('DATABASE', 'Ado');
 		$this->db_names =& $cms_db;		

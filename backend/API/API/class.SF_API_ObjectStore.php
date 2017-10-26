@@ -54,7 +54,7 @@ class SF_API_ObjectStore {
     * The Class Constructor.
     *
     */
-    function SF_API_ObjectStore() { ;
+    function __construct() { ;
     }
     
     /**

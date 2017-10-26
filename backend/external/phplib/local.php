@@ -36,7 +36,7 @@ class DB_cms extends DB_Sql
     var $Host, $Database, $User, $Password, $Halt_On_Error = 'report';
 
     // konstruktor
-    function DB_cms()
+    function __construct()
     {
         global $cfg_cms;
 
@@ -579,7 +579,7 @@ class cms_Backend_Session extends Session
     var $block_alien_side = true;
     var $use_token_sid;
 
-    function cms_Backend_Session()
+    function __construct()
     {
         global $cfg_cms;
 
@@ -604,7 +604,7 @@ class cms_Frontend_Session extends Session
     var $block_alien_side = true;
     var $use_token_sid;
 
-    function cms_Frontend_Session()
+    function __construct()
     {
         global $cfg_client;
 
@@ -624,7 +624,7 @@ class cms_Backend_Auth extends Auth
     var $force_single_login;
 
     // konstruktor, set session lifetime & refresh
-    function cms_Backend_Auth()
+    function __construct()
     {
         global $cfg_cms;
 
@@ -788,7 +788,7 @@ class cms_Frontend_Auth extends Auth
     var $nobody = true;
 
     // konstruktor, set session lifetime & refresh
-    function cms_Frontend_Auth()
+    function __construct()
     {
         global $cfg_client;
 

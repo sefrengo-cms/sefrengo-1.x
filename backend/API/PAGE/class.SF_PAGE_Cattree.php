@@ -15,7 +15,7 @@ class SF_PAGE_Cattree extends SF_API_Object {
     					 'is_generated' => false
     					);
     
-    function SF_PAGE_Cattree() {
+    function __construct() {
     	// constructor
     }
     

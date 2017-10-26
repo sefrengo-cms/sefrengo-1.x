@@ -114,9 +114,9 @@ class HTML_QuickForm_hierselect extends HTML_QuickForm_group
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_hierselect($elementName=null, $elementLabel=null, $attributes=null, $separator=null)
+    function __construct($elementName=null, $elementLabel=null, $attributes=null, $separator=null)
     {
-        $this->HTML_QuickForm_element($elementName, $elementLabel, $attributes);
+        HTML_QuickForm_element::__construct($elementName, $elementLabel, $attributes);
         $this->_persistantFreeze = true;
         if (isset($separator)) {
             $this->_separator = $separator;

@@ -34,7 +34,7 @@
 class SF_DATABASE_Ado extends SF_API_Object{
 	var $conn_ado;
 	
-	function SF_DATABASE_Ado() {
+	function __construct() {
 		global $cfg_cms;
 		
 		$this->_API_setObjectBridge(true);

@@ -27,7 +27,7 @@
 		/**
 		 * Constructor - Initializes Captcha class!
 		 */
-		function captcha() {}
+		function __construct() {}
 		
 		/**
 		 * Set needed vals for image generation

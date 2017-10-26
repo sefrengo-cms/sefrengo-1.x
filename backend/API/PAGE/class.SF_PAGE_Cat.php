@@ -34,7 +34,7 @@ class SF_PAGE_Cat extends SF_API_Object {
 	
 	var $_set_langprefix_on_save_if_new = false;
 	
-	function SF_PAGE_Cat () {
+	function __construct() {
 		$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');
 	}
 	

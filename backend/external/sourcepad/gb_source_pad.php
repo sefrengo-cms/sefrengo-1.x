@@ -30,7 +30,7 @@ class gb_source_pad
 {
 	var $conf;
 
-	function gb_source_pad($form_name, $editor_name = 'default_editor')
+	function __construct($form_name, $editor_name = 'default_editor')
 	{
 		global $gb_conf;
 
