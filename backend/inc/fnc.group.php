@@ -74,7 +74,7 @@ function group_save() {
 	else {
 		$sql = "INSERT INTO ". $cms_db['groups'] ." VALUES ('', '$name', '$description', '0', '1', '1')";
 		$db->query($sql);
-		$idgroup = mysqli_insert_id($GLOBALS['db']->Link_ID);
+		$idgroup = mysqli_insert_id($this->db->Link_ID);
 	}
 }
 

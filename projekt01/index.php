@@ -155,7 +155,7 @@ if ($neg != 'xx') {
 //
 if ($_REQUEST['sf_rewrite'] && $cfg_client['url_rewrite'] == '2' && ! isset($view)) {
 	include_once($cfg_cms['cms_path'].'inc/fnc.mod_rewrite.php');
-	$sf_rewrite_raw = mysqli_escape_string($GLOBALS['db']->Link_ID, $_REQUEST['sf_rewrite']);
+	$sf_rewrite_raw = mysqli_escape_string($this->db->Link_ID, $_REQUEST['sf_rewrite']);
 	$sf_rw_pieces = explode('/', $sf_rewrite_raw);
 	
 	$_sf_rewrite_session = true;
@@ -191,11 +191,11 @@ if ($_REQUEST['sf_rewrite'] && $cfg_client['url_rewrite'] == '2' && ! isset($vie
 		$with_short_startlang = ($cfg_client['url_langid_in_defaultlang'] != '1') ? true: false;
 		if (preg_match('/^[0-9abcdef]{32}$/', $sf_rw_pieces['0']) ) {
 			$sf_rw_session = $sf_rw_pieces['0'];
-			$sf_rw_lang = mysqli_escape_string($GLOBALS['db']->Link_ID, $sf_rw_pieces['1']);
+			$sf_rw_lang = mysqli_escape_string($this->db->Link_ID, $sf_rw_pieces['1']);
 			$sf_rw_pieces = array_slice($sf_rw_pieces, 2);
 		} else {
 			$sf_rw_session = '';
-			$sf_rw_lang = mysqli_escape_string($GLOBALS['db']->Link_ID, $sf_rw_pieces['0']);
+			$sf_rw_lang = mysqli_escape_string($this->db->Link_ID, $sf_rw_pieces['0']);
 			$sf_rw_pieces = array_slice($sf_rw_pieces, 1);
 		}
 		

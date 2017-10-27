@@ -730,7 +730,7 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 	//create idside
 	$sql = "INSERT INTO ".$cms_db['side']." (idclient) VALUES ('$idclient')";
 	$db->query($sql);
-	$idside_to = mysqli_insert_id($GLOBALS['db']->Link_ID);
+	$idside_to = mysqli_insert_id($this->db->Link_ID);
 	
 	//create idcatside
 	$sql = "INSERT INTO 
@@ -738,7 +738,7 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 			VALUES
 				('$idcat_to', '$idside_to', '0')";
 	$db->query($sql);
-	$idcatside_to = mysqli_insert_id($GLOBALS['db']->Link_ID);
+	$idcatside_to = mysqli_insert_id($this->db->Link_ID);
 	
 	//sortindex
 	$db->query("SELECT MAX(sortindex) AS max FROM ".$cms_db['cat_side']." WHERE idcat='$idcat_to'");
@@ -921,7 +921,7 @@ function con_copy_tpl_from_idcatside($idclient, $idcatside_from, $idcatside_to) 
 				
 				//echo $sql2 .'<br />';
 				$db2->query($sql2);
-				$current_idtplconf = mysqli_insert_id($GLOBALS['db']->Link_ID);
+				$current_idtplconf = mysqli_insert_id($this->db->Link_ID);
 				
 				$sql2 = "UPDATE 
 							".$cms_db['side_lang']."

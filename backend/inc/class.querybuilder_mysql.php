@@ -109,7 +109,7 @@ class querybuilder_mysql extends querybuilder
 		// do insert
 		$this->sql = 'INSERT INTO ' . $this->cms_db[$table] . ' (' . $tmp_data['fields'] . ') VALUES (' . $tmp_data['values'] . ')';
 		$this->exec_query();
-		$this->lastInsert = mysqli_insert_id($GLOBALS['db']->Link_ID);
+		$this->lastInsert = mysqli_insert_id($this->db->Link_ID);
 		// check result
 		if ($check) {
 			if (!$tmp_data['where']) {

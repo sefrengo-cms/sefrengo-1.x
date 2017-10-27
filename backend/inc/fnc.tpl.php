@@ -104,7 +104,7 @@ function tpl_save($idtpl, $idlay, $tplname, $description, $tpl_overwrite_all) {
                 , lastmodified) VALUES ('$tplname', '$description', '$idlay', '$client'
                 , '".$auth->auth['uid']."', '".time()."', '".time()."')";
 		$db->query($sql);
-		$idtpl = mysqli_insert_id($GLOBALS['db']->Link_ID);
+		$idtpl = mysqli_insert_id($db->Link_ID);
 
 		// Event
 		fire_event('tpl_new', array('idtpl' => $idtpl, 'name' => $tplname));
@@ -145,7 +145,7 @@ function tpl_save($idtpl, $idlay, $tplname, $description, $tpl_overwrite_all) {
 				$sql = "INSERT INTO $cms_db[container] (idtpl, container, idmod) VALUES ('$idtpl'
                         , '$value', '".${'c'.$value}."')";
 				$db->query($sql);
-				$idcontainer = mysqli_insert_id($GLOBALS['db']->Link_ID);
+				$idcontainer = mysqli_insert_id($db->Link_ID);
 				$sql = "INSERT INTO $cms_db[container_conf] (idcontainer, config, view, edit)
                         VALUES ('$idcontainer', '$cconfig[$value]', '".${'cview'.$value}."', '".${'cedit'.$value}."')";
 				$db->query($sql);
@@ -311,9 +311,9 @@ function con_config_tpl_save($idtpl, $idlay, $idcatlang, $idsidelang, $idtplconf
 		if ($idtpl != '0') {
 			// Template erstellen
 			$sql = "INSERT INTO $cms_db[tpl_conf] (idtpl) VALUES ('$idtpl')";
-			mysqli_query($GLOBALS['db']->Link_ID, $sql);
+			mysqli_query($db->Link_ID, $sql);
 			//print_r($db);
-			$idtplconf = mysqli_insert_id($GLOBALS['db']->Link_ID);
+			$idtplconf = mysqli_insert_id($db->Link_ID);
 			//echo mysql_insert_id();
 			$is_new_tpl = true;
 			//echo "<br>new tpl idtpl: $idtpl idtplconf: $idtplconf<br>";
@@ -528,7 +528,7 @@ function con_config_folder_save($idcat, $idcatside, $idtpl, $view, $idtplconf, $
 		$db->query($sql);
 
 		// neue idcat suchen
-		$idcat = mysqli_insert_id($GLOBALS['db']->Link_ID);
+		$idcat = mysqli_insert_id($db->Link_ID);
 		if ($parent == '0') $rootparent = $idcat;
 
 		$sql   = "UPDATE ".$cms_db['cat']." SET rootparent='$rootparent' WHERE idcat='$idcat'";
@@ -704,7 +704,7 @@ function con_config_side_save($idcat, $idside, $idtpl, $idtplconf, $idsidelang, 
 		$db->query($sql);
 
 		// neue idside suchen
-		$idside = mysqli_insert_id($GLOBALS['db']->Link_ID);
+		$idside = mysqli_insert_id($db->Link_ID);
 		
 
 		// Seite in alle Ordner einfügen

@@ -297,7 +297,7 @@ function set_magic_quotes_gpc(&$code) {
 		$code = str_replace("'", "\'", $code);
 		$code = str_replace('"', '\"', $code);
 	} else {
-		$code = mysqli_real_escape_string($GLOBALS['db']->Link_ID, $code);
+		$code = mysqli_real_escape_string($this->db->Link_ID, $code);
 	}
 }
 
