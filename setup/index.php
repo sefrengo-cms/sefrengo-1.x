@@ -105,36 +105,38 @@ class setup {
 	var $debug = false;
 	var $mysql_con_handle;
 	var $updatefiles = array(
-							'updates.sql',
-							'updates_from.00.97.00.sql',
-							'updates_from.00.98.00.sql',
-							'updates_from.00.99.00.sql',
-							'updates_from.01.00.00.sql',
-							'updates_from.01.00.01.sql',
-							'updates_from.01.00.02.sql',
-							'updates_from.01.00.03.sql',
-							'updates_from.01.01.90.sql',
-							'updates_from.01.01.91.sql',
-							'updates_from.01.01.92.sql',
-							'updates_from.01.02.00.sql',
-							'updates_from.01.02.01.sql',
-							'updates_from.01.02.02.sql',
-							'updates_from.01.03.00.sql',
-							'updates_from.01.03.01.sql',
-							'updates_from.01.04.00.sql',
-							'updates_from.01.04.01.sql',
-							'updates_from.01.04.02.sql',
-							'updates_from.01.04.03.sql',
-							'updates_from.01.04.04.sql',
-							'updates_from.01.04.05.sql',
-							'updates_from.01.04.06.sql',
-							'updates_from.01.05.00.sql',
-							'updates_from.01.05.01.sql',
-							'updates_from.01.06.00.sql',
-							'updates_from.01.06.01.sql',
-							'updates_from.01.06.02.sql',
-							'updates_from.01.06.03.sql',
-							'updates_from.01.06.04.sql');
+		'updates.sql',
+		'updates_from.00.97.00.sql',
+		'updates_from.00.98.00.sql',
+		'updates_from.00.99.00.sql',
+		'updates_from.01.00.00.sql',
+		'updates_from.01.00.01.sql',
+		'updates_from.01.00.02.sql',
+		'updates_from.01.00.03.sql',
+		'updates_from.01.01.90.sql',
+		'updates_from.01.01.91.sql',
+		'updates_from.01.01.92.sql',
+		'updates_from.01.02.00.sql',
+		'updates_from.01.02.01.sql',
+		'updates_from.01.02.02.sql',
+		'updates_from.01.03.00.sql',
+		'updates_from.01.03.01.sql',
+		'updates_from.01.04.00.sql',
+		'updates_from.01.04.01.sql',
+		'updates_from.01.04.02.sql',
+		'updates_from.01.04.03.sql',
+		'updates_from.01.04.04.sql',
+		'updates_from.01.04.05.sql',
+		'updates_from.01.04.06.sql',
+		'updates_from.01.05.00.sql',
+		'updates_from.01.05.01.sql',
+		'updates_from.01.06.00.sql',
+		'updates_from.01.06.01.sql',
+		'updates_from.01.06.02.sql',
+		'updates_from.01.06.03.sql',
+		'updates_from.01.06.04.sql',
+		'updates_from.01.06.05.sql'
+	);
 
 	/**
 	* Konstruktor. Catch all globals
@@ -144,7 +146,7 @@ class setup {
 		$this -> catch_globals();
 		$this -> version['prior'] = '01';
 		$this -> version['minor'] = '06';
-		$this -> version['fix']   = '05';
+		$this -> version['fix']   = '06';
 		$this -> version_text = $this -> version['prior'];
 		$this -> version_text .= '.';
 		$this -> version_text .= $this -> version['minor'];

@@ -1013,7 +1013,7 @@ function type_output_typegroup($type_container, $type_number, $type_typenumber, 
 	$elements = $type_config['elements'];
 	preg_match_all("/(\w*)\[([^\]]*)\]/", $elements , $matches);
 	$menustring = '_';
-	$link_edit = '';
+	$link_edit = [];
 	$link_new = '';
 	$is_empty = true;
 	$mc = count($matches['1']);
