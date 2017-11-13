@@ -110,7 +110,7 @@ class Mail_mime
      *
      * @access public
      */
-    function Mail_mime($crlf = "\r\n")
+    function __construct($crlf = "\r\n")
     {
         $this->_setEOL($crlf);
         $this->_build_params = array(
@@ -678,10 +678,14 @@ class Mail_mime
         foreach ($input as $hdr_name => $hdr_value) {
             preg_match_all('/(\w*[\x80-\xFF]+\w*)/', $hdr_value, $matches);
             foreach ($matches[1] as $value) {
-                $replacement = preg_replace('/([\x80-\xFF])/e',
-                                            '"=" .
-                                            strtoupper(dechex(ord("\1")))',
-                                            $value);
+//                $replacement = preg_replace('/([\x80-\xFF])/e',
+//                                            '"=" .
+//                                            strtoupper(dechex(ord("\1")))',
+//                                            $value);
+                $replacement = preg_replace_callback('/([\x80-\xFF])/', function ($match) {
+                    $string = $match[1];
+                    return "=" . strtoupper(dechex(ord($string)));
+                }, $value);
                 $hdr_value = str_replace($value, '=?' .
                                          $this->_build_params['head_charset'] .
                                          '?Q?' . $replacement . '?=',

@@ -14,7 +14,7 @@ class SF_ASSETS_DbDirectorytree extends SF_API_Object {
     					);
  
     
-    function SF_ASSETS_DbDirectorytree() {
+    function __construct() {
     	// constructor
     }
     

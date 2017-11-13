@@ -37,7 +37,7 @@ class SF_UTILS_Tracker extends SF_API_Object{
 				);
 	
 	
- 	function SF_UTILS_Tracker() {
+ 	function __construct() {
  		$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');
  	}
  	

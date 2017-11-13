@@ -31,8 +31,11 @@
 // + ToDo:
 // +----------------------------------------------------------------------+
 
+if (empty($cfg_cms) || !is_array($cfg_cms)) {
+    $cfg_cms = [];
+}
 // MYSQL
-$cfg_cms['db_type']		= 'mysql';
+$cfg_cms['db_type']		= 'mysqli';
 $cfg_cms['db_host']		= '<!--{host}-->';
 $cfg_cms['db_database']		= '<!--{db}-->';
 $cfg_cms['db_user']		= '<!--{user}-->';
@@ -41,6 +44,9 @@ $cfg_cms['db_table_prefix'] 	= '<!--{prefix}-->';
 $cfg_cms['db_utf8'] 	= false;
 $cfg_cms['db_mysql_pconnect'] 	= false;
 
+if (empty($cms_db) || !is_array($cms_db)) {
+    $cms_db = [];
+}
 // Namen der SQL-Tabellen
 $cms_db['backendmenu']		= $cfg_cms['db_table_prefix'].'backendmenu';
 $cms_db['cat']			= $cfg_cms['db_table_prefix'].'cat';

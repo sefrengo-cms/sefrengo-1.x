@@ -35,7 +35,7 @@
 class SF_ASSETS_DbFileAddonFactory extends SF_API_Object {
 	var $fileobject;
 	
-	function SF_ASSETS_DbFileAddonFactory() {
+	function __construct() {
 		
 	}
 	
@@ -65,7 +65,7 @@ class SF_ASSETS_DbFileAddonFactory extends SF_API_Object {
 class SF_ASSETS_DbFileAddon extends SF_API_Object {
 	var $fileobject;
 	
-	function SF_ASSETS_DbFileAddon() {
+	function __construct() {
 	}
 	
 	function setFileObject(&$o) {
@@ -99,7 +99,7 @@ class SF_ASSETS_DbFileAddonImage extends SF_ASSETS_DbFileAddon{
 	var $chmod_value    =  0777;
 	var $sourcefile     = '';
 	
-	function SF_ASSETS_DbFileAddonImage() {	
+	function __construct() {
 		global $cfg_client,$cfg_cms, $cms_image, $fm;
 
 		require_once 'Image/Transform.php';

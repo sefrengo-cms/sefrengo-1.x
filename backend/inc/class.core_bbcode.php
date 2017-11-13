@@ -34,7 +34,7 @@
 class core_bbcode{
 	var $tags;
 	var $settings;
-	function core_bbcode(){
+	function __construct(){
 		$this->tags = array();
 		$this->settings = array('enced'=>true);
         $this->add_tag(array('Name'=>'b','HtmlBegin'=>'<strong>','HtmlEnd'=>'</strong>'));

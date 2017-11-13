@@ -109,10 +109,10 @@ class filemanager extends fileaccess {
 	//
 	// constructor
 	//
-	function filemanager() {
+	function __construct() {
 		global $this_dir, $cfg_cms;
 		
-		parent::fileaccess();
+		parent::__construct();
 		if ($this->cfg_client['upl_addon']) {
 			include_once ($this_dir.'inc/class.fileaddon.php');
 			$this->addon_factory = new addon_factory();

@@ -333,7 +333,11 @@ if ($sql_links != '') {
 	}
 }
 //...und ersetzen
-$in ="'cms://idfile=(\d+)'e";
-$out = '\$cms_file[\\1]';
-$code = preg_replace($in, $out, $code);
+//$in ="'cms://idfile=(\d+)'e";
+//$out = '\$cms_file[\\1]';
+//$code = preg_replace($in, $out, $code);
+
+$code = preg_replace_callback("'cms://idfile=(\d+)'", function ($match) use ($cms_file) {
+	return $cms_file[$match[1]];
+}, $code);
 ?>

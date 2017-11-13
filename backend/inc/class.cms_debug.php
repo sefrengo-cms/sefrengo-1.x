@@ -41,7 +41,7 @@ class cms_debug
 	var $t;
 	var $m_enabled = false;
 	
-	function cms_debug() {
+	function __construct() {
 		list($low, $high) = explode(" ", microtime());
     	$this->t = (float)$high + (float)$low;
 	}

@@ -49,7 +49,7 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 				('$name', '$desc', '".$auth->auth['uid']."', '".$charset."',
 					 '".$iso_3166_code."', '".$rewrite_key."', '".$rewrite_mapping."', '".$is_start."', '".time()."', '".time()."')";
 	$db->query($sql);
-	$lang = mysql_insert_id();
+	$lang = mysqli_insert_id($this->db->Link_ID);
 
 	// Eintrag in 'clients_lang' Tabelle
 	$sql = "INSERT INTO 
@@ -61,8 +61,8 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 
 	// Webseitencontent duplizieren
 	if ($from_lang != '' && $copy_content) {
-		$db2 =& new DB_cms;
-		$db3 =& new DB_cms;
+		$db2 = new DB_cms;
+		$db3 = new DB_cms;
 		
 		// Zeitinterval vergrößern
 		@set_time_limit(0);
@@ -152,7 +152,7 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 				
 				//echo $sql2 .'<br />';
 				$db2->query($sql2);
-				$current_idtplconf = mysql_insert_id(); 
+				$current_idtplconf = mysqli_insert_id($this->db->Link_ID);
 				
 				$sql2 = "UPDATE 
 							".$cms_db['cat_lang']."
@@ -203,7 +203,7 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 				
 				//echo $sql2 .'<br />';
 				$db2->query($sql2);
-				$current_idtplconf = mysql_insert_id(); 
+				$current_idtplconf = mysqli_insert_id($this->db->Link_ID);
 				
 				$sql2 = "UPDATE 
 							".$cms_db['side_lang']."

@@ -72,7 +72,7 @@ class SF_PAGE_ContentCollection extends SF_API_Object {
     * The Class Constructor.
     *
     */
-    function SF_PAGE_ContentCollection() {
+    function __construct() {
         // constructor
  		global $lang, $cfg_cms;
      

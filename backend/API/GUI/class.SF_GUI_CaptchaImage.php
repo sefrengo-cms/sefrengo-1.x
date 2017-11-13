@@ -6,10 +6,10 @@ class SF_GUI_CaptchaImage extends SF_API_Object {
 	var $picture_prefix = 'sf_ca_';
 	var $picture_path = '';
 	
-	function SF_GUI_CaptchaImage() {
+	function __construct() {
 		global $cfg_cms, $cfg_client;
 		include_once $cfg_cms['cms_path'].'external/misc/class.captcha.php';
-		$this->captcha_object =& new captcha();
+		$this->captcha_object = new captcha();
 		$this->picture_path = $cfg_client["path"].'cms/files/tmp/captcha';
 		if (! is_dir($cfg_client["path"].'cms/files/tmp')) {
 			mkdir ($cfg_client["path"].'cms/files/tmp', 0777);

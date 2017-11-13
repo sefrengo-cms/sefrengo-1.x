@@ -35,7 +35,7 @@ class crypter{
 
    var $key;
 
-   function crypter($clave) {
+   function __construct($clave) {
       $this->key = $clave;
    }
 

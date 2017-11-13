@@ -78,7 +78,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * The Class Constructor.
     *
     */
-    function SF_GUI_ContentStylerPlain() {
+    function __construct() {
         // constructor
 
     }

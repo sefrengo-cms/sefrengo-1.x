@@ -92,9 +92,9 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_group($elementName=null, $elementLabel=null, $elements=null, $separator=null, $appendName = true)
+    function __construct($elementName=null, $elementLabel=null, $elements=null, $separator=null, $appendName = true)
     {
-        $this->HTML_QuickForm_element($elementName, $elementLabel);
+        HTML_QuickForm_element::__construct($elementName, $elementLabel);
         $this->_type = 'group';
         if (isset($elements) && is_array($elements)) {
             $this->setElements($elements);
@@ -290,7 +290,7 @@ class HTML_QuickForm_group extends HTML_QuickForm_element
     function toHtml()
     {
         include_once('HTML/QuickForm/Renderer/Default.php');
-        $renderer =& new HTML_QuickForm_Renderer_Default();
+        $renderer = new HTML_QuickForm_Renderer_Default();
         $renderer->setElementTemplate('{element}');
         $this->accept($renderer);
         return $renderer->toHtml();

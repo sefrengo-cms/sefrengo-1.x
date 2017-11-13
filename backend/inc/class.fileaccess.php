@@ -109,7 +109,7 @@ class fileaccess {
 	//
 	// constructor
 	//
-	function fileaccess() {
+	function __construct() {
 		$this->db            = $GLOBALS['db_query'];
 		$this->cfg_client    = $GLOBALS['cfg_client'];
 		$this->cfg_cms      = $GLOBALS['cfg_cms'];

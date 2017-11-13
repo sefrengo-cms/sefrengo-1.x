@@ -68,7 +68,7 @@ class validator {
 	//
 	// constructor
 	//
-	function validator () {
+	function __construct() {
 		$this->cfg_cms = $GLOBALS['cfg_cms'];
 		$this->preg_limiter = utf8_encode('ö');
 	}

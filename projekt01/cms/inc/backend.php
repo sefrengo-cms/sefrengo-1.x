@@ -184,14 +184,22 @@ if ($code) {
 			}
 		}
 		//Links ersetzen
-		$in = array("'cms://idfile=(\d+)'e",
-			    "!cms://idcat=(\d+)!e",
-			    "!cms://idcatside=(\d+)!e");
-		$out = array('\$cms_file[\\1]',
-			     '\$con_tree[\\1][\'link\']',
-			     '\$con_side[\\1][\'link\']');
-		$code = preg_replace($in, $out, $code);
-
+//		$in = array("'cms://idfile=(\d+)'e",
+//			    "!cms://idcat=(\d+)!e",
+//			    "!cms://idcatside=(\d+)!e");
+//		$out = array('\$cms_file[\\1]',
+//			     '\$con_tree[\\1][\'link\']',
+//			     '\$con_side[\\1][\'link\']');
+//		$code = preg_replace($in, $out, $code);
+		$code = preg_replace_callback("'cms://idfile=(\d+)'", function ($match) use ($cms_file) {
+            return $cms_file[$match[1]];
+		}, $code);
+        $code = preg_replace_callback("!cms://idcat=(\d+)!", function ($match) use ($con_tree) {
+            return $con_tree[$match[1]]['link'];
+        }, $code);
+        $code = preg_replace_callback("!cms://idcatside=(\d+)!", function ($match) use ($con_side) {
+            return $con_side[$match[1]]['link'];
+        }, $code);
 
 		//turn around inline- editing temp_links
 		$in = array("!cms://temp_idfile=(\d+)!",

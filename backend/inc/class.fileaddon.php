@@ -50,7 +50,7 @@ class addon_factory
 	var $inc_path   = '';
 
 	// constructor
-	function addon_factory() {
+	function __construct() {
 		global $cfg_client, $this_dir;
 
 		$this->_supported = explode ( ",", $cfg_client["upl_addon"] );
@@ -106,7 +106,7 @@ class fileaddon {
 	//
 	// Contructor
 	//
-	function fileaddon() {
+	function __construct() {
 	}
 	
 	//
@@ -184,7 +184,7 @@ class fileaddon_bilder extends fileaddon {
 	//
 	// constructor
 	//
-	function fileaddon_bilder() {
+	function __construct() {
 		global $cfg_client,$cfg_cms, $cms_image, $fm;
 
 		require_once 'Image/Transform.php';
@@ -406,8 +406,8 @@ class fileaddon_jpeg extends fileaddon_bilder {
 	//
 	// to do:
 	// prüfe ob image-library notwendige functionen unterstützt
-	function fileaddon_jpeg() {
-		parent::fileaddon_bilder();
+	function __construct() {
+		parent::__construct();
 	}
 }
 
@@ -430,8 +430,8 @@ class fileaddon_jpg extends fileaddon_bilder {
 	//
 	// to do:
 	// prüfe ob image-library notwendige functionen unterstützt
-	function fileaddon_jpg() {
-		parent::fileaddon_bilder();
+	function __construct() {
+		parent::__construct();
 	}
 }
 
@@ -454,8 +454,8 @@ class fileaddon_png extends fileaddon_bilder {
 	//
 	// to do:
 	// prüfe ob image-library notwendige functionen unterstützt
-	function fileaddon_png() {
-		parent::fileaddon_bilder();
+	function __construct() {
+		parent::__construct();
 	}
 }
 
@@ -480,8 +480,8 @@ class fileaddon_gif extends fileaddon_bilder {
 	//
 	// to do:
 	// prüfe ob image-library notwendige functionen unterstützt
-	function fileaddon_gif() {
-		parent::fileaddon_bilder();
+	function __construct() {
+		parent::__construct();
 	}
 
 	//
