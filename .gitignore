@@ -176,3 +176,10 @@ pip-log.txt
 # Mac crap
 .DS_Store
 backend/logs/errorlog.txt
+
+
+#############
+## WebStorm / PHPStorm
+#############
+
+.idea
