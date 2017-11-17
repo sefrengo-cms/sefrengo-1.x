@@ -41,7 +41,7 @@ class values_ct
 	*
 	*
 	**/
-	function values_ct()
+	function __construct()
 	{
 		//CHANGE STam
 		global $cms_db, $db, $cms_lang, $lang, $client;

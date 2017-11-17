@@ -24,7 +24,7 @@ class SF_PAGE_Pageinfos extends SF_API_Object
     /**
      * Constructor, init common values.
      */
-    function SF_PAGE_Pageinfos() 
+    function __construct()
     {
         $this->cache =& sf_factoryGetObjectCache('UTILS', 'DbCache');
         $this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');

@@ -79,7 +79,7 @@ class SF_GUI_RESSOURCES_Abstract extends SF_API_Object{
 	/**
 	 * Konstructor
 	 */
-	function SF_GUI_RESSOURCES_Abstract() 
+	function __construct()
 	{
 		
 	}

@@ -376,7 +376,7 @@ function lib_delete_file($file) {
         $delete = @unlink($file);
         if (@file_exists($file)) {
             clearstatcache();
-            $filesys = eregi_replace("/", "\\", $file);
+            $filesys = preg_replace("#/#i", "\\", $file);
             $delete = @system("del $filesys");
             if (@file_exists($file)) {
                 clearstatcache();

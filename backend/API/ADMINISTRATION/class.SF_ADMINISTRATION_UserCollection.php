@@ -18,7 +18,7 @@ class SF_ADMINISTRATION_UserCollection extends SF_API_Object {
 							);
 	
 	
-	function SF_ADMINISTRATION_UserCollection() {
+	function __construct() {
 		$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');
 	}
 	
@@ -72,7 +72,7 @@ class SF_ADMINISTRATION_UserCollection extends SF_API_Object {
 		$this->conf['searchterm'] = trim($this->conf['searchterm']);
 		$sql_search = '';
 		if ($this->conf['searchterm'] != '') {
-			$term = mysql_real_escape_string($this->conf['searchterm']);
+			$term = mysqli_real_escape_string($this->db->_connectionID, $this->conf['searchterm']);
 			$pieces = explode(' ', $term);			
 			$sql_search_array = array();
 			foreach ($pieces AS $word) {
@@ -198,7 +198,7 @@ class SF_ADMINISTRATION_UserCollection extends SF_API_Object {
 		$this->conf['searchterm'] = trim($this->conf['searchterm']);
 		$sql_search = '';
 		if ($this->conf['searchterm'] != '') {
-			$term = mysql_real_escape_string($this->conf['searchterm']);
+			$term = mysqli_real_escape_string($this->db->_connectionID, $this->conf['searchterm']);
 			$pieces = explode(' ', $term);			
 			$sql_search_array = array();
 			foreach ($pieces AS $word) {

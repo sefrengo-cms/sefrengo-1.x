@@ -36,7 +36,7 @@ class querybuilder_factory
 	var $_db = array();
 
 	// constructor
-	function querybuilder_factory() {
+	function __construct() {
 	}
 
 	//
@@ -127,7 +127,7 @@ class querybuilder
 	var $views = array();
 
 	// constructor
-	function querybuilder() {
+	function __construct() {
 	}
 
 	//

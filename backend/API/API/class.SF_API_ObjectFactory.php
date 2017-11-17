@@ -67,7 +67,7 @@ class SF_API_ObjectFactory {
     * @param string $api_path
     * @param (object) $object_store
     */
-    function SF_API_ObjectFactory($api_path, &$object_store) {
+    function __construct($api_path, &$object_store) {
         $this->api_path = $api_path;
         $this->object_store = $object_store;
     } 
@@ -340,7 +340,7 @@ class SF_API_ObjectFactory {
             $pstring = '();';
         } 
 
-        $to_eval = '$obj =& new ' . $full_classname . $pstring;
+        $to_eval = '$obj = new ' . $full_classname . $pstring;
         eval($to_eval);
         if ($obj->_API_checkObject()) return $obj;
         

@@ -18,14 +18,12 @@ function page_open($feature) {
 		$sess = new $feature['sess'];
 		$sess->start();
 
-
-
-
 		// the auth feature depends on sess
 		if (isset($feature['auth'])) {
 			global $auth;
 
 			if (!isset($auth)) $auth = new $feature['auth'];
+			/** @var cms_Backend_Auth $auth */
 			$auth->start();
 			if(! $sess -> session_enabled){ return false ;}
 
@@ -66,14 +64,20 @@ function page_close() {
 
 function sess_load($session) {
 	reset($session);
-	while (list($k,$v) = each($session)) {
-		$GLOBALS[$k] = new $v;
-		$GLOBALS[$k]->start();
-	}
+    if (!empty($session)) {
+        foreach ($session as $k => $v) {
+            $GLOBALS[$k] = new $v;
+            $GLOBALS[$k]->start();
+        }
+    }
 }
 
 function sess_save($session) {
 	reset($session);
-	while (list(,$v) = each($session)) $GLOBALS[$v]->freeze();
+    if (!empty($session)) {
+        foreach ($session as $k => $v) {
+            $GLOBALS[$v]->freeze();
+        }
+    }
 }
 ?>

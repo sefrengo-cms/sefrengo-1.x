@@ -38,7 +38,7 @@ class SF_ADMINISTRATION_PermAddon extends SF_API_Object {
 class SF_ADMINISTRATION_PermAddonCat extends SF_ADMINISTRATION_PermAddon {
 	var $ctree;
 	
-	function SF_ADMINISTRATION_PermAddonCat () {
+	function __construct() {
 		global $client;
 		
 		$this->ctree =& sf_factoryGetObjectCache('Page', 'Cattree');
@@ -143,7 +143,7 @@ class SF_ADMINISTRATION_PermAddonCat extends SF_ADMINISTRATION_PermAddon {
 class SF_ADMINISTRATION_PermAddonDirectory extends SF_ADMINISTRATION_PermAddon {
 	var $dtree;
 	
-	function SF_ADMINISTRATION_PermAddonDirectory () {
+	function __construct() {
 		global $client;
 		
 		$this->dtree =& sf_factoryGetObjectCache('ASSETS', 'DbDirectorytree');

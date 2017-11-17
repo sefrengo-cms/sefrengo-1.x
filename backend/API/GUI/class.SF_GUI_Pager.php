@@ -26,7 +26,7 @@ class SF_GUI_Pager extends SF_API_Object {
 						'execlude_vars' => array()
 						);
 	
-	function SF_GUI_Pager() {
+	function __construct() {
 		include_once 'Pager/Pager.php';
 	}
 	

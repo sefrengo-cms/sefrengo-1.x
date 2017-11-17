@@ -45,7 +45,7 @@ class SF_ASSETS_DbFile extends SF_API_Object {
 	
 	var $_dirty = false;
 	
-	function SF_ASSETS_DbFile() {
+	function __construct() {
 		global $cms_db, $client;	
 		$this->db =& $GLOBALS['sf_factory']->getObject('DATABASE', 'Ado');
 		$this->db_names =& $cms_db;

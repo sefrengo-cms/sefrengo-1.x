@@ -31,7 +31,7 @@
 	var $pos_max = 0;
 	var $keys = array();
 	
-	function SF_UTILS_ArrayIterator() {	}
+	function __construct() {	}
 	
 	function loadByRef(&$arr) {
 		$this->arr =& $arr;

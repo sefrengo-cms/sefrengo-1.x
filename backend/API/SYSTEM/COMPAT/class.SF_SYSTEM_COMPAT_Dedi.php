@@ -55,7 +55,7 @@ class SF_SYSTEM_COMPAT_DeDi extends SF_API_Object {
     * The Class Constructor.
     *
     */
-    function SF_SYSTEM_COMPAT_DeDi() {
+    function __construct() {
     }
 }
 ?>

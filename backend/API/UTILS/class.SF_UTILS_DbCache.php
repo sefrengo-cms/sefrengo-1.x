@@ -6,7 +6,7 @@ class SF_UTILS_DbCache extends SF_API_Object {
 	var $cache_name = 'SF_UTILS_DbCache';
 	var $cache_gc_probability = 1;
    
-    function SF_UTILS_DbCache() {
+    function __construct() {
     	global $cfg_cms, $cfg_client;
 
 		$this->_API_objectIsSingleton(true);

@@ -65,9 +65,9 @@ function mod_copy($idmod, $from, $into) {
             $config = make_string_dump($modul['config']);
             $rep_id = make_string_dump($modul['repository_id']);
             $source_id     = make_string_dump($modul['source_id']);
-            $sql_install   = mysql_escape_string($rep->decode_sql($modul['install_sql']));
-            $sql_uninstall = mysql_escape_string($rep->decode_sql($modul['uninstall_sql']));
-            $sql_update    = mysql_escape_string($rep->decode_sql($modul['update_sql']));
+            $sql_install   = mysqli_escape_string($db->Link_ID, $rep->decode_sql($modul['install_sql']));
+            $sql_uninstall = mysqli_escape_string($db->Link_ID, $rep->decode_sql($modul['uninstall_sql']));
+            $sql_update    = mysqli_escape_string($db->Link_ID, $rep->decode_sql($modul['update_sql']));
             $source        = ($from == '0') ? $idmod : (($source_id > 0) ? $source_id : '');
             $repid         = $rep->gen_new_mod($name, true);
             $checked       = (string) $modul['checked'];
@@ -186,9 +186,9 @@ function mod_save ($idmod_in, $name, $verbose, $description, $modversion, $modca
     $modverbose = ($verbose == '-1') ? $name : $verbose;
     $mod_sql_uninstall = $sql_uninstall;
     $mod_sql_install = $sql_install;
-    $sql_install = mysql_escape_string($rep->decode_sql($sql_install));
-    $sql_uninstall = mysql_escape_string($rep->decode_sql($sql_uninstall));
-    $sql_update = mysql_escape_string($rep->decode_sql($sql_update));
+    $sql_install = mysqli_escape_string($db->Link_ID, $rep->decode_sql($sql_install));
+    $sql_uninstall = mysqli_escape_string($db->Link_ID, $rep->decode_sql($sql_uninstall));
+    $sql_update = mysqli_escape_string($db->Link_ID, $rep->decode_sql($sql_update));
     if ($mod_no_wedding == true) {
        $source_id     = 0;
        $repositoryid  = $rep->gen_new_mod($name);

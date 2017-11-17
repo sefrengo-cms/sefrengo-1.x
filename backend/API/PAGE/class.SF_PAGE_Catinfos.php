@@ -16,7 +16,7 @@ class SF_PAGE_Catinfos extends SF_API_Object {
     var $cache;
     var $db;
     
-    function SF_PAGE_Catinfos() {
+    function __construct() {
     	// constructor
     	$this->cache =& sf_factoryGetObjectCache('UTILS', 'DbCache');
     	$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');

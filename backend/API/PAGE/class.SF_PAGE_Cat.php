@@ -34,7 +34,7 @@ class SF_PAGE_Cat extends SF_API_Object {
 	
 	var $_set_langprefix_on_save_if_new = false;
 	
-	function SF_PAGE_Cat () {
+	function __construct() {
 		$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');
 	}
 	
@@ -533,7 +533,7 @@ class SF_PAGE_Cat extends SF_API_Object {
 					
 					//echo $sql2 .'<br />';
 					$db2->query($sql2);
-					$current_idtplconf = mysql_insert_id(); 
+					$current_idtplconf = mysqli_insert_id($this->db->Link_ID);
 					
 					$sql2 = "UPDATE 
 								".$cms_db['cat_lang']."

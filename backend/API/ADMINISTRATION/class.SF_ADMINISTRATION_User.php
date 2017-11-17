@@ -67,7 +67,7 @@ class SF_ADMINISTRATION_User extends SF_API_Object {
 	
 	var $db;
 	
-	function SF_ADMINISTRATION_User() {
+	function __construct() {
 		$this->db =& sf_factoryGetObjectCache('DATABASE', 'Ado');
 	}
 	

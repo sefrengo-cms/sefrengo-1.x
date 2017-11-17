@@ -56,7 +56,7 @@ function group_save() {
 	if (trim($name) == '') return 'group_noname';
 
 	// keine Sonderzeichen in Gruppenname
-	if (!eregi("[0-9a-zA-Z]", $name)) return 'group_incorrectcharacter';
+	if (!preg_match("/[0-9a-zA-Z]/i", $name)) return 'group_incorrectcharacter';
 
 	// Username auf Existenz prüfen
 	if ($name != $oldname) {
@@ -74,7 +74,7 @@ function group_save() {
 	else {
 		$sql = "INSERT INTO ". $cms_db['groups'] ." VALUES ('', '$name', '$description', '0', '1', '1')";
 		$db->query($sql);
-		$idgroup = mysql_insert_id();
+		$idgroup = mysqli_insert_id($this->db->Link_ID);
 	}
 }
 

@@ -45,9 +45,9 @@ class HTML_QuickForm_reset extends HTML_QuickForm_input
      * @access    public
      * @return    void
      */
-    function HTML_QuickForm_reset($elementName=null, $value=null, $attributes=null)
+    function __construct($elementName=null, $value=null, $attributes=null)
     {
-        HTML_QuickForm_input::HTML_QuickForm_input($elementName, null, $attributes);
+        HTML_QuickForm_input::__construct($elementName, null, $attributes);
         $this->setValue($value);
         $this->setType('reset');
     } //end constructor

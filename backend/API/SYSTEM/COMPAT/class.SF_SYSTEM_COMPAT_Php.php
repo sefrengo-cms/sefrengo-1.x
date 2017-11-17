@@ -95,7 +95,7 @@ class SF_SYSTEM_COMPAT_Php extends SF_API_Object {
     * The Class Constructor.
     *
     */
-    function SF_SYSTEM_COMPAT_Php() {
+    function __construct() {
         $this->compat_os = strtoupper(substr(PHP_OS, 0, 3) == 'WIN') ? 'win' : 'other';
         $this->compat_path = str_replace ('\\', '/', dirname(__FILE__) . '/');
         while (list($k, $d) = each($this->compat_dir)) $this->_call_files($d);

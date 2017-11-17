@@ -3,7 +3,7 @@ class SF_HTTP_WebRequest extends SF_API_Object {
     var $mq_gpc_is_active;
     var $req;
 
-    function SF_HTTP_webRequest() {
+    function __construct() {
         $this->_API_objectIsSingleton(true);
 
         $this->mq_gpc_active = get_magic_quotes_gpc();

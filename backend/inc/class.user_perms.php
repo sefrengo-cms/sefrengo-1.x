@@ -213,7 +213,7 @@ class cms_perms {
 	 * Change: 02.05.2004 - JB - Delete: Anzahl der konfigurierbaren Gruppen ermitteln
 	 *
 	**/
-	function cms_perms($client, $lang, $simulate = false, $simulate_idgroup = 0) {
+	function __construct($client, $lang, $simulate = false, $simulate_idgroup = 0) {
 		global $changeclient, $lang_charset, $val_ct, $auth;
 
 		$this->_is_admin = false;
