@@ -921,7 +921,7 @@ function con_copy_tpl_from_idcatside($idclient, $idcatside_from, $idcatside_to) 
 				
 				//echo $sql2 .'<br />';
 				$db2->query($sql2);
-				$current_idtplconf = mysqli_insert_id($GLOBALS['db']->Link_ID);
+				$current_idtplconf = mysqli_insert_id($db2->Link_ID);
 				
 				$sql2 = "UPDATE 
 							".$cms_db['side_lang']."
