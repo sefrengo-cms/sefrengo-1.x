@@ -146,7 +146,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getText($mod_content, $type_config = "") {
+    function getText($mod_content, $type_config = []) {
         return $mod_content;
     }
     
@@ -162,7 +162,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getTextarea($mod_content, $type_config = "") {
+    function getTextarea($mod_content, $type_config = []) {
         return $mod_content;    
     }
     
@@ -178,7 +178,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getWysiwyg2($mod_content, $type_config = "")
+    function getWysiwyg2($mod_content, $type_config = [])
     {
         return $mod_content;    
     }
@@ -195,7 +195,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getWysiwyg($mod_content, $type_config = "")
+    function getWysiwyg($mod_content, $type_config = [])
     {
         return $mod_content;    
     }
@@ -212,7 +212,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getImage($mod_content, $mod_descr, $type_config = "") {
+    function getImage($mod_content, $mod_descr, $type_config = []) {
         return $mod_content;    
     }
     
@@ -228,7 +228,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getLink($link_url, $link_desc, $link_target, $type_config = "")
+    function getLink($link_url, $link_desc, $link_target, $type_config = [])
     {
         return $mod_content;    
     }
@@ -245,7 +245,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getFile($file_id, $file_desc, $file_target, $type_config = "")
+    function getFile($file_id, $file_desc, $file_target, $type_config = [])
     {
         return $mod_content;    
     }
@@ -262,7 +262,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getSourcecode($mod_content, $type_config = "")
+    function getSourcecode($mod_content, $type_config = [])
     {
         return $mod_content;    
     }
@@ -279,7 +279,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getSelect($mod_content, $type_config = "") {
+    function getSelect($mod_content, $type_config = []) {
         return $mod_content;    
     }
     
@@ -295,7 +295,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getHidden($mod_content, $type_config = "")
+    function getHidden($mod_content, $type_config = [])
     {
         return $mod_content;    
     }
@@ -312,7 +312,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getCheckbox($mod_content, $type_config = "") {
+    function getCheckbox($mod_content, $type_config = []) {
         return $mod_content;    
     }
     
@@ -328,7 +328,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getRadio($mod_content, $type_config = "") {
+    function getRadio($mod_content, $type_config = []) {
         return $mod_content;    
     }
     
@@ -344,7 +344,7 @@ class SF_GUI_ContentStylerPlain extends SF_API_Object {
     * @Return String Content
     * @Access public
     */
-    function getDate($mod_content, $type_config = "") {
+    function getDate($mod_content, $type_config = []) {
         return $mod_content;    
     }
 

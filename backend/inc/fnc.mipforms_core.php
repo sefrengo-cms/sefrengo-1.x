@@ -172,6 +172,9 @@ function mip_forms_abstrakt($in, $input)
 		$spaces .= sprintf($mip_forms_tab['tab'], '&nbsp;');
 	}
 
+    $mip_forms_tab['left_width'] = empty($mip_forms_tab['left_width']) ? 0 : $mip_forms_tab['left_width'];
+    $in['tab'] = empty($in['tab']) ? 0 : $in['tab'];
+
 	$left_width = $mip_forms_tab['left_width'] - ($in['tab'] * 20);
 	$cont_left  = sprintf($mip_forms_tab['left'], $left_width, $in['desc']);
 	$cont_left = $spaces .$cont_left;

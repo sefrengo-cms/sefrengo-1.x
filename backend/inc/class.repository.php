@@ -1086,7 +1086,7 @@ class repository {
     * { Description }
     *
     */
-    var $_rep_var = '';
+    var $_rep_var = [];
     /**
     * repository::$_cms_var
     *
@@ -1100,7 +1100,7 @@ class repository {
     * { Description }
     *
     */
-    var $_lang_var = '';
+    var $_lang_var = [];
     /**
     * repository::$_service
     *
