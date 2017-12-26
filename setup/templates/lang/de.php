@@ -32,8 +32,8 @@ $template_lang['config_text']                   = 'Laden Sie sich bitte nun die 
 
 $template_lang['account_title']                 = 'Administrator Kennwort festlegen';
 $template_lang['account_title_text']            = 'Bitte geben Sie das Kennwort f&#252;r den Administrator dieser Installation an. Bitte w&#228;hlen Sie ein sicheres Kennwort.';
-$template_lang['account_adminpass']             = 'Passwort :';
-$template_lang['account_adminpass1']            = 'Passwort wiederholen :';
+$template_lang['account_adminpass']             = 'Passwort';
+$template_lang['account_adminpass1']            = 'Passwort wiederholen';
 
 $template_lang['mysql_title']                   = 'Datenbank Zugangsdaten';
 $template_lang['mysql_title_text']              = 'Bitte die erforderlichen Daten eingeben! Falls Sie diese Daten nicht haben, fragen Sie bei Ihrem Provider nach!';
@@ -45,8 +45,8 @@ $template_lang['mysql_pass']                    = 'Datenbank-Passwort';
 
 $template_lang['path_title']                    = 'Pfadangaben festlegen';
 $template_lang['path_title_text']               = 'Bitte geben Sie die erforderlichen Daten ein. Im Zweifelsfall fragen Sie die Werte bitte bei Ihrem Provider nach.';
-$template_lang['path_path']                     = 'Systempfad:';
-$template_lang['path_url']                      = 'URL:';
+$template_lang['path_path']                     = 'Systempfad';
+$template_lang['path_url']                      = 'URL';
 
 $template_lang['finish_title']                  = 'Herzlichen Gl&#252;ckwunsch, Sie haben Sefrengo CMS erfolgreich installiert!';
 $template_lang['finish_title_text']             = 'Vergessen Sie nicht die Zugriffsrechte der folgenden Dateiordner korrekt zu setzen, damit Sefrengo CMS korrekt funktioniert.';
@@ -99,7 +99,7 @@ $template_lang['convert_title']                 = 'Datenbankinhalte werden angep
 $template_lang['convert_title_text']            = 'Es werden nun alle Datenbankinhalte in den Zeichensatz UTF-8 konvertiert. ';
 $template_lang['convert_text']                  = 'Je nach Datenbankgr&#246;&szlig;e kann dies mehrere Minuten dauern.
          Es gehen dabei keine Tabelleninhalte verloren. Sie finden Ihre alten
-         Daten nach dem Konvertiervorgang in der MySql Datenbank unter
+         Daten nach dem Konvertiervorgang in der MySQL Datenbank unter
          "&lt;TABELLENNAME&gt;_backup" wieder.';
 $template_lang['convert_text_2']                = 'Klicken Sie nach dem Konvertiervorgang bitte auf <strong>"<!--[next]--> &raquo;"</strong> und warten Sie einen Augenblick.';
 
@@ -125,7 +125,7 @@ $cms_lang['info']					= 'Info';
 
 $cms_lang['pretest_version']		= 'Ihre PHP Version: ';
 $cms_lang['pretest_recommended']	= 'Empfohlen ';
-$cms_lang['pretest_MySQL']			= 'Eine Mysql Version gr&#246;&szlig;er oder gleich 3.23.58 ist erforderlich und der Mysql-Support f&#252;r PHP muss installiert sein, damit Sie mit Sefrengo arbeiten k&#246;nnen.';
+$cms_lang['pretest_MySQL']			= 'Eine MySQL Version gr&#246;&szlig;er oder gleich 5.0 ist erforderlich und der MySQL-Support f&#252;r PHP muss installiert sein, damit Sie mit Sefrengo arbeiten k&#246;nnen.';
 $cms_lang['pretest_zlib']			= 'Empfohlen, damit Sefrengo komprimierte tar Archive verarbeiten kann. Sefrengo Plugins liegen in der Regel als komprimierte (*.cmsplugin) tar Archive vor.';
 $cms_lang['pretest_gdlib']			= 'Empfohlen zum Erstellen der Thumbnails ';
 $cms_lang['pretest_zip']			= 'Ist diese Bibliothek installiert, k&#246;nnen im Sefrengo Dateimanager zip- Dateien hochgeladen und auf dem Server entpackt werden.';

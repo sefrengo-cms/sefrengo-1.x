@@ -345,7 +345,7 @@ class setup {
 		$tpl -> insert('test_PHP_check', 'info' , $this -> cms_lang['info'] );
 
         // mysql support		
-		$tpl -> insert('test_PHP_check', 'name_PHP_check' , 'mysql support' );
+		$tpl -> insert('test_PHP_check', 'name_PHP_check' , 'MySQL' );
 		$tpl -> insert('test_PHP_check', 'value_PHP_check', $this -> test_config(extension_loaded( 'mysqli' )));
 		$tpl -> insert('test_PHP_check', 'class_PHP_check', $this -> test_config_text(extension_loaded( 'mysqli' )));
 		$tpl -> insert('test_PHP_check', 'style_PHP_config', $this -> test_config_style(extension_loaded( 'mysqli' )));
