@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.group.php');
@@ -70,7 +70,7 @@ include('inc/inc.header.php');
 // Templatedatei laden
 $tpl->loadTemplatefile('group_edit.tpl');
 $tmp['AREA'] = $cms_lang['area_group_edit'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if (!empty($errno)) {
 	$tpl -> setCurrentBlock('ERROR');
 	$tpl_error['ERRORMESSAGE'] = $cms_lang['err_'.$errno];

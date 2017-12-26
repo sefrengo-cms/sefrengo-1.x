@@ -128,7 +128,7 @@ class SF_Header
 					$client_sel_entries[$client_sel_entries_c]['FIELD-SELECTED'] = '';
 					$con_more_than_one_client = true;
 				}
-				// wenn mehrere sprachen in einem client sind, verhindern, das der client öfters als ein mal angezeigt wird
+				// wenn mehrere sprachen in einem client sind, verhindern, das der client ï¿½fters als ein mal angezeigt wird
 				$prev_client = $this->db->f('idclient');
 				
 				$client_sel_entries_c++;
@@ -455,7 +455,7 @@ class SF_Header
 		
 		for($i = 0; $i < count($this->navigation_tree); $i++)
 		{
-			// Hauptmenü bauen
+			// Hauptmenï¿½ bauen
 			if($this->navigation_tree[$i]['level'] == '0')
 			{
 				$main_index++;
@@ -476,7 +476,7 @@ class SF_Header
 				$this->mainmenu[$main_index]['title'] = $this->lng[$this->navigation_tree[$i]['langstring']];
 				$this->mainmenu[$main_index]['validate'] = $this->navigation_tree[$i]['validate'];
 		
-			// Untermenü aufbauen
+			// Untermenï¿½ aufbauen
 			}
 			else
 			{
@@ -643,7 +643,7 @@ class SF_Header
 		$tpl_in['LOGOUT_URL'] = $this->sess->url('main.php?area=logout');
 		$tpl_in['PATH_HELP'] = 'help/index_'.$this->cfg_cms['backend_lang'] .'.php#'. $this->area ;
 		$tpl_in['LANG_TOOLTIP'] = addslashes($this->lng['gen_logout']);
-		$tpl_in['LNG_LICENCE'] = $this->lng['gen_licence'];
+		$tpl_in['LNG_LICENSE'] = $this->lng['gen_license'];
 		$tpl_in['HELP_TOOLTIP'] = addslashes($this->lng['cms_help']);
 		$tpl_in['LOGOUT_WIDTH'] = $this->lng['gen_logout_wide'];
 		

@@ -82,7 +82,7 @@ else{
 
 
 $tmp['AREA'] = $cms_lang['area_lay'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if(! empty($errno)){
 	$tpl -> setCurrentBlock('ERROR');
 	$tpl_error['ERRORMESSAGE'] = $cms_lang['err_' . $errno];

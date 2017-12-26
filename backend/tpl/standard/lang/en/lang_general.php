@@ -33,7 +33,7 @@ $cms_lang['login_challenge_fail']		= 'your challenge is fail.<br>Please try agai
 
 $cms_lang['login_nolang']				= 'No language assignd yet.';
 $cms_lang['login_nojs']				= 'Please activate javascript in your browser, so that the backend works correctly.';
-$cms_lang['login_licence']				= 'Sefrengo &copy; 2005 - 2006 <a href="http://www.sefrengo.org" target="_blank">sefrengo.org</a>. This is free software, and you may redistribute it under the GPL. Sefrengo comes with absolutely no warranty; for details, see the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">license</a>.';
+$cms_lang['login_license']				= 'Sefrengo &copy; 2005 - 2006 <a href="http://www.sefrengo.org" target="_blank">sefrengo.org</a>. This is free software, and you may redistribute it under the GPL. Sefrengo comes with absolutely no warranty; for details, see the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">license</a>.';
 
 $cms_lang['logout_thanksforusingcms']	= 'Thank you for using "Sefrengo". In a few seconds we forward you to the login.';
 $cms_lang['logout_youareloggedout']	= 'You are logged off now.';
@@ -182,7 +182,7 @@ $cms_lang['gen_select_change_to']	  	= 'Change to...';
 $cms_lang['gen_help']                  = 'Help';
 $cms_lang['gen_logout_wide']           = 'Logout';
 $cms_lang['gen_user']			        = 'User: ';
-$cms_lang['gen_licence']			     = 'Licence';
+$cms_lang['gen_license']			     = 'License';
 
 $cms_lang['gen_save']			        = 'Save';
 $cms_lang['gen_apply']			        = 'Apply';

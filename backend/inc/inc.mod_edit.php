@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /**
- * 1. Benötigte Funktionen und Klassen includieren
+ * 1. Benï¿½tigte Funktionen und Klassen includieren
  */
 include_once('inc/fnc.mod.php');
 /**
@@ -250,7 +250,7 @@ echo "    <table class=\"config\" cellspacing=\"1\">\n";
         echo "        <td class=\"head\">" . $cms_lang["mod_sql_update"] . "</td>\n";
         echo "        <td><textarea class=\"w800\" name=\"update_sql\" rows=\"14\" cols=\"52\" wrap=\"off\">" . htmlspecialchars($sql_update, ENT_COMPAT, 'UTF-8') . "</textarea></td>\n";
         echo "	   </tr>\n"; 
-        // rechte import und export werden benötigt
+        // rechte import und export werden benï¿½tigt
         if ($idclient >= 1 && ($perm->have_perm(7, 'mod', $idmod) || $perm->have_perm(8, 'mod', $idmod))) {
             // Sql erneut installieren
             echo "  <tr>\n";
@@ -277,7 +277,7 @@ echo "    <table class=\"config\" cellspacing=\"1\">\n";
     }
 
 	if ($action == 'duplicate') {
-		// Einstellungen auf neues Modul übernehmen
+		// Einstellungen auf neues Modul ï¿½bernehmen
 		echo "  <tr>\n";
 		echo "    <td class=\"head\" valign=\"middle\">" . $cms_lang['gen_expand'] . "</td>\n";
 		echo '    <td><input type="checkbox" name="mod_config_takeover" value="1" id="touchme" /> <label for="touchme">' . $cms_lang['mod_config_save'] . '</label></td>';
@@ -296,7 +296,7 @@ echo "    <table class=\"config\" cellspacing=\"1\">\n";
     echo "    </table>\n";
     echo "    </form>\n";
     echo "    </div>\n";
-    echo '<div class="footer">'. $cms_lang['login_licence'] .'</div>'."\n";
+    echo '<div class="footer">'. $cms_lang['login_license'] .'</div>'."\n";
     echo "  </body>\n";
     echo "</html>\n";
 ?>

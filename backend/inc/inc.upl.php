@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.upl.php');
@@ -128,7 +128,7 @@ include('inc/inc.header.php');
 
 // Kopfbereich
 $tmp['AREA_TITLE']    = $cms_lang['area_upl'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if ($errno) {
 	$tmp['ERR_MSG']       = $cms_lang["err_$errno"];
 }
@@ -315,7 +315,7 @@ function showTree( $subtree, $level = -1, $expand = '' ) {
 function show_files($idopen) {
 	global $tpl, $idupl, $action, $cms_lang, $newname, $sess, $perm, $filelevel, $fileexpand, $cfg_client, $cfg_cms, $fm, $dir_list, $client, $viewtype, $deb;
 
-	$is_detailview = ($viewtype == 'detail');	// unterscheidung für die anzeige
+	$is_detailview = ($viewtype == 'detail');	// unterscheidung fï¿½r die anzeige
 	$details_okay  = false;						// no files to display
 	$indent        = ($filelevel+1)*11+12;
 
@@ -329,7 +329,7 @@ function show_files($idopen) {
 		$details_okay = true;
 		// create basis link and get file id
 		$idfile = $db->f('idupl');
-	    // prüfe ob Datei gezeigt werden darf ...
+	    // prï¿½fe ob Datei gezeigt werden darf ...
 		if ($perm->have_perm(17, 'file', $idfile, $idopen)) {
 		$link = 'main.php?area=upl&amp;action=%s&amp;idexpand=' . $fileexpand . '&amp;iddirectory=' . $idopen . '&amp;idupl=' . $idfile . '&amp;viewtype=' . $viewtype.'#';
 		// get thumbnail size
@@ -337,7 +337,7 @@ function show_files($idopen) {
 		// get file information
 		$file_info = get_dateinfo( array($db->f('created'), $db->f('lastmodified'), $db->f('vorname'), $db->f('nachname')) );
 		
-		// create view of file // Datei in Originalgröße anzeigen
+		// create view of file // Datei in Originalgrï¿½ï¿½e anzeigen
 		$popup_link      = '<a class="action toolinfo" href="javascript:void(0)" onmouseout="sf_nd();" ';
 		$popup_link     .= $is_detailview ? ' title="' . $cms_lang['upl_openfileinnewwindow'] . '" ': '';
 		$popup_link     .= 'onclick="new_imagepopup(\'' . $cfg_client['upl_htmlpath'] . $db->f('dirname') . $db->f('filename');
@@ -598,7 +598,7 @@ function showDirectory( $level, $line_array, $prefixexpand, $status, $monocolor 
 	// check if root directory
 	if ($level < 0) {
 		// button for changing the view
-    // Auswahl für Detail- oder Compact-Modus
+    // Auswahl fï¿½r Detail- oder Compact-Modus
 		if ($viewtype == 'compact')
 			$tmp['ENTRY_SPECIAL'] = make_image_link2 ( sprintf($link, 150), 'but_viewdetail.gif', $cms_lang['upl_changeviewdetail'], 16, 16, '', '', '', '', '', '', '', 'action' );
 		else 

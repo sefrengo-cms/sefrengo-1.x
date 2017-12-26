@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /**
- * 1. Benötigte Funktionen und Klassen includieren
+ * 1. Benï¿½tigte Funktionen und Klassen includieren
  */
 include_once('inc/fnc.plug.php');
 /**
@@ -109,7 +109,7 @@ switch($action) {
             $sess->freeze();
         }
         break;
-    case 'delete': // Plugin löschen
+    case 'delete': // Plugin lï¿½schen
         $perm->check(5, 'plug', $idplug);
         $errno = plug_delete($idplug, $idclient);
         $sess->freeze();
@@ -152,7 +152,7 @@ if ($idclient > '0') {
     } 
 } 
 $tmp['AREA'] = ($idclient == '0') ? (($perm->have_perm(12, 'plug', 0) && $rep->enabled()) ? $cms_lang['area_plug_folder'] : $cms_lang['area_plug_import']) : (($idclient == '-1') ? (($perm->have_perm(12, 'plug', 0) && $rep->enabled()) ? $cms_lang['area_plug_repository'] : $cms_lang['area_plug_import']) : $cms_lang['area_plug']);
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 $errno3 = ($rep->error()) ? $rep->error(1) : false;
 if(!empty($errno) || !empty($errno3) || !empty($errmsg)) {
     $okmessages = array(1602, 1605, 1606, 1607, 1608, 1609, 1610, 1611, 1612, 1614);
@@ -200,7 +200,7 @@ if ($idclient != '-1') {
             if (!$perm->have_perm(15, 'plug', 0) && (strpos($plug['version'], 'dev') != false && $plug['version'] != '')) continue;
             $plug['count']  = ($idclient == '0') ?  (int) $rep->plug_count($client, $plug['idplug']) : ($rep->plug_count($idclient, $plug['source_id']) + $rep->plug_count('0', $plug['source_id']));
             $plug['count_delete'] = ($idclient == '0') ? (int) $rep->plug_count('all', $plug['idplug']) : 0;
-            // Hintergrundfarbe wählen
+            // Hintergrundfarbe wï¿½hlen
             $tmp['ENTRY_BGCOLOR'] = '#ffffff';
             $tmp['OVERENTRY_BGCOLOR'] = '#fff7ce';
             $tmp['ENTRY_ICON'] = make_image('but_plugin.gif', '', '16', '16', false, 'class="icon"');
@@ -237,7 +237,7 @@ if ($idclient != '-1') {
                 elseif ($cfg_rep['repository_show_up2date']) $tmp['ENTRY_UPDATE'] = "<a name='norepository'><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_online.gif\" width=\"16\" height=\"1163\" alt=\"" . $cms_lang['plug_repository_noupdate'] . "\" title=\"" . $cms_lang['plug_repository_noupdate'] . "\" /></a>";
                 else $tmp['ENTRY_UPDATE'] = "<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" alt=\"\" width=\"16\" height=\"16\">";
             } 
-            // Plugin löschen
+            // Plugin lï¿½schen
             if ($plug['deletable'] == '1' && $perm->have_perm(5, 'plug', $plug['idplug']) && ( ($idclient == 0) ? $plug['count_delete'] < 1 : 1 ) ) $tmp['ENTRY_DELBUT'] = "<a href=\"" . $sess->url('main.php?area=plug&action=delete&idplug=' . $plug['idplug'] . '&idclient=' . $idclient) . "\" onclick=\"return delete_confirm()\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"" . $cms_lang['plug_delete'] . "\" title=\"" . $cms_lang['plug_delete'] . "\" /></a>";
             else $tmp['ENTRY_DELBUT'] = "<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" alt=\"\" width=\"16\" height=\"16\" />";
             $tmp['ENTRY_NAME'] = htmlentities($plug['name'], ENT_COMPAT, 'UTF-8');
@@ -263,7 +263,7 @@ if ($idclient != '-1') {
         foreach ($pluglist as $plug) {
             if (!$perm->have_perm(15, 'plug', 0) && (strpos($plug['version'], 'dev') != false && $plug['version'] != '')) continue;
             $plug['count'] = (int) $rep->plug_count('0', $plug['repository_id'], true); 
-            // Hintergrundfarbe wählen
+            // Hintergrundfarbe wï¿½hlen
             $tmp['ENTRY_BGCOLOR'] = '#ffffff';
             $tmp['OVERENTRY_BGCOLOR'] = '#fff7ce';
             $tmp['ENTRY_ICON'] = make_image('but_plugin.gif', '', '16', '16');
@@ -281,7 +281,7 @@ if ($idclient != '-1') {
             *   else $tmp['ENTRY_UPDATE'] = "<img src=\"tpl/".$cfg_cms['skin']."/img/space.gif\" border=\"0\" width=\"13\" height=\"13\">";
             *}
             */
-            // Plugin löschen
+            // Plugin lï¿½schen
             $tmp['ENTRY_DELBUT'] = "<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" width=\"16\" height=\"16\" alt=\"\" />";
             $tmp['ENTRY_NAME'] = htmlentities($plug['name'], ENT_COMPAT, 'UTF-8');
             $tmp['ENTRY_DESCRIPTION'] = htmlentities($plug['description'], ENT_COMPAT, 'UTF-8');

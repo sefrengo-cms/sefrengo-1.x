@@ -49,7 +49,7 @@
 		</p>
 		
 		<p id="license" class="headerlink">
-			<a href="http://www.sefrengo.org/" target="_blank">Sefrengo {VERSION}</a> | <a href="license.html" target="_blank">{LNG_LICENCE}</a>
+			<a href="http://www.sefrengo.org/" target="_blank">Sefrengo {VERSION}</a> | <a href="license.html" target="_blank">{LNG_LICENSE}</a>
 		</p>
 		<!-- BEGIN CLIENT-LANG-SELECT -->
 		<div id="clientlang">

@@ -329,7 +329,7 @@ echo "      </tr>\n";
 echo "    </table>\n";
 echo "    </form>\n";
 echo "    </div>\n";
-echo '<div class="footer">'. $cms_lang['login_licence'] .'</div>'."\n";
+echo '<div class="footer">'. $cms_lang['login_license'] .'</div>'."\n";
 echo "</body>\n";
 echo "</html>\n";
 ?>

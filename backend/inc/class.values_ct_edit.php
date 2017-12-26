@@ -69,7 +69,7 @@ class values_ct_edit extends values_ct
 		$this -> perm_type = ( empty($mixed['perm_type']) ) ? 'general': $mixed['perm_type'];
 		$this -> extra_url_args = $mixed['extra_url_args'];
 
-		$this -> head_vars['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+		$this -> head_vars['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 		$this -> view = (empty($mixed['view'])) ? 'use' : $mixed['view'];
 		$this -> prefix = (empty($mixed['prefix'])) ? '$cfg' : $mixed['prefix'];
@@ -109,7 +109,7 @@ class values_ct_edit extends values_ct
 		// get and handle db values
 		while($db -> next_record())
 		{
-			// Tabellenüberschriften
+			// Tabellenï¿½berschriften
 			if($db->f('conf_head_langstring')  ){
 				$head_langstring = $db->f('conf_head_langstring');
 				$this -> _make_row_head($head_langstring);
@@ -117,7 +117,7 @@ class values_ct_edit extends values_ct
 			// Tabelleninhalt
 			$this -> _make_row_body();
 		}
-		// Letzte Tabellenüberschrift
+		// Letzte Tabellenï¿½berschrift
 		$this -> _make_row_head($head_langstring);
 
 	}
@@ -302,7 +302,7 @@ class values_ct_edit extends values_ct
 	{
 		global $sess;
 
-		//url erstellen zugriff später mit sprintf($url, value, value)
+		//url erstellen zugriff spï¿½ter mit sprintf($url, value, value)
 		$ar = 'area=' . $this -> area;
 		if(! empty ($this -> cms_plugin) ){
 			$ar .= '&cms_plugin=' . $this -> cms_plugin;

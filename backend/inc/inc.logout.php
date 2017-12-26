@@ -37,7 +37,7 @@ $tpl->loadTemplatefile('logout.tpl');
 $tpl_vals['MESSAGE_THANKS'] = $cms_lang['logout_thanksforusingcms'];
 $tpl_vals['MESSAGE_LOGGED_OUT'] = $cms_lang['logout_youareloggedout'];
 $tpl_vals['MESSAGE_LOGIN_AGAIN'] = $cms_lang['logout_backtologin1'] . ' ' . $cms_lang['logout_backtologin2'];
-$tpl_vals['MESSAGE_LOGIN_LICENCE'] = $cms_lang['login_licence'];
+$tpl_vals['MESSAGE_LOGIN_LICENSE'] = $cms_lang['login_license'];
 
 $tpl->setVariable($tpl_vals);
 ?>

@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 include('inc/fnc.css.php');
 include('inc/class.filemanager.php');
@@ -96,7 +96,7 @@ if (!empty($idclient)) {
 	$tmp['SUB_NAV_RIGHT'] = $tmp['SUB_NAV_RIGHT'] . make_nav_link('action', "main.php?area=css&idclient=$client&idexpand=$idexpand&idcssfile=$idcssfile", $cms_lang['gen_back'], $cms_lang['gen_back']);
 }
 
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 // Templatedatei laden
 $tpl->loadTemplatefile('filelist.tpl');
@@ -125,7 +125,7 @@ if ($idclient != 0) {
 		$db->next_record();
 		$_idcssfile = $db->f('idupl');
 		if ($perm->have_perm('1', 'css_file', $_idcssfile)) {
-			// Hintergrundfarbe wählen
+			// Hintergrundfarbe wï¿½hlen
 			$tmp['ENTRY_BGCOLOR'] = '#F7FBFF';
 			$tmp['ENTRY_BGCOLOROVER'] = '#FFF7CE';
 
@@ -167,7 +167,7 @@ if ($idclient != 0) {
 			if ($perm->have_perm('3', 'css_file', $_idcssfile)&&isUrl($db->f('filename'))==false) {
 			// button: edit css-file
 				$tmp['ENTRY_EDIT'] = make_image_link2 ("main.php?area=css_edit_file&idcssfile=".$_idcssfile."&idclient=$idclient&idexpand=$idexpand", 'but_edit.gif', $cms_lang['css_file_edit'], '16', '16', '', '', '', 'action', '', '', '', 'action');
-				// button: duplicate css-file, benötigt zusätzlich create rechte
+				// button: duplicate css-file, benï¿½tigt zusï¿½tzlich create rechte
 			if ($perm->have_perm('2', 'area_css')&&isUrl($db->f('filename'))==false) {
 				$tmp['ENTRY_DUPLICATE'] = make_image_link2 ("main.php?area=css_edit_file&idcssfilecopy=".$_idcssfile."&idclient=$idclient&idexpand=$idexpand", 'but_duplicate.gif', $cms_lang['css_file_duplicate'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 				}
@@ -314,7 +314,7 @@ function set_rule_data($db, $imorexport) {
 			$url = ($imorexport == 'export') ? "&idexpand=$idexpand&idcssfile=$idexpand" : "&idcssfile=$idcssfile";
 			// button: edit css-rule
 			$tmp['DETAIL_EDIT']      = make_image_link2 ("main.php?area=css_edit".$url."&idcss=".$db->f('idcss')."&idclient=$idclient", 'but_edit.gif', $cms_lang['css_edit'], '16', '16', '', '', '', 'action', '', '', '', 'action');
-			// button: duplicate css-rule, benötigt zusätzlich create rechte
+			// button: duplicate css-rule, benï¿½tigt zusï¿½tzlich create rechte
 			if ($perm->have_perm('18', 'area_css')) {
 				$tmp['DETAIL_DUPLICATE'] = make_image_link2 ("main.php?area=css_edit&action=10".$url."&idcss=".$db->f('idcss')."&idclient=$idclient", 'but_duplicate.gif', $cms_lang['css_duplicate'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 			}

@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.user.php');
@@ -69,7 +69,7 @@ include('inc/inc.header.php');
 // Templatedatei laden
 $tpl->loadTemplatefile('user_edit.tpl');
 $tmp['AREA'] = $cms_lang['area_user_edit'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if (!empty($errno)) {
 	$tpl -> setCurrentBlock('ERROR');
 	$tpl_error['ERRORMESSAGE'] = $cms_lang['err_'.$errno];
@@ -188,7 +188,7 @@ if (!isset($username) && !empty($iduser)) {
     $sf_user2->loadByIduser( $sf_user->getLastmodifiedAuthor() );
 	$tmp['FORM_LAST_MODIFIED'] = date($cfg_cms['FormatDate'], $sf_user->getLastmodifiedTimestamp()) . ' '.date($cfg_cms['FormatTime'], $sf_user->getLastmodifiedTimestamp()) .' von '.$sf_user2->getUsername();
 	
-	// zugehörige Gruppen suchen
+	// zugehï¿½rige Gruppen suchen
 	$sql = "SELECT idgroup FROM ".$cms_db['users_groups']." WHERE user_id='$iduser'";
 	$db->query($sql);
 	while ($db->next_record()) {
@@ -321,7 +321,7 @@ while ($db->next_record()) {
 	// Standardusergruppe ausblenden
 	if ($db->f('idgroup') != '1') {
 
-		//normale user mit zugriff auf userverwaltung dürfen keine admins vergeben
+		//normale user mit zugriff auf userverwaltung dï¿½rfen keine admins vergeben
         if (! $perm->is_admin() && $db->f('is_sys_admin')) {
 			continue;
 		}

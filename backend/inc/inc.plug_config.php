@@ -34,7 +34,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 	die('NO CONFIGFILE FOUND');
 }
 /**
- * 1. Benötigte Funktionen und Klassen includieren
+ * 1. Benï¿½tigte Funktionen und Klassen includieren
  */
 include_once('inc/fnc.plug.php');
 /**
@@ -164,7 +164,7 @@ echo "      </tr>\n";
 echo "</table>\n";
 echo "</form>\n";
 echo "</div>\n";
-echo '<div class="footer">'. $cms_lang['login_licence'] .'</div>'."\n";
+echo '<div class="footer">'. $cms_lang['login_license'] .'</div>'."\n";
 echo "</body>\n";
 echo "</html>\n";
 

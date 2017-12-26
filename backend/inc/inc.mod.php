@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /**
- * 1. Benötigte Funktionen und Klassen includieren
+ * 1. Benï¿½tigte Funktionen und Klassen includieren
  */
 include_once('inc/fnc.mod.php');
 /**
@@ -107,11 +107,11 @@ switch($action) {
         $perm->check(4, 'mod', $idmod);
         $config = make_array_to_urlstring($MOD_VAR);
         $default = make_array_to_urlstring($s_default); 
-		// übernahme von 0A hexadecimal (US-ASCII character LF), und 0D (US-ASCII character CR)
+		// ï¿½bernahme von 0A hexadecimal (US-ASCII character LF), und 0D (US-ASCII character CR)
         if (strpos($config, '%0D%0A') && !strpos($default, '%0D%0A')) $default = preg_replace('/(?<!%0D)%0A/','%0D%0A',$default);
-        // übernahme von 5C hexadecimal (US-ASCII character \), und 22 (US-ASCII character ")
+        // ï¿½bernahme von 5C hexadecimal (US-ASCII character \), und 22 (US-ASCII character ")
 		if (strpos($config, '%5C%22') && !strpos($default, '%5C%22')) $default = preg_replace('/(?<!%5C)%22/','%5C%22',$default);
-		// übernahme von 5C hexadecimal (US-ASCII character \), und 27 (US-ASCII character ')
+		// ï¿½bernahme von 5C hexadecimal (US-ASCII character \), und 27 (US-ASCII character ')
 		if (strpos($config, '%5C%27') && !strpos($default, '%5C%27')) $default = preg_replace('/(?<!%5C)%27/','%5C%27',$default);
 		if ($config == $default) $config = '';
         $errno = mod_save_config($idmod, $config);
@@ -140,7 +140,7 @@ switch($action) {
             $body_onload_func = "new_window('$link', 'updatewin','scrollbars=yes', 450, 400, 'true');";
         } 
         break;
-    case 'delete': // Modul löschen
+    case 'delete': // Modul lï¿½schen
         $perm->check(5, 'mod', $idmod);
         $errno = mod_delete($idmod);
         break;
@@ -236,7 +236,7 @@ if ($idclient > '0') {
     }
 }
 $tmp['AREA'] = ($idclient == '0') ? (($perm->have_perm(12, 'mod', 0) && $rep->enabled()) ? $cms_lang['area_mod_database'] : $cms_lang['area_mod_import']) : (($idclient == '-1') ? (($perm->have_perm(12, 'mod', 0) && $rep->enabled()) ? $cms_lang['area_mod_repository'] : $cms_lang['area_mod_import']) : $cms_lang['area_mod']);
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 $errno3 = ($rep->error()) ? $rep->error(1) : false;
 if(!empty($errno) ||!empty($errno2) || !empty($errno3)) {
     $okmessages = array('0402', '0405', '0406', '0407', '0408', '0409', '0410', '0411', '0412', '0414', '0415', '0420', '0421', '0422');
@@ -289,7 +289,7 @@ if ($idclient != '-1') {
             $mod['count'] = ($idclient == '0') ? (int) $rep->mod_count($client, $mod['idmod']) : $rep->mod_count('0', $mod['source_id']);
             $mod['count_delete'] = ($idclient == '0') ? (int) $rep->mod_count($client, $mod['idmod']) : $rep->mod_count($idclient, $mod['idmod']);
             $mod['count_repository'] = ($idclient == '-1') ? (int) $rep->mod_count('0', $mod['repository_id'], true) : false;
-            // Hintergrundfarbe wählen
+            // Hintergrundfarbe wï¿½hlen
             if ($idclient == '0' && !$mod['parse_error']) {
                 $tmpid['ENTRY_BGCOLOR'] = '#ffffff';
                 $tmpid['OVERENTRY_BGCOLOR'] = '#fff7ce';
@@ -347,7 +347,7 @@ if ($idclient != '-1') {
                 else $tmpid['ENTRY_UPDATE'] = "\n<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" width=\"16\" height=\"16\" />";
             }
             //DebugMe! echo "<br>$idmod:".$mod['deletable'].'|'.$perm->have_perm(5, 'mod', $mod['idmod']).'|'.$mod['count_delete'];
-            // Modul löschen
+            // Modul lï¿½schen
             if ($mod['deletable'] == '1' && $perm->have_perm(5, 'mod', $mod['idmod']) && $mod['count_delete'] < 1) $tmpid['ENTRY_DELBUT'] = "<a href=\"" . $sess->url('main.php?area=mod&action=delete&idmod=' . $mod['idmod'] . '&idclient=' . $idclient) . "\" onclick=\"return delete_confirm()\"><img src=\"tpl/" . $cfg_cms['skin'] . "/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"" . $cms_lang['mod_delete'] . "\" title=\"" . $cms_lang['mod_delete'] . "\" /></a>";
             else $tmpid['ENTRY_DELBUT'] = "\n<img src=\"tpl/" . $cfg_cms['skin'] . "/img/space.gif\" width=\"16\" height=\"16\" />";
             $tmpid['ENTRY_NAME'] = ($idclient >= 1 && $mod['verbose'] != '') ? htmlentities($mod['verbose'], ENT_COMPAT, 'UTF-8') : htmlentities($mod['name'], ENT_COMPAT, 'UTF-8');
@@ -374,7 +374,7 @@ if ($idclient != '-1') {
         $tpl->setCurrentBlock('ENTRY');
         foreach ($modlist as $mod) {
             if (!$perm->have_perm(15, 'mod', 0) && (strpos($mod['version'], 'dev') != false && $mod['version'] != '')) continue;
-            // Hintergrundfarbe wählen
+            // Hintergrundfarbe wï¿½hlen
             $tmp['ENTRY_BGCOLOR'] = '#DBE3EF';
             $tmp['OVERENTRY_BGCOLOR'] = '#C7D5EB';
             $mod['count_repository'] = (int) $rep->mod_count('0', $mod['repository_id'], true);

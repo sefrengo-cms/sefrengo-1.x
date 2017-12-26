@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.js.php');
@@ -70,7 +70,7 @@ include('inc/inc.header.php');
 
 // Kopfbereich
 $tmp['AREA_TITLE']    = (empty($idclient) && $perm->have_perm(13, 'area_js', '0')) ? $cms_lang['area_js_import']: $cms_lang['area_js']; // import rechte gesetzt?
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if ($errno) {
 	switch($errno) {
 		case '1206':
@@ -92,7 +92,7 @@ if ($idclient) {
 		$tmp['SUB_NAV_RIGHT'] = $tmp['SUB_NAV_RIGHT'] . make_nav_link('action', "main.php?area=js&idclient=0", $cms_lang['js_import'], $cms_lang['js_import']);
 	}
 } else {
-	// Im Import-Bereich ... nur der Button "Zurück"
+	// Im Import-Bereich ... nur der Button "Zurï¿½ck"
 	$tmp['SUB_NAV_RIGHT'] = $tmp['SUB_NAV_RIGHT'] . make_nav_link('action', "main.php?area=js&idclient=$client", $cms_lang['gen_back'], $cms_lang['gen_back']);
 }
 
@@ -192,7 +192,7 @@ function set_filedata($db, $imorexport, $idclient) {
 		$test_type = 'area_js';
 		$test_id   = '0';
 	}
-	// Hintergrundfarbe wählen
+	// Hintergrundfarbe wï¿½hlen
 	$tmp['ENTRY_BGCOLOR'] = '#FFFFFF';
 	$tmp['ENTRY_BGCOLOROVER'] = '#fff7ce';
 
@@ -221,7 +221,7 @@ function set_filedata($db, $imorexport, $idclient) {
 	if ((!empty($idjs) && $perm->have_perm(3, $test_type, $test_id)&&isUrl($db->f('filename'))==false) || (empty($idclient) && $perm->have_perm(3, $test_type, $test_id)&&isUrl($db->f('filename'))==false)) {
 		// button: edit js-file
 		$tmp['ENTRY_EDIT']   = make_image_link2 ("main.php?area=js_edit_file&idjsfile=".$idjs."&idclient=$idclient", 'but_edit.gif', $cms_lang['js_file_edit'], '16', '16', '', '', '', 'action', '', '', '', 'action');
-		// button: duplicate js-file -- benötigt auch Neu-Anlegen-Rechte
+		// button: duplicate js-file -- benï¿½tigt auch Neu-Anlegen-Rechte
 		if ($perm->have_perm(2, 'area_js'))
 			$tmp['ENTRY_DUPLICATE']   = make_image_link2 ("main.php?area=js_edit_file&action=10&idjsfile=".$idjs."&idclient=$idclient", 'but_duplicate.gif', $cms_lang['js_file_duplicate'], '16', '16', '', '', '', 'action', '', '', '', 'action');
 	}

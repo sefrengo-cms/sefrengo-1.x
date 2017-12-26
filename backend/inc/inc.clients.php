@@ -37,7 +37,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 include_once('inc/fnc.clients.php');
 include_once('inc/fnc.lang.php');
@@ -65,7 +65,7 @@ switch($action)
 		$perm->check(3, 'clients', $cid);
 		$errno = clients_rename_client($cid, $newname, $newdesc);
 		break;
-	case 'delete_client':  //Projekt löschen
+	case 'delete_client':  //Projekt lï¿½schen
 		$perm->check(5, 'clients', $cid);
 		$errno = clients_delete_client($cid);
 		break;
@@ -78,7 +78,7 @@ switch($action)
 		$perm->check(19, 'clientlangs', $idlang);
 		$errno = lang_rename_language($idlang, $newname, $newdesc, $charset, $_REQUEST['rewrite_key'], $_REQUEST['rewrite_mapping']);
 		break;
-	case 'delete_lang':  // Sprache löschen
+	case 'delete_lang':  // Sprache lï¿½schen
 		//collapse ist idclient
 		$perm->check(21, 'clientlangs', $idlang);
 		$errno = lang_delete_language($collapse, $lid);
@@ -287,7 +287,7 @@ $tpl_data['TABLE_BORDER'] = $border;
 $tpl_data['TITLE'] = $cms_lang['clients_headline'];
 $tpl_data['DESCRIPTION'] = $cms_lang['clients_desc'];
 $tpl_data['ACTIONS'] = $cms_lang['clients_actions'];
-$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_license'];
 //Look for Errors 
 if(! empty($errno)){
 	$tpl_error['ERR_MSG'] = $cms_lang['err_' . $errno];

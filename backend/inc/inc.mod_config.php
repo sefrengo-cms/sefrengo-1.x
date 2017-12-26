@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /**
- * 1. Benötigte Funktionen und Klassen includieren
+ * 1. Benï¿½tigte Funktionen und Klassen includieren
  */
 include_once('inc/fnc.mod.php');
 include_once('inc/fnc.mipforms.php');
@@ -95,7 +95,7 @@ if (is_array($default_arr)) foreach($default_arr as $test_key => $test_var) {
     $s_default[$match_key['1']] = ($test_var != '') ? strtr($test_var, $trans_html) : '';
 }
 $sess->register('s_default');
-// Alle verfügbaren Layouts einlesen
+// Alle verfï¿½gbaren Layouts einlesen
 $sql = "SELECT idlay FROM " . $cms_db['lay'] . " WHERE idclient='$client'";
 $db->query($sql);
 while ($db->next_record()) $idlay[] = $db->f('idlay');
@@ -170,7 +170,7 @@ echo "      </tr>\n";
 echo "</table>\n";
 echo "</form>\n";
 echo "</div>\n";
-echo '<div class="footer">'. $cms_lang['login_licence'] .'</div>'."\n";
+echo '<div class="footer">'. $cms_lang['login_license'] .'</div>'."\n";
 echo "</body>\n";
 echo "</html>\n";
 function eval_default($input) {

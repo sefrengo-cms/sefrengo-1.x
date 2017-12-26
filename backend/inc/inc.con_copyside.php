@@ -32,7 +32,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 include('inc/fnc.con.php');
 
 	
-// idcatside vorhanden, prüfen, ob Recht zum konfigurieren gegeben ist
+// idcatside vorhanden, prï¿½fen, ob Recht zum konfigurieren gegeben ist
 $perm->check(20, 'side', $idcatside, $idcat);
 
 //fetch sidetitle
@@ -97,7 +97,7 @@ $tpl_data['SKIN'] = $cfg_cms['skin'];
 
 $tpl_data['FORM_ACTION'] = $sess->url("main.php?idcatside=$idcatside&idcat=$idcat&area=con_copyside");
 $tpl_data['AREA_TITLE'] = $cms_lang['nav_1_0']. ' - Seite kopieren';
-$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 $tpl_data['BUTTON_SUBMIT_VALUE'] = $cms_lang['gen_save'];
 $tpl_data['BUTTON_SUBMIT_TEXT'] = $cms_lang['gen_save_titletext'];

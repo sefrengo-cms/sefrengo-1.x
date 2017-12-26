@@ -74,7 +74,7 @@ if(! function_exists(set_val)){
        AND container='".$cms_mod['container']['id']."'
        AND idtype='$value_name'";
    }
-   //Es gibt den Wert noch nicht, neu in tabelle einfügen
+   //Es gibt den Wert noch nicht, neu in tabelle einfï¿½gen
    else{
     $sql = "INSERT INTO
        ". $cms_db['content_external'] ."
@@ -87,12 +87,12 @@ if(! function_exists(set_val)){
 
    $db->query($sql);
 
-  //Letzte Ünderung Datum ändern!
+  //Letzte ï¿½nderung Datum ï¿½ndern!
   $sql = "UPDATE ". $cms_db['side_lang']. " SET lastmodified='".time()."' WHERE idsidelang='".$con_side[$idcatside]['idsidelang']."' ";
                   $db->query($sql);
 
-   //Cache löschen
-   //Seite fürs frontend neu generieren, da sich ein Wert geändert hat
+   //Cache lï¿½schen
+   //Seite fï¿½rs frontend neu generieren, da sich ein Wert geï¿½ndert hat
    change_code_status($idcatside, 1, 'idcatside');
 
   }
@@ -127,7 +127,7 @@ if(! function_exists(getstringparts)) {
 // ************************************************************************************************
 // ContentFlexFileList Function 1.2.0
 // by Alexander M. Korn (amk@gmx.info)
-// Licence: GPL
+// License: GPL
 
 if(! function_exists(contentflexfilelist)){
 	function contentflexfilelist(	$file='',
@@ -536,7 +536,7 @@ if(! function_exists(contentflexfilelist)){
 // ************************************************************************************************
 // TXT2HTMLTable Function 1.1.0
 // by Alexander M. Korn (amk@gmx.info)
-// Licence: GPL
+// License: GPL
 
 if(! function_exists(txt2htmltable)){
 	function txt2htmltable($headline='',$head='',$foot='',$data='',$separator='|') {
@@ -726,7 +726,7 @@ if(! function_exists(txt2htmltable)){
 // ************************************************************************************************
 // TXT2HTMLList Function 1.0.0
 // by Alexander M. Korn (amk@gmx.info)
-// Licence: GPL
+// License: GPL
 
 if(! function_exists(txt2htmllist)){
 	function txt2htmllist($tpl1='',$tpl2='',$data='') {
@@ -1502,7 +1502,7 @@ if ($cms_side['edit'] || $cms_side['edit_all']) {
     $modtemp['editbutton_menu'] = '';
     $typegroup_conf = '';
     
-    // Doppelte Einträge löschen
+    // Doppelte Eintrï¿½ge lï¿½schen
     $modtemp['tags'][1]=array_unique($modtemp['tags'][1]); 
 
     foreach($modtemp['tags'][1] AS $v){
@@ -1563,7 +1563,7 @@ if ($cms_side['edit'] || $cms_side['edit_all']) {
      	
     	
 	}
-    // wegen den alten Version {elements} löschen
+    // wegen den alten Version {elements} lï¿½schen
     $modv['editbutton'] = str_replace("{elements}", '', $modv['editbutton']);
 }
 

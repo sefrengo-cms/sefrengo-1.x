@@ -39,14 +39,14 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.con.php');
 /**
  * Class to check if a doublet/ clone Page of an idcatside exists
  *
- *  (c) 2004 by Björn Brockmann
+ *  (c) 2004 by Bjï¿½rn Brockmann
  */
 class cmsPageDoubletAudit{
 
@@ -104,14 +104,14 @@ if ($change_show_tree == 'delete_cache') {
 
 if ($action && $view && $perm->have_perm(3, 'area_frontend', 3) ) {
 	switch($action) {
-		case 'side_delete':  // Seite löschen
+		case 'side_delete':  // Seite lï¿½schen
 			con_delete_side ($idcat, $idside);
 			fire_event('con_side_delete', array('idcat' => $idcat, 'idside' => $idside));
 			header ('HTTP/1.1 302 Moved Temporarily');
 			header ('Location:'.$sess->urlRaw($cfg_client['htmlpath'].$cfg_client['contentfile'].'?lang='.$lang.'&idcat='.$idcat.'&view='.$view));
 			exit;
 			break;
-		case 'cat_delete':  // Ordner löschen
+		case 'cat_delete':  // Ordner lï¿½schen
 			// Event
 			$errno = con_delete_cat ($idcat);
 			fire_event('con_cat_delete', array('idcat' => $idcat,'errno' => $errno));
@@ -140,7 +140,7 @@ switch($action) {
 		con_make_start ($idcatside, !$is_start);
 		fire_event('con_side_start', array('idcatside' => $idcatside));
 		break;
-	case 'side_delete':  // Seite löschen
+	case 'side_delete':  // Seite lï¿½schen
 		con_delete_side ($idcat, $idside);
 		fire_event('con_side_delete', array('idcat' => $idcat, 'idside' => $idside));
 		break;
@@ -153,7 +153,7 @@ switch($action) {
 		if ($bit_to_clear) fire_event('con_side_offline', array('idside' => $idside));
 		else fire_event('con_side_online', array('idside' => $idside));
 		break;
-	case 'delete_cache':  // Cache löschen
+	case 'delete_cache':  // Cache lï¿½schen
 		con_delete_cache($lang);
 		fire_event('con_cache_delete', array());
 		break;
@@ -162,7 +162,7 @@ switch($action) {
 		include_once($cfg_cms['cms_path'].'inc/fnc.mod_rewrite.php');
 		rewriteAutoForAll($lang);
 		break;
-	case 'cat_delete':  // Ordner löschen
+	case 'cat_delete':  // Ordner lï¿½schen
 		// Event
 		$errno = con_delete_cat ($idcat);
 		fire_event('con_cat_delete', array('idcat' => $idcat,'errno' => $errno));
@@ -292,7 +292,7 @@ if ($show_tree == '0') {
 $tpl->loadTemplatefile('con_main.tpl');
 
 $tpl_data['AREA'] = $cms_lang['area_con'];
-$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 if(! empty($errno)){
 	$tpl -> setCurrentBlock('ERRORMESSAGE');
@@ -328,7 +328,7 @@ if ($cfg_client['publish'] == '1' && $perm->have_perm('7', 'area_con', 0) && $pe
 	$show_action_select = true;
 }
 
-// Cache löschen
+// Cache lï¿½schen
 if ( $perm ->is_admin() ){
 	$tpl_folderlist['ACTIONS_VALUE'] = 'delete_cache';
 	$tpl_folderlist['ACTIONS_ENTRY'] = $cms_lang['con_delete_cache'];
@@ -473,7 +473,7 @@ if (is_array($catlist)) {
 			$con_tree[$db->f('idcat')]['status'] = 'true';
 		}
 
-		// Sortindex einfügen
+		// Sortindex einfï¿½gen
 		if($db->f('sortindex') > 0) {
 			if(!empty($sidelist[$db->f('idcat')][$db->f('sortindex')])) {
 				array_push($sidelist[$db->f('idcat')], $db->f('idcatside'));
@@ -511,7 +511,7 @@ if (is_array($catlist)) {
 		if ($con_tree[$a]['idcat'] == $idcat) $tpl_cat_values['EXPAND_ANCHOR'] = "\n<a id=\"catanchor\" name=\"catanchor\"></a>\n";
 		$tpl_cat_values['SPACES_BEFORE'] = $spaces;
 
-		// Link Expand öffnen
+		// Link Expand ï¿½ffnen
 		if ($tlo_tree['expanded'][$a] != '') $tpl_cat_values['BUTTON_CAT_EXPAND'] = make_image_link('main.php?area=con&action=expand&idcat='.$con_tree[$a]['idcat'].'&expanded=1', 'but_minus.gif', $cms_lang['con_noexpanded'],  '16', '16','','','#catanchor');
 
 		// Link Expand schliessen
@@ -685,7 +685,7 @@ if (is_array($catlist)) {
 				unset($tmp_descr);
 			} else $tpl_cat_values['BUTTON_PUBLISH'] = make_image('space.gif', '', '16', '16');
 
-			// Ordner: löschen
+			// Ordner: lï¿½schen
 			if ($perm -> have_perm(5, 'cat', $con_tree[$a]['idcat'])) $tpl_cat_values['BUTTON_DELETE'] = "<a href=\"".$sess->url('main.php?area=con&action=cat_delete&idcat='.$con_tree[$a]['idcat']). "\" onclick=\"return delete_confirm()\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"".$cms_lang['con_folder_delete']."\" title=\"".$cms_lang['con_folder_delete']."\"  /></a>";
 			else $tpl_cat_values['BUTTON_DELETE'] = make_image('space.gif', '', '16', '16');
 
@@ -883,7 +883,7 @@ if (is_array($catlist)) {
 								$tmp_descr2 = $cms_lang['con_publish'];
 
 								if (($tmp_side['online'] & 0x03) == 0x00) {
-									// ist geschützt,
+									// ist geschï¿½tzt,
 									if ($cfg_client['publish'] == '1' && $con_side[$a][$tmp_side['idcatside']]['status'] == 'true') {
 										$tmp_pic = 'but_offpublish.gif';
 										$tmp_descr = $tmp_descr2;
@@ -928,15 +928,15 @@ if (is_array($catlist)) {
 							}
 
 
-							// Seite: löschen
+							// Seite: lï¿½schen
 							if($perm -> have_perm(21, 'side', $tmp_side['idcatside'], $tmp_side['idcat']))
 								if($sefrengoPDA->pageDoubletExists( (int) $tmp_side['idside']))
-									$tpl_side_values['BUTTON_DELETE'] = "<a href=\"".$sess->url('main.php?action=side_delete&idcat='.$tmp_side['idcat'].'&idside='.$tmp_side['idside']). "#catanchor\" onclick='return confirm(\"Achtung! Diese Seite existiert als Kopie/ Klone in mehreren Kategorien! Wirklich löschen?\")'><img src=\"tpl/".$cfg_cms['skin']."/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"".$cms_lang['con_actions']['40']."\" title=\"".$cms_lang['con_actions']['40']."\" /></a>";
+									$tpl_side_values['BUTTON_DELETE'] = "<a href=\"".$sess->url('main.php?action=side_delete&idcat='.$tmp_side['idcat'].'&idside='.$tmp_side['idside']). "#catanchor\" onclick='return confirm(\"Achtung! Diese Seite existiert als Kopie/ Klone in mehreren Kategorien! Wirklich lï¿½schen?\")'><img src=\"tpl/".$cfg_cms['skin']."/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"".$cms_lang['con_actions']['40']."\" title=\"".$cms_lang['con_actions']['40']."\" /></a>";
 								else
 									$tpl_side_values['BUTTON_DELETE'] = "<a href=\"".$sess->url('main.php?action=side_delete&idcat='.$tmp_side['idcat'].'&idside='.$tmp_side['idside']). "#catanchor\" onclick=\"return delete_confirm()\"><img src=\"tpl/".$cfg_cms['skin']."/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"".$cms_lang['con_actions']['40']."\" title=\"".$cms_lang['con_actions']['40']."\" /></a>";
 							else $tpl_side_values['BUTTON_DELETE'] = make_image('space.gif', '', '16', '16');
 
-							// Seite: schützen
+							// Seite: schï¿½tzen
 							if ($perm -> have_perm(24, 'side', $tmp_side['idcatside'], $tmp_side['idcat'])) {
 				                if ($tmp_side['offline']) {
 									$lock_val = 0;

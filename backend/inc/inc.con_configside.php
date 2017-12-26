@@ -747,7 +747,7 @@ $tpl_data['SIDE_TITLE_DESC'] = $cms_lang['con_title'];
 $tpl_data['SIDE_TITLE'] = empty($title) ? '' : $title;
 $tpl_data['SELECT_LOCK_SIDE'] = $select_lock_side;
 $tpl_data['TPL_CONF'] = $temp_tpl_conf;
-$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_license'];
 $tpl->setVariable($tpl_data);
 unset($tpl_data);
 // Look for Errors

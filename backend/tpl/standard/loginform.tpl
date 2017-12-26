@@ -58,7 +58,7 @@ include('tpl/standard/lang/'.$cfg_cms['backend_lang'].'/lang_general.php');
   </form>
   </div>
   <div class="footer">
-    <p><?PHP echo $cms_lang['login_licence']; ?></p>
+    <p><?PHP echo $cms_lang['login_license']; ?></p>
   </div>
 <script type="text/javascript">
 <!--

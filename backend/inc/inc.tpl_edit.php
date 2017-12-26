@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /**
- * 1. Benötigte Funktionen und Klassen includieren
+ * 1. Benï¿½tigte Funktionen und Klassen includieren
  */
 
 include('inc/fnc.tpl.php');
@@ -46,7 +46,7 @@ include('inc/fnc.mipforms.php');
  * 2. Eventuelle Actions/ Funktionen abarbeiten
  */
 
-//um den Bereich betreten zu dürfen, muß das Recht bearbeiten gesetzt sein
+//um den Bereich betreten zu dï¿½rfen, muï¿½ das Recht bearbeiten gesetzt sein
 if(is_numeric($idtpl)) $perm->check(3, 'tpl', $idtpl);
 else $perm->check(3, 'area_tpl', 0);
 
@@ -95,7 +95,7 @@ if ($idtpl && (!$idlay || $idlay == '0')) {
 	$tplname = htmlentities($db->f('name'), ENT_COMPAT, 'UTF-8');
 	$description = htmlentities($db->f('description'), ENT_COMPAT, 'UTF-8');
 
-	// Template zurücksetzen
+	// Template zurï¿½cksetzen
 	if ($idlay < 1) {
 		$idlay = $db->f('idlay');
 		$list = browse_layout_for_containers($idlay);
@@ -118,7 +118,7 @@ if ($idtpl && (!$idlay || $idlay == '0')) {
 		${'cconfig'.$db->f('container')} = $db->f('config');
 	}
 
-// Templateeinstellungen übernehmen
+// Templateeinstellungen ï¿½bernehmen
 } else {
 	if (is_array($cconfig)) {
 		foreach ($cconfig as $key => $value) {
@@ -195,7 +195,7 @@ echo "        <td class=\"head\">".$cms_lang['tpl_description']."</td>\n";
 echo "        <td><textarea class=\"w800\" name=\"description\" rows=\"3\" cols=\"52\">$description</textarea></td>\n";
 echo "      </tr>\n";
 
-// Layout auswählen
+// Layout auswï¿½hlen
 echo "      <tr>\n";
 echo "        <td class=\"head\">".$cms_lang['tpl_layout']."</td>\n";
 echo "        <td>\n<select name=\"idlay\" size=\"1\" onchange=\"document.editform.action.value='change';document.editform.submit();\">\n";
@@ -212,7 +212,7 @@ if (is_array($lay['id'])) {
 echo "        </select>\n</td>\n";
 echo "      </tr>\n";
 
-// wenn Layout gewählt
+// wenn Layout gewï¿½hlt
 if ($idlay) {
 	echo "      <tr>\n";
 	echo "        <td class=\"head\">\n<input type=\"hidden\" name=\"changed\" value=\"0\" />\n".$cms_lang['tpl_description']."</td>\n";
@@ -236,7 +236,7 @@ if ($idlay) {
 
 			printf ("        <td class=\"head\"%s>%s</td>\n", (${'c'.$value}) ? ' rowspan="2"':'', (!empty($list[$value]['title'])) ? $list[$value]['title']:"$value. ".$cms_lang['tpl_container']."");
 
-			// Modul auswählen
+			// Modul auswï¿½hlen
 			printf ("        <td class=\"%s\">", (${'c'.$value}) ? 'headre':'content');
 			$echo = "\n<div class=\"forms\">\n<select class=\"element\" name=\"c$value\" size=\"1\" onchange=\"document.editform.action.value='change';document.editform.changed.value='$value';document.editform.anchor.value='$_container_name';document.editform.submit();\">\n";
 			if (${'c'.$value} < 1) {
@@ -378,7 +378,7 @@ if ($idlay) {
 	}
 }
 
-// Einstellungen für alle Templates übernehmen
+// Einstellungen fï¿½r alle Templates ï¿½bernehmen
 if(is_numeric($idtpl)) {
 	echo "  <tr>\n";
 	echo "    <td class=\"head\">Erweitert</td>\n";
@@ -399,7 +399,7 @@ echo "      </tr>\n";
 echo "</table>\n";
 echo "</form>\n";
 echo "</div>\n";
-echo '<div class="footer">'. $cms_lang['login_licence'] .'</div>'."\n";
+echo '<div class="footer">'. $cms_lang['login_license'] .'</div>'."\n";
 echo "</body>\n";
 echo "</html>\n";
 ?>

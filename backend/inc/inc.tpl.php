@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.tpl.php');
@@ -47,7 +47,7 @@ include('inc/fnc.tpl.php');
 
 $perm->check('area_tpl');
 switch($action) {
-	case 'delete':  // Template löschen
+	case 'delete':  // Template lï¿½schen
 		$perm->check(5, 'tpl', $idtpl);
 		$errno = tpl_delete_template($idtpl);
 		break;
@@ -70,7 +70,7 @@ include('inc/inc.header.php');
 $tpl->loadTemplatefile('tpl.tpl');
 
 $tmp['AREA'] = $cms_lang['area_tpl'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 if ( $perm->have_perm(2, 'area_tpl', 0) ) $tmp['NEW_TEMPLATE'] = "\n<a class=\"action\" href=\"".$sess->url("main.php?area=tpl_edit")."\">".$cms_lang["tpl_actions"]["10"]."</a>";
 
@@ -100,7 +100,7 @@ while ($db->next_record())
 	
 	//Darf Template sehen
 	if( $perm->have_perm(1, 'tpl', $idtpl) ){
-		// Hintergrundfarbe wählen
+		// Hintergrundfarbe wï¿½hlen
 		$tmp['ENTRY_BGCOLOR'] = '#ffffff';
 		$tmp['OVERENTRY_BGCOLOR'] = '#fff7ce';
 		
@@ -123,7 +123,7 @@ while ($db->next_record())
 			$tmp['ENTRY_EDIT'] = "\n<a href=\"".$sess->url("main.php?area=tpl_edit&idtpl=".$db->f('idtpl'))."\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/but_edit.gif\" alt=\"".$cms_lang['tpl_edit']."\" title=\"".$cms_lang['tpl_edit']."\" width=\"16\" height=\"16\" /></a>";
 		}
 
-		// Template löschen
+		// Template lï¿½schen
 		if ($db->f('deletable')=='1' && $perm->have_perm(5, 'tpl', $idtpl) ){
 			$tmp['ENTRY_DELBUT'] = "\n<a href=\"".$sess->url('main.php?area=tpl&action=delete&idtpl='.$db->f('idtpl'))."\" onclick=\"return delete_confirm()\">\n<img src=\"tpl/".$cfg_cms['skin']."/img/but_deleteside.gif\" width=\"16\" height=\"16\" alt=\"".$cms_lang['tpl_delete']."\" title=\"".$cms_lang['tpl_delete']."\" /></a>";
 		}

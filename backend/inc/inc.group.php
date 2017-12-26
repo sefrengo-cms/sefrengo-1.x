@@ -72,7 +72,7 @@ $base_url = $sess->url('main.php?area=%s&order=%s&ascdesc=%s');
 // Templatedatei laden
 $tpl->loadTemplatefile('group.tpl');
 $tmp['AREA'] = $cms_lang['area_group'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if (!empty($errno)) {
 	$tpl -> setCurrentBlock('ERROR');
 	$tpl_error['ERRORMESSAGE'] = $cms_lang['err_'.$errno];

@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.css.php');
@@ -83,7 +83,7 @@ if ($errno) {
 	$tmp['ERR_MSG']       = $cms_lang["err_$errno"];
 }
 $tmp['SUB_NAV_RIGHT'] = '&nbsp;';
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 // Templatedatei laden
 $tpl->loadTemplatefile('css_edit_file.tpl');

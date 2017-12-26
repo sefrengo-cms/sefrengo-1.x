@@ -30,7 +30,7 @@ $cms_lang['login_password']			= 'Mot de passe';
 $cms_lang['login_invalidlogin']		= 'Identifiant et/ou mot de passe invalide. Veuillez r&eacute;essayer!';
 $cms_lang['login_nolang']				= 'Aucune langue vous a &eacute;t&eacute; attribu&eacute;e.';
 $cms_lang['login_nojs']				= '!! Veuillez activer Javascript dans votre browser, afin que le backend puisse fonctionner correctement.'; 
-$cms_lang['login_licence']				= 'Sefrengo &copy; 2005 - 2006 <a href="http://www.sefrengo.org" target="_blank">sefrengo.org</a>. This is free software, and you may redistribute it under the GPL. Sefrengo comes with absolutely no warranty; for details, see the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">license</a>.';
+$cms_lang['login_license']				= 'Sefrengo &copy; 2005 - 2006 <a href="http://www.sefrengo.org" target="_blank">sefrengo.org</a>. This is free software, and you may redistribute it under the GPL. Sefrengo comes with absolutely no warranty; for details, see the <a href="http://www.gnu.org/copyleft/gpl.html" target="_blank">license</a>.';
 
 $cms_lang['logout_thanksforusingcms']	= 'Merci d\'avoir utilis&eacute; \'Sefrengo\' A bient&ocirc;t.';
 $cms_lang['logout_youareloggedout']    = 'Vous &ecirc;tes maintenant d&eacute;connect&eacute;.';
@@ -178,7 +178,7 @@ $cms_lang['gen_select_change_to']	  	= 'Changer...';
 $cms_lang['gen_help']                  = 'Aide';			// to translate
 $cms_lang['gen_logout_wide']           = 'D&eacute;connexion';
 $cms_lang['gen_user']			        = 'Utilisateur: ';			// to translate
-$cms_lang['gen_licence']			     = 'Licence';			// to translate
+$cms_lang['gen_license']			     = 'License';			// to translate
 
 $cms_lang['gen_save']			        = 'Sauvegarder';// to translate
 $cms_lang['gen_apply']			        = 'Reprendre';// to translate

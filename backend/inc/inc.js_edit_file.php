@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.js.php');
@@ -47,7 +47,7 @@ $fm = new filemanager();
  2. Eventuelle Actions/ Funktionen abarbeiten
 ******************************************************************************/
 
-// Prüfe ob User diesen bereich betreten darf
+// Prï¿½fe ob User diesen bereich betreten darf
 if (empty($idjsfile)) 
 	$perm->check(2, 'area_js');
 else
@@ -118,7 +118,7 @@ if (!$errno) {
 		$jsfileauthor       = '';
 		$idjsfile           = 0;
 	}
-	// Speziell für JS-Dateien wegen maskierten Zeichen notwendig
+	// Speziell fï¿½r JS-Dateien wegen maskierten Zeichen notwendig
 	if (get_magic_quotes_gpc() != 0) {
 		$jsfilecontent = str_replace('\\', '\\\\', $jsfilecontent);
 	}
@@ -126,7 +126,7 @@ if (!$errno) {
 		$jsfilecontent = str_replace('\\', '\\\\', $jsfilecontent);
 	}
 } else {
-	// Speziell für JS-Dateien wegen maskierten Zeichen notwendig
+	// Speziell fï¿½r JS-Dateien wegen maskierten Zeichen notwendig
 	if (get_magic_quotes_gpc() == 0) {
 		$jsfilecontent = str_replace('\\', '\\\\', $jsfilecontent);
 	} else {
@@ -140,7 +140,7 @@ if (!$errno) {
 $tmp['FORM_ACTION'] = $sess->url("main.php");
 $tmp['IDJS']        = $idjsfile;
 $tmp['IDCLIENT']    = $idclient;
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 /*
 ** name of the js-file

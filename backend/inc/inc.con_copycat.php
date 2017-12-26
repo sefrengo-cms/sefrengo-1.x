@@ -110,7 +110,7 @@ $tpl->loadTemplatefile('cat_copy.tpl');
 
 $tpl->setCurrentBlock('__global__');
 $tpl_data['SKIN'] = $cfg_cms['skin'];
-$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tpl_data['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 $tpl_data['FORM_ACTION'] = $sess->url("main.php?idcat=$idcat&area=con_copycat");
 $tpl_data['AREA_TITLE'] = $cms_lang['nav_1_0']. ' - Kategorie kopieren';

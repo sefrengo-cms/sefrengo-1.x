@@ -36,15 +36,15 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 0. Prüfe Zugriffsrechte
+ 0. Prï¿½fe Zugriffsrechte
 ******************************************************************************/
 $perm->check('area_group');
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 include('inc/fnc.group.php');
-// Lade Liste der möglichen Rechte in Sefrengo
+// Lade Liste der mï¿½glichen Rechte in Sefrengo
 $cms_perm_val = $val_ct->get_by_group('user_perms', $idclient);
 
 /******************************************************************************
@@ -69,7 +69,7 @@ include('inc/inc.header.php');
 /******************************************************************************
  4. Bildschirmausgabe aufbereiten und ausgeben
 ******************************************************************************/
-// Templatedatei laden und Überschrift setzen
+// Templatedatei laden und ï¿½berschrift setzen
 $tpl->loadTemplatefile('group_config.tpl');
 
 $tmp['AREA'] = $cms_lang['area_group_config'];
@@ -102,9 +102,9 @@ $url = '<a href="'.$sess->url($query).'" class="action">%s</a>';
 $img_abort  = '<img src="' . $img_path . 'but_cancel.gif" alt="' . $cms_lang['gen_abort'] . '" title="' . $cms_lang['gen_abort'];
 $img_abort .= '" width="21" height="21" /></a>';
 
-// Zurück-Link setzen
+// Zurï¿½ck-Link setzen
 $tmp['BACK'] = sprintf($url, $cms_lang['group_back']);
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 
 // Formulareinstellungen
 $tmp['FORM_URL']   = $sess->url('main.php');
@@ -130,7 +130,7 @@ unset($tmp);
 // Lade eingetragene Rechte der Gruppe
 $sim_perm = new cms_perms($idclient, $idlang, true, $idgroup);
 
-// Lade die algemeinen Rechtegruppen und zeige für jede die eingetragenen Rechte an
+// Lade die algemeinen Rechtegruppen und zeige fï¿½r jede die eingetragenen Rechte an
 $sql  = 'SELECT DISTINCT key2, conf_desc_langstring, conf_sortindex ';
 $sql .= 'FROM ' . $cms_db['values'] . ' ';
 $sql .= 'WHERE ';
@@ -138,8 +138,8 @@ $sql .= " (key1 = 'cms_access' AND key2 NOT LIKE 'area_plug_%') ";
 $sql .= 'GROUP BY conf_sortindex, key2, conf_desc_langstring';
 _show_rightgroup( $sql, false );
 
-// Prüfe auf installierte Plugins und zeige für jede die eingetragenen Rechte an
-// Signalisiere dem System, das hier Rechtenamen mit einem Punkt im Namen vorkommen, diese müssen mit "_" ersetzt werden
+// Prï¿½fe auf installierte Plugins und zeige fï¿½r jede die eingetragenen Rechte an
+// Signalisiere dem System, das hier Rechtenamen mit einem Punkt im Namen vorkommen, diese mï¿½ssen mit "_" ersetzt werden
 $sql  = 'SELECT DISTINCT V.key2, V.conf_desc_langstring, V.conf_sortindex ';
 $sql .= 'FROM ' . $cms_db['values'] . ' V, ' . $cms_db['plug'] . ' P ';
 $sql .= 'WHERE ';

@@ -510,7 +510,7 @@ class setup {
         $text = fread($fp, filesize('templates/gpl.txt'));
         fclose($fp);
 
-		$tpl -> insert('', 'licence', $text);
+		$tpl -> insert('', 'license', $text);
 		$tpl -> insert('', 'version', $this -> version_text);
 		$tpl -> insert('', 'lang', $this -> globals['lang']);
 		$tpl -> insert('', 'next_step', 'screen_pretest');
@@ -1216,7 +1216,7 @@ class setup {
 	* @return void
 	*/
 	function insert_sql_dump($special_replace = false) {
-		// Zeitinterval vergroeßern
+		// Zeitinterval vergroeï¿½ern
 		@set_time_limit(0);
 		
 		$this->_mysql_connect();

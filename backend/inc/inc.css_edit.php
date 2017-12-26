@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.css.php');
@@ -286,7 +286,7 @@ $tmp['EDITOR_CHOSSEELEMENT'] = $cms_lang["css_js_chosseelement"];
 $tmp['EDITOR_ENTERVALUE0'] = $cms_lang["css_js_entervalue0"];
 $tmp['EDITOR_ENTERVALUE1'] = $cms_lang["css_js_entervalue1"];
 $tmp['EDITOR_ENTERVALUE1'] = $cms_lang["css_js_entervalue1"];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 $tpl->setVariable($tmp);
 unset($tmp);
 

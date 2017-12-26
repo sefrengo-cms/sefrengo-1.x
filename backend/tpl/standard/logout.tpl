@@ -19,7 +19,7 @@
   </div>
   </div>
   <div class="footer">
-	<p>{MESSAGE_LOGIN_LICENCE}</p>
+	<p>{MESSAGE_LOGIN_LICENSE}</p>
   </div>
 </body>
 </html>

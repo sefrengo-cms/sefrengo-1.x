@@ -26,7 +26,7 @@
         <div id="content">
           <form name="gpl" action="index.php" method="post">
           <p>
-            <textarea name="licence" readonly="readonly" class="licence"><!--{licence}--></textarea>
+            <textarea name="license" readonly="readonly" class="license"><!--{license}--></textarea>
             <input type="checkbox" name="ckeck" id="accept" value="true" onclick="sf_EnableButtons(document.gpl.ckeck.checked)" />
             <label for="accept" class="agree">
              <!--[license_accept]-->

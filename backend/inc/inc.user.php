@@ -36,7 +36,7 @@ if(! defined('CMS_CONFIGFILE_INCLUDED')){
 }
 
 /******************************************************************************
- 1. Benötigte Funktionen und Klassen includieren
+ 1. Benï¿½tigte Funktionen und Klassen includieren
 ******************************************************************************/
 
 include('inc/fnc.user.php');
@@ -98,7 +98,7 @@ $base_url = $sess->url('main.php?area=user&idgroup='.$idgroup.'&order=%s&ascdesc
 // Templatedatei laden
 $tpl->loadTemplatefile('user.tpl');
 $tmp['AREA'] = $cms_lang['area_user'];
-$tmp['FOOTER_LICENSE'] = $cms_lang['login_licence'];
+$tmp['FOOTER_LICENSE'] = $cms_lang['login_license'];
 if (!empty($errno)) {
 	$tpl -> setCurrentBlock('ERROR');
 	$tpl_error['ERRORMESSAGE'] = $cms_lang['err_'.$errno];
@@ -114,7 +114,7 @@ $tmp['PAGE'] = $page;
 $tmp['SESS_NAME'] = $sess->name;
 $tmp['SESS_ID'] = $sess->id;
 
-// Tabellenüberschrift
+// Tabellenï¿½berschrift
 $tmp['LANG_LOGINNAME'] = '<a href ="'.sprintf($base_url, 'username', ($order == 'username' && ($ascdesc == 'ASC' || $ascdesc == '')) ? 'DESC' : 'ASC').'&amp;searchterm='.urldecode($searchterm).'&amp;page='.$page.'">'.$cms_lang['user_loginname'].'</a>';
 $tmp['LANG_NAME'] = '<a href ="'.sprintf($base_url, 'name', ($order == 'name' && ($ascdesc == 'ASC' || $ascdesc == '')) ? 'DESC' : 'ASC').'&amp;searchterm='.urldecode($searchterm).'&amp;page='.$page.'">'.$cms_lang['user_name'].'</a>';
 $tmp['LANG_SURNAME'] = '<a href ="'.sprintf($base_url, 'surname', ($order == 'surname' && ($ascdesc == 'ASC' || $ascdesc == '')) ? 'DESC' : 'ASC').'&amp;searchterm='.urldecode($searchterm).'&amp;page='.$page.'">'.$cms_lang['user_surname'].'</a>';
