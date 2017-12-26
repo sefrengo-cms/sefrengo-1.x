@@ -176,7 +176,7 @@ if ($db->next_record()) {
 				
 				$code .= '<meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'"'.$sf_slash_closing_tag.'>'."\n";
 				
-				$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo htmlspecialchars($con_side[$idcatside][\'meta_other\'], ENT_COMPAT, \'utf-8\')."\n"; ?>';	
+				$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo $con_side[$idcatside][\'meta_other\']."\n"; ?>';	
 				
 				//JS and CSS file include
 				$sql = "SELECT

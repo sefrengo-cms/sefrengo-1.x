@@ -680,7 +680,7 @@ if ($action == 'edit' || $action == 'saveedit' || $action == 'new') {
 					$code .= '<meta http-equiv="content-type" content="text/html; charset='.$lang_charset.'"'.$sf_slash_closing_tag.'>'."\n";
 					$code .= "<meta http-equiv=\"expires\" content=\"0\"".$sf_slash_closing_tag.">\n";
 					
-					$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo htmlspecialchars($con_side[$idcatside][\'meta_other\'], ENT_COMPAT, \'utf-8\')."\n"; ?>';
+					$code .= '<?PHP if ($con_side[$idcatside][\'meta_other\'] != \'\') echo $con_side[$idcatside][\'meta_other\']."\n"; ?>';
 					
 					$sql = "SELECT C.filetype, D.dirname, B.filename FROM $cms_db[lay_upl] A LEFT JOIN $cms_db[upl] B USING(idupl) LEFT JOIN $cms_db[filetype] C USING(idfiletype) LEFT JOIN $cms_db[directory] D ON B.iddirectory=D.iddirectory WHERE idlay='$idlay' ORDER BY A.idlayupl";
 					$db->query($sql);
