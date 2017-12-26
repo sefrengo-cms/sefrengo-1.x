@@ -1,8 +1,31 @@
-Changelog
-    ================================================================================================
+# Changelog
 
-Sefrengo v1.6.4
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.6.5-beta2
+
+Internal versionnumber: 01.06.05<br/>
+Release: 25.06.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/releases/tag/v1.6.5-beta2>
+
+* FIXED: SQL security issues in group area
+* CHANGED: ADOdb is now running with mysqli driver
+
+
+
+## Sefrengo v1.6.5-beta
+
+Internal versionnumber: 01.06.05<br/>
+Release: 20.05.2015
+
+See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/releases/tag/v1.6.5-beta>
+
+* ADDED: Social Meta Tags for pages (Thanks to @screengarden (sidd))
+* FIXED: Fixed CKEditor configuration for Advanced Content Filter (ACF)
+
+
+
+## Sefrengo v1.6.4
+
 Internal versionnumber: 01.06.04<br/>
 Release: 03.03.2015
 
@@ -14,8 +37,8 @@ Commits are contributed by @screengarden (sidd)
 
 
 
-Sefrengo v1.6.3
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.6.3
+
 Internal versionnumber: 01.06.03<br/>
 Release: 04.02.2015
 
@@ -30,8 +53,8 @@ Commits are contributed by @screengarden (sidd)
 
 
 
-Sefrengo v1.6.2
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.6.2
+
 Internal versionnumber: 01.06.02<br/>
 Release: 25.01.2015
 
@@ -42,8 +65,8 @@ See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6
 
 
 
-Sefrengo v1.6.1
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.6.1
+
 Internal versionnumber: 01.06.01<br/>
 Release: 04.01.2015
 
@@ -56,8 +79,8 @@ See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6
 
 
 
-Sefrengo v1.6.0
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.6.0
+
 Internal versionnumber: 01.06.00<br/>
 Release: 18.02.2014
 
@@ -69,8 +92,8 @@ See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.6
 
 
 
-Sefrengo v1.5.1
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.5.1
+
 Internal versionnumber: 01.05.01<br/>
 Release: 15.11.2013
 
@@ -86,8 +109,8 @@ See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.5
 
 
 
-Sefrengo v1.5.0
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.5.0
+
 Internal versionnumber: 01.05.00<br/>
 Release: 17.10.2013
 
@@ -105,8 +128,8 @@ See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.5
 
 
 
-Sefrengo v1.4.6
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.6
+
 Internal versionnumber: 01.04.06<br/>
 Release: 25.02.2013
 
@@ -119,8 +142,8 @@ See full changelog at <https://github.com/sefrengo-cms/sefrengo-1.x/commits/v1.4
 
 
 
-Sefrengo v1.4.5
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.5
+
 Internal versionnumber: 01.04.05<br/>
 Release: 30.05.2011
 
@@ -134,8 +157,8 @@ Release: 30.05.2011
 
 
 
-Sefrengo v1.4.4
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.4
+
 Internal versionnumber: 01.04.04<br/>
 Release: 12.08.2010
 
@@ -144,8 +167,8 @@ Release: 12.08.2010
 
 
 
-Sefrengo v1.4.3
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.3
+
 Internal versionnumber: 01.04.03<br/>
 Release: 28.02.2009
 
@@ -156,8 +179,8 @@ Release: 28.02.2009
 
 
 
-Sefrengo v1.4.2
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.2
+
 Internal versionnumber: 01.04.02<br/>
 Release: 25.11.2008
 
@@ -177,8 +200,8 @@ Release: 25.11.2008
 
 
 
-Sefrengo v1.4.1
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.1
+
 Internal versionnumber: 01.04.01<br/>
 Release: 11.08.2008
 
@@ -234,8 +257,8 @@ Release: 11.08.2008
 
 
 
-Sefrengo v1.4.0
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.0
+
 Internal versionnumber: 01.04.00<br/>
 Release: 25.04.2007
 
@@ -280,8 +303,8 @@ Release: 25.04.2007
 
 
 
-Sefrengo v1.4.0-beta2
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.4.0-beta2
+
 Internal versionnumber: 01.03.01<br/>
 Release: 16.11.2006
 
@@ -331,8 +354,8 @@ Release: 16.11.2006
 
 
 
-Sefrengo v1.3.0
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.3.0
+
 Internal versionnumber: 01.03.00<br/>
 Release: 30.06.2006
 
@@ -375,8 +398,8 @@ Release: 30.06.2006
 
 
 
-Sefrengo v1.2.2
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.2.2
+
 Internal versionnumber: 01.02.02<br/>
 Release: 08.04.2006
 
@@ -391,8 +414,8 @@ Release: 08.04.2006
 
 
 
-Sefrengo v1.2.1
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.2.1
+
 Internal versionnumber: 01.02.01<br/>
 Release: 06.01.2006
 
@@ -433,8 +456,8 @@ Release: 06.01.2006
 
 
 
-Sefrengo v1.2.0
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.2.0
+
 Internal versionnumber: 01.02.00<br/>
 Release: 29.11.2005
 
@@ -463,8 +486,8 @@ Release: 29.11.2005
 
 
 
-Sefrengo v1.2.0-beta
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.2.0-beta
+
 Internal versionnumber: 01.01.92<br/>
 Release: 12.11.2005
 
@@ -486,8 +509,8 @@ Release: 12.11.2005
 
 
 
-Sefrengo v1.2.0-alpha2
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.2.0-alpha2
+
 Internal versionnumber: 01.01.91<br/>
 Release: 05.10.2005
 
@@ -540,8 +563,8 @@ Release: 05.10.2005
 
 
 
-Sefrengo v1.2.0-alpha
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.2.0-alpha
+
 Internal versionnumber: 01.01.90<br/>
 Release: 07.09.2005
 
@@ -579,8 +602,8 @@ Release: 07.09.2005
 
 
 
-Sefrengo v1.0.3
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.0.3
+
 Internal versionnumber: 01.00.03<br/>
 Release: 18.06.2005
 
@@ -604,8 +627,8 @@ Release: 18.06.2005
 
 
 
-Sefrengo v1.0.2
-------------------------------------------------------------------------------------------------
+## Sefrengo v1.0.2
+
 Internal versionnumber: 01.00.02<br/>
 Release: 19.03.2005
 
