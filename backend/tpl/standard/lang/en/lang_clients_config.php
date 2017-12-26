@@ -23,8 +23,8 @@ $cms_lang['setuse_session_frontend_domain']		= 'Session frontend domain';
 $cms_lang['setuse_url_rewrite']				= 'Apache mod_rewrite support';
 $cms_lang['setuse_url_langid_in_defaultlang']		= 'ID der Standardsprache in URL zeigen';
 $cms_lang['setuse_url_rewrite_suffix']				= 'URL Rewrite Seiten Suffix';
-$cms_lang['setuse_url_rewrite_basepath']		= 'Basepath bei UrlRewrite=2. Variablen: {%http_host}';
-$cms_lang['setuse_url_rewrite_404']				= '404 Fehlerseite bei UrlRewrite=2. Variablen: {%http_host}, {%request_uri} oder idcatside';
+$cms_lang['setuse_url_rewrite_basepath']		= 'Basepath bei URL Rewrite=2. Variablen: {%http_host}';
+$cms_lang['setuse_url_rewrite_404']				= '404 Fehlerseite bei URL Rewrite=2. Variablen: {%http_host}, {%request_uri} oder idcatside';
 $cms_lang['setuse_session_disabled_useragents']		= 'Useragents f&uuml;r die keine Session erzeugt wird (eine pro Zeile)';
 $cms_lang['setuse_session_disabled_ips']			= 'IPs f&uuml;r die keine Session erzeugt wird (eine pro Zeile)';
 
