@@ -795,6 +795,7 @@ CREATE TABLE cms_side_lang (
   metasocial_image varchar(255) NOT NULL default '',
   metasocial_description varchar(255) NOT NULL default '',
   metasocial_author varchar(255) NOT NULL default '',
+  meta_other TEXT NOT NULL default '',
   PRIMARY KEY  (idsidelang),
   KEY idside (idside),
   KEY idlang (idlang),

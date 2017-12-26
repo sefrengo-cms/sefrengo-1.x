@@ -452,7 +452,6 @@ if ($have_meta_perm) {
 	$tpl->setCurrentBlock('META');
   $tpl_data['LANG_META_OTHER'] = $cms_lang['con_metaother'];
   $tpl_data['META_OTHER'] = $meta_other;
-  $tpl_data['LANG_META_TITLE'] = $cms_lang['con_metatitle'];
   $tpl_data['META_TITLE'] = $meta_title;
 	$tpl_data['LANG_CON_METACONFIG'] = $cms_lang['con_metaconfig'];
 	$tpl_data['LANG_META_DESC'] = $cms_lang['con_metadescription'];
