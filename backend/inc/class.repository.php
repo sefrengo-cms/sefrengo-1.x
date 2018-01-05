@@ -941,30 +941,27 @@ class repository {
         @ini_set("error_prepend_string", "<mod_test_error>");
         @ini_set("error_append_string", "</mod_test_error>");
         // Debug Me! print_r($code);
+
         // Run the code in a Box
-        ob_start();
-        eval(' ?>' . $code);
-        $output = ob_get_contents();
-        // Later Parse! call_user_func("function mod_test_" . $id,'');
-        ob_end_clean();
+	    ob_start();
+	    try {
+	        eval( ' ?>' . $code );
+        } catch(ParseError $e) {
+		    $error_line = $e->getLine();
+        }
+	    ob_end_clean();
+
         // Ini Restore
         @ini_restore("error_prepend_string");
         @ini_restore("error_append_string");
-        // Strip <mod_test_error>
-        $start = strpos($output, "<mod_test_error>");
-        $end = strpos($output, "</mod_test_error>");
-        if ($start !== false) {
-            $start = strpos($output, "eval()");
-            $error = substr($output, $start, $end - $start);
-            preg_match ('/<b>(\d+)<\/b>/i', $error, $match);
-            $error_line = (int) $match['1'] - 1;
-        }
-        if ($mod_test_var != $id) {
+
+        if (!empty($error_line)) {
             return $error_line;
         } else {
             return false;
         }
     }
+
     /**
     * repository::gen_new_mod()
     *
