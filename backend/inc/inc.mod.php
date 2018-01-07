@@ -72,14 +72,15 @@ switch($action) {
               $install_sql, $uninstall_sql, $update_sql, $mod_rebuild_sql, $source, $mod_no_wedding, false, $mod_config_takeover)) ) {
             if (empty($modname) || $modname == '') $modname = $cms_lang['mod_defaultname'];
 			if (empty($modversion) || $modversion == '') $modversion = '1.0';
-			$s_modul = array(
+            // base64_encode before writing to the session. There are problems with correct quote escape in complex statements
+			$s_modul = base64_encode(serialize(array(
                 'name'        => $modname2,
                 'verbose'     => $modverbose2,
                 'description' => $description2,
                 'version'     => $modversion2,
                 'cat'         => $modcat2,
                 'input'       => $input2,
-                'output'      => $output2);
+                'output'      => $output2)));
             $sess->register('s_modul'); // merke:erst ein value kann gespeichert werden ;)
             $sess->freeze();
             header ('Location:' . $sess->urlRaw("main.php?area=mod_edit&idmod=" . $idmod . "&idclient=" . $idclient . "&errno=" . $errno));
@@ -87,14 +88,15 @@ switch($action) {
         } else if(isset($_REQUEST['sf_apply'])) {
         	if (empty($modname) || $modname == '') $modname = $cms_lang['mod_defaultname'];
 			if (empty($modversion) || $modversion == '') $modversion = '1.0';
-            $s_modul = array(
+            // base64_encode before writing to the session. There are problems with correct quote escape in complex statements
+			$s_modul = base64_encode(serialize(array(
                 'name'        => $modname2,
                 'verbose'     => $modverbose2,
                 'description' => $description2,
                 'version'     => $modversion2,
                 'cat'         => $modcat2,
                 'input'       => $input2,
-                'output'      => $output2);
+                'output'      => $output2)));
             $sess->register('s_modul'); // merke:erst ein value kann gespeichert werden ;)
             $sess->freeze();
             header ('Location:' . $sess->urlRaw("main.php?area=mod_edit&idmod=" . $idmod . "&idclient=" . $idclient ));

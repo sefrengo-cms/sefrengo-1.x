@@ -80,7 +80,6 @@ if ($sess->is_registered('s_default')) $sess->unregister('s_default');
 mip_forms_ob_start();
 eval(' ?>' . $default);
 $default_arr = mip_forms_get_array();
-//$cms_mod = empty($cms_mod) ?  : $cms_mod;
 $default_arr = array_merge ($cms_mod, $default_arr);
 mip_forms_ob_end();
 $trans_html = get_html_translation_table(HTML_ENTITIES);
