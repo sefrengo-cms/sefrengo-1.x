@@ -918,7 +918,7 @@ class repository {
         $idcatside = 1;
         // include the Mipforms
         include_once('inc/fnc.mipforms.php');
-        $mod_test_var = 0;
+
         // spezial for 'Druckmodul'
         $list['id'][] = 1;
         // add constant __cmsMODTEST
@@ -936,29 +936,20 @@ class repository {
         $code = str_replace('MOD_VAR', '$MOD_VAR', $code);
         $code = preg_replace ('/(<(cms|dedi):[\/\!]*?[^<>]*?>)/si', '""', $code);
         // Init the Box
-        $code = "function mod_test_" . $id . " () {" . $code;
-        $code .= "\n}\n";
-        $code .= '$mod_test_var = $id;';
-        // Ini Set
-        @ini_set("error_prepend_string", "<mod_test_error>");
-        @ini_set("error_append_string", "</mod_test_error>");
-        // Debug Me! print_r($code);
+        $code = "\$_testFunction = function () { ?>" . $code . "\n<?php\n};\n";
 
         // Run the code in a Box
 	    ob_start();
 	    try {
-	        eval( ' ?>' . $code );
+	        eval( $code );
         } catch(ParseError $e) {
 		    $error_line = $e->getLine();
         }
+        unset($_testFunction);
 	    ob_end_clean();
 
-        // Ini Restore
-        @ini_restore("error_prepend_string");
-        @ini_restore("error_append_string");
-
         if (!empty($error_line)) {
-            return $error_line;
+            return $error_line - 2;
         } else {
             return false;
         }
