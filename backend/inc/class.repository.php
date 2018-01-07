@@ -924,11 +924,13 @@ class repository {
         // add constant __cmsMODTEST
         $code .= '<?php define(\'__cmsMODTEST\', true); ?>';
         // replaces        
-        $code = str_replace('<CMSPHP>', '', $code);
-        $code = str_replace('</CMSPHP>', '', $code);
+        $code = str_replace('<CMSPHP>', '<?php', $code);
+        $code = str_replace('</CMSPHP>', '?>', $code);
+	    $code = str_replace('<CMSPHP:CACHE>', '<?php', $code);
+	    $code = str_replace('</CMSPHP:CACHE>', '?>', $code);
         //todo: 2remove
-        $code = str_replace('<DEDIPHP>', '', $code);
-        $code = str_replace('</DEDIPHP>', '', $code);
+        $code = str_replace('<DEDIPHP>', '<?php', $code);
+        $code = str_replace('</DEDIPHP>', '?>', $code);
 		// replaces		
         $code = str_replace('MOD_VALUE', '$MOD_VALUE', $code);
         $code = str_replace('MOD_VAR', '$MOD_VAR', $code);
