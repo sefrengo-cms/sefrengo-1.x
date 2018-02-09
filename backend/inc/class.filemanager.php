@@ -389,7 +389,7 @@ class filemanager extends fileaccess {
 		$newdirs2scan     = array();
 		$this->edit_dirs  = array();
 		$content_found    = false;
-		$currentdir       = '';
+		$currentdir       = [];
 		$scandir          = '';
 
 		// get scan directory
@@ -1109,7 +1109,7 @@ class filemanager extends fileaccess {
 		// scan files in directory
 		$found_files_id    = array();
 		$this->edit_files  = array();
-		$currentdir        = '';
+		$currentdir        = [];
 		$scandir           = '';
 		
 		// get scan dir

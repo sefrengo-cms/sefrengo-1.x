@@ -411,7 +411,7 @@ class Mail_RFC822 {
      * Function to begin checking the address.
      *
      * @access private
-     * @param string $address The address to validate.
+     * @param array $address The address to validate.
      * @return mixed False on failure, or a structured array of address information on success.
      */
     function _validateAddress($address)

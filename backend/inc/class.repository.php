@@ -918,53 +918,43 @@ class repository {
         $idcatside = 1;
         // include the Mipforms
         include_once('inc/fnc.mipforms.php');
-        $mod_test_var = 0;
+
         // spezial for 'Druckmodul'
         $list['id'][] = 1;
         // add constant __cmsMODTEST
         $code .= '<?php define(\'__cmsMODTEST\', true); ?>';
         // replaces        
-        $code = str_replace('<CMSPHP>', '', $code);
-        $code = str_replace('</CMSPHP>', '', $code);
+        $code = str_replace('<CMSPHP>', '<?php', $code);
+        $code = str_replace('</CMSPHP>', '?>', $code);
+	    $code = str_replace('<CMSPHP:CACHE>', '<?php', $code);
+	    $code = str_replace('</CMSPHP:CACHE>', '?>', $code);
         //todo: 2remove
-        $code = str_replace('<DEDIPHP>', '', $code);
-        $code = str_replace('</DEDIPHP>', '', $code);
+        $code = str_replace('<DEDIPHP>', '<?php', $code);
+        $code = str_replace('</DEDIPHP>', '?>', $code);
 		// replaces		
         $code = str_replace('MOD_VALUE', '$MOD_VALUE', $code);
         $code = str_replace('MOD_VAR', '$MOD_VAR', $code);
         $code = preg_replace ('/(<(cms|dedi):[\/\!]*?[^<>]*?>)/si', '""', $code);
         // Init the Box
-        $code = "function mod_test_" . $id . " () {" . $code;
-        $code .= "\n}\n";
-        $code .= '$mod_test_var = $id;';
-        // Ini Set
-        @ini_set("error_prepend_string", "<mod_test_error>");
-        @ini_set("error_append_string", "</mod_test_error>");
-        // Debug Me! print_r($code);
+        $code = "\$_testFunction = function () { ?>" . $code . "\n<?php\n};\n";
+
         // Run the code in a Box
-        ob_start();
-        eval(' ?>' . $code);
-        $output = ob_get_contents();
-        // Later Parse! call_user_func("function mod_test_" . $id,'');
-        ob_end_clean();
-        // Ini Restore
-        @ini_restore("error_prepend_string");
-        @ini_restore("error_append_string");
-        // Strip <mod_test_error>
-        $start = strpos($output, "<mod_test_error>");
-        $end = strpos($output, "</mod_test_error>");
-        if ($start !== false) {
-            $start = strpos($output, "eval()");
-            $error = substr($output, $start, $end - $start);
-            preg_match ('/<b>(\d+)<\/b>/i', $error, $match);
-            $error_line = (int) $match['1'] - 1;
+	    ob_start();
+	    try {
+	        eval( $code );
+        } catch(ParseError $e) {
+		    $error_line = $e->getLine();
         }
-        if ($mod_test_var != $id) {
-            return $error_line;
+        unset($_testFunction);
+	    ob_end_clean();
+
+        if (!empty($error_line)) {
+            return $error_line - 2;
         } else {
             return false;
         }
     }
+
     /**
     * repository::gen_new_mod()
     *
@@ -1086,7 +1076,7 @@ class repository {
     * { Description }
     *
     */
-    var $_rep_var = '';
+    var $_rep_var = [];
     /**
     * repository::$_cms_var
     *
@@ -1100,7 +1090,7 @@ class repository {
     * { Description }
     *
     */
-    var $_lang_var = '';
+    var $_lang_var = [];
     /**
     * repository::$_service
     *

@@ -135,7 +135,8 @@ class setup {
 		'updates_from.01.06.02.sql',
 		'updates_from.01.06.03.sql',
 		'updates_from.01.06.04.sql',
-		'updates_from.01.06.05.sql'
+		'updates_from.01.06.05.sql',
+		'updates_from.01.06.06.sql'
 	);
 
 	/**

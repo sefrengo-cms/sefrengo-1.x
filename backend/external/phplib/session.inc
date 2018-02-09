@@ -329,7 +329,7 @@ class Session {
                 $str .= "\$$var = array(); ";
                 while ( "array" == $l ) {
                     // Structural recursion
-                    $this->serialize( $var . "['" . preg_replace( "#([\\'])#", "\\\\1", $k ) . "']", $str );
+                    $this->serialize( $var . "['" . preg_replace( "#([\\'])#", "\\\\$1", $k ) . "']", $str );
                     eval( "\$l = gettype(list(\$k)=each(\$$var));" );
                 } 
 
@@ -348,7 +348,7 @@ class Session {
             default: 
                 // $$var is an atom. Extract it to $l, then generate code.
                 eval( "\$l = \$$var;" );
-                $str .= "\$$var = '" . preg_replace( "#([\\'])#", "\\\\1", $l ) . "'; ";
+                $str .= "\$$var = '" . preg_replace( "#([\\'])#", "\\\\$1", $l ) . "'; ";
                 break;
         } 
     } 

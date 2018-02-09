@@ -229,7 +229,7 @@ class fileaccess {
 	//						-> else: only $directory is used as ID
 	//
 	function get_directory($directory, $idclient = '', $type = 1 ) {
-		if (empty($directory)) return ''; // missing directory information
+		if (empty($directory)) return []; // missing directory information
 		if ($this->use_cache && $this->tmp_directorydata[$directory]) return $this->tmp_directorydata[$directory];
 		// set variables
    		$tmp_dir = array( 'dirname', 'iddirectory', 'str', 'num');
@@ -254,7 +254,7 @@ class fileaccess {
 		// save data in cache
 		$tmp = $this->db->select_record($table, $parameter, $type);
 		if ($this->use_cache && $tmp) $this->tmp_directorydata[(int)$tmp['iddirectory']] = $tmp;
-		return ((!empty($tmp)) ? $tmp: '');
+		return ((!empty($tmp)) ? $tmp: []);
 	}
 
 	//
@@ -356,7 +356,7 @@ class fileaccess {
 	//						-> else: only $file is used as ID
 	//
 	function get_file($file, $idclient = '', $iddirectory = '', $type = 1) {
-		if (empty($file)) return ''; // missing fileid
+		if (empty($file)) return array(); // missing fileid
 		if ($this->use_cache && $this->tmp_filedata[$file]) return $this->tmp_filedata[$file];
 		// get data for a single file
 		$tmp_file = array( 'filename', 'idupl', 'str', 'num');
@@ -386,7 +386,7 @@ class fileaccess {
 		// save data in cache
 		$tmp = $this->db->select_record($table, $parameter, $type);
 		if ($this->use_cache && $tmp) $this->tmp_filedata[$tmp['idupl']] = $tmp;
-		return ((!empty($tmp)) ? $tmp: '');
+		return ((!empty($tmp)) ? $tmp: array());
 	}
 
 	//

@@ -569,8 +569,8 @@ class cms_Backend_Session extends Session
     var $cookiename = 'sefrengo'; // Name des Cookies
     var $name = 'cms';
     var $magic = 'backend_Session'; // beliebiger Name zur Verschl?sselung
-    var $mode = 'get'; // default Modus der Session-ID
-    var $fallback_mode = 'cookie'; // falls default Modus abgelehnt wird
+    var $mode = 'cookie'; // default Modus der Session-ID
+    var $fallback_mode = 'get'; // falls default Modus abgelehnt wird
     var $lifetime = '0'; // 0 = do session cookies, else minutes
     var $refresh = '0'; // 0 = no refresh, else minutes
     var $that_class = 'cms_CT_Sql'; // name of data storage container
@@ -594,8 +594,8 @@ class cms_Frontend_Session extends Session
     var $cookiename = 'sid'; // Name des Cookies
     var $name = 'sid';
     var $magic = 'frontend_Session'; // beliebiger Name zur Verschl?sselung
-    var $mode = 'get'; // default Modus der Session-ID
-    var $fallback_mode = 'cookie'; // falls default Modus abgelehnt wird
+    var $mode = 'cookie'; // default Modus der Session-ID
+    var $fallback_mode = 'get'; // falls default Modus abgelehnt wird
     var $lifetime = '0'; // 0 = do session cookies, else minutes
     var $refresh = '0'; // 0 = no refresh, else minutes
     var $that_class = 'cms_CT_Sql'; // name of data storage container
