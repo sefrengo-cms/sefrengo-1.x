@@ -842,7 +842,7 @@ function con_create_site_meta_from_idcatside($idclient, $idlang_current, $idcats
 					 '".$db3->f('meta_redirect')."', '$meta_redirect_url', '".$db3->f('author')."', 
 					'".time()."', '".time()."', '".$db3->f('user_protected')."', '".$db3->f('visited')."', '".$db3->f('edit_ttl')."', 
 					'$meta_author', '$meta_description', '$meta_robots', '".$db3->f('meta_redirect_time')."',
-					 '".$db->f('metasocial_title')."', '".$db->f('metasocial_image')."', '".$db->f('metasocial_description')."', '".$db->f('metasocial_author')."',
+					 '".$metasocial_title."', '".$metasocial_image."', '".$metasocial_description."', '".$metasocial_author."',
 					'1', '$rewrite_url', ".time().", ".time().")";
 		$db2->query($sql2);
 	}

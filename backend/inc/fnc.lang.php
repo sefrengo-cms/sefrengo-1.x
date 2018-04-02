@@ -119,8 +119,8 @@ function lang_new_language($idclient, $name, $desc, $charset, $rewrite_key, $rew
 						('".$db->f('idside')."', '$lang', '0', '$title', '$meta_keywords', '$summary', '$online', 
 							'".$db->f('meta_redirect')."', '$meta_redirect_url', '".$db->f('author')."', '".time()."', 
 							'".time()."', '".$db->f('user_protected')."', '".$db->f('visited')."', '".$db->f('edit_ttl')."', '$meta_author', 
-							'$meta_description', '$meta_robots', '".$db->f('meta_redirect_time')."'
-							, '".$db->f('metasocial_title')."', '".$db->f('metasocial_image')."', '".$db->f('metasocial_description')."', '".$db->f('metasocial_author')."')";
+							'$meta_description', '$meta_robots', '".make_string_dump($db->f('meta_redirect_time'))."'
+							, '".make_string_dump($db->f('metasocial_title'))."', '".make_string_dump($db->f('metasocial_image'))."', '".make_string_dump($db->f('metasocial_description'))."', '".make_string_dump($db->f('metasocial_author'))."')";
 			// change JB
 			$db2->query($sql2);
 		}

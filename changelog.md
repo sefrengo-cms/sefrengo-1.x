@@ -1,5 +1,32 @@
 Changelog
-    ================================================================================================
+================================================================================================
+
+Sefrengo v1.6.7
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.07<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* FIXED: No sql escaping of metasocial fields in in fnc.con.php and fnc.lang.php 
+
+
+Sefrengo v1.6.6
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.06<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* FIXED: Bugfixing for PHP7 Compatiblity
+* CHANGE: set config in cms_container and cms_mod to mediumtext
+
+
+Sefrengo v1.6.5
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.05<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* ADDED: Compatibility to PHP7
 
 Sefrengo v1.6.4
 ------------------------------------------------------------------------------------------------
