@@ -909,6 +909,9 @@ class repository {
     *
     */
     function mod_test ($code, $id) {
+        // js@left4web.de - disabled mod_test because it produces more trouble than it helps
+        return false;
+
         global $db, $auth, $cms_db, $cfg_cms, $rep, $mod, $perm, $client, $lang, $con_tree, $con_side;
         static $_id;
         $_strict = explode(',',($_dis = @ini_get('disable_functions')));
