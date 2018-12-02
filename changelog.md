@@ -1,6 +1,14 @@
 Changelog
 ================================================================================================
 
+Sefrengo v1.6.9
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.09<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* FIXED: PHP7 incompatible preg_replcae with e modifier in bbcode parser
+
 Sefrengo v1.6.8
 ------------------------------------------------------------------------------------------------
 Internal versionnumber: 01.06.08<br/>
