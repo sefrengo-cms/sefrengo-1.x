@@ -1,5 +1,51 @@
 Changelog
-    ================================================================================================
+================================================================================================
+
+Sefrengo v1.6.9
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.09<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* FIXED: PHP7 incompatible preg_replcae with e modifier in bbcode parser
+
+Sefrengo v1.6.8
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.08<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* CHANGE: Disabled function mod_test in class.repository.php because it produces more problems 
+  than it solved
+* CHANGE: Removed Session fallback in local.php. Prevents showing session ids in Search engines. 
+
+
+Sefrengo v1.6.7
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.07<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* FIXED: No sql escaping of metasocial fields in in fnc.con.php and fnc.lang.php 
+
+
+Sefrengo v1.6.6
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.06<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web
+* FIXED: Bugfixing for PHP7 Compatiblity
+* CHANGE: set config in cms_container and cms_mod to mediumtext
+
+
+Sefrengo v1.6.5
+------------------------------------------------------------------------------------------------
+Internal versionnumber: 01.06.05<br/>
+Release: xx.xx.xxxx
+
+Commits are contributed by left4web 
+* ADDED: Compatibility to PHP7
 
 Sefrengo v1.6.4
 ------------------------------------------------------------------------------------------------

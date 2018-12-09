@@ -178,7 +178,7 @@ class Pager_Sliding extends Pager_Common
      * @return array back/pages/next/first/last/all links
      * @access public
      */
-    function getLinks($pageID = null)
+    function getLinks($pageID=null, $next_html='')
     {
         if ($pageID != null) {
             $_sav = $this->_currentPage;

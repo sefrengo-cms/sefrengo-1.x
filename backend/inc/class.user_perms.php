@@ -1793,7 +1793,7 @@ class cms_perms {
 	 * Rechtewerte.
 	 *
 	 * @param	string 	$type	 		Anzuzeigender Rechtetyp
-	 * @param	string 	$rights 		Array mit Gruppennamen, Gruppenids und Gruppenrechte
+	 * @param	array 	$rights 		Array mit Gruppennamen, Gruppenids und Gruppenrechte
 	 * @param	string 	$countRights 	Referenz zur Aufnahme der Anzahl der ausgelesenen Rechte
 	 * @param	string 	$prefix 		Prefix für Formularvariablen, damit mehrere Formulare auf einer Seite dargestellt werden können
 	 *

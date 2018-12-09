@@ -135,7 +135,11 @@ class setup {
 		'updates_from.01.06.02.sql',
 		'updates_from.01.06.03.sql',
 		'updates_from.01.06.04.sql',
-		'updates_from.01.06.05.sql'
+		'updates_from.01.06.05.sql',
+		'updates_from.01.06.06.sql',
+        'updates_from.01.06.07.sql',
+		'updates_from.01.06.08.sql',
+        'updates_from.01.06.09.sql'
 	);
 
 	/**
@@ -146,7 +150,7 @@ class setup {
 		$this -> catch_globals();
 		$this -> version['prior'] = '01';
 		$this -> version['minor'] = '06';
-		$this -> version['fix']   = '06';
+		$this -> version['fix']   = '09';
 		$this -> version_text = $this -> version['prior'];
 		$this -> version_text .= '.';
 		$this -> version_text .= $this -> version['minor'];

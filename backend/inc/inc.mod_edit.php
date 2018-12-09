@@ -57,6 +57,12 @@ include('inc/inc.header.php');
 if (is_numeric($idmod)) {
     $modul = $rep->mod_data($idmod, $idclient);
 }
+
+// s_modul is base64 encoded because of problems with quote escaping in the session. Decode it here.
+if (!empty($s_modul)) {
+    $s_modul = unserialize(base64_decode($s_modul));
+}
+
 if (is_array($s_modul)) {
     $modul = ( is_array($modul) ) ? array_merge($modul, $s_modul) : $s_modul;
     if ($sess->is_registered('s_modul')) $sess->unregister('s_modul');
