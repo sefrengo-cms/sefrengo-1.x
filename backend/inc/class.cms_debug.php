@@ -66,10 +66,10 @@ class cms_debug
 				break;
 			case 'mem':
 				$temp_arr['message'] = $message;
-    			if (function_exists(memory_get_usage)) {
+    			if (function_exists('memory_get_usage')) {
     		        $temp_arr['usage'] = memory_get_usage()/1024;
     			}
-			    if (function_exists(memory_get_peak_usage)) {
+			    if (function_exists('memory_get_peak_usage')) {
         		    $temp_arr['peak'] = memory_get_peak_usage()/1024;
 			    }
 				$this -> memory[] = $temp_arr;
@@ -146,10 +146,10 @@ class cms_debug
 		}
 		
 		if ($this->m_enabled) {
-			if (function_exists(memory_get_usage)) {
+			if (function_exists('memory_get_usage')) {
     		    $to_return .= sprintf("<br>memory allocated: (%6uk)\n",  memory_get_usage()/1024);
 			}
-			if (function_exists(memory_get_peak_usage)) {
+			if (function_exists('memory_get_peak_usage')) {
     		    $to_return .= sprintf("<br>peak of memory allocated: (%6uk)\n",  memory_get_peak_usage()/1024);
 			}
 		}
